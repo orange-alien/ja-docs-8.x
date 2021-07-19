@@ -63,7 +63,7 @@ LaravelのGitHubイシュートラッカーは、Laravelのヘルプやサポー
 <a name="core-development-discussion"></a>
 ## コア開発の議論
 
-新機能や、現存のLaravelの振る舞いについて改善を提言したい場合は、Laravelアイデア[issueボード](https://github.com/laravel/ideas/issues)へおねがいします。新機能を提言する場合は自発的に、それを完動させるのに必要な、コードを最低限でも実装してください。
+新機能や、現存のLaravelの振る舞いについて改善を提言したい場合は、Laravelフレームワークリポジトリの[GitHub discussion board](https://github.com/laravel/framework/discussions)へおねがいします。新機能を提言する場合は自発的に、それを完動させるのに必要な、コードを最低限でも実装してください。
 
 バグ、新機能、既存機能の実装についてのざっくばらんな議論は、[Laravel Discord server](https://discordapp.com/invite/mPZNm7A)の`#internals`チャンネルで行っています。LaravelのメンテナーであるTaylor Otwellは、通常ウイークエンドの午前８時から５時まで（America/Chicago標準時、UTC-6:00）接続しています。他の時間帯では、ときどき接続しています。
 

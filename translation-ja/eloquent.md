@@ -25,6 +25,7 @@
 - [モデルの削除](#deleting-models)
     - [ソフトデリート](#soft-deleting)
     - [ソフトデリート済みモデルのクエリ](#querying-soft-deleted-models)
+- [モデルの整理](#pruning-models)
 - [モデルの複製](#replicating-models)
 - [クエリスコープ](#query-scopes)
     - [グローバルスコープ](#global-scopes)
@@ -879,6 +880,93 @@ Eloquentリレーションクエリを作成するときに、`forceDelete`メ�
     $flights = Flight::onlyTrashed()
                     ->where('airline_id', 1)
                     ->get();
+
+<a name="pruning-models"></a>
+## モデルの整理
+
+不要になったモデルを定期的に削除したい場合があります。これを実現するには、定期的に整理したいモデルに、`Illuminate\Database\Eloquent\Prunable`か`Illuminate\Database\Eloquent\MassPrunable`トレイトを追加してください。モデルにどちらかのトレイトを追加したら、不要なモデルを指定するEloquentのクエリビルダを返す`prunable`メソッドを実装します。
+
+    <?php
+
+    namespace App\Models;
+
+    use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Prunable;
+
+    class Flight extends Model
+    {
+        use Prunable;
+
+        /**
+         * 整理可能モデルクエリの取得
+         *
+         * @return \Illuminate\Database\Eloquent\Builder
+         */
+        public function prunable()
+        {
+            return static::where('created_at', '<=', now()->subMonth());
+        }
+    }
+
+`Prunable`としてモデルを作成する際に、そのモデルへ`pruning`メソッドを定義することもできます。このメソッドはモデルが削除される前に呼び出されます。このメソッドは、モデルがデータベースから永久に削除される前に、保存しているファイルなど、モデルに関連する追加リソースを削除するために役立ちます。
+
+    /**
+     * 整理可能モデルの準備
+     *
+     * @return void
+     */
+    protected function pruning()
+    {
+        //
+    }
+
+Prunableモデルを設定した後は、アプリケーションの`App\Console\Kernel`クラスで`model:prune` Artisanコマンドをスケジュールする必要があります。このコマンドを実行する適切な間隔は自由に選択できます。
+
+    /**
+     * アプリケーションのコマンドスケジュールを定義
+     *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @return void
+     */
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('model:prune')->daily();
+    }
+
+`model:prune`コマンドは、裏でアプリケーションの`app/Models`ディレクトリ内にある、"Prunable"モデルを自動的に検出します。モデルが別の場所にある場合は、`--model`オプションを使って、モデルクラス名を指定できます。
+
+    $schedule->command('model:prune', [
+        '--model' => [Address::class, Flight::class],
+    ])->daily();
+
+> {note} Prunableクエリに一致した場合、ソフト削除するモデルでも、永久的に削除（`forceDelete`）します。
+
+<a name="mass-pruning"></a>
+#### 複数整理
+
+モデルへ`Illuminate\Database\Eloquent\MassPrunable`トレイトが付与されると、モデルは複数削除クエリを使ってデータベースから削除されます。そのため、`pruning`メソッドを呼び出しませんし、`deleting`や`deleted`のモデルイベントも発行しません。これはモデルの削除前で実際に取得しないため、整理処理をより効率的に行うことができるからです。
+
+    <?php
+
+    namespace App\Models;
+
+    use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\MassPrunable;
+
+    class Flight extends Model
+    {
+        use MassPrunable;
+
+        /**
+         * 整理可能モデルクエリの取得
+         *
+         * @return \Illuminate\Database\Eloquent\Builder
+         */
+        public function prunable()
+        {
+            return static::where('created_at', '<=', now()->subMonth());
+        }
+    }
 
 <a name="replicating-models"></a>
 ## モデルの複製

@@ -73,7 +73,7 @@ Laravelのファイルシステム設定ファイルは`config/filesystems.php`�
 
 S3やSFTPドライバーを使用するときは、事前にComposerパッケージマネージャーを介して適切なパッケージをインストールする必要があります。
 
-- Amazon S3: `composer require league/flysystem-aws-s3-v3 "~1.0"`
+- Amazon S3: `composer require --with-all-dependencies league/flysystem-aws-s3-v3 "^1.0"`
 - SFTP: `composer require league/flysystem-sftp "~1.0"`
 
 パフォーマンスを向上させるために、メタデータをキャッシュするアダプタを追加インストールすることもできます。

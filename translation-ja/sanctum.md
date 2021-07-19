@@ -222,10 +222,8 @@ Sanctumは、Laravelを利用したAPIと通信する必要があるシングル
 
 次に、Sanctumのミドルウェアを`app/Http/Kernel.php`ファイル内の`api`ミドルウェアグループに追加する必要があります。このミドルウェアは、SPAからの受信リクエストがLaravelのセッションクッキーを使用して認証できるようにすると同時に、サードパーティまたはモバイルアプリケーションからのリクエストがAPIトークンを使用して認証できるようにする役割を果たします。
 
-    use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
-
     'api' => [
-        EnsureFrontendRequestsAreStateful::class,
+        \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
         'throttle:api',
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ],

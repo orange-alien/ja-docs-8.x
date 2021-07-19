@@ -53,7 +53,6 @@
     - [一回限りの支払い](#single-charge-checkouts)
     - [サブスクリプションの支払い](#subscription-checkouts)
     - [課税IDの収集](#collecting-tax-ids)
-    - [支払いボタンのスタイル](#styling-the-checkout-button)
 - [インボイス](#invoices)
     - [インボイスの取得](#retrieving-invoices)
     - [将来のインボイス](#upcoming-invoices)
@@ -1569,50 +1568,54 @@ Cashier Stripeは、[Stripe Checkout](https://stripe.com/payments/checkout)も�
 
 Billableなモデル上の`checkout`メソッドを使用して、Stripeダッシュボード内に作成した既存の製品のチェックアウトを実行できます。`checkout`メソッドは新しいStripeチェックアウトセッションを開始します。デフォルトで、Stripe価格IDを渡す必要があります。
 
-    $checkout = $user->checkout('price_tshirt');
+    use Illuminate\Http\Request;
 
-    return view('your-checkout-view', [
-        'checkout' => $checkout,
-    ]);
+    Route::get('/product-checkout', function (Request $request) {
+        return $request->user()->checkout('price_tshirt');
+    });
 
 必要に応じて、製品数量を指定することもできます。
 
-    $checkout = $user->checkout(['price_tshirt' => 15]);
+    use Illuminate\Http\Request;
 
-チェックアウトセッションインスタンスをビューに渡し、ユーザーをStripeチェックアウトに向かわせるボタンを`button`メソッドを使用してレンダーできます。
+    Route::get('/product-checkout', function (Request $request) {
+        return $request->user()->checkout(['price_tshirt' => 15]);
+    });
 
-    {{ $checkout->button('Buy') }}
+顧客がこのルートを訪れると、Stripeのチェックアウトページにリダイレクトされます。デフォルトでは、ユーザーが購入を正常に完了した場合、または購入をキャンセルすると、`Home`ルートへリダイレクトされますが、`success_url`と`cancel_url`オプションを使い、カスタムコールバックURLを指定できます。
 
-顧客がこのボタンをクリックすると、Stripeのチェックアウトページにリダイレクトされます。デフォルトでは、ユーザーが購入を正常に完了した場合、または購入をキャンセルすると、`Home`ルートへリダイレクトされますが、`success_url`と`cancel_url`オプションを使ってカスタムコールバックURLを指定できます。
+    use Illuminate\Http\Request;
 
-    $checkout = $user->checkout(['price_tshirt' => 1], [
-        'success_url' => route('your-success-route'),
-        'cancel_url' => route('your-cancel-route'),
-    ]);
+    Route::get('/product-checkout', function (Request $request) {
+        return $request->user()->checkout(['price_tshirt' => 1], [
+            'success_url' => route('your-success-route'),
+            'cancel_url' => route('your-cancel-route'),
+        ]);
+    });
 
 <a name="checkout-promotion-codes"></a>
 #### プロモーションコード
 
 Stripe Checkoutはデフォルトで、[ユーザーが商品に使用できるプロモーションコード](https://stripe.com/docs/billing/subscriptions/discounts/code)を許可していません。幸いわいに、チェックアウトページでこれを有効にする簡単な方法があります。そのためには、`allowPromotionCodes`メソッドを呼び出します。
 
-    $checkout = $user->allowPromotionCodes()->checkout('price_tshirt');
+    use Illuminate\Http\Request;
+
+    Route::get('/product-checkout', function (Request $request) {
+        return $request->user()
+            ->allowPromotionCodes()
+            ->checkout('price_tshirt');
+    });
 
 <a name="single-charge-checkouts"></a>
 ### 一回限りの支払い
 
-ストライプダッシュボードに作成していない、アドホックな商品をシンプルに課金することもできます。これには、Billableなモデルで`checkoutCharge`メソッドを使用し、課金可能な料金、製品名、およびオプションの数量を渡たします。
+ストライプダッシュボードに作成していない、アドホックな商品をシンプルに課金することもできます。これには、Billableなモデルで`checkoutCharge`メソッドを使用し、課金可能な料金、製品名、およびオプションの数量を渡たします。顧客がこのルートを訪れると、Stripeのチェックアウトページへリダイレクトされます。
 
-    $checkout = $user->checkoutCharge(1200, 'T-Shirt', 5);
+    use Illuminate\Http\Request;
 
-    return view('your-checkout-view', [
-        'checkout' => $checkout,
-    ]);
-
-チェックアウトセッションインスタンスをビューに渡し、ユーザーをStripeチェックアウトへ向かわせるボタンを`button`メソッドでレンダーできます。
-
-    {{ $checkout->button('Buy') }}
-
-顧客がこのボタンをクリックすると、Stripeのチェックアウトページにリダイレクトされます。
+    Route::get('/charge-checkout', function (Request $request) {
+        return $request->user()->checkoutCharge(1200, 'T-Shirt', 5);
+    });
 
 > {note}`checkoutCharge`メソッドを使用する場合、Stripeは常にStripeダッシュボードに新しい製品と価格を作成します。したがって、代わりにStripeダッシュボードで事前に商品を作成し、`checkout`メソッドを使用することを推奨します。
 
@@ -1621,34 +1624,39 @@ Stripe Checkoutはデフォルトで、[ユーザーが商品に使用できる�
 
 > {note} Stripe Checkoutのサブスクリプションを使用するには、Stripeダッシュボードで`customer.subscription.created` Webフックを有効にする必要があります。このWebフックは、データベースにサブスクリプションレコードを作成し、すべてのサブスクリプション関連アイテムを保存します。
 
-サブスクリプションを開始するには、Stripe Checkoutを使用することもできます。Cashierのサブスクリプションビルダメソッドを使用してサブスクリプションを定義した後に、`checkout`メソッドを呼び出せます。
+サブスクリプションを開始するには、Stripe Checkoutを使用することもできます。Cashierのサブスクリプションビルダメソッドを使用してサブスクリプションを定義した後に、`checkout`メソッドを呼び出せます。顧客がこのルートを訪れると、Stripeのチェックアウトページへリダイレクトされます。
 
-    $checkout = Auth::user()
+    use Illuminate\Http\Request;
+
+    Route::get('/subscription-checkout', function (Request $request) {
+        return $request->user()
             ->newSubscription('default', 'price_monthly')
             ->checkout();
-
-    return view('your-checkout-view', [
-        'checkout' => $checkout,
-    ]);
+    });
 
 製品のチェックアウトと同様に、成功およびキャンセルのURLをカスタマイズできます。
 
-    $checkout = Auth::user()->newSubscription('default', 'price_monthly')->checkout([
-        'success_url' => route('your-success-route'),
-        'cancel_url' => route('your-cancel-route'),
-    ]);
+    use Illuminate\Http\Request;
+
+    Route::get('/subscription-checkout', function (Request $request) {
+        return $request->user()
+            ->newSubscription('default', 'price_monthly')
+            ->checkout([
+                'success_url' => route('your-success-route'),
+                'cancel_url' => route('your-cancel-route'),
+            ]);
+    });
 
 もちろん、サブスクリプションチェックアウトのプロモーションコードを有効にすることもできます。
 
-    $checkout = Auth::user()->newSubscription('default', 'price_monthly')
-        ->allowPromotionCodes()
-        ->checkout();
+    use Illuminate\Http\Request;
 
-チェックアウトセッションインスタンスをビューへ渡し、ユーザーをStripeチェックアウトに向かわせるボタンを`button`メソッドを使用してレンダーできます。
-
-    {{ $checkout->button('Subscribe') }}
-
-顧客がこのボタンをクリックすると、Stripeのチェックアウトページにリダイレクトされます。
+    Route::get('/subscription-checkout', function (Request $request) {
+        return $request->user()
+            ->newSubscription('default', 'price_monthly')
+            ->allowPromotionCodes()
+            ->checkout();
+    });
 
 > {note} 残念ながらStripe Checkoutはサブスクリプションを開始するとき、すべてのサブスクリプション請求オプションをサポートしていません。サブスクリプションビルダの`anchorBillingCycleOn`メソッドを使用して、プロレーション動作の設定、または支払い動作の設定は、Stripeチェックアウトセッション中に全く効果はありません。どのパラメータが利用可能であるかを確認するには、[Stripe CheckoutセッションAPIのドキュメント](https://stripe.com/docs/api/checkout/sessions/create)を参照してください。
 
@@ -1676,13 +1684,6 @@ Checkoutは、顧客の課税IDの収集もサポートしています。チェ�
     $checkout = $user->collectTaxIds()->checkout('price_tshirt');
 
 このメソッドを呼び出すと、顧客が会社として購入するかを示すための新しいチェックボックスが利用可能になります。会社として購入する場合は、課税IDを入力してもらいます。
-
-<a name="styling-the-checkout-button"></a>
-### 支払いボタンのスタイル
-
-チェックアウトボタンをレンダーするときは、`class`と`style`オプションを使ってボタンスタイルをカスタマイズできます。これらのオプションは、連想配列として`button`メソッドへの第２引数に渡す必要があります。
-
-    {{ $checkout->button('Buy', ['class' => 'p-4 bg-blue-500 text-white']) }}
 
 <a name="handling-failed-payments"></a>
 ## 支払い失敗の処理

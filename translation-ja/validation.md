@@ -25,6 +25,8 @@
 - [使用可能なバリデーションルール](#available-validation-rules)
 - [条件付きの追加ルール](#conditionally-adding-rules)
 - [配列のバリデーション](#validating-arrays)
+    - [バリデートできなかった配列キーの除外](#excluding-unvalidated-array-keys)
+    - [ネストした配列入力のバリデーション](#validating-nested-array-input)
 - [パスワードのバリデーション](#validating-passwords)
 - [カスタムバリデーションルール](#custom-validation-rules)
     - [ルールオブジェクトの使用](#using-rule-objects)
@@ -814,6 +816,24 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
         'user' => 'array:username,locale',
     ]);
 
+一般的に、配列内に存在することが許される配列キーを常に指定する必要があります。そうしないと、バリデータの`validate`と`validated`メソッドは他のネストした配列バリデーションルールにより検証されていなくても、配列とそのすべてのキーを含むバリデーション済みデータをすべて返してしまうことになります。
+
+必要に応じ、許可するキーのリストを指定せずに`array`ルールを使用した場合でも、Laravelのバリデータが返す「検証済み」データに未検証の配列キーを含めないように指示できます。そうするには、アプリケーションの`AppServiceProvider`の`boot`メソッドでバリデータの`excludeUnvalidatedArrayKeys`メソッドを呼び出してください。それによりバリデータは、[ネストする配列ルール](#validating-arrays)により検証された場合にのみ返される「検証済み」データへ配列キーを含めます。
+
+```php
+use Illuminate\Support\Facades\Validator;
+
+/**
+ * 全アプリケーションサービスの登録
+ *
+ * @return void
+ */
+public function boot()
+{
+    Validator::excludeUnvalidatedArrayKeys();
+}
+```
+
 <a name="rule-bail"></a>
 #### bail
 
@@ -1441,7 +1461,47 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 <a name="validating-arrays"></a>
 ## 配列のバリデーション
 
-フォーム入力フィールドの配列をバリデーションするのに苦労する必要はありません。配列中の属性をバリデーションするために「ドット記法」が使えます。たとえば、送信されたHTTPリクエストに、`photos[profile]`フィールドが含まれているかをバリデーションするには、次のように行います。
+[`array`バリデーションルールのドキュメント](#rule-array)で説明したように、`array`ルールは、許可する配列キーのリストを受け入れます。配列内にその他のキーが存在する場合、バリデーションは失敗します。
+
+    use Illuminate\Support\Facades\Validator;
+
+    $input = [
+        'user' => [
+            'name' => 'Taylor Otwell',
+            'username' => 'taylorotwell',
+            'admin' => true,
+        ],
+    ];
+
+    Validator::make($input, [
+        'user' => 'array:username,locale',
+    ]);
+
+一般的には、配列内に存在を許す配列キーを常に指定する必要があります。そうしないと、バリデータの`validate`や`validated`メソッドは、配列とそのすべてのキーを含むバリデート済みデータをすべて返してしまいます。
+
+<a name="excluding-unvalidated-array-keys"></a>
+### バリデートできなかった配列キーの除外
+
+必要に応じ、許可するキーのリストを指定せずに`array`ルールを使用した場合でも、Laravelのバリデータが返す「検証済み」データに未検証の配列キーを含めないように指示できます。そうするには、アプリケーションの`AppServiceProvider`の`boot`メソッドでバリデータの`excludeUnvalidatedArrayKeys`メソッドを呼び出してください。それによりバリデータは、[ネストする配列ルール](#validating-arrays)により検証された場合にのみ返される「検証済み」データへ配列キーを含めます。
+
+```php
+use Illuminate\Support\Facades\Validator;
+
+/**
+ * 全アプリケーションサービスの登録
+ *
+ * @return void
+ */
+public function boot()
+{
+    Validator::excludeUnvalidatedArrayKeys();
+}
+```
+
+<a name="validating-nested-array-input"></a>
+### ネストした配列入力のバリデーション
+
+ネストした配列ベースフォームの入力フィールドをバリデーションするのが、面倒である必要はありません。配列内の属性をバリデーションするには、「ドット記法」が使えます。たとえば、HTTPリクエストに`photos[profile]`フィールドが含まれている場合、次のように検証します。
 
     use Illuminate\Support\Facades\Validator;
 
