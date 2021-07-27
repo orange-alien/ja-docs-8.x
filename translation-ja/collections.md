@@ -53,7 +53,7 @@
 
     // ['FIRST', 'SECOND']
 
-通常、コレクションマクロは[サービスプロバイダ](/docs/{{version}}/provider)の`boot`メソッドで宣言する必要があります。
+通常、コレクションマクロは[サービスプロバイダ](/docs/{{version}}/providers)の`boot`メソッドで宣言する必要があります。
 
 <a name="macro-arguments"></a>
 #### マクロ引数
