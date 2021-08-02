@@ -431,6 +431,8 @@ DB::table('users')->where('active', false)
         ['subscribed', '<>', '1'],
     ])->get();
 
+> {note} PDOはカラム名のバインドをサポートしていません。したがって、"order by"カラムを含め、クエリが参照するカラム名をユーザーの入力で決定することは絶対に避けてください。
+
 <a name="or-where-clauses"></a>
 ### OR WHERE句
 

@@ -9,10 +9,11 @@
     - [Switch文](#switch-statements)
     - [繰り返し](#loops)
     - [ループ変数](#the-loop-variable)
-    - [コメント](#comments)
+    - [条件クラス](#conditional-classes)
     - [サブビューの読み込み](#including-subviews)
     - [`@once`ディレクティブ](#the-once-directive)
     - [生PHP](#raw-php)
+    - [コメント](#comments)
 - [コンポーネント](#components)
     - [コンポーネントのレンダー](#rendering-components)
     - [コンポーネントへのデータ渡し](#passing-data-to-components)
@@ -361,12 +362,24 @@ Switchステートメントは、`@switch`、`@case`、`@break`、`@default`、`
 `$loop->depth`  |  現在のループのネストレベル
 `$loop->parent`  |  ループがネストしている場合、親のループ変数
 
-<a name="comments"></a>
-### コメント
+<a name="conditional-classes"></a>
+### 条件クラス
 
-Bladeでは、ビューにコメントを定義することもできます。ただし、HTMLコメントとは異なり、Bladeコメントはアプリケーションから返されるHTMLに含まれていません。
+`@class`ディレクティブは、CSSのクラス文字列を条件付きでコンパイルします。このディレクティブは、クラスの配列を受け取ります。配列のキーには、追加したいクラスが入り、値は論理値です。配列のキーが数字の場合は、レンダリングするクラスリストへ常に取り込みます。
 
-    {{-- このコメントは、レンダーするHTMLで表示されません --}}
+    @php
+        $isActive = false;
+        $hasError = true;
+    @endphp
+
+    <span @class([
+        'p-4',
+        'font-bold' => $isActive,
+        'text-gray-500' => ! $isActive,
+        'bg-red' => $hasError,
+    ])></span>
+
+    <span class="p-4 text-gray-500 bg-red"></span>
 
 <a name="including-subviews"></a>
 ### サブビューの読み込み
@@ -441,6 +454,13 @@ Bladeの`@include`ディレクティブを使用すると、別のビュー内�
     @php
         $counter = 1;
     @endphp
+
+<a name="comments"></a>
+### コメント
+
+また、Bladeでは、ビューにコメントを定義することができます。ただし、HTMLのコメントとは異なり、Bladeのコメントは、アプリケーションが返すHTMLには含まれません。
+
+    {{-- このコメントはレンダー結果のHTMLに存在しません --}}
 
 <a name="components"></a>
 ## コンポーネント
@@ -759,6 +779,8 @@ Bladeコンポーネントを使用すると、クラスのrenderメソッド内
     <button {{ $attributes->class(['p-4'])->merge(['type' => 'button']) }}>
         {{ $slot }}
     </button>
+
+> {tip} マージした属性を受け取るべきではない他のHTML要素にクラスを条件付きでコンパイルする必要がある場合は、[`@class`ディレクティブ](#consitional-classes)を使用できます。
 
 <a name="non-class-attribute-merging"></a>
 #### 非クラス属性のマージ

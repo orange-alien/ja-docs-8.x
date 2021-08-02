@@ -324,7 +324,17 @@ Laravelは、PHPのリフレクションサービスを使用してリスナク�
         public $delay = 60;
     }
 
-実行時にリスナのキューを定義したい場合は、リスナに`viaQueue`メソッドを定義します。
+実行時にリスナのキュー接続またはキュー名を定義したい場合は、リスナに`viaConnection`または`viaQueue`メソッドを定義します。
+
+    /**
+     * リスナのキュー接続の名前の取得
+     *
+     * @return string
+     */
+    public function viaConnection()
+    {
+        return 'sqs';
+    }
 
     /**
      * リスナのキュー名を取得

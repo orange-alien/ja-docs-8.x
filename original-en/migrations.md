@@ -338,6 +338,7 @@ The schema builder blueprint offers a variety of methods that correspond to the 
 [enum](#column-method-enum)
 [float](#column-method-float)
 [foreignId](#column-method-foreignId)
+[foreignUuid](#column-method-foreignUuid)
 [geometryCollection](#column-method-geometryCollection)
 [geometry](#column-method-geometry)
 [id](#column-method-id)
@@ -476,9 +477,16 @@ The `float` method creates a `FLOAT` equivalent column with the given precision 
 <a name="column-method-foreignId"></a>
 #### `foreignId()` {#collection-method}
 
-The `foreignId` method is an alias of the `unsignedBigInteger` method:
+The `foreignId` method creates an `UNSIGNED BIGINT` equivalent column:
 
     $table->foreignId('user_id');
+
+<a name="column-method-foreignUuid"></a>
+#### `foreignUuid()` {#collection-method}
+
+The `foreignUuid` method creates a `UUID` equivalent column:
+
+    $table->foreignUuid('id');
 
 <a name="column-method-geometryCollection"></a>
 #### `geometryCollection()` {#collection-method}
@@ -1083,18 +1091,17 @@ Laravel also provides support for creating foreign key constraints, which are us
         $table->foreign('user_id')->references('id')->on('users');
     });
 
-Since this syntax is rather verbose, Laravel provides additional, terser methods that use conventions to provide a better developer experience. The example above can be rewritten like so:
+Since this syntax is rather verbose, Laravel provides additional, terser methods that use conventions to provide a better developer experience. When using the `foreignId` method to create your column, the example above can be rewritten like so:
 
     Schema::table('posts', function (Blueprint $table) {
         $table->foreignId('user_id')->constrained();
     });
 
-The `foreignId` method is an alias for `unsignedBigInteger` while the `constrained` method will use conventions to determine the table and column name being referenced. If your table name does not match Laravel's conventions, you may specify the table name by passing it as an argument to the `constrained` method:
+The `foreignId` method creates an `UNSIGNED BIGINT` equivalent column, while the `constrained` method will use conventions to determine the table and column name being referenced. If your table name does not match Laravel's conventions, you may specify the table name by passing it as an argument to the `constrained` method:
 
     Schema::table('posts', function (Blueprint $table) {
         $table->foreignId('user_id')->constrained('users');
     });
-
 
 You may also specify the desired action for the "on delete" and "on update" properties of the constraint:
 

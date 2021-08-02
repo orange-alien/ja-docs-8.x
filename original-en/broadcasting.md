@@ -23,6 +23,7 @@
     - [Defining Channel Classes](#defining-channel-classes)
 - [Broadcasting Events](#broadcasting-events)
     - [Only To Others](#only-to-others)
+    - [Customizing The Connection](#customizing-the-connection)
 - [Receiving Broadcasts](#receiving-broadcasts)
     - [Listening For Events](#listening-for-events)
     - [Leaving A Channel](#leaving-a-channel)
@@ -642,6 +643,41 @@ If you are not using a global Axios instance, you will need to manually configur
 
     var socketId = Echo.socketId();
 
+<a name="customizing-the-connection"></a>
+### Customizing The Connection
+
+If your application interacts with multiple broadcast connections and you want to broadcast an event using a broadcaster other than your default, you may specify which connection to push an event to using the `via` method:
+
+    use App\Events\OrderShipmentStatusUpdated;
+
+    broadcast(new OrderShipmentStatusUpdated($update))->via('pusher');
+
+Alternatively, you may specify the event's broadcast connection by calling the `broadcastVia` method within the event's constructor:
+
+    <?php
+
+    namespace App\Events;
+
+    use Illuminate\Broadcasting\Channel;
+    use Illuminate\Broadcasting\InteractsWithSockets;
+    use Illuminate\Broadcasting\PresenceChannel;
+    use Illuminate\Broadcasting\PrivateChannel;
+    use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+    use Illuminate\Queue\SerializesModels;
+
+    class OrderShipmentStatusUpdated implements ShouldBroadcast
+    {
+        /**
+         * Create a new event instance.
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+            $this->broadcastVia('pusher');
+        }
+    }
+
 <a name="receiving-broadcasts"></a>
 ## Receiving Broadcasts
 
@@ -838,6 +874,28 @@ public function broadcastOn($event)
 }
 ```
 
+<a name="customizing-model-broadcasting-event-creation"></a>
+#### Customizing Model Broadcasting Event Creation
+
+Occasionally, you may wish to customize how Laravel creates the underlying model broadcasting event. You may accomplish this by defining a `newBroadcastableEvent` method on your Eloquent model. This method should return an `Illuminate\Database\Eloquent\BroadcastableModelEventOccurred` instance:
+
+```php
+use Illuminate\Database\Eloquent\BroadcastableModelEventOccurred
+
+/**
+ * Create a new broadcastable model event for the model.
+ *
+ * @param  string  $event
+ * @return \Illuminate\Database\Eloquent\BroadcastableModelEventOccurred
+ */
+protected function newBroadcastableEvent($event)
+{
+    return (new BroadcastableModelEventOccurred(
+        $this, $event
+    ))->dontBroadcastToCurrentUser();
+}
+```
+
 <a name="model-broadcasting-conventions"></a>
 ### Model Broadcasting Conventions
 
@@ -878,9 +936,53 @@ $user->broadcastChannel()
 <a name="model-broadcasting-event-conventions"></a>
 #### Event Conventions
 
-Since model broadcast events are not associated with an "actual" event within your application's `App\Events` directory, they are assigned a name based on convention. Laravel's convention is to broadcast the event using the class name of the model (not including the namespace) and the name of the model event that triggered the broadcast.
+Since model broadcast events are not associated with an "actual" event within your application's `App\Events` directory, they are assigned a name and a payload based on conventions. Laravel's convention is to broadcast the event using the class name of the model (not including the namespace) and the name of the model event that triggered the broadcast.
 
-So, for example, an update to the `App\Models\Post` model would broadcast an event to your client-side application as `PostUpdated`, while the deletion of an `App\Models\User` model would broadcast an event named `UserDeleted`.
+So, for example, an update to the `App\Models\Post` model would broadcast an event to your client-side application as `PostUpdated` with the following payload:
+
+    {
+        "model": {
+            "id": 1,
+            "title": "My first post"
+            ...
+        },
+        ...
+        "socket": "someSocketId",
+    }
+
+The deletion of the `App\Models\User` model would broadcast an event named `UserDeleted`.
+
+If you would like, you may define a custom broadcast name and payload by adding a `broadcastAs` and `broadcastWith` method to your model. These methods receive the name of the model event / operation that is occurring, allowing you to customize the event's name and payload for each model operation. If `null` is returned from the `broadcastAs` method, Laravel will use the model broadcasting event name conventions discussed above when broadcasting the event:
+
+```php
+/**
+ * The model event's broadcast name.
+ *
+ * @param  string  $event
+ * @return string|null
+ */
+public function broadcastAs($event)
+{
+    return match ($event) {
+        'created' => 'post.created',
+        default => null,
+    };
+}
+
+/**
+ * Get the data to broadcast for the model.
+ *
+ * @param  string  $event
+ * @return array
+ */
+public function broadcastWith($event)
+{
+    return match ($event) {
+        'created' => ['title' => $this->title],
+        default => ['model' => $this],
+    };
+}
+```
 
 <a name="listening-for-model-broadcasts"></a>
 ### Listening For Model Broadcasts
@@ -892,7 +994,7 @@ First, use the `private` method to retrieve an instance of a channel, then call 
 Once you have obtained a channel instance, you may use the `listen` method to listen for a particular event. Since model broadcast events are not associated with an "actual" event within your application's `App\Events` directory, the [event name](#model-broadcasting-event-conventions) must be prefixed with a `.` to indicate it does not belong to a particular namespace. Each model broadcast event has a `model` property which contains all of the broadcastable properties of the model:
 
 ```js
-Echo.channel(`App.Models.User.${this.user.id}`)
+Echo.private(`App.Models.User.${this.user.id}`)
     .listen('.PostUpdated', (e) => {
         console.log(e.model);
     });

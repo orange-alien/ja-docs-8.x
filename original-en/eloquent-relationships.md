@@ -895,7 +895,7 @@ Sometimes a model may have many related models, yet you want to easily retrieve 
  */
 public function latestImage()
 {
-    return $this->morphOne(Image::class)->latestOfMany();
+    return $this->morphOne(Image::class, 'imageable')->latestOfMany();
 }
 ```
 
@@ -907,7 +907,7 @@ Likewise, you may define a method to retrieve the "oldest", or first, related mo
  */
 public function oldestImage()
 {
-    return $this->morphOne(Image::class)->oldestOfMany();
+    return $this->morphOne(Image::class, 'imageable')->oldestOfMany();
 }
 ```
 
@@ -921,7 +921,7 @@ For example, using the `ofMany` method, you may retrieve the user's most "liked"
  */
 public function bestImage()
 {
-    return $this->morphOne(Image::class)->ofMany('likes', 'max');
+    return $this->morphOne(Image::class, 'imageable')->ofMany('likes', 'max');
 }
 ```
 
@@ -1355,6 +1355,14 @@ In addition to the `withCount` method, Eloquent provides `withMin`, `withMax`, `
 
     foreach ($posts as $post) {
         echo $post->comments_sum_votes;
+    }
+
+If you wish to access the result of the aggregate function using another name, you may specify your own alias:
+
+    $posts = Post::withSum('comments as total_comments', 'votes')->get();
+
+    foreach ($posts as $post) {
+        echo $post->total_comments;
     }
 
 Like the `loadCount` method, deferred versions of these methods are also available. These additional aggregate operations may be performed on Eloquent models that have already been retrieved:

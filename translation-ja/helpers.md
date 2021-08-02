@@ -53,6 +53,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [Arr::shuffle](#method-array-shuffle)
 [Arr::sort](#method-array-sort)
 [Arr::sortRecursive](#method-array-sort-recursive)
+[Arr::toCssClasses](#method-array-to-css-classes)
 [Arr::where](#method-array-where)
 [Arr::wrap](#method-array-wrap)
 [data_fill](#method-data-fill)
@@ -772,6 +773,26 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
             ['Li', 'Roman', 'Taylor'],
         ]
     */
+
+<a name="method-array-to-css-classes"></a>
+#### `Arr::toCssClasses()` {#collection-method}
+
+`Arr::toCssClasses`は、CSSクラス文字列を条件付きでコンパイルします。この方法はクラスの配列を引数に取り、配列キーに追加したいクラス、値は論理式です。配列要素に数字キーがある場合は、レンダーするクラスリストへ常に含めます。
+
+    use Illuminate\Support\Arr;
+
+    $array = ['p-4', 'font-bold' => $isActive, 'bg-red' => $hasError];
+
+    $isActive = false;
+    $hasError = true;
+
+    $classes = Arr::toCssClasses($array);
+
+    /*
+        'p-4 bg-red'
+    */
+
+このメソッドは、[Bladeコンポーネントのアトリビュートバッグを使ったクラスのマージ](/docs/{{version}}/blade#conditionally-merge-classes)と、`@class` [Bladeディレクティブ](/docs/{{version}}/blade#conditional-classes)を提供するLaravelの機能を強化します。
 
 <a name="method-array-where"></a>
 #### `Arr::where()` {#collection-method}
@@ -2944,6 +2965,14 @@ Str::of('Hello, world!')->wordCount(); // 2
     return retry(5, function () {
         // 実行間で500ms空け、５回試行する
     }, 100);
+
+各試行間でスリープするミリ秒数を自分で計算したい場合は、`retry`関数への３番目の引数にクロージャを渡します。
+
+    return retry(5, function () {
+        // ...
+    }, function ($attempt) {
+        return $attempt * 100;
+    });
 
 <a name="method-session"></a>
 #### `session()` {#collection-method}

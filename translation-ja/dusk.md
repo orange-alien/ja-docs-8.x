@@ -56,7 +56,7 @@ Laravel Duskは、表現力豊かで使いやすいブラウザ自動化およ�
 <a name="installation"></a>
 ## インストール
 
-使用を開始するには、`laravel/dusk`コンポーサ依存パッケージをプロジェクトへ追加します。
+使い始めるには、[Google Chrome](https://www.google.com/chrome)をインストールして、プロジェクトに`Laravel/Dusk`　Composer依存パッケージを追加する必要があります。
 
     composer require --dev laravel/dusk
 

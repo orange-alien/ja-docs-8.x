@@ -895,7 +895,7 @@ public function currentPricing()
  */
 public function latestImage()
 {
-    return $this->morphOne(Image::class)->latestOfMany();
+    return $this->morphOne(Image::class, 'imageable')->latestOfMany();
 }
 ```
 
@@ -907,7 +907,7 @@ public function latestImage()
  */
 public function oldestImage()
 {
-    return $this->morphOne(Image::class)->oldestOfMany();
+    return $this->morphOne(Image::class, 'imageable')->oldestOfMany();
 }
 ```
 
@@ -921,7 +921,7 @@ public function oldestImage()
  */
 public function bestImage()
 {
-    return $this->morphOne(Image::class)->ofMany('likes', 'max');
+    return $this->morphOne(Image::class, 'imageable')->ofMany('likes', 'max');
 }
 ```
 
@@ -1355,6 +1355,14 @@ Eloquentは、`withCount`メソッドに加えて、`withMin`、`withMax`、`wit
 
     foreach ($posts as $post) {
         echo $post->comments_sum_votes;
+    }
+
+集計関数の結果に別の名前を使用してアクセスしたい場合は、独自のエイリアスを指定します。
+
+    $posts = Post::withSum('comments as total_comments', 'votes')->get();
+
+    foreach ($posts as $post) {
+        echo $post->total_comments;
     }
 
 `loadCount`メソッドと同様に、これらのメソッドの遅延バージョンも利用できます。こうした集計関数は、すでに取得しているEloquentモデルで実行します。

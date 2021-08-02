@@ -62,7 +62,6 @@
 
     use Illuminate\Support\Collection;
     use Illuminate\Support\Facades\Lang;
-    use Illuminate\Support\Str;
 
     Collection::macro('toLocale', function ($locale) {
         return $this->map(function ($value) use ($locale) {
@@ -1605,6 +1604,18 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 
     // [1, 2, 3, 4]
 
+コレクションの最後から複数の項目を削除して返すために、整数を`pop`メソッドに渡せます。
+
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->pop(3);
+
+    // collect([5, 4, 3])
+
+    $collection->all();
+
+    // [1, 2]
+
 <a name="method-prepend"></a>
 #### `prepend()` {#collection-method}
 
@@ -1845,6 +1856,18 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     $collection->all();
 
     // [2, 3, 4, 5]
+
+コレクションの先頭から複数の項目を削除して返すために、整数を`shift`メソッドに渡せます。
+
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->shift(3);
+
+    // collect([1, 2, 3])
+
+    $collection->all();
+
+    // [4, 5]
 
 <a name="method-shuffle"></a>
 #### `shuffle()` {#collection-method}

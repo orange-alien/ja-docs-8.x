@@ -402,6 +402,8 @@ handleメソッドでレート制限を行う代わりに、レート制限を�
         return [new RateLimited];
     }
 
+> {tip} Jobミドルウェアは、Queueableなイベントリスナ、Mailable、通知にも割り当てできます。
+
 <a name="rate-limiting"></a>
 ### レート制限
 

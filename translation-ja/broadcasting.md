@@ -23,6 +23,7 @@
     - [チャンネルクラスの定義](#defining-channel-classes)
 - [ブロードキャストイベント](#broadcasting-events)
     - [他の人だけへの送信](#only-to-others)
+    - [コネクションのカスタマイズ](#customizing-the-connection)
 - [ブロードキャストの受け取り](#receiving-broadcasts)
     - [イベントのリッスン](#listening-for-events)
     - [チャンネルの離脱](#leaving-a-channel)
@@ -642,6 +643,41 @@ Laravel Echoインスタンスを初期化すると、ソケットIDが接続に
 
     var socketId = Echo.socketId();
 
+<a name="customizing-the-connection"></a>
+### コネクションのカスタマイズ
+
+アプリケーションが複数のブロードキャスト接続とやりとりしており、デフォルト以外のブロードキャスタを使いイベントをブロードキャストしたい場合は、`via`メソッドを使ってどの接続にイベントをプッシュするか指定できます。
+
+    use App\Events\OrderShipmentStatusUpdated;
+
+    broadcast(new OrderShipmentStatusUpdated($update))->via('pusher');
+
+もしくは、イベントのコンストラクタで `broadcastVia` メソッドを呼び出して、イベントのブロードキャスト接続を指定することもできます。
+
+    <?php
+
+    namespace App\Events;
+
+    use Illuminate\Broadcasting\Channel;
+    use Illuminate\Broadcasting\InteractsWithSockets;
+    use Illuminate\Broadcasting\PresenceChannel;
+    use Illuminate\Broadcasting\PrivateChannel;
+    use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+    use Illuminate\Queue\SerializesModels;
+
+    class OrderShipmentStatusUpdated implements ShouldBroadcast
+    {
+        /**
+         * 新イベントインスタンスの生成
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+            $this->broadcastVia('pusher');
+        }
+    }
+
 <a name="receiving-broadcasts"></a>
 ## ブロードキャストの受け取り
 
@@ -838,6 +874,28 @@ public function broadcastOn($event)
 }
 ```
 
+<a name="customizing-model-broadcasting-event-creation"></a>
+#### モデルブロードキャストのイベント生成のカスタマイズ
+
+時には、モデルのブロードキャスティングイベントの裏で動作している、Laravelの作成方法をカスタマイズしたい場合も起きるでしょう。そのためには、Eloquentモデルに`newBroadcastableEvent`メソッドを定義してください。このメソッドは、`Illuminate\Database\Eloquent\BroadcastableModelEventOccurred`インスタンスを返す必要があります。
+
+```php
+use Illuminate\Database\Eloquent\BroadcastableModelEventOccurred
+
+/**
+ * このモデルのための新しいブロードキャストモデルイベントを作成
+ *
+ * @param  string  $event
+ * @return \Illuminate\Database\Eloquent\BroadcastableModelEventOccurred
+ */
+protected function newBroadcastableEvent($event)
+{
+    return (new BroadcastableModelEventOccurred(
+        $this, $event
+    ))->dontBroadcastToCurrentUser();
+}
+```
+
 <a name="model-broadcasting-conventions"></a>
 ### モデルブロードキャスト規約
 
@@ -878,9 +936,53 @@ $user->broadcastChannel()
 <a name="model-broadcasting-event-conventions"></a>
 #### イベント規約
 
-モデルのブロードキャストイベントは、アプリケーションの`App\Events`ディレクトリ内の「実際の」イベントとは関連していないので、規約に基づいて名前が割り当てられます。Laravelの規約では、モデルの（名前空間を含まない）クラス名と、ブロードキャストをトリガーしたモデルイベントの名前を使って、イベントをブロードキャストします。
+モデルのブロードキャストイベントは、アプリケーションの`App\Events`ディレクトリ内の「実際の」イベントとは関連していないので、規約に基づいて名前とペイロードが割り当てられます。Laravelの規約では、モデルのクラス名（名前空間を含まない）と、ブロードキャストのきっかけとなったモデルイベントの名前を使って、イベントをブロードキャストします。
 
-例えば、`App\Models\Post`モデルが更新されると、`PostUpdated`というイベントがクライアントサイドのアプリケーションにブロードキャストされ、`App\Models\User`モデルが削除されると、`UserDeleted`というイベントがブロードキャストされることになります。
+ですから、例えば、`App\Models\Post`モデルの更新は、以下のペイロードを持つ`PostUpdated`として、クライアントサイドのアプリケーションにイベントをブロードキャストします。
+
+    {
+        "model": {
+            "id": 1,
+            "title": "My first post"
+            ...
+        },
+        ...
+        "socket": "someSocketId",
+    }
+
+`App\Models\User`モデルが削除されると、`UserDeleted`という名前のイベントをブロードキャストします。
+
+必要であれば、モデルに `broadcastAs` と `broadcastWith` メソッドを追加することで、カスタムのブロードキャスト名とペイロードを定義することができます。これらのメソッドは、発生しているモデルのイベント／操作の名前を受け取るので、モデルの操作ごとにイベントの名前やペイロードをカスタマイズできます。もし、`broadcastAs`メソッドから`null`が返された場合、Laravelはイベントをブロードキャストする際に、上記で説明したモデルのブロードキャストイベント名の規約を使用します。
+
+```php
+/**
+ * モデルイベントのブロードキャスト名
+ *
+ * @param  string  $event
+ * @return string|null
+ */
+public function broadcastAs($event)
+{
+    return match ($event) {
+        'created' => 'post.created',
+        default => null,
+    };
+}
+
+/**
+ * モデルのブロードキャストのデータ取得
+ *
+ * @param  string  $event
+ * @return array
+ */
+public function broadcastWith($event)
+{
+    return match ($event) {
+        'created' => ['title' => $this->title],
+        default => ['model' => $this],
+    };
+}
+```
 
 <a name="listening-for-model-broadcasts"></a>
 ### モデルブロードキャストのリッスン
@@ -892,7 +994,7 @@ $user->broadcastChannel()
 チャンネルインスタンスを取得したら、`listen`メソッドを使って特定のイベントをリッスンします。モデルのブロードキャストイベントは、アプリケーションの`App\Events`ディレクトリにある「実際の」イベントと関連付けられていないため、[イベント名](#model-broadcasting-event-conventions)の前に`.`を付けて、特定の名前空間に属していないことを示す必要があります。各モデルブロードキャストイベントは、そのモデルのブロードキャスト可能なプロパティをすべて含む`model`プロパティを持ちます。
 
 ```js
-Echo.channel(`App.Models.User.${this.user.id}`)
+Echo.private(`App.Models.User.${this.user.id}`)
     .listen('.PostUpdated', (e) => {
         console.log(e.model);
     });

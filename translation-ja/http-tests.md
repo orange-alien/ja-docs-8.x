@@ -996,6 +996,12 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 
     $response->assertViewHas($key, $value = null);
 
+`assertViewHas`メソッドの２番目の引数にクロージャを渡すと、ビューデータの特定部分に対して検査し、アサートできます。
+
+    $response->assertViewHas('user', function (User $user) {
+        return $user->name === 'Taylor';
+    });
+
 さらに、ビューデータはレスポンスの配列変数としてアクセスできるため、次のように容易に検査できます。
 
     $this->assertEquals('Taylor', $response['name']);

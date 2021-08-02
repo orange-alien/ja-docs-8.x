@@ -64,7 +64,7 @@ Sailをインストールした後は、`sail:install` Artisanコマンドを実
 `vendor/bin/sail`を実行するため繰り返し入力する代わりに、Sailコマンドをより簡単に実行できるようにするBashエイリアスを設定することをおすすめします。
 
 ```bash
-alias sail='bash vendor/bin/sail'
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 ```
 
 Bashエイリアスを設定したら、`sail`と入力するだけでSailコマンドを実行できます。このドキュメントの残りの部分の例は、このエイリアスが設定済みであることを前提としています。
