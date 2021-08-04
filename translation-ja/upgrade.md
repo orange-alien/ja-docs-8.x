@@ -202,7 +202,7 @@ Laravel8.xでは[メンテナンスモード](/docs/{{version}}/configuration#ma
 
 **影響の可能性： 低い**
 
-`php artisanserve`コマンドに` --no-reload`オプションを追加しました。これにより、環境ファイルの変更が検出されたときにサーバをリロードしないように組み込みサーバに指示できます。このオプションは主にCI環境でLaravelDuskテストを実行するときに役立ちます。
+`php artisan serve`コマンドに` --no-reload`オプションを追加しました。これにより、環境ファイルの変更が検出されたときにサーバをリロードしないように組み込みサーバに指示できます。このオプションは主にCI環境でLaravelDuskテストを実行するときに役立ちます。
 
 <a name="manager-app-property"></a>
 #### `$app`プロパティマネージャー
