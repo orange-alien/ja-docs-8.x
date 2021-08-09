@@ -42,6 +42,7 @@
     - [失敗したジョブの切り詰め](#pruning-failed-jobs)
     - [失敗したジョブイベント](#failed-job-events)
 - [キューからのジョブクリア](#clearing-jobs-from-queues)
+- [キューのモニタリング](#monitoring-your-queues)
 - [ジョブイベント](#job-events)
 
 <a name="introduction"></a>
@@ -1818,6 +1819,43 @@ composer require aws/aws-sdk-php
     php artisan queue:clear redis --queue=emails
 
 > {note} キューからのジョブのクリアは、SQS、Redis、およびデータベースキュードライバでのみ使用できます。さらに、SQSメッセージの削除プロセスには最長６０秒かかるため、キューをクリアしてから最長６０秒後にSQSキューに送信されたジョブも削除される可能性があります。
+
+<a name="monitoring-your-queues"></a>
+## キューのモニタリング
+
+キューにジョブが急激に投げ込まれると、過負荷になってしまい、ジョブが完了するまでの待ち時間が長くなってしまう可能性があります。お望みなら、Laravelはキューのジョブ数が特定の閾値を超えたときに警告を出すことができます。
+
+使い始めるなら、`queue:monitor`コマンドを [毎分実行](/docs/{{version}}/scheduling)するようにスケジュールしてください。このコマンドには、監視したいキューの名前と、希望するジョブ数の閾値を指定します。
+
+```bash
+php artisan queue:monitor redis:default,redis:deployments --max=100
+```
+
+このコマンドをスケジューリングするだけでは、キューが逼迫した状態である警告の通知をトリガーするのに足りません。コマンドが、ジョブ数が閾値を超えるキューに遭遇すると、`Illuminate\Queue\Events\QueueBusy`イベントがディスパッチされます。自分や開発チームに通知を送るために、アプリケーションの`EventServiceProvider`内でこのイベントをリッスンしてください。
+
+```php
+use App\Notifications\QueueHasLongWaitTime;
+use Illuminate\Queue\Events\QueueBusy;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Notification;
+
+/**
+ * アプリケーションへその他のイベントを登録
+ *
+ * @return void
+ */
+public function boot()
+{
+    Event::listen(function (QueueBusy $event) {
+        Notification::route('mail', 'dev@example.com')
+                ->notify(new QueueHasLongWaitTime(
+                    $event->connection,
+                    $event->queue,
+                    $event->size
+                ));
+    });
+}
+```
 
 <a name="job-events"></a>
 ## ジョブイベント

@@ -122,6 +122,8 @@
 - `collection`
 - `date`
 - `datetime`
+- `immutable_date`
+- `immutable_datetime`
 - `decimal:<digits>`
 - `double`
 - `encrypted`
@@ -254,7 +256,7 @@ JSON属性の単一のフィールドをより簡潔な構文で更新するに�
 <a name="date-casting"></a>
 ### 日付のキャスト
 
-デフォルトでは、Eloquentは`created_at`カラムと`updated_at`カラムを[Carbon](https://github.com/briannesbitt/Carbon)のインスタンスへキャストします。これによりPHPの`DateTime`クラスを拡張した、多くの便利なメソッドが提供されます。モデルの`$cast`プロパティ配列内で日付キャストを追加定義すれば、他の日付属性をキャストできます。通常、日付は`datetime`キャストを使用してキャストする必要があります。
+デフォルトでは、Eloquentは`created_at`カラムと`updated_at`カラムを[Carbon](https://github.com/briannesbitt/Carbon)のインスタンスへキャストします。これによりPHPの`DateTime`クラスを拡張した、多くの便利なメソッドが提供されます。モデルの`$cast`プロパティ配列内で日付キャストを追加定義すれば、他の日付属性をキャストできます。通常、日付は`datetime`か`immutable_datetime`キャストタイプを使用してキャストする必要があります。
 
 `date`または`datetime`キャストを定義するときに、日付の形式を指定することもできます。この形式は、[モデルが配列またはJSONにシリアル化される](/docs/{{version}}/eloquent-serialization)場合に使用されます。
 

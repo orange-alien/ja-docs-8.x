@@ -762,7 +762,7 @@ The `tinyIncrements` method creates an auto-incrementing `UNSIGNED TINYINT` equi
 The `tinyInteger` method creates a `TINYINT` equivalent column:
 
     $table->tinyInteger('votes');
-
+    
 <a name="column-method-tinyText"></a>
 #### `tinyText()` {#collection-method}
 
@@ -1149,3 +1149,4 @@ For convenience, each migration operation will dispatch an [event](/docs/{{versi
 | `Illuminate\Database\Events\MigrationsEnded` | A batch of migrations has finished executing. |
 | `Illuminate\Database\Events\MigrationStarted` | A single migration is about to be executed. |
 | `Illuminate\Database\Events\MigrationEnded` | A single migration has finished executing. |
+

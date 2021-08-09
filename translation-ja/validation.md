@@ -681,6 +681,7 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
 <div class="collection-method-list" markdown="1">
 
 [受け入れ](#rule-accepted)
+[条件一致時受け入れ](#rule-accepted-if)
 [アクティブなURL](#rule-active-url)
 [（日付）より後](#rule-after)
 [（日付）以降](#rule-after-or-equal)
@@ -758,6 +759,11 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
 #### accepted
 
 フィールドが、`"yes"`、`"on"`、`1`、または`true`であることをバリデートします。これは、「利用規約」の承認または同様のフィールドをバリデーションするのに役立ちます。
+
+<a name="rule-accepted-if"></a>
+#### accepted_if:他のフィールド,値,...
+
+他のフィールドが指定した値と等しい場合、このフィールドは `"yes"`、`"on"`、`1`、`true`であることをバリデートします。これは、"Terms of Service "の了承や似たようなフィールドをバリデートするのに便利です。
 
 <a name="rule-active-url"></a>
 #### active_url
