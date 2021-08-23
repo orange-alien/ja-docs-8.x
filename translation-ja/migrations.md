@@ -486,7 +486,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 
 `foreignUuid`メソッドは`UUID`カラムを作成します。
 
-    $table->foreignUuid('id');
+    $table->foreignUuid('user_id');
 
 <a name="column-method-geometryCollection"></a>
 #### `geometryCollection()` {#collection-method}

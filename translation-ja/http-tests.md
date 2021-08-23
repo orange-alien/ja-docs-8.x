@@ -575,6 +575,7 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 [assertOk](#assert-ok)
 [assertPlainCookie](#assert-plain-cookie)
 [assertRedirect](#assert-redirect)
+[assertRedirectToSignedRoute](#assert-redirect-to-signed-route)
 [assertSee](#assert-see)
 [assertSeeInOrder](#assert-see-in-order)
 [assertSeeText](#assert-see-text)
@@ -590,6 +591,8 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 [assertStatus](#assert-status)
 [assertSuccessful](#assert-successful)
 [assertUnauthorized](#assert-unauthorized)
+[assertValid](#assert-valid)
+[assertInvalid](#assert-invalid)
 [assertViewHas](#assert-view-has)
 [assertViewHasAll](#assert-view-has-all)
 [assertViewIs](#assert-view-is)
@@ -865,6 +868,13 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 
     $response->assertRedirect($uri);
 
+<a name="assert-redirect-to-signed-route"></a>
+#### assertRedirectToSignedRoute
+
+レスポンスが指定する著名付きルートへのリダイレクトであることを宣言します。
+
+    $response->assertRedirectToSignedRoute($name = null, $parameters = []);
+
 <a name="assert-see"></a>
 #### assertSee
 
@@ -988,6 +998,31 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 レスポンスに不正な(401)HTTPステータスコードがあることを宣言します。
 
     $response->assertUnauthorized();
+
+<a name="assert-valid"></a>
+#### assertValid
+
+レスポンスに指定キーのバリデーションエラーがないことを宣言します。このメソッドは、バリデーションエラーをJSON構造として返す、もしくはバリデーションエラーをセッションへ一時保存しているレスポンスに対する宣言に使用します。
+
+    // バリデーションエラーが発生していないことを宣言
+    $response->assertValid();
+
+    // 指定キーのバリデーションエラーがないことを宣言
+    $response->assertValid(['name', 'email']);
+
+<a name="assert-invalid"></a>
+#### assertInvalid
+
+レスポンスに指定キーのバリデーションエラーがあることを宣言します。このメソッドは、バリデーションエラーをJSON構造として返す、もしくはバリデーションエラーをセッションへ一時保存しているレスポンスに対する宣言に使用します。
+
+    $response->assertInvalid(['name', 'email']);
+
+特定のキーに特定のバリデーションエラーメッセージがあることを宣言することもできます。その場合、メッセージ全体またはメッセージのごく一部だけを指定できます。
+
+    $response->assertInvalid([
+        'name' => 'The name field is required.',
+        'email' => 'valid email address',
+    ]);
 
 <a name="assert-view-has"></a>
 #### assertViewHas

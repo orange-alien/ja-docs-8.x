@@ -575,6 +575,7 @@ Laravel's `Illuminate\Testing\TestResponse` class provides a variety of custom a
 [assertOk](#assert-ok)
 [assertPlainCookie](#assert-plain-cookie)
 [assertRedirect](#assert-redirect)
+[assertRedirectToSignedRoute](#assert-redirect-to-signed-route)
 [assertSee](#assert-see)
 [assertSeeInOrder](#assert-see-in-order)
 [assertSeeText](#assert-see-text)
@@ -590,6 +591,8 @@ Laravel's `Illuminate\Testing\TestResponse` class provides a variety of custom a
 [assertStatus](#assert-status)
 [assertSuccessful](#assert-successful)
 [assertUnauthorized](#assert-unauthorized)
+[assertValid](#assert-valid)
+[assertInvalid](#assert-invalid)
 [assertViewHas](#assert-view-has)
 [assertViewHasAll](#assert-view-has-all)
 [assertViewIs](#assert-view-is)
@@ -865,6 +868,13 @@ Assert that the response is a redirect to the given URI:
 
     $response->assertRedirect($uri);
 
+<a name="assert-redirect-to-signed-route"></a>
+#### assertRedirectToSignedRoute
+
+Assert that the response is a redirect to the given signed route:
+
+    $response->assertRedirectToSignedRoute($name = null, $parameters = []);
+
 <a name="assert-see"></a>
 #### assertSee
 
@@ -988,6 +998,31 @@ Assert that the response has a successful (>= 200 and < 300) HTTP status code:
 Assert that the response has an unauthorized (401) HTTP status code:
 
     $response->assertUnauthorized();
+
+<a name="assert-valid"></a>
+#### assertValid
+
+Assert that the response has no validation errors for the given keys. This method may be used for asserting against responses where the validation errors are returned as a JSON structure or where the validation errors have been flashed to the session:
+
+    // Assert that no validation errors are present...
+    $response->assertValid();
+
+    // Assert that the given keys do not have validation errors...
+    $response->assertValid(['name', 'email']);
+
+<a name="assert-invalid"></a>
+#### assertInvalid
+
+Assert that the response has validation errors for the given keys. This method may be used for asserting against responses where the validation errors are returned as a JSON structure or where the validation errors have been flashed to the session:
+
+    $response->assertInvalid(['name', 'email']);
+
+You may also assert that a given key has a particular validation error message. When doing so, you may provide the entire message or only a small portion of the message:
+
+    $response->assertInvalid([
+        'name' => 'The name field is required.',
+        'email' => 'valid email address',
+    ]);
 
 <a name="assert-view-has"></a>
 #### assertViewHas

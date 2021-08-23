@@ -82,7 +82,7 @@ Laravelは、アプリケーションのURLを生成するのに役立つヘル�
 <a name="eloquent-models"></a>
 #### Eloquent Models
 
-[Eloquentモデル](/docs/{{version}}/eloquent)の主キーを使用するURLを生成することもよくあると思います。そのため、Eloquentモデルをパラメータ値として渡すことができます。`route`ヘルパは、そのモデルの主キーを自動的に取り出します。
+[Eloquentモデル](/docs/{{version}}/eloquent)のルートキー（通常は主キー）を使ってURLを生成することが多いでしょう。そのため、パラメータ値としてEloquentモデルを渡せます。`route`ヘルパは、モデルのルートキーを自動的に抽出します。
 
     echo route('post.show', ['post' => $post]);
 

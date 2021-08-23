@@ -1287,7 +1287,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
         ]
     ]);
 
-    $keyed = $collection->mapWithKeys(function ($item) {
+    $keyed = $collection->mapWithKeys(function ($item, $key) {
         return [$item['email'] => $item['name']];
     });
 

@@ -1595,6 +1595,26 @@ Billableなモデル上の`checkout`メソッドを使用して、Stripeダッ�
         ]);
     });
 
+`success_url`チェックアウトオプションを定義する際に、URLを呼び出す際にチェックアウトセッションIDをクエリ文字列のパラメータとして追加するようStripeに指示することができます。それには、リテラル文字列 `{CHECKOUT_SESSION_ID}` を `success_url` のクエリ文字列に追加します。Stripeはこのプレースホルダーを実際のチェックアウトセッションIDに置き換えます。
+
+    use Illuminate\Http\Request;
+    use Stripe\Checkout\Session;
+    use Stripe\Customer;
+
+    Route::get('/product-checkout', function (Request $request) {
+        return $request->user()->checkout(['price_tshirt' => 1], [
+            'success_url' => route('checkout-success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('checkout-cancel'),
+        ]);
+    });
+
+    Route::get('/checkout-success', function (Request $request) {
+        $session = Session::retrieve($request->get('session_id'));
+        $customer = Customer::retrieve($session->customer);
+
+        return view('checkout.success', ['customerName' => $customer->name]);
+    })->name('checkout-success');
+
 <a name="checkout-promotion-codes"></a>
 #### プロモーションコード
 

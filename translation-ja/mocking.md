@@ -399,6 +399,14 @@ Laravelの[サービスコンテナ](/docs/{{version}}/container)を介してア
                $mail->hasBcc('...');
     });
 
+メールが送信されなかったことを宣言する方法として、`assertNotSent`と`assertNotQueued`の２つの方法があるのにお気づきでしょうか。時には、メールが送信されなかったこと、**または**キューに入れられなかったことをアサートしたい場合があります。これを実現するには、`assertNothingOutgoing`や`assertNotOutgoing`メソッドを使用してください。
+
+    Mail::assertNothingOutgoing();
+
+    Mail::assertNotOutgoing(function (OrderShipped $mail) use ($order) {
+        return $mail->order->id === $order->id;
+    });
+
 <a name="notification-fake"></a>
 ## Notification Fake
 

@@ -910,6 +910,8 @@ Duskはアプリケーションに対する数多くのアサートを提供し�
 [assertPresent](#assert-present)
 [assertNotPresent](#assert-not-present)
 [assertMissing](#assert-missing)
+[assertInputPresent](#assert-input-present)
+[assertInputMissing](#assert-input-missing)
 [assertDialogOpened](#assert-dialog-opened)
 [assertEnabled](#assert-enabled)
 [assertDisabled](#assert-disabled)
@@ -1323,6 +1325,20 @@ URLの現在のハッシュフラグメントが指定するフラグメント�
 指定したセレクタに一致する要素が、ビジブルでないことを宣言します。
 
     $browser->assertMissing($selector);
+
+<a name="assert-input-present"></a>
+#### assertInputPresent
+
+指定する名前の入力が存在することを宣言します。
+
+    $browser->assertInputPresent($name);
+
+<a name="assert-input-missing"></a>
+#### assertInputMissing
+
+指定する名前の入力がソースに存在しないことを宣言します。
+
+    $browser->assertInputMissing($name);
 
 <a name="assert-dialog-opened"></a>
 #### assertDialogOpened

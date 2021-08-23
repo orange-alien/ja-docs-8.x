@@ -563,6 +563,9 @@ Laravelは、PHPのリフレクションサービスを使用してリスナク�
 
     namespace App\Listeners;
 
+    use Illuminate\Auth\Events\Login;
+    use Illuminate\Auth\Events\Logout;
+
     class UserEventSubscriber
     {
         /**
@@ -584,14 +587,50 @@ Laravelは、PHPのリフレクションサービスを使用してリスナク�
         public function subscribe($events)
         {
             $events->listen(
-                'Illuminate\Auth\Events\Login',
+                Login::class,
                 [UserEventSubscriber::class, 'handleUserLogin']
             );
 
             $events->listen(
-                'Illuminate\Auth\Events\Logout',
+                Logout::class,
                 [UserEventSubscriber::class, 'handleUserLogout']
             );
+        }
+    }
+
+イベントリスナのメソッドがサブスクライバ自身の中で定義されている場合は、サブスクライバの`subscribe`メソッドからメソッド名とイベントの配列を返す方が便利でしょう。Laravelはイベントリスナを登録する際に、サブスクライバのクラス名を自動的に決定します。
+
+    <?php
+
+    namespace App\Listeners;
+
+    use Illuminate\Auth\Events\Login;
+    use Illuminate\Auth\Events\Logout;
+
+    class UserEventSubscriber
+    {
+        /**
+         * ユーザーログインイベントの処理
+         */
+        public function handleUserLogin($event) {}
+
+        /**
+         * ユーザーログアウトイベントの処理
+         */
+        public function handleUserLogout($event) {}
+
+        /**
+         * サブスクライバのリスナを登録
+         *
+         * @param  \Illuminate\Events\Dispatcher  $events
+         * @return void
+         */
+        public function subscribe($events)
+        {
+            return [
+                Login::class => 'handleUserLogin',
+                Logout::class => 'handleUserLogout',
+            ];
         }
     }
 

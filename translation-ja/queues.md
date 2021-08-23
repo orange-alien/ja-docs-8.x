@@ -449,6 +449,18 @@ handleメソッドでレート制限を行う代わりに、レート制限を�
 
 レート制限したジョブをキューに戻すと、ジョブの「試行`attempts`」の総数は増加します。それに応じて、ジョブクラスの`tries`プロパティと`maxExceptions`プロパティを調整することをお勧めします。または、[`retryUntil`メソッド](#time-based-attempts)を使用して、ジョブが試行されなくなるまでの時間を定義することもできます。
 
+レート制限されているときにジョブを再試行させたくない場合は、`dontRelease`メソッドを使用します。
+
+    /**
+     * ジョブが通過する必要のあるミドルウェアを取得
+     *
+     * @return array
+     */
+    public function middleware()
+    {
+        return [(new RateLimited('backups'))->dontRelease()];
+    }
+
 > {tip} Redisを使用している場合は、`Illuminate\Queue\Middleware\RateLimitedWithRedis`ミドルウェアを使用できます。これは、Redis用に微調整されており、基本的なレート制限ミドルウェアよりも効率的です。
 
 <a name="preventing-job-overlaps"></a>

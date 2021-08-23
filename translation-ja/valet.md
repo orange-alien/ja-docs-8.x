@@ -96,6 +96,12 @@ Valetでは、`valet use php@version`コマンドを使用してPHPのバージ�
 
     valet use php
 
+プロジェクトのルートに`.valetphprc`ファイルを作成することもできます。`.valetphprc`ファイルには、サイトで使用するPHPバージョンを指定する必要があります。
+
+    php@7.2
+
+このファイルを作成したら、`valet use`コマンドを実行してください。コマンドはファイルを読み、サイトで優先するPHPバージョンを決めます。
+
 > {note} 複数のPHPバージョンをインストールしている場合でも、Valetは一度に一つのPHPバージョンのみを提供します。
 
 <a name="database"></a>

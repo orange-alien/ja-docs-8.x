@@ -138,13 +138,13 @@
 
 通常、ビューコンポーザーは、アプリケーションの[サービスプロバイダ](/docs/{{version}}/provider)のいずれかで登録します。この例では、このロジックを格納するために新しい`App\Providers\ViewServiceProvider`を作成したと想定しましょう。
 
-`View`ファサードの`composer`メソッドを使用して、ビューコンポーザを登録します。Laravelには、クラスベースのビューコンポーザーのデフォルトディレクトリが含まれていないため、自由に整理できます。たとえば、`app/Http/View/Composers`ディレクトリを作成して、アプリケーションのすべてのビューコンポーザを保存できます。
+`View`ファサードの`composer`メソッドを使用して、ビューコンポーザを登録します。Laravelには、クラスベースのビューコンポーザーのデフォルトディレクトリが含まれていないため、自由に整理できます。たとえば、`app/View/Composers`ディレクトリを作成して、アプリケーションのすべてのビューコンポーザを保存できます。
 
     <?php
 
     namespace App\Providers;
 
-    use App\Http\View\Composers\ProfileComposer;
+    use App\View\Composers\ProfileComposer;
     use Illuminate\Support\Facades\View;
     use Illuminate\Support\ServiceProvider;
 
@@ -179,11 +179,11 @@
 
 > {note} 新しいサービスプロバイダをビューコンポーザ登録のために作成した場合は、`config/app.php`設定ファイルの`providers`配列へ追加する必要があるのを忘れないでください。
 
-コンポーザを登録したので、`profile`ビューがレンダーされるたびに`App\Http\View\Composers\ProfileComposer`クラスの`compose`メソッドが実行されます。コンポーザクラスの例を見てみましょう。
+コンポーザを登録したので、`profile`ビューがレンダーされるたびに`App\View\Composers\ProfileComposer`クラスの`compose`メソッドが実行されます。コンポーザクラスの例を見てみましょう。
 
     <?php
 
-    namespace App\Http\View\Composers;
+    namespace App\View\Composers;
 
     use App\Repositories\UserRepository;
     use Illuminate\View\View;
@@ -228,7 +228,7 @@
 
 複数のビューにビューコンポーザを適用するには、`composer`メソッドの最初の引数にビューの配列を渡してください。
 
-    use App\Http\Views\Composers\MultiComposer;
+    use App\Views\Composers\MultiComposer;
 
     View::composer(
         ['profile', 'dashboard'],
@@ -246,7 +246,7 @@
 
 ビューの「クリエータ」は、ビューコンポーザと非常によく似ています。ただし、ビューがレンダリングされるまで待つのではなく、ビューがインスタンス化された直後に実行されます。ビュークリエータを登録するには、`creator`メソッドを使用します。
 
-    use App\Http\View\Creators\ProfileCreator;
+    use App\View\Creators\ProfileCreator;
     use Illuminate\Support\Facades\View;
 
     View::creator('profile', ProfileCreator::class);

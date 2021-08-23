@@ -162,6 +162,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [isAscii](#method-fluent-str-is-ascii)
 [isEmpty](#method-fluent-str-is-empty)
 [isNotEmpty](#method-fluent-str-is-not-empty)
+[isUuid](#method-fluent-str-is-uuid)
 [kebab](#method-fluent-str-kebab)
 [length](#method-fluent-str-length)
 [limit](#method-fluent-str-limit)
@@ -1968,6 +1969,21 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     $result = Str::of('Laravel')->trim()->isNotEmpty();
 
     // true
+
+<a name="method-fluent-str-is-uuid"></a>
+#### `isUuid` {#collection-method}
+
+`isUuid`メソッドは、文字列がUUIDかを判定します。
+
+    use Illuminate\Support\Str;
+
+    $result = Str::of('5ace9ab9-e9cf-4ec6-a19d-5881212a452c')->isUuid();
+
+    // true
+
+    $result = Str::of('Taylor')->isUuid();
+
+    // false
 
 <a name="method-fluent-str-kebab"></a>
 #### `kebab` {#collection-method}
