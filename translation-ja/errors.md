@@ -211,6 +211,21 @@
         }
     }
 
+LaravelやSymfonyの組み込み済み例外など、既存のレンダリング可能な例外を拡張している場合は、例外の`render`メソッドから`false`を返し、例外のデフォルトHTTPレスポンスをレンダーできます。
+
+    /**
+     * Render the exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request)
+    {
+        // 例外がカスタムレンダリングを必要とするか判定…
+
+        return false;
+    }
+
 特定の条件が満たされた場合にのみ必要なカスタムレポートロジックが例外に含まれている場合は、デフォルトの例外処理設定を使用して例外をレポートするようにLaravelに指示する必要が起き得ます。これを行うには、例外の`report`メソッドから`false`を返します。
 
     /**

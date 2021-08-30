@@ -14,6 +14,7 @@
 - [依存解決](#resolving)
     - [makeメソッド](#the-make-method)
     - [自動注入](#automatic-injection)
+- [メソッドの起動と依存注入](#method-invocation-and-injection)
 - [コンテナイベント](#container-events)
 - [PSR-11](#psr-11)
 
@@ -428,6 +429,47 @@ Laravelコンテナインスタンス自体をコンテナにより解決中の�
             //
         }
     }
+
+<a name="method-invocation-and-injection"></a>
+## メソッドの起動と依存注入
+
+コンテナがあるメソッドの依存関係を自動的に注入できるようにしたまま、そのオブジェクトインスタンス上のメソッドを起動したい場合があります。たとえば、以下のクラスを想定してください。
+
+    <?php
+
+    namespace App;
+
+    use App\Repositories\UserRepository;
+
+    class UserReport
+    {
+        /**
+         * 新しいユーザーレポートの生成
+         *
+         * @param  \App\Repositories\UserRepository  $repository
+         * @return array
+         */
+        public function generate(UserRepository $repository)
+        {
+            // ...
+        }
+    }
+
+次のように、コンテナを介して`generate`メソッドを呼び出せます。
+
+    use App\UserReport;
+    use Illuminate\Support\Facades\App;
+
+    $report = App::call([new UserReport, 'generate']);
+
+`call`メソッドは任意のPHP callableを受け入れます。コンテナの`call`メソッドは、依存関係を自動的に注入しながら、クロージャを呼び出すためにも使用できます。
+
+    use App\Repositories\UserRepository;
+    use Illuminate\Support\Facades\App;
+
+    $result = App::call(function (UserRepository $repository) {
+        // ...
+    });
 
 <a name="container-events"></a>
 ## コンテナイベント

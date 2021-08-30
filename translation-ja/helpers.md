@@ -1660,9 +1660,9 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     return (string) Str::uuid();
 
 <a name="method-str-word-count"></a>
-### `wordCount`
+#### `Str::wordCount` {#collection-method}
 
-`wordcount`関数は、文字列に含まれる単語の数を返します。
+`Str::wordCount`関数は、文字列に含まれる単語の数を返します。
 
 ```php
 use Illuminate\Support\Str;
@@ -2505,9 +2505,9 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // 'Laravel'
 
 <a name="method-fluent-str-word-count"></a>
-### `wordCount`
+#### `wordCount` {#collection-method}
 
-`wordcount`関数は、文字列に含まれる単語の数を返します。
+`wordcount`メソッドは、文字列に含まれる単語の数を返します。
 
 ```php
 use Illuminate\Support\Str;
@@ -2988,6 +2988,15 @@ Str::of('Hello, world!')->wordCount(); // 2
         // ...
     }, function ($attempt) {
         return $attempt * 100;
+    });
+
+
+特定条件下でのみ再試行するには、`retry`関数への4番目の引数としてクロージャを渡せます。
+
+    return retry(5, function () {
+        // ...
+    }, 100, function ($exception) {
+        return $exception instanceof RetryException;
     });
 
 <a name="method-session"></a>

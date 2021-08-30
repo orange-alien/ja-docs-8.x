@@ -1660,9 +1660,9 @@ The `Str::uuid` method generates a UUID (version 4):
     return (string) Str::uuid();
 
 <a name="method-str-word-count"></a>
-### `wordCount`
+#### `Str::wordCount` {#collection-method}
 
-The `wordCount` function returns the number of words that a string contains:
+The `Str::wordCount` method returns the number of words that a string contains:
 
 ```php
 use Illuminate\Support\Str;
@@ -2505,9 +2505,9 @@ The `whenEmpty` method invokes the given closure if the string is empty. If the 
     // 'Laravel'
 
 <a name="method-fluent-str-word-count"></a>
-### `wordCount`
+#### `wordCount` {#collection-method}
 
-The `wordCount` function returns the number of words that a string contains:
+The `wordCount` method returns the number of words that a string contains:
 
 ```php
 use Illuminate\Support\Str;
@@ -2982,7 +2982,7 @@ The `retry` function attempts to execute the given callback until the given maxi
         // Attempt 5 times while resting 100ms in between attempts...
     }, 100);
 
-If would like to manually calculate the number of milliseconds to sleep in between attempts, you may pass a closure as the third argument to the `retry` function:
+If you would like to manually calculate the number of milliseconds to sleep in between attempts, you may pass a closure as the third argument to the `retry` function:
 
     return retry(5, function () {
         // ...
@@ -2990,6 +2990,15 @@ If would like to manually calculate the number of milliseconds to sleep in betwe
         return $attempt * 100;
     });
 
+
+To only retry under specific conditions, you may pass a closure as the fourth argument to the `retry` function:
+
+    return retry(5, function () {
+        // ...
+    }, 100, function ($exception) {
+        return $exception instanceof RetryException;
+    });
+    
 <a name="method-session"></a>
 #### `session()` {#collection-method}
 

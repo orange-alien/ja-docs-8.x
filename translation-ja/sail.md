@@ -21,6 +21,9 @@
 - [コンテナCLI](#sail-container-cli)
 - [PHPバージョン](#sail-php-versions)
 - [サイトの共有](#sharing-your-site)
+- [Xdebugによるデバッグ](#debugging-with-xdebug)
+  - [Xdebug CLI使用法](#xdebug-cli-usage)
+  - [Xdebug ブラウザ使用法](#xdebug-browser-usage)
 - [カスタマイズ](#sail-customization)
 
 <a name="introduction"></a>
@@ -327,6 +330,51 @@ image: sail-8.0/app
     sail share --subdomain=my-sail-site
 
 > {tip} `share`コマンドは、[BeyondCode](https://beyondco.de)によるオープンソースのトンネリングサービスである[Expose](https://github.com/beyondcode/expose)により提供しています。
+
+<a name="debugging-with-xdebug"></a>
+## Xdebugによるデバッグ
+
+LaravelSailのDockerの設定には、PHP用の人気で強力なデバッガである[Xdebug](https://xdebug.org/)をサポートしています。XDebugを有効にするには、[Xdebugを設定](https://xdebug.org/docs/step_debug#mode)するために、アプリケーションの`.env`ファイルに変数を追加する必要があります。XDebugを有効にするには、Sailを開始する前に適切なモードを設定する必要があります。
+
+```ini
+SAIL_XDEBUG_MODE=develop,debug
+```
+
+#### LinuxホストIP設定
+
+内部的には、`XDEBUG_CONFIG`環境変数は`client_host=host.docker.internal`として定義しているため、XdebugはMacとWindows(WSL2)用に正しく設定します。ローカルマシンがLinuxを実行している場合は、この環境変数を手動で定義する必要があります。
+
+まず、以下のコマンドを実行して、環境変数に追加する正しいホストIPアドレスを決定します。通常、`<container-name>`は、アプリケーションを提供するコンテナの名前であるべきで、多くの場合、`_laravel.test_1`で終わります。
+
+```bash
+docker inspect -f {{range.NetworkSettings.Networks}}{{.Gateway}}{{end}} <container-name>
+```
+
+正しいホストIPアドレスを取得したら、アプリケーションの`.env`ファイル内で`SAIL_XDEBUG_CONFIG`変数を定義する必要があります。
+
+```ini
+SAIL_XDEBUG_CONFIG="client_host=<host-ip-address>"
+```
+
+<a name="xdebug-cli-usage"></a>
+### Xdebug CLI使用法
+
+Artisanのコマンドを実行する際に、`sail debug`コマンドを使ってデバッグセッションを開始することができます。
+
+```bash
+# Xdebugなしでartisanコマンドを実行
+sail artisan migrate
+
+# Xdebugでartisanコマンドを実行
+sail debug migrate
+```
+
+<a name="xdebug-browser-usage"></a>
+### Xdebug ブラウザ使用法
+
+Webブラウザでアプリケーションを操作しながらデバッグするには、WebブラウザからXdebugセッションを開始するための[Xdebugが提供する手順](https://xdebug.org/docs/step_debug#web-application)に従ってください。
+
+PhpStormを使用している場合は、[設定なしのデバッグ]](https://www.jetbrains.com/help/phpstorm/zero-configuration-debugging.html)に関するJetBrainのドキュメントを確認してください。
 
 <a name="sail-customization"></a>
 ## Sailカスタマイズ

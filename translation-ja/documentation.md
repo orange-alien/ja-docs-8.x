@@ -43,6 +43,7 @@
     - [通知](/docs/{{version}}/notifications)
     - [パッケージ開発](/docs/{{version}}/packages)
     - [キュー](/docs/{{version}}/queues)
+    - [レート制限](/docs/{{version}}/rate-limiting)
     - [タスクスケジュール](/docs/{{version}}/scheduling)
 - ## 安全
     - [認証](/docs/{{version}}/authentication)

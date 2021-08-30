@@ -167,9 +167,15 @@ Laravelは、[Guzzle HTTPクライアント](http://docs.guzzlephp.org/en/stable
 <a name="retries"></a>
 ### 再試行
 
-クライアントまたはサーバのエラーが発生した場合に、HTTPクライアントがリクエストを自動的に再試行するようにしたい場合は、`retry`メソッドを使用します。`retry`メソッドは２つの引数をとります。リクエストを試行する最大回数とLaravelが試行の間に待機するミリ秒数です。
+クライアントまたはサーバのエラーが発生した場合に、HTTPクライアントがリクエストを自動的に再試行するようにしたい場合は、`retry`メソッドを使用します。`retry`メソッドは、リクエストを試行する最大回数とLaravelが試行の間に待機するミリ秒数を引数に取ります。
 
     $response = Http::retry(3, 100)->post(...);
+
+必要であれば、`retry`メソッドに第３引数を渡せます。第３引数には、実際に再試行を行うかどうかを決定するCallableを指定します。例えば、最初のリクエストで`ConnectionException`が発生した場合にのみ、リクエストを再試行したいとしましょう。
+
+    $response = Http::retry(3, 100, function ($exception) {
+        return $exception instanceof ConnectionException;
+    })->post(...);
 
 すべてのリクエストが失敗した場合、`Illuminate\Http\Client\RequestException`インスタンスを投げます。
 

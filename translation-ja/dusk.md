@@ -786,6 +786,10 @@ JavaScriptダイアログにプロンプ​​トが含​​まれている場�
 
     $browser->waitForLocation('/secret');
 
+`waitForLocation`メソッドは、現在のウィンドウの場所が完全修飾URLになるまで待機するためにも使用できます。
+
+    $browser->waitForLocation('https://example.com/path');
+
 [名前付きルート](/docs/{{version}}/routing#named-routes)のロケーションを待機することも可能です。
 
     $browser->waitForRoute($routeName, $parameters);

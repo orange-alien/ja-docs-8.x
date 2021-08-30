@@ -913,6 +913,46 @@ VueのようなJavaScriptフレームワークを使用している方は「ス�
 </x-alert>
 ```
 
+<a name="slot-attributes"></a>
+#### スロット属性
+
+ブレードコンポーネントと同様に、CSSクラス名などのスロットに追加の[属性](#component-attributes)を割り当てることができます。
+
+```html
+<x-card class="shadow-sm">
+    <x-slot name="heading" class="font-bold">
+        Heading
+    </x-slot>
+
+    Content
+
+    <x-slot name="footer" class="text-sm">
+        Footer
+    </x-slot>
+</x-card>
+```
+
+スロット属性を操作するため、スロットの変数の`attributes`プロパティへアクセスできます。属性を操作する方法の詳細は、[コンポーネント属性](#component-attributes)のドキュメントを参照してください。
+
+```php
+@props([
+    'heading',
+    'footer',
+])
+
+<div {{ $attributes->class(['border']) }}>
+    <h1 {{ $heading->attributes->class(['text-lg']) }}>
+        {{ $heading }}
+    </h1>
+
+    {{ $slot }}
+
+    <footer {{ $footer->attributes->class(['text-gray-700']) }}>
+        {{ $footer }}
+    </footer>
+</div>
+```
+
 <a name="inline-component-views"></a>
 ### インラインコンポーネントビュー
 
