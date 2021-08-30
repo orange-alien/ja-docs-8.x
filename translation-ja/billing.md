@@ -1358,45 +1358,58 @@ Stripe WebフックはLaravelの[CSRF保護](/docs/{{version}}/csrf)をバイパ
 <a name="defining-webhook-event-handlers"></a>
 ### Webフックイベントハンドラの定義
 
-Cashierは、失敗した請求やその他の一般的なStripe Webフックイベントのサブスクリプションを自動的にキャンセル処理します。ただし、思い通りに処理したいWebフックイベントがある場合は、Cashier Webフックコントローラを拡張し処理できます。
+Cashierは課金の失敗やその他一般的なStripe Webフックイベントによる、サブスクリプションキャンセルを自動的に処理します。ただし、追加でWebフックイベントを処理したい場合は、Cashierが発行する以下のイベントをリッスンすることで可能です。
 
-コントローラのメソッド名は、Cashierのコントローラの規則に対応している必要があります。具体的には、メソッドのプリフィックスとして`handle`と、処理するWebフックの「キャメルケース」名を付ける必要があります。たとえば、`invoice.payment_succeeded`　Webフックを処理する場合は、コントローラに`handleInvoicePaymentSucceeded`メソッドを追加する必要があります。
+    - `Laravel\Cashier\Events\WebhookReceived`
+    - `Laravel\Cashier\Events\WebhookHandled`
+
+両イベントも、Stripe Webフックの完全なペイロードが含んでいます。例えば、`invoice.payment_succeeded`というWebフックを扱いたい場合は、そのイベントを処理する[リスナ](/docs/{{version}}/events#defining-listeners)を登録します。
 
     <?php
 
-    namespace App\Http\Controllers;
+    namespace App\Listeners;
 
-    use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
+    use Laravel\Cashier\Events\WebhookReceived;
 
-    class WebhookController extends CashierController
+    class StripeEventListener
     {
         /**
-         * 請求の支払い処理に成功
+         * 受信したStripeのWebフックを処理
          *
-         * @param  array  $payload
-         * @return \Symfony\Component\HttpFoundation\Response
+         * @param  \Laravel\Cashier\Events\WebhookReceived  $event
+         * @return void
          */
-        public function handleInvoicePaymentSucceeded($payload)
+        public function handle(WebhookReceived $event)
         {
-            // 受信イベントの処理…
+            if ($event->payload['type'] === 'invoice.payment_succeeded') {
+                // 受信イベントの処理…
+            }
         }
     }
 
-次に、アプリケーションの`routes/web.php`ファイル内でCashier Webフックコントローラのルートを定義します。これにより、Cashierのサービスプロバイダが登録したデフォルトルートが上書きされます。
+リスナを定義したら、アプリケーションの`EventServiceProvider`で登録します。
 
-    use App\Http\Controllers\WebhookController;
+    <?php
 
-    Route::post(
-        '/stripe/webhook',
-        [WebhookController::class, 'handleWebhook']
-    )->name('cashier.webhook');
+    namespace App\Providers;
 
-> {tip} Cashierは、Webフックを受信すると`Laravel\Cashier\Events\WebhookReceived`イベントを発行し、WebフックがCashierによって処理されると`Laravel\Cashier\Events\WebhookHandled`イベントを発行します。どちらのイベントにも、Stripe Webフックの全ペイロードが含まれています。
+    use App\Listeners\StripeEventListener;
+    use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+    use Laravel\Cashier\Events\WebhookReceived;
+
+    class EventServiceProvider extends ServiceProvider
+    {
+        protected $listen = [
+            WebhookReceived::class => [
+                StripeEventListener::class,
+            ],
+        ];
+    }
 
 <a name="verifying-webhook-signatures"></a>
 ### Webフック署名の確認
 
-Webフックを保護するために、[StripeのWebhook署名](https://stripe.com/docs/webhooks/signatures)を使用できます。便利なように、Cashierには受信Stripe Webフックリクエストが有効であるかを検証するミドルウェアが自動的に含まれています。
+Webフックを保護するために、[StripeのWebフック署名](https://stripe.com/docs/webhooks/signatures)を使用できます。便利なように、Cashierには受信Stripe Webフックリクエストが有効であるかを検証するミドルウェアが自動的に含まれています。
 
 Webフックの検証を有効にするには、`STRIPE_WEBHOOK_SECRET`環境変数がアプリケーションの`.env`ファイルに設定されていることを確認してください。Webフックの`secret`は、Stripeアカウントダッシュボードから取得できます。
 

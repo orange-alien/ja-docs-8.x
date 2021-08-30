@@ -99,6 +99,10 @@ Laravelでは、各通知は通常、`app/Notifications`ディレクトリに保
 
     Notification::send($users, new InvoicePaid($invoice));
 
+`sendNow`メソッドを使って通知をすぐに送信することもできます。このメソッドは、通知が `ShouldQueue` インターフェイスを実装していても、通知を直ちに送信します。
+
+    Notification::sendNow($developers, new DeploymentCompleted($deployment));
+
 <a name="specifying-delivery-channels"></a>
 ### 配信チャンネルの指定
 

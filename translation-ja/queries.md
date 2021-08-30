@@ -734,6 +734,14 @@ where exists (
                     ->having('account_id', '>', 100)
                     ->get();
 
+havingBetween`メソッドを使うと、指定した範囲内の結果をフィルタリングできます。
+
+    $report = DB::table('orders')
+                    ->selectRaw('count(id) as number_of_orders, customer_id')
+                    ->groupBy('customer_id')
+                    ->havingBetween('number_of_orders', [5, 15])
+                    ->get();
+
 `groupBy`メソッドに複数の引数を渡して、複数のカラムでグループ化できます。
 
     $users = DB::table('users')

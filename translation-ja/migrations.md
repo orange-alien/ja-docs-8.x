@@ -338,6 +338,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 [enum](#column-method-enum)
 [float](#column-method-float)
 [foreignId](#column-method-foreignId)
+[foreignIdFor](#column-method-foreignIdFor)
 [foreignUuid](#column-method-foreignUuid)
 [geometryCollection](#column-method-geometryCollection)
 [geometry](#column-method-geometry)
@@ -480,6 +481,13 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `foreignId`メソッドは`UNSIGNED BIGINT`カラムを作成します。
 
     $table->foreignId('user_id');
+
+<a name="column-method-foreignIdFor"></a>
+#### `foreignIdFor()` {#collection-method}
+
+`foreignIdFor`メソッドは、指定モデルクラスへ`{column}_id UNSIGNED BIG INT`を追加します。
+
+    $table->foreignIdFor(User::class);
 
 <a name="column-method-foreignUuid"></a>
 #### `foreignUuid()` {#collection-method}
@@ -762,7 +770,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `tinyInteger`メソッドは`TINYINT`カラムを作成します。
 
     $table->tinyInteger('votes');
-    
+
 <a name="column-method-tinyText"></a>
 #### `tinyText()` {#collection-method}
 
@@ -1149,4 +1157,3 @@ Laravelは、データベースレベルで参照整合性を強制するため�
 | `Illuminate\Database\Events\MigrationsEnded` | マイグレーションのバッチが実行終了しました。 |
 | `Illuminate\Database\Events\MigrationStarted` | 単一マイグレーションが実行されようとしています。 |
 | `Illuminate\Database\Events\MigrationEnded` | 単一マイグレーションが実行完了しました。 |
-
