@@ -1201,6 +1201,21 @@ Eloquentリレーションクエリへ制約を追加する必要がない場合
 
 > {note} Eloquentは現在、データベース間をまたぐリレーションの存在のクエリをサポートしていません。リレーションは同じデータベース内に存在する必要があります。
 
+<a name="inline-relationship-existence-queries"></a>
+#### インライン関係存在クエリ
+
+リレーションのクエリに付加する単純な１つの条件で、リレーションの存在をクエリしたい場合は、`whereRelation`と`whereMorphRelation`メソッドを使用するのが便利です。例として、承認されていないコメントを持つすべての投稿を照会してみましょう。
+
+    use App\Models\Post;
+
+    $posts = Post::whereRelation('comments', 'is_approved', false)->get();
+
+もちろん、クエリビルダの`where`メソッドの呼び出しと同様に、オペレータを指定することもできます。
+
+    $posts = Post::whereRelation(
+        'comments', 'created_at', '>=', now()->subHour()
+    )->get();
+
 <a name="querying-relationship-absence"></a>
 ### 存在しないリレーションのクエリ
 

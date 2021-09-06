@@ -403,7 +403,7 @@ PHPFastCGIとApacheを使用してLaravelアプリケーションを提供して
     /**
      * ユーザーをアプリケーションからログアウトさせる
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)

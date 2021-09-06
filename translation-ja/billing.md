@@ -320,6 +320,8 @@ Cashierでは、顧客のタックスIDを簡単に管理できます。例え�
 
 これを自動化するには、Billableモデルにイベントリスナを定義して、モデルの`updated`イベントに対応させます。そして、イベントリスナの中で、モデルの`syncStripeCustomerDetails`メソッドを呼び出します。
 
+    use function Illuminate\Events\queueable;
+
     /**
      * The "booted" method of the model.
      *

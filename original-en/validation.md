@@ -751,6 +751,7 @@ Below is a list of all available validation rules and their function:
 [Distinct](#rule-distinct)
 [Email](#rule-email)
 [Ends With](#rule-ends-with)
+[Exclude](#rule-exclude)
 [Exclude If](#rule-exclude-if)
 [Exclude Unless](#rule-exclude-unless)
 [Exists (Database)](#rule-exists)
@@ -780,6 +781,7 @@ Below is a list of all available validation rules and their function:
 [Prohibited](#rule-prohibited)
 [Prohibited If](#rule-prohibited-if)
 [Prohibited Unless](#rule-prohibited-unless)
+[Prohibits](#rule-prohibits)
 [Regular Expression](#rule-regex)
 [Required](#rule-required)
 [Required If](#rule-required-if)
@@ -1023,6 +1025,11 @@ The `filter` validator, which uses PHP's `filter_var` function, ships with Larav
 #### ends_with:_foo_,_bar_,...
 
 The field under validation must end with one of the given values.
+
+<a name="rule-exclude"></a>
+#### exclude
+
+The field under validation will be excluded from the request data returned by the `validate` and `validated` methods.
 
 <a name="rule-exclude-if"></a>
 #### exclude_if:_anotherfield_,_value_
@@ -1272,6 +1279,11 @@ The field under validation must be empty or not present if the _anotherfield_ fi
 
 The field under validation must be empty or not present unless the _anotherfield_ field is equal to any _value_.
 
+<a name="rule-prohibits"></a>
+#### prohibits:_anotherfield_,...
+
+If the field under validation is present, no fields in _anotherfield_ can be present, even if empty.
+
 <a name="rule-regex"></a>
 #### regex:_pattern_
 
@@ -1508,6 +1520,34 @@ The first argument passed to the `sometimes` method is the name of the field we 
     });
 
 > {tip} The `$input` parameter passed to your closure will be an instance of `Illuminate\Support\Fluent` and may be used to access your input and files under validation.
+
+<a name="complex-conditional-array-validation"></a>
+#### Complex Conditional Array Validation
+
+Sometimes you may want to validate a field based on another field in the same nested array whose index you do not know. In these situations, you may allow your closure to receive a second argument which will be the current individual item in the array being validated:
+
+    $input = [
+        'channels' => [
+            [
+                'type' => 'email',
+                'address' => 'abigail@example.com',
+            ],
+            [
+                'type' => 'url',
+                'address' => 'https://example.com',
+            ],
+        ],
+    ];
+
+    $validator->sometimes('channels.*.address', 'email', function($input, $item) {
+        return $item->type === 'email';
+    });
+    
+    $validator->sometimes('channels.*.address', 'url', function($input, $item) {
+        return $item->type !== 'email';
+    });
+
+Like the `$input` parameter passed to the closure, the `$item` parameter is an instance of `Illuminate\Support\Fluent` when the attribute data is an array; otherwise, it is a string.
 
 <a name="validating-arrays"></a>
 ## Validating Arrays
@@ -1749,5 +1789,9 @@ By default, when an attribute being validated is not present or contains an empt
     Validator::make($input, $rules)->passes(); // true
 
 For a custom rule to run even when an attribute is empty, the rule must imply that the attribute is required. To create an "implicit" rule, implement the `Illuminate\Contracts\Validation\ImplicitRule` interface. This interface serves as a "marker interface" for the validator; therefore, it does not contain any additional methods you need to implement beyond the methods required by the typical `Rule` interface.
+
+To generate a new implicit rule object, you may use the `make:rule` Artisan command with the `--implicit` option :
+
+     php artisan make:rule Uppercase --implicit
 
 > {note} An "implicit" rule only _implies_ that the attribute is required. Whether it actually invalidates a missing or empty attribute is up to you.

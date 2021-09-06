@@ -413,7 +413,7 @@ JSONレスポンス内のプロパティが特定の型のものであること�
              ->whereType('id', ['string', 'integer'])
     );
 
-`whereType`と`whereTypeAll`メソッドは、`string`、`integer`、`double`、`boolean`、`array`、`null`タイプを認識します。
+`whereType`と`whereAllType`メソッドは、`string`、`integer`、`double`、`boolean`、`array`、`null`タイプを認識します。
 
 <a name="testing-file-uploads"></a>
 ## ファイルアップロードのテスト

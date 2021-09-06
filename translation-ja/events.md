@@ -623,7 +623,7 @@ Laravelは、PHPのリフレクションサービスを使用してリスナク�
          * サブスクライバのリスナを登録
          *
          * @param  \Illuminate\Events\Dispatcher  $events
-         * @return void
+         * @return array
          */
         public function subscribe($events)
         {

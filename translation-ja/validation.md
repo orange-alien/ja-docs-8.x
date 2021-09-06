@@ -751,6 +751,7 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
 [別々](#rule-distinct)
 [メールアドレス](#rule-email)
 [文字列終了](#rule-ends-with)
+[除外](#rule-exclude)
 [条件一致時フィールド除外](#rule-exclude-if)
 [条件不一致時フィールド除外](#rule-exclude-unless)
 [存在（データベース）](#rule-exists)
@@ -780,6 +781,7 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
 [禁止](#rule-prohibited)
 [禁止If](#rule-prohibited-if)
 [禁止Unless](#rule-prohibited-unless)
+[他フィールド禁止](#rule-prohibits)
 [正規表現](#rule-regex)
 [必須](#rule-required)
 [指定フィールド値一致時必須](#rule-required-if)
@@ -1023,6 +1025,11 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 #### ends_with:_foo_,_bar_,...
 
 フィールドの値が、指定された値で終わることをバリデートします。
+
+<a name="rule-exclude"></a>
+#### exclude
+
+フィルードの値が`validate`と`validated`メソッドが返すリクエストデータから除外されていることをバリデートします。
 
 <a name="rule-exclude-if"></a>
 #### exclude_if:_他のフィールド_,_値_
@@ -1272,6 +1279,11 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 
 **anotherfiel**フィールドが任意の**value**と等しくない場合、対象のフィールドは空であるか、存在していないことをバリデートします。
 
+<a name="rule-prohibits"></a>
+#### prohibits:_anotherfield_,...
+
+フィールドが存在する場合、**anotherfield**で指定したフィールドが、たとえ空であっても１つも存在していないことをバリデートします。
+
 <a name="rule-regex"></a>
 #### regex:_正規表現_
 
@@ -1508,6 +1520,34 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
     });
 
 > {tip} クロージャに渡される`$input`パラメーターは、`Illuminate\Support\Fluent`のインスタンスであり、バリデーション中の入力とファイルへアクセスするために使用できます。
+
+<a name="complex-conditional-array-validation"></a>
+#### 複雑な条件の配列バリデーション
+
+インデックスがわからない、入れ子になった同じ配列の中にある別のフィールドに基づいて、あるフィールドを検証したいことがあります。このような場合には、クロージャへ第２引数を渡してください。第２引数には、配列中のバリデーション対象の現アイテムが渡されます。
+
+    $input = [
+        'channels' => [
+            [
+                'type' => 'email',
+                'address' => 'abigail@example.com',
+            ],
+            [
+                'type' => 'url',
+                'address' => 'https://example.com',
+            ],
+        ],
+    ];
+
+    $validator->sometimes('channels.*.address', 'email', function($input, $item) {
+        return $item->type === 'email';
+    });
+
+    $validator->sometimes('channels.*.address', 'url', function($input, $item) {
+        return $item->type !== 'email';
+    });
+
+クロージャに渡される`$input`パラメータと同様に、`$item`パラメータは属性データが配列の場合は`Illuminate\Support\Fluent`のインスタンス、そうでない場合は文字列になります。
 
 <a name="validating-arrays"></a>
 ## 配列のバリデーション
@@ -1749,5 +1789,9 @@ Laravelは有用な数多くのバリデーションルールを提供してい�
     Validator::make($input, $rules)->passes(); // true
 
 属性が空の場合でもカスタムルールを実行するには、ルールは属性が必須であることを意味する必要があります。「暗黙の」ルールを作成するには、`Illuminate\Contracts\Validation\ImplicitRule`インターフェイスを実装します。このインターフェイスは、バリデータの「マーカーインターフェイス」として機能します。したがって、通常の`Rule`インターフェイスで必要なメソッド以外に実装する必要のある追加のメソッドは含まれていません。
+
+新しい暗黙のルールオブジェクトを生成するには、`make:rule` Artisanコマンドに`--implicit`オプションを付けて使用してください。
+
+     php artisan make:rule Uppercase --implicit
 
 > {note} 「暗黙の」ルールは、属性が必要であることを**暗黙的に**します。欠落している属性または空の属性を実際に無効にするかどうかは、あなた次第です。

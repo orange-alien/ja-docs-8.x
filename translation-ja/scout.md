@@ -70,6 +70,8 @@ Algoliaドライバを使用する場合、Algolia `id`と`secret`接続情報�
 <a name="meilisearch"></a>
 #### MeiliSearch
 
+[MeiliSearch](https://www.meilisearch.com)は、非常に高速なオープンソースの検索エンジンです。ローカルマシンにMeiliSearchをインストールする方法がわからない場合は、Laravelの公式サポートのDocker開発環境である[Laravel Sail](/docs/{{version}}/sail#meilisearch)を利用できます。
+
 Meilisearchドライバを使用する場合は、Composerパッケージマネージャを使用して、MeiliSearch PHP SDKをインストールする必要があります。
 
     composer require meilisearch/meilisearch-php http-interop/http-factory-guzzle
@@ -82,7 +84,9 @@ Meilisearchドライバを使用する場合は、Composerパッケージマネ�
 
 MeiliSearchの詳細については、[MeiliSearchのドキュメント](https://docs.meilisearch.com/learn/getting_started/quick_start.html)を参照してください。
 
-> {tip} ローカルマシンにMeiliSearchをインストールする方法がわからない場合は、Laravelが正式にサポートしているDocker開発環境である、[Laravel Sail](/docs/{{version}}/sail#meilisearch)が使えます。
+さらに、[MeiliSearchのバイナリ互換のドキュメント](https://github.com/meilisearch/meilisearch-php#-compatibility-with-meilisearch)を見て、自分が使っているMeiliSearchのバイナリバージョンと互換性のあるバージョンの`meilisearch/meilisearch-php`をインストールしてください。
+
+> {note} MeiliSearchを利用しているアプリケーションのScoutをアップグレードする際には、常にMeiliSearchサービス自体に[追加の破壊的な変更](https://github.com/meilisearch/MeiliSearch/releases)がないか確認する必要があります。
 
 <a name="queueing"></a>
 ### キュー投入
