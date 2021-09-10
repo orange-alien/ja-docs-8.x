@@ -153,7 +153,7 @@ docker run --rm \
 ```
 
 <a name="executing-artisan-commands"></a>
-### Arttisanコマンドの実行
+### Artisanコマンドの実行
 
 Laravel Artisanコマンドは、`artisan`コマンドを使用して実行します。
 
