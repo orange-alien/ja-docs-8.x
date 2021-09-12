@@ -209,7 +209,7 @@ Laravelの[サービスコンテナ](/docs/{{version}}/container)を介してア
 <a name="job-batches"></a>
 ### ジョブバッチ
 
-`Bus`ファサードの`assertBatched`メソッドを使用して、[ジョブのバッチ](/docs/{{version}}/queues#job-batches)がディスパッチされたことをアサートできます。`assertBatched`メソッドへ渡すクロージャは、`Illuminate\Bus\PendingBatch`のインスタンスを受け取ります。これはバッチ内のジョブを検査するために使用できます。
+`Bus`ファサードの`assertBatched`メソッドを使用して、[ジョブのバッチ](/docs/{{version}}/queues#job-batching)がディスパッチされたことをアサートできます。`assertBatched`メソッドへ渡すクロージャは、`Illuminate\Bus\PendingBatch`のインスタンスを受け取ります。これはバッチ内のジョブを検査するために使用できます。
 
     use Illuminate\Bus\PendingBatch;
     use Illuminate\Support\Facades\Bus;

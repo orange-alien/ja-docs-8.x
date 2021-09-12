@@ -71,7 +71,7 @@ Laravelには、簡単に使用できるレート制限の抽象化機能があ�
 
     use Illuminate\Support\Facades\RateLimiter;
 
-    if (RateLimiter::tooManyAttemptsLeft('send-message:'.$user->id, $perMinute = 5)) {
+    if (RateLimiter::tooManyAttempts('send-message:'.$user->id, $perMinute = 5)) {
         $seconds = RateLimiter::availableIn('send-message:'.$user->id);
 
         return 'You may try again in '.$seconds.' seconds.'.

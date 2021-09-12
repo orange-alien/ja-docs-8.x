@@ -79,7 +79,7 @@ sail up
 <a name="starting-and-stopping-sail"></a>
 ## Sailの開始と停止
 
-Laravel Sailの`docker-compose.yml`ファイルは、Laravelアプリケーションの構築を支援するために連携するDockerのさまざまなコンテナーを定義します。これらの各コンテナーは、`docker-compose.yml`ファイルの`services`設定内のエントリです。`laravel.test`コンテナは、アプリケーションを提供するメインのアプリケーションコンテナです。
+Laravel Sailの`docker-compose.yml`ファイルは、Laravelアプリケーションの構築を支援するために連携するさまざまなDockerコンテナーを定義します。これらの各コンテナーは、`docker-compose.yml`ファイルの`services`設定内のエントリです。`laravel.test`コンテナは、アプリケーションを提供するメインのアプリケーションコンテナです。
 
 Sailを開始する前に、ローカルコンピューターで他のWebサーバまたはデータベースが実行されていないことを確認する必要があります。アプリケーションの`docker-compose.yml`ファイルで定義されているすべてのDockerコンテナーを起動するには、`up`コマンドを実行する必要があります。
 
@@ -146,8 +146,8 @@ sail composer require laravel/sanctum
 ```nothing
 docker run --rm \
     -u "$(id -u):$(id -g)" \
-    -v $(pwd):/opt \
-    -w /opt \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
     laravelsail/php80-composer:latest \
     composer install --ignore-platform-reqs
 ```

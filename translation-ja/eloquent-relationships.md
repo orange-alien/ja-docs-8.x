@@ -1046,12 +1046,12 @@ public function bestImage()
 
     use Illuminate\Database\Eloquent\Relations\Relation;
 
-    Relation::morphMap([
+    Relation::enforceMorphMap([
         'post' => 'App\Models\Post',
         'video' => 'App\Models\Video',
     ]);
 
-必要に応じ、`App\Providers\AppServiceProvider`クラスの`boot`関数で`morphMap`を登録するか、別のサービスプロバイダを作成することも可能です。
+You may call the `enforceMorphMap` method in the `boot` method of your `App\Providers\AppServiceProvider` class or create a separate service provider if you wish.
 
 モデルの`getMorphClass`メソッドを使用して、実行時に指定したモデルのポリモーフィックのエイリアスを取得できます。逆に、`Relation::getMorphedModel`メソッドを使用して、ポリモーフィックのエイリアスへ関連付けた完全修飾クラス名を取得もできます。
 

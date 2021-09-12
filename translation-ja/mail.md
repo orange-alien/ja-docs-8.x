@@ -101,6 +101,15 @@ composer require aws/aws-sdk-php
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+AWSの[一時的な認証情報](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html)をセッショントークン経由で利用するには、アプリケーションのSES設定へ`token`キーを追加します。
+
+    'ses' => [
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+        'token' => env('AWS_SESSION_TOKEN'),
+    ],
+
 メール送信時にAWS SDKの`SendRawEmail`メソッドへLaravelが渡すべき[追加オプション](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-email-2010-12-01.html#sendrawemail)を定義したい場合、`ses`設定内で`options`配列を定義してください。
 
     'ses' => [

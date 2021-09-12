@@ -1362,8 +1362,8 @@ Stripe WebフックはLaravelの[CSRF保護](/docs/{{version}}/csrf)をバイパ
 
 Cashierは課金の失敗やその他一般的なStripe Webフックイベントによる、サブスクリプションキャンセルを自動的に処理します。ただし、追加でWebフックイベントを処理したい場合は、Cashierが発行する以下のイベントをリッスンすることで可能です。
 
-    - `Laravel\Cashier\Events\WebhookReceived`
-    - `Laravel\Cashier\Events\WebhookHandled`
+- `Laravel\Cashier\Events\WebhookReceived`
+- `Laravel\Cashier\Events\WebhookHandled`
 
 両イベントも、Stripe Webフックの完全なペイロードが含んでいます。例えば、`invoice.payment_succeeded`というWebフックを扱いたい場合は、そのイベントを処理する[リスナ](/docs/{{version}}/events#defining-listeners)を登録します。
 

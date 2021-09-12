@@ -337,6 +337,27 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
      */
     protected $stopOnFirstFailure = true;
 
+<a name="customizing-the-redirect-location"></a>
+#### リダイレクト先のカスタマイズ
+
+前述のとおり、フォームリクエストのバリデーションに失敗した場合、ユーザーを元の場所に戻すためのリダイレクトレスポンスが生成されます。しかし、この動作は自由にカスタマイズ可能です。それには、フォームのリクエストで、`$redirect`プロパティを定義します。
+
+    /**
+     * バリデーション失敗時に、ユーザーをリダイレクトするURI
+     *
+     * @var string
+     */
+    protected $redirect = '/dashboard';
+
+または、ユーザーを名前付きルートへリダイレクトする場合は、`$redirectRoute`プロパティを代わりに定義します。
+
+    /**
+     * バリデーション失敗時に、ユーザーをリダイレクトするルート
+     *
+     * @var string
+     */
+    protected $redirectRoute = 'dashboard';
+
 <a name="authorizing-form-requests"></a>
 ### フォームリクエストの認可
 
@@ -602,6 +623,10 @@ Laravelの組み込みエラーメッセージの多くには、バリデーシ�
     $validated = $request->safe();
 
     $email = $validated['email'];
+
+バリデーション済みデータへさらにフィールドを追加したい場合は、`merge`メソッドを呼び出します。
+
+    $validated = $request->safe()->merge(['name' => 'Taylor Otwell']);
 
 バリデーション済みデータを[コレクション](/docs/{{version}}/collections)インスタンスとして取得したい場合は、`collect`メソッドを呼び出します。
 
