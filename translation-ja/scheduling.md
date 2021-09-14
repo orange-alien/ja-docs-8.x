@@ -150,7 +150,7 @@ php artisan schedule:list
         //
     })->weekly()->mondays()->at('13:00');
 
-    // ウィークエンドの8時から17時まで１時間ごとに実行
+    // ウィークデーの８時から１７時まで１時間ごとに実行
     $schedule->command('foo')
               ->weekdays()
               ->hourly()
