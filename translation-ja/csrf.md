@@ -90,7 +90,7 @@ LaravelをAPIバックエンドとして利用するSPAを構築している場�
         ];
     }
 
-> {tip} 利便性向上のため、[テスト実行](/docs/{{version}}/tests)時に、CSRFミドルウェアはすべてのルートで自動的に無効になります。
+> {tip} 利便性向上のため、[テスト実行](/docs/{{version}}/testing)時に、CSRFミドルウェアはすべてのルートで自動的に無効になります。
 
 <a name="csrf-x-csrf-token"></a>
 ## X-CSRF-TOKEN
