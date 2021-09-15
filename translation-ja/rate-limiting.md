@@ -65,7 +65,7 @@ Laravelには、簡単に使用できるレート制限の抽象化機能があ�
     }
 
 <a name="determining-limiter-availability"></a>
-#### Determining Limiter Availability
+#### 使用可能時間の判断
 
 キーの試行回数がなくなると、`availableIn`メソッドは試行回数が増えるまでの残り秒数を返します。
 
