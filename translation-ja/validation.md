@@ -1101,8 +1101,8 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
     Validator::make($data, [
         'email' => [
             'required',
+            Rule::exists('staff')->where(function ($query) {
                 return $query->where('account_id', 1);
-                $query->where('account_id', 1);
             }),
         ],
     ]);
