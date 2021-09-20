@@ -144,7 +144,7 @@ Sailの`up`コマンドをはじめて実行すると、Sailのアプリケー�
 <a name="choosing-your-sail-services"></a>
 ### Sailサービスの選択
 
-Sailで新しいLaravelアプリケーションを作成する際に、`with`というクエリ文字列変数を使って、新しいアプリケーションの`docker-compose.yml`ファイルで設定するサービスを選択することができます。利用可能なサービスは、`mysql`、`pgsql`、`mariadb`、`redis`、`memcached`、`meilisearch`、`selenium`、`mailhog`です。
+Sailで新しいLaravelアプリケーションを作成する際に、`with`というクエリ文字列変数を使って、新しいアプリケーションの`docker-compose.yml`ファイルで設定するサービスを選択することができます。利用可能なサービスは、`mysql`、`pgsql`、`mariadb`、`redis`、`memcached`、`meilisearch`、`minio`、`selenium`、`mailhog`です。
 
 ```nothing
 curl -s "https://laravel.build/example-app?with=mysql,redis" | bash

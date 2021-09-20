@@ -639,3 +639,27 @@ Laravelは、[PHPUnit](https://phpunit.de/)機能テスト用にいくつかの�
 `assertSoftDeleted`メソッドは、指定したEloquentモデルが「ソフト削除」されたことをアサートします。
 
     $this->assertSoftDeleted($user);
+
+<a name="assert-model-exists"></a>
+#### assertModelExists
+
+指定モデルがデータベースに存在することをアサートします。
+
+    use App\Models\User;
+
+    $user = User::factory()->create();
+
+    $this->assertModelExists($user);
+
+<a name="assert-model-missing"></a>
+#### assertModelMissing
+
+指定モデルがデータベースに存在しないことをアサートします。
+
+    use App\Models\User;
+
+    $user = User::factory()->create();
+
+    $user->delete();
+
+    $this->assertModelMissing($user);

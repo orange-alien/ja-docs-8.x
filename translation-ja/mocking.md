@@ -385,7 +385,7 @@ Laravelの[サービスコンテナ](/docs/{{version}}/container)を介してア
 
     Mail::assertNothingQueued();
 
-特定の「論理テスト」に合格したMailableが送信されたことをアサートするために、`assertSent`または`assertNotSent`メソッドにクロージャを渡すこともできます。指定する論理テストに合格するMailableが少なくとも１つ送信された場合、アサーションは成功します。
+特定の「論理テスト」に合格したMailableが送信されたことをアサートするために、`assertSent`、`assertNotSent`、`assertQueued`、`assertNotQueued`メソッドにクロージャを渡すこともできます。指定する論理テストに合格するMailableが少なくとも１つ送信された場合、アサーションは成功します。
 
     Mail::assertSent(function (OrderShipped $mail) use ($order) {
         return $mail->order->id === $order->id;

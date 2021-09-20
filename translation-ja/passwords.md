@@ -7,6 +7,7 @@
 - [ルート](#routing)
     - [パスワードリセットリンクの要求](#requesting-the-password-reset-link)
     - [パスワードのリセット](#resetting-the-password)
+- [期限切れトークンの削除](#deleting-expired-tokens)
 - [カスタマイズ](#password-customization)
 
 <a name="introduction"></a>
@@ -143,6 +144,17 @@ Laravelのパスワードリセット機能を使用する前に、アプリケ�
 `reset`メソッドは「ステータス」スラッグを返します。このステータスは、リクエストのステータスに関するユーザーフレンドリーなメッセージを表示するために、Laravelの[多言語化](/docs/{{version}}/localization)ヘルパを使用して変換できます。パスワードリセットステータスの変換は、アプリケーションの`resources/lang/{lang}/passwords.php`言語ファイルによって決定されます。ステータススラッグの各値のエントリは、`passwords`言語ファイル内にあります。
 
 先に進む前に、`Password`ファサードの`reset`メソッドを呼び出すときに、Laravelがアプリケーションのデータベースからユーザーレコードを取得する方法をどのように知っているのか疑問に思われるかもしれません。Laravelパスワードブローカーは、認証システムの「ユーザープロバイダ」を利用してデータベースレコードを取得します。パスワードブローカが使用するユーザープロバイダは、`config/auth.php`設定ファイルの`passwords`設定配列内で設定しています。カスタムユーザープロバイダの作成の詳細については、[認証ドキュメント](/docs/{{version}}/authentication#adding-custom-user-providers)を参照してください。
+
+<a name="deleting-expired-tokens"></a>
+## 期限切れトークンの削除
+
+期限が切れたパスワードリセットトークンは、データベース内にまだ存在します。しかし、これらのレコードは、`auth:clear-resets` Artisanコマンドで簡単に削除できます。
+
+    php artisan auth:clear-resets
+
+この処理を自動化したい場合は、アプリケーションの[スケジューラ](/docs/{{version}}/scheduling)への、当コマンド追加を検討してください。
+
+    $schedule->command('auth:clear-resets')->everyFifteenMinutes();
 
 <a name="password-customization"></a>
 ## カスタマイズ
