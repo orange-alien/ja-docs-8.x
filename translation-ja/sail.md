@@ -55,6 +55,13 @@ Sailをインストールした後は、`sail:install` Artisanコマンドを実
 
     ./vendor/bin/sail up
 
+<a name="using-devcontainers"></a>
+#### Devcontainerの使用
+
+もし、[Devcontainer](https://code.visualstudio.com/docs/remote/containers)内で開発したい場合は、`--devcontainer`オプションを`sail:install`コマンドで指定してください。`--devcontainer`オプションは、`sail:install`コマンドに、デフォルトの`.devcontainer/devcontainer.json`ファイルをアプリケーションのルートにリソース公開するように指示します。
+
+    php artisan sail:install --devcontainer
+
 <a name="configuring-a-bash-alias"></a>
 ### Bashエイリアスの設定
 
