@@ -652,13 +652,14 @@ Laravel Echoインスタンスを初期化すると、ソケットIDが接続に
 
     broadcast(new OrderShipmentStatusUpdated($update))->via('pusher');
 
-もしくは、イベントのコンストラクタで `broadcastVia` メソッドを呼び出して、イベントのブロードキャスト接続を指定することもできます。
+もしくは、イベントのコンストラクタで `broadcastVia` メソッドを呼び出して、イベントのブロードキャスト接続を指定することもできます。ただし、その前に、イベントクラスで確実に`InteractsWithBroadcasting`トレイトを使ってください。
 
     <?php
 
     namespace App\Events;
 
     use Illuminate\Broadcasting\Channel;
+    use Illuminate\Broadcasting\InteractsWithBroadcasting;
     use Illuminate\Broadcasting\InteractsWithSockets;
     use Illuminate\Broadcasting\PresenceChannel;
     use Illuminate\Broadcasting\PrivateChannel;
@@ -667,6 +668,8 @@ Laravel Echoインスタンスを初期化すると、ソケットIDが接続に
 
     class OrderShipmentStatusUpdated implements ShouldBroadcast
     {
+        use InteractsWithBroadcasting;
+
         /**
          * 新イベントインスタンスの生成
          *

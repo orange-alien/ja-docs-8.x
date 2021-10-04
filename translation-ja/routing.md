@@ -71,6 +71,8 @@
         //
     });
 
+> {tip} 同じURIの複数のルートを定義する場合、`get`、`post`、`put`、`patch`、`delete`、`options`の各メソッドを使ったルートは、`any`、`match`、`redirect`の各メソッドを使ったルートよりも先に定義する必要があります。これにより、受信リクエストが正しいルートにマッチします。
+
 <a name="dependency-injection"></a>
 #### 依存注入
 

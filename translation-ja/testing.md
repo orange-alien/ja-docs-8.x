@@ -45,6 +45,11 @@ Laravelには、アプリケーションのベース`TestCase`クラスに適用
 
     php artisan make:test UserTest --unit
 
+[Pest PHP](https://pestphp.com)テストを作成したい場合は、`make:test`コマンドに`--pest`オプションを指定してください。
+
+    php artisan make:test UserTest --pest
+    php artisan make:test UserTest --unit --pest
+
 > {tip} [stubのリソース公開](/docs/{{version}}/artisan#stub-customization) を使って、Testスタブをカスタマイズできます。
 
 テストを生成したら、[PHPUnit](https://phpunit.de)を使用する場合と同様にテストメソッドを定義します。テストを実行するには、ターミナルから`vendor/bin/phpunit`または`phpartisantest`コマンドを実行します。

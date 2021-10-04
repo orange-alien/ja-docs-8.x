@@ -990,6 +990,35 @@ VueのようなJavaScriptフレームワークを使用している方は「ス�
 
     <x-inputs.button/>
 
+<a name="anonymous-index-components"></a>
+#### 無名インデックスコンポーネント
+
+あるコンポーネントが多数のBladeテンプレートから構成されている場合、そのコンポーネントのテンプレートを１つのディレクトリにまとめたいことがあります。例えば、以下のようなディレクトリ構造を持つ「アコーディオン」コンポーネントがあるとします。
+
+```none
+/resources/views/components/accordion.blade.php
+/resources/views/components/accordion/item.blade.php
+```
+
+このディレクトリ構造を使用すると、アコーディオン・コンポーネントとそのアイテムを以下のようにレンダーできます。
+
+```html
+<x-accordion>
+    <x-accordion.item>
+        ...
+    </x-accordion.item>
+</x-accordion>
+```
+
+しかし、`x-accordion`でアコーディオンコンポーネントをレンダーするには、他のアコーディオン関連のテンプレートと一緒に`accordion`ディレクトリ内に入れ子にするのではなく、"index"アコーディオン・コンポーネントテンプレートを`resources/views/components`ディレクトリ内に配置する必要がありました。
+
+Bladeでは幸い、コンポーネントのテンプレートディレクトリ内に `index.blade.php` ファイルを配置することができます。index.blade.php`のテンプレートがコンポーネントに存在する場合、そのテンプレートはコンポーネントの「ルート」ノードとしてレンダーされます。そこで、上記の例で示したのと同じBladeの構文を引き続き使用することができますが、ディレクトリ構造を次のように調整します。
+
+```none
+/resources/views/components/accordion/index.blade.php
+/resources/views/components/accordion/item.blade.php
+```
+
 <a name="data-properties-attributes"></a>
 #### データのプロパティ／属性
 

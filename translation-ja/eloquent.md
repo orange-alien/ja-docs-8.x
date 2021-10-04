@@ -942,6 +942,10 @@ Prunableモデルを設定した後は、アプリケーションの`App\Console
         '--model' => [Address::class, Flight::class],
     ])->daily();
 
+`model:prune`コマンドを`--pretend`オプション付きで実行することで、`prunable`クエリをテストできます。このオプションを付けると、`model:prune`コマンドは実際にコマンドを実行する場合、どれだけのレコードが刈り取られるかだけを報告します。
+
+    php artisan model:prune --pretend
+
 > {note} Prunableクエリに一致した場合、ソフト削除するモデルでも、永久的に削除（`forceDelete`）します。
 
 <a name="mass-pruning"></a>

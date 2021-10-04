@@ -354,7 +354,7 @@ Horizo​​nには、ジョブとキューの待機時間とスループット�
 <a name="deleting-failed-jobs"></a>
 ## 失敗したジョブの削除
 
-失敗したジョブを削除したい場合は、`horizo​​n:forget`コマンドを使用します。`horizo​​n:forget`コマンドは、失敗したジョブのIDを唯一の引数に取ります。
+失敗したジョブを削除したい場合は、`horizo​​n:forget`コマンドを使用します。`horizo​​n:forget`コマンドは、失敗したジョブのIDかUUIDを唯一の引数に取ります。
 
     php artisan horizon:forget 5
 
