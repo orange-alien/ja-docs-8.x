@@ -346,7 +346,7 @@ Laravelスケジューラはスケジュールしたタスクが生成する出�
              ->daily()
              ->emailOutputOnFailure('taylor@example.com');
 
-> {note} `emailOutputTo`、 `emailOutputOnFailure`、`sendOutputTo`、`appendOutputTo`メソッドは、`command`と`exec`メソッドに対してどれか一つしか指定できません。
+> {note} `emailOutputTo`、 `emailOutputOnFailure`、`sendOutputTo`、`appendOutputTo`メソッドは、`command`と`exec`メソッドに対してのみ指定できます。
 
 <a name="task-hooks"></a>
 ## タスクフック
