@@ -139,7 +139,7 @@ Laravel EchoはJavaScriptライブラリであり、チャンネルをサブス�
 npm install --save-dev laravel-echo pusher-js
 ```
 
-Echoをインストールできたら、アプリケーションのJavaScriptで新しいEchoインスタンスを生成する用意が整います。これを実行するのに最適な場所は、Laravelフレームワークに含まれている`resources/js/bootstrap.js`ファイルの下部です。デフォルトで、Echo設定の例はすでにこのファイルに含まれています。コメントアウトするだけです。
+Echoをインストールできたら、アプリケーションのJavaScriptで新しいEchoインスタンスを生成する用意が整います。これを実行するのに最適な場所は、Laravelフレームワークに含まれている`resources/js/bootstrap.js`ファイルの下部です。デフォルトで、Echo設定の例はすでにこのファイルに含まれています。アンコメントするだけです。
 
 ```js
 import Echo from 'laravel-echo';
