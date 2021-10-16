@@ -1270,7 +1270,7 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 <a name="rule-nullable"></a>
 #### nullable
 
-フィールドは`null`であることをバリデートします。
+フィールドは`null`であることを許容します。
 
 <a name="rule-numeric"></a>
 #### numeric
