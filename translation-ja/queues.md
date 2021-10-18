@@ -87,6 +87,10 @@ Laravelキューを使い始める前に、「接続」と「キュー」の違�
 
     php artisan migrate
 
+最後に、アプリケーションの`.env`ファイル内の`QUEUE_CONNECTION`変数を更新して、`database`ドライバを使用することをアプリケーションに指示し忘れないでください。
+
+    QUEUE_CONNECTION=database
+
 <a name="redis"></a>
 #### Redis
 

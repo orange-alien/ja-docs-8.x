@@ -770,7 +770,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `tinyInteger`メソッドは`TINYINT`カラムを作成します。
 
     $table->tinyInteger('votes');
-    
+
 <a name="column-method-tinyText"></a>
 #### `tinyText()` {#collection-method}
 
@@ -863,12 +863,12 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `->autoIncrement()`  |  INTEGERカラムを自動増分（主キー）として設定
 `->charset('utf8mb4')`  |  カラムの文字セットを指定（MySQL）
 `->collation('utf8mb4_unicode_ci')`  |  カラムの照合順序を指定（MySQL／PostgreSQL／SQL Server）
-`->comment('my comment')`  |  カラムにコメントを追加（MySQL/PostgreSQL）
+`->comment('my comment')`  |  カラムにコメントを追加（MySQL／PostgreSQL）
 `->default($value)`  |  カラムの「デフォルト」値を指定
 `->first()`  |  テーブルの「最初の」カラムを配置（MySQL）
-`->from($integer)`  |  自動増分フィールドの開始値を設定（MySQL / PostgreSQL）
+`->from($integer)`  |  自動増分フィールドの開始値を設定（MySQL／PostgreSQL）
 `->nullable($value = true)`  |  NULL値をカラムに保存可能に設定
-`->storedAs($expression)`  |  stored generatedカラムを作成（MySQL）
+`->storedAs($expression)`  |  stored generatedカラムを作成（MySQL／PostgreSQL）
 `->unsigned()`  |  INTEGERカラムをUNSIGNEDとして設定（MySQL）
 `->useCurrent()`  |  CURRENT_TIMESTAMPをデフォルト値として使用するようにTIMESTAMPカラムを設定
 `->useCurrentOnUpdate()`  |  レコードが更新されたときにCURRENT_TIMESTAMPを使用するようにTIMESTAMPカラムを設定
@@ -1157,4 +1157,3 @@ Laravelは、データベースレベルで参照整合性を強制するため�
 | `Illuminate\Database\Events\MigrationsEnded` | マイグレーションのバッチが実行終了しました。 |
 | `Illuminate\Database\Events\MigrationStarted` | 単一マイグレーションが実行されようとしています。 |
 | `Illuminate\Database\Events\MigrationEnded` | 単一マイグレーションが実行完了しました。 |
-

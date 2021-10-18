@@ -160,6 +160,8 @@ Laravelアプリケーションを構築する場合、アプリケーション�
 
 Mailableクラスを生成したら、それを開いて、その内容を調べてください。まず、メール可能なクラスの設定はすべて`build`メソッドで行われることに注意してください。このメソッド内で`from`、`subject`、`view`、`attach`などのさまざまなメソッドを呼び出して、電子メールの表示と配信を設定できます。
 
+> {tip} Mailableの`build`メソッドではタイプヒントで依存を指定できます。Laravelの[サービスコンテナ](/docs/{{version}}/container)は、これらの依存を自動的に注入します。
+
 <a name="configuring-the-sender"></a>
 ### Senderの設定
 

@@ -162,7 +162,9 @@
 [push](#method-push)
 [put](#method-put)
 [random](#method-random)
+[range](#method-range)
 [reduce](#method-reduce)
+[reduceMany](#method-reduce-many)
 [reject](#method-reject)
 [replace](#method-replace)
 [replaceRecursive](#method-replacerecursive)
@@ -1701,6 +1703,17 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 
 コレクションインスタンスのアイテム数が要求より少ない場合、`random`メソッドは`InvalidArgumentException`を投げます。
 
+<a name="method-range"></a>
+#### `range()` {#collection-method}
+
+`range`メソッドは、指定範囲の整数を含むコレクションを返します。
+
+    $collection = collect()->range(3, 6);
+
+    $collection->all();
+
+    // [3, 4, 5, 6]
+
 <a name="method-reduce"></a>
 #### `reduce()` {#collection-method}
 
@@ -1741,6 +1754,25 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     });
 
     // 4264
+
+<a name="method-reduce-many"></a>
+#### `reduceMany()` {#collection-method}
+
+`reduceMany`メソッドはコレクションを値の配列に減らし、各反復の結果を後続の反復に渡します。このメソッドは `reduce` メソッドと似ていますが、複数の初期値を受け入れることができます。
+
+```php
+[$creditsRemaining, $batch] = Image::where('status', 'unprocessed')
+        ->get()
+        ->reduceMany(function ($creditsRemaining, $batch, $image) {
+            if ($creditsRemaining >= $image->creditsRequired()) {
+                $batch->push($image);
+
+                $creditsRemaining -= $image->creditsRequired();
+            }
+
+            return [$creditsRemaining, $batch];
+        }, $creditsAvailable, collect());
+```
 
 <a name="method-reject"></a>
 #### `reject()` {#collection-method}
@@ -2546,6 +2578,20 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 
     // [1, 2, 3, 5]
 
+２つ目のコールバックを`unless`メソッドへ指定できます。２つ目のコールバックは、`unless`メソッドへ渡した最初の引数が`true`と評価されたときに実行します。
+
+    $collection = collect([1, 2, 3]);
+
+    $collection->unless(true, function ($collection) {
+        return $collection->push(4);
+    }, function ($collection) {
+        return $collection->push(5);
+    });
+
+    $collection->all();
+
+    // [1, 2, 3, 5]
+
 `unless`の逆の動作は、[`when`](#method-when)メソッドです。
 
 <a name="method-unlessempty"></a>
@@ -2614,6 +2660,20 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
     $collection->all();
 
     // [1, 2, 3, 4]
+
+２つ目のコールバックを`when`メソッドへ指定できます。２番目のコールバックは、`when`メソッドへ渡された最初の引数の評価値が`false`になったときに実行します。
+
+    $collection = collect([1, 2, 3]);
+
+    $collection->when(false, function ($collection) {
+        return $collection->push(4);
+    }, function ($collection) {
+        return $collection->push(5);
+    });
+
+    $collection->all();
+
+    // [1, 2, 3, 5]
 
 `when`の逆の動作は、[`unless`](#method-unless)メソッドです。
 

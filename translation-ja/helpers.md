@@ -1660,7 +1660,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     return (string) Str::uuid();
 
 <a name="method-str-word-count"></a>
-#### `Str::wordCount` {#collection-method}
+#### `Str::wordCount()` {#collection-method}
 
 `Str::wordCount`関数は、文字列に含まれる単語の数を返します。
 

@@ -921,7 +921,9 @@ Duskはアプリケーションに対する数多くのアサートを提供し�
 [assertSelectHasOption](#assert-select-has-option)
 [assertSelectMissingOption](#assert-select-missing-option)
 [assertValue](#assert-value)
+[assertValueIsNot](#assert-value-is-not)
 [assertAttribute](#assert-attribute)
+[assertAttributeContains](#assert-attribute-contains)
 [assertAriaAttribute](#assert-aria-attribute)
 [assertDataAttribute](#assert-data-attribute)
 [assertVisible](#assert-visible)
@@ -1255,49 +1257,63 @@ URLの現在のハッシュフラグメントが指定するフラグメント�
 <a name="assert-select-has-options"></a>
 #### assertSelectHasOptions
 
-指定した配列値が選択可能であることを宣言します。
+指定配列値が選択可能であることを宣言します。
 
     $browser->assertSelectHasOptions($field, $values);
 
 <a name="assert-select-missing-options"></a>
 #### assertSelectMissingOptions
 
-指定した配列値が選択不可であることを宣言します。
+指定配列値が選択不可であることを宣言します。
 
     $browser->assertSelectMissingOptions($field, $values);
 
 <a name="assert-select-has-option"></a>
 #### assertSelectHasOption
 
-指定したフィールドで、指定した値が選択可能であることを宣言します。
+指定フィールドで、指定した値が選択可能であることを宣言します。
 
     $browser->assertSelectHasOption($field, $value);
 
 <a name="assert-select-missing-option"></a>
 #### assertSelectMissingOption
 
-指定する値が選択できないことを宣言します。
+指定値が選択できないことを宣言します。
 
     $browser->assertSelectMissingOption($field, $value);
 
 <a name="assert-value"></a>
 #### assertValue
 
-指定したセレクタに一致する要素が、指定値であることを宣言します。
+指定セレクタに一致する要素が、指定値であることを宣言します。
 
     $browser->assertValue($selector, $value);
+
+<a name="assert-value-is-not"></a>
+#### assertValueIsNot
+
+指定セレクタに一致する要素が、指定値を持たないことを宣言します。
+
+    $browser->assertValueIsNot($selector, $value);
 
 <a name="assert-attribute"></a>
 #### assertAttribute
 
-指定セレクタにマッチする要素が、指定属性に指定値を持っていることを宣言します。
+指定セレクタに一致する要素が、指定属性に指定値を持っていることを宣言します。
 
     $browser->assertAttribute($selector, $attribute, $value);
+
+<a name="assert-attribute-contains"></a>
+#### assertAttributeContains
+
+指定セレクタに一致する要素が、与えた属性の中に、指定値を持っていることを宣言します。
+
+    $browser->assertAttributeContains($selector, $attribute, $value);
 
 <a name="assert-aria-attribute"></a>
 #### assertAriaAttribute
 
-指定セレクタにマッチする要素が、指定aria属性に指定値を持っていることを宣言します。
+指定セレクタに一致する要素が、指定aria属性に、指定値を持っていることを宣言します。
 
     $browser->assertAriaAttribute($selector, $attribute, $value);
 
@@ -1308,7 +1324,7 @@ URLの現在のハッシュフラグメントが指定するフラグメント�
 <a name="assert-data-attribute"></a>
 #### assertDataAttribute
 
-指定したセレクタに一致する要素が、指定データ属性に指定値を持っていることを宣言します。
+指定セレクタに一致する要素が、指定データ属性に指定値を持っていることを宣言します。
 
     $browser->assertDataAttribute($selector, $attribute, $value);
 
@@ -1319,28 +1335,28 @@ URLの現在のハッシュフラグメントが指定するフラグメント�
 <a name="assert-visible"></a>
 #### assertVisible
 
-指定したセレクタに一致する要素が、ビジブルであることを宣言します。
+指定セレクタに一致する要素が、ビジブルであることを宣言します。
 
     $browser->assertVisible($selector);
 
 <a name="assert-present"></a>
 #### assertPresent
 
-指定したセレクタに一致する要素が、存在することを宣言します。
+指定セレクタに一致する要素が、存在することを宣言します。
 
     $browser->assertPresent($selector);
 
 <a name="assert-not-present"></a>
 #### assertNotPresent
 
-指定したセレクタに一致する要素が、ソースに存在しないことを宣言します。
+指定セレクタに一致する要素が、ソースに存在しないことを宣言します。
 
     $browser->assertNotPresent($selector);
 
 <a name="assert-missing"></a>
 #### assertMissing
 
-指定したセレクタに一致する要素が、ビジブルでないことを宣言します。
+指定セレクタに一致する要素が、ビジブルでないことを宣言します。
 
     $browser->assertMissing($selector);
 
@@ -1368,14 +1384,14 @@ URLの現在のハッシュフラグメントが指定するフラグメント�
 <a name="assert-enabled"></a>
 #### assertEnabled
 
-指定したフィールドが、enabledであることを宣言します。
+指定フィールドが、enabledであることを宣言します。
 
     $browser->assertEnabled($field);
 
 <a name="assert-disabled"></a>
 #### assertDisabled
 
-指定したフィールドが、disabledであることを宣言します。
+指定フィールドが、disabledであることを宣言します。
 
     $browser->assertDisabled($field);
 
@@ -1396,14 +1412,14 @@ URLの現在のハッシュフラグメントが指定するフラグメント�
 <a name="assert-focused"></a>
 #### assertFocused
 
-指定したフィールドに、フォーカスがあることを宣言します。
+指定フィールドに、フォーカスがあることを宣言します。
 
     $browser->assertFocused($field);
 
 <a name="assert-not-focused"></a>
 #### assertNotFocused
 
-指定したフィールドから、フォーカスが外れていることを宣言します。
+指定フィールドから、フォーカスが外れていることを宣言します。
 
     $browser->assertNotFocused($field);
 

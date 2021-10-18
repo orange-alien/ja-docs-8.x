@@ -277,6 +277,23 @@ Eloquentはリレーションメソッドの名前を調べ、メソッド名の
         });
     }
 
+<a name="querying-belongs-to-relationships"></a>
+#### Belongs toリレーションのクエリ
+
+"belongs to"リレーションの子モデルをクエリする場合は、対応するEloquentモデルを取得する`where`句を手動で構築してください。
+
+    use App\Models\Post;
+
+    $posts = Post::where('user_id', $user->id)->get();
+
+しかし、`whereBelongsTo`メソッドを使う方が便利かもしれません。このメソッドは、与えられたモデルに対して適切なリレーションと外部キーを自動的に決定します。
+
+    $posts = Post::whereBelongsTo($user)->get();
+
+デフォルトでLaravelはモデルのクラス名に基づいて、与えられたモデルに関連するリレーションを決定しますが、リレーション名を`whereBelongsTo`メソッドの第２引数に渡すことで、手動で指定できます。
+
+    $posts = Post::whereBelongsTo($user, 'author')->get();
+
 <a name="has-one-of-many"></a>
 ### Has One Of Many
 

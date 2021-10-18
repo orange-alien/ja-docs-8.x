@@ -218,6 +218,25 @@ Laravelでは、各通知は通常、`app/Notifications`ディレクトリに保
 
 > {tip} この問題の回避方法の詳細は、[キュー投入されるジョブとデータベーストランザクション](/docs/{{version}}/queues#jobs-and-database-transactions)に関するドキュメントを確認してください。
 
+<a name="determining-if-the-queued-notification-should-be-sent"></a>
+#### キュー投入した通知を送信するか判定
+
+バックグラウンド処理のため、通知をキューへディスパッチすると、通常はキューワーカがそれを受け取り、意図した受信者へ送信します。
+
+しかし、キューワーカが処理した後に、そのキュー投入済み通知を送信すべきか最終的に判断したい場合は、通知クラスに`shouldSend`メソッドを定義してください。このメソッドから`false`を返す場合、通知は送信されません。
+
+    /**
+     * 通知を送信する必要があるかどうか確認
+     *
+     * @param  mixed  $notifiable
+     * @param  string  $channel
+     * @return bool
+     */
+    public function shouldSend($notifiable, $channel)
+    {
+        return $this->invoice->isPaid();
+    }
+
 <a name="on-demand-notifications"></a>
 ### オンデマンド通知
 

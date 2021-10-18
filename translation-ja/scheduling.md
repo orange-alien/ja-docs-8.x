@@ -15,6 +15,7 @@
     - [スケジュールをローカルで実行](#running-the-scheduler-locally)
 - [タスク出力](#task-output)
 - [タスクフック](#task-hooks)
+- [イベント](#events)
 
 <a name="introduction"></a>
 ## イントロダクション
@@ -413,3 +414,35 @@ Laravelスケジューラはスケジュールしたタスクが生成する出�
 すべてのpingメソッドにGuzzle HTTPライブラリが必要です。Guzzleは通常、デフォルトですべての新しいLaravelプロジェクトにインストールされますが、誤って削除した場合は、Composerパッケージマネージャーを使用してプロジェクトへ自分でGuzzleをインストールできます。
 
     composer require guzzlehttp/guzzle
+
+<a name="events"></a>
+## イベント
+
+必要に応じて、スケジューラーから送られてくる[イベント](/docs/{{version}}/events)をリッスンすることもできます。通常、イベントリスナのマッピングは、アプリケーションの`App\Providers\EventServiceProvider`クラス内で定義します。
+
+    /**
+     * アプリケーションのイベントリスナのマッピング
+     *
+     * @var array
+     */
+    protected $listen = [
+        'Illuminate\Console\Events\ScheduledTaskStarting' => [
+            'App\Listeners\LogScheduledTaskStarting',
+        ],
+
+        'Illuminate\Console\Events\ScheduledTaskFinished' => [
+            'App\Listeners\LogScheduledTaskFinished',
+        ],
+
+        'Illuminate\Console\Events\ScheduledBackgroundTaskFinished' => [
+            'App\Listeners\LogScheduledBackgroundTaskFinished',
+        ],
+
+        'Illuminate\Console\Events\ScheduledTaskSkipped' => [
+            'App\Listeners\LogScheduledTaskSkipped',
+        ],
+
+        'Illuminate\Console\Events\ScheduledTaskFailed' => [
+            'App\Listeners\LogScheduledTaskFailed',
+        ],
+    ];

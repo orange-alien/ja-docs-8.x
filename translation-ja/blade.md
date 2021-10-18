@@ -1038,6 +1038,36 @@ Bladeでは幸い、コンポーネントのテンプレートディレクトリ
 
     <x-alert type="error" :message="$message" class="mb-4"/>
 
+<a name="accessing-parent-data"></a>
+#### 親データへのアクセス
+
+子コンポーネントの中にある親コンポーネントのデータにアクセスしたい場合があります。このような場合は、`@aware`ディレクティブを使用します。例えば、親の`<x-menu>`と子の`<x-menu.item>`で構成される複雑なメニューコンポーネントを作っていると想像してください。
+
+    <x-menu color="purple">
+        <x-menu.item>...</x-menu.item>
+        <x-menu.item>...</x-menu.item>
+    </x-menu>
+
+`<x-menu>`コンポーネントは、以下のような実装になるでしょう。
+
+    <!-- /resources/views/components/menu/index.blade.php -->
+
+    @props(['color' => 'gray'])
+
+    <ul {{ $attributes->merge(['class' => 'bg-'.$color.'-200']) }}>
+        {{ $slot }}
+    </ul>
+
+`color`プロップは親(`<x-menu>`)にしか渡されていないため、`<x-menu.item>`の中では利用できません。しかし、`@aware`ディレクティブを使用すれば、`<x-menu.item>`内でも利用可能になります。
+
+    <!-- /resources/views/components/menu/item.blade.php -->
+
+    @aware(['color' => 'gray'])
+
+    <li {{ $attributes->merge(['class' => 'text-'.$color.'-800']) }}>
+        {{ $slot }}
+    </li>
+
 <a name="dynamic-components"></a>
 ### 動的コンポーネント
 

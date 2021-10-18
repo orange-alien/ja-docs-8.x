@@ -779,6 +779,7 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
 [除外](#rule-exclude)
 [条件一致時フィールド除外](#rule-exclude-if)
 [条件不一致時フィールド除外](#rule-exclude-unless)
+[不在時フィールド除外](#rule-exclude-without)
 [存在（データベース）](#rule-exists)
 [ファイル](#rule-file)
 [充満](#rule-filled)
@@ -1065,6 +1066,11 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 #### exclude_unless:_他のフィールド_,_値_
 
 **他のフィールド**が**値**と等しくない場合、`validate`と`validated`メソッドが返すリクエストデータから、バリデーション指定下のフィールドが除外されます。もし**値**が`null`（`exclude_unless:name,null`）の場合は、比較フィールドが`null`であるか、比較フィールドがリクエストデータに含まれていない限り、バリデーション指定下のフィールドは除外されます。
+
+<a name="rule-exclude-without"></a>
+#### exclude_without:_他のフィールド_
+
+**他のフィールド**が存在しない場合、`validate`と`validated`メソッドが返すリクエストデータから、バリデーション指定下のフィールドが除外されます。
 
 <a name="rule-exists"></a>
 #### exists:_テーブル_,_カラム_

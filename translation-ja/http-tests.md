@@ -591,6 +591,7 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 [assertStatus](#assert-status)
 [assertSuccessful](#assert-successful)
 [assertUnauthorized](#assert-unauthorized)
+[assertUnprocessable](#assert-unprocessable)
 [assertValid](#assert-valid)
 [assertInvalid](#assert-invalid)
 [assertViewHas](#assert-view-has)
@@ -998,6 +999,13 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 レスポンスに不正な(401)HTTPステータスコードがあることを宣言します。
 
     $response->assertUnauthorized();
+
+<a name="assert-unprocessable"></a>
+#### assertUnprocessable
+
+レスポンスに未処理のエンティティ(422)HTTPステータスコードがあることを宣言します。
+
+    $response->assertUnprocessable();
 
 <a name="assert-valid"></a>
 #### assertValid

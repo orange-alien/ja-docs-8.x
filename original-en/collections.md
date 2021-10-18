@@ -162,7 +162,9 @@ For the majority of the remaining collection documentation, we'll discuss each m
 [push](#method-push)
 [put](#method-put)
 [random](#method-random)
+[range](#method-range)
 [reduce](#method-reduce)
+[reduceMany](#method-reduce-many)
 [reject](#method-reject)
 [replace](#method-replace)
 [replaceRecursive](#method-replacerecursive)
@@ -1701,6 +1703,17 @@ You may pass an integer to `random` to specify how many items you would like to 
 
 If the collection instance has fewer items than requested, the `random` method will throw an `InvalidArgumentException`.
 
+<a name="method-range"></a>
+#### `range()` {#collection-method}
+
+The `range` method returns a collection containing integers between the specified range:
+
+    $collection = collect()->range(3, 6);
+
+    $collection->all();
+
+    // [3, 4, 5, 6]
+
 <a name="method-reduce"></a>
 #### `reduce()` {#collection-method}
 
@@ -1741,6 +1754,25 @@ The `reduce` method also passes array keys in associative collections to the giv
     });
 
     // 4264
+
+<a name="method-reduce-many"></a>
+#### `reduceMany()` {#collection-method}
+
+The `reduceMany` method reduces the collection to an array of values, passing the results of each iteration into the subsequent iteration. This method is similar to the `reduce` method; however, it can accept multiple initial values:
+
+```php
+[$creditsRemaining, $batch] = Image::where('status', 'unprocessed')
+        ->get()
+        ->reduceMany(function ($creditsRemaining, $batch, $image) {
+            if ($creditsRemaining >= $image->creditsRequired()) {
+                $batch->push($image);
+
+                $creditsRemaining -= $image->creditsRequired();
+            }
+
+            return [$creditsRemaining, $batch];
+        }, $creditsAvailable, collect());
+```
 
 <a name="method-reject"></a>
 #### `reject()` {#collection-method}
@@ -2546,6 +2578,20 @@ The `unless` method will execute the given callback unless the first argument gi
 
     // [1, 2, 3, 5]
 
+A second callback may be passed to the `unless` method. The second callback will be executed when the first argument given to the `unless` method evaluates to `true`:
+
+    $collection = collect([1, 2, 3]);
+
+    $collection->unless(true, function ($collection) {
+        return $collection->push(4);
+    }, function ($collection) {
+        return $collection->push(5);
+    });
+
+    $collection->all();
+
+    // [1, 2, 3, 5]
+
 For the inverse of `unless`, see the [`when`](#method-when) method.
 
 <a name="method-unlessempty"></a>
@@ -2614,6 +2660,20 @@ The `when` method will execute the given callback when the first argument given 
     $collection->all();
 
     // [1, 2, 3, 4]
+
+A second callback may be passed to the `when` method. The second callback will be executed when the first argument given to the `when` method evaluates to `false`:
+
+    $collection = collect([1, 2, 3]);
+
+    $collection->when(false, function ($collection) {
+        return $collection->push(4);
+    }, function ($collection) {
+        return $collection->push(5);
+    });
+
+    $collection->all();
+
+    // [1, 2, 3, 5]
 
 For the inverse of `when`, see the [`unless`](#method-unless) method.
 

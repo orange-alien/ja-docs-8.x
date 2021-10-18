@@ -331,6 +331,14 @@ JSONリクエストをアプリケーションに送信する場合、リクエ�
         //
     });
 
+`whenHas`メソッドには、指定した値がリクエストに存在しない場合に実行する２つ目のクロージャを渡せます。
+
+    $request->whenHas('name', function ($input) {
+        // "name"が存在する場合の処理…
+    }, function () {
+        // "name"が存在しない場合の処理…
+    });
+
 指定値のいずれかが存在する場合、`hasAny`メソッドは`true`を返します。
 
     if ($request->hasAny(['name', 'email'])) {
@@ -347,6 +355,14 @@ JSONリクエストをアプリケーションに送信する場合、リクエ�
 
     $request->whenFilled('name', function ($input) {
         //
+    });
+
+`whenFilled`メソッドには、指定した値が空だった場合に実行する２つ目のクロージャを渡せます。
+
+    $request->whenFilled('name', function ($input) {
+        // "name"の値が空でない場合の処理…
+    }, function () {
+        // "name"の値が空の場合の処理…
     });
 
 特定のキーがリクエストに含まれていないかを判定するには、`missing`メソッドを使用できます。

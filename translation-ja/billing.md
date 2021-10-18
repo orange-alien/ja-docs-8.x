@@ -1835,6 +1835,12 @@ Cashierのオブジェクトの多くは、StripeSDKオブジェクトのラッ�
 
     $subscription->updateStripeSubscription(['application_fee_percent' => 5]);
 
+`Stripe\StripeClient`のクライアントを直接使用したい場合は、`Cashier`クラスの`stripe`メソッドを呼び出せます。例えば、このメソッドを使って`StripeClient`のインスタンスにアクセスし、Stripeアカウントから価格のリストを取得できます。
+
+    use Laravel\Cashier\Cashier;
+
+    $prices = Cashier::stripe()->prices->all();
+
 <a name="testing"></a>
 ## テスト
 
