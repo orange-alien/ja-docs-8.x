@@ -527,7 +527,7 @@ Homestead仮想マシン内から以下のコマンドを実行すれば、CLI�
 <a name="connecting-to-databases"></a>
 ### データベースへの接続
 
-`homestead`データベースは、MySQLとPostgreSQLの両方へすぐに設定できます。ホストマシンのデータベースクライアントからMySQLまたはPostgreSQLデータベースに接続するには、ポート`33060`（MySQL）または`54320`（PostgreSQL）で`127.0.0.1`へ接続するしてください。両方のデータベースのユーザー名とパスワードは`homestead`／`secret`です。
+`homestead`データベースは、MySQLとPostgreSQLの両方へすぐに設定できます。ホストマシンのデータベースクライアントからMySQLまたはPostgreSQLデータベースに接続するには、ポート`33060`（MySQL）または`54320`（PostgreSQL）で`127.0.0.1`へ接続してください。両方のデータベースのユーザー名とパスワードは`homestead`／`secret`です。
 
 > {note} ホストマシンからデータベースに接続する場合にのみ、これらの非標準ポートを使用する必要があります。Laravelは仮想マシン内で実行するため、Laravelアプリケーションの`database`設定ファイルではデフォルトの3306ポートと5432ポートを使用しています。
 
