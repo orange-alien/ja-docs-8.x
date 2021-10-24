@@ -705,6 +705,16 @@ Echo.private(`orders.${this.order.id}`)
     .listen(...);
 ```
 
+<a name="stop-listening-for-events"></a>
+#### イベントリッスンの中止
+
+[チャンネルから離れる](#leaving-a-channel)ことなく特定のイベントのリッスンを停止したい場合は、`stopListening`メソッドを使用します。
+
+```js
+Echo.private(`orders.${this.order.id}`)
+    .stopListening('OrderShipmentStatusUpdated')
+```
+
 <a name="leaving-a-channel"></a>
 ### チャンネルの離脱
 

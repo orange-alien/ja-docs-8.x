@@ -6,6 +6,7 @@
     - [クッキー](#cookies)
     - [セッション／認証](#session-and-authentication)
     - [レスポンスのデバッグ](#debugging-responses)
+    - [例外処理](#exception-handling)
 - [JSON APIのテスト](#testing-json-apis)
     - [FluentなJSONテスト](#fluent-json-testing)
 - [ファイルアップロードのテスト](#testing-file-uploads)
@@ -206,6 +207,17 @@ Laravelのセッションは通常、現在認証しているユーザーの状�
             $response->dump();
         }
     }
+
+<a name="exception-handling"></a>
+### 例外処理
+
+時には、アプリケーションが特定の例外を投げているかをテストしたい場合も起きます。例外がLaravelの例外ハンドラに捕捉され、HTTPレスポンスとして返されないようにするために、リクエストを行う前に、`withoutExceptionHandling`メソッドを呼び出してください。
+
+    $response = $this->withoutExceptionHandling()->get('/');
+
+加えて、PHP 言語やアプリケーションが使用しているライブラリで廃止された機能をアプリケーションが使用していないことを確認したい場合は、リクエストを行う前に`withoutDeprecationHandling`メソッドを呼び出してください。この廃止例外の処理を無効にすると、deprecationの警告が例外に変換され、テストが失敗するようになります。
+
+    $response = $this->withoutDeprecationHandling()->get('/');
 
 <a name="testing-json-apis"></a>
 ## JSON APIのテスト
@@ -911,12 +923,24 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 
     $response->assertSessionHas($key, $value = null);
 
+必要であれば、クロージャを`assertSessionHas`メソッドの第２引数へ指定できます。クロージャが`true`を返せば、アサートは成功します。
+
+    $response->assertSessionHas($key, function ($value) {
+        return $value->name === 'Taylor Otwell';
+    });
+
 <a name="assert-session-has-input"></a>
 #### assertSessionHasInput
 
 セッションの[一時保存されている入力配列](/docs/{{version}}/response#redirecting-with-flashed-session-data)に指定する値があることを宣言します。
 
     $response->assertSessionHasInput($key, $value = null);
+
+必要であれば、クロージャを`assertSessionHasInput`メソッドの第２引数へ指定できます。クロージャが`true`を返せば、アサートは成功します。
+
+    $response->assertSessionHasInput($key, function ($value) {
+        return Crypt::decryptString($value) === 'secret';
+    });
 
 <a name="assert-session-has-all"></a>
 #### assertSessionHasAll

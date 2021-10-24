@@ -6,6 +6,7 @@
     - [Cookies](#cookies)
     - [Session / Authentication](#session-and-authentication)
     - [Debugging Responses](#debugging-responses)
+    - [Exception Handling](#exception-handling)
 - [Testing JSON APIs](#testing-json-apis)
     - [Fluent JSON Testing](#fluent-json-testing)
 - [Testing File Uploads](#testing-file-uploads)
@@ -206,6 +207,17 @@ After making a test request to your application, the `dump`, `dumpHeaders`, and 
             $response->dump();
         }
     }
+
+<a name="exception-handling"></a>
+### Exception Handling
+
+Sometimes you may want to test that your application is throwing a specific exception. To ensure that the exception does not get caught by Laravel's exception handler and returned as an HTTP response, you may invoke the `withoutExceptionHandling` method before making your request:
+
+    $response = $this->withoutExceptionHandling()->get('/');
+
+In addition, if you would like to ensure that your application is not utilizing features that have been deprecated by the PHP language or the libraries your application is using, you may invoke the `withoutDeprecationHandling` method before making your request. When deprecation handling is disabled, deprecation warnings will be converted to exceptions, thus causing your test to fail:
+
+    $response = $this->withoutDeprecationHandling()->get('/');
 
 <a name="testing-json-apis"></a>
 ## Testing JSON APIs
@@ -911,12 +923,24 @@ Assert that the session contains the given piece of data:
 
     $response->assertSessionHas($key, $value = null);
 
+If needed, a closure can be provided as the second argument to the `assertSessionHas` method. The assertion will pass if the closure returns `true`:
+
+    $response->assertSessionHas($key, function ($value) {
+        return $value->name === 'Taylor Otwell';
+    });
+
 <a name="assert-session-has-input"></a>
 #### assertSessionHasInput
 
 Assert that the session has a given value in the [flashed input array](/docs/{{version}}/responses#redirecting-with-flashed-session-data):
 
     $response->assertSessionHasInput($key, $value = null);
+
+If needed, a closure can be provided as the second argument to the `assertSessionHasInput` method. The assertion will pass if the closure returns `true`:
+
+    $response->assertSessionHasInput($key, function ($value) {
+        return Crypt::decryptString($value) === 'secret';
+    });
 
 <a name="assert-session-has-all"></a>
 #### assertSessionHasAll

@@ -15,6 +15,7 @@
     - [Slack](#slack)
     - [Discord](#discord)
     - [Telegram](#telegram)
+    - [Microsoft Teams](#microsoft-teams)
 
 <a name="introduction"></a>
 ## イントロダクション
@@ -286,4 +287,13 @@ Envoyは、各タスクの実行後の[Telegram](https://telegram.org)への通�
 
     @finished
         @telegram('bot-id','chat-id')
+    @endfinished
+
+<a name="microsoft-teams"></a>
+### Microsoft Teams
+
+Envoyは各タスクを実行した後の、[Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams)への通知送信もサポートしています。`@microsoftTeams` ディレクティブは、TeamsのWebフック（必須）、メッセージ、テーマカラー （success、info、warning、error）、およびオプションの配列を引数に取ります。新しい[受信Webフック](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook) を作成すれば、Teams Webookを取得できます。Teams API には、タイトルやサマリー、セクションなど、メッセージボックスをカスタマイズするためのさまざまな属性が用意されています。詳細は、[Microsoft Teamsのドキュメント](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/connectors-using?tabs=cURL#example-of-connector-message)を確認してください。WebフックのURL全体を`@microsoftTeams`ディレクティブに渡す必要があります。
+
+    @finished
+        @microsoftTeams('webhook-url')
     @endfinished

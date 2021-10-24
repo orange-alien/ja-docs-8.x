@@ -204,7 +204,7 @@ laravel new example-app --git --branch="main"
 laravel new example-app --github
 ```
 
-作成されたリポジトリは`https://github.com/<your-account>/example-app`で入手できます。`github`フラグは、[GitHub CLI](https://cli.github.com)を正しくインストールし、GitHubで認証されていると仮定しています。さらに、`git`がインストールされ、正しく設定されている必要があります。必要に応じて、GitHub CLIでサポートされている追加のフラグを渡せます。
+作成されたリポジトリは`https://github.com/<your-account>/example-app`で入手できます。`github`フラグは、[GitHub CLI](https://cli.github.com)を正しくインストールし、GitHubで認証されていると仮定しています。さらに、`git`がインストールされ、正しく設定されている必要があります。必要に応じて、GitHub CLIがサポートしている追加のフラグを渡せます。
 
 ```bash
 laravel new example-app --github="--public"
@@ -269,4 +269,3 @@ Laravelをフルスタックフレームワークとして使用する場合は�
 Laravelは、JavaScriptシングルページアプリケーションまたはモバイルアプリケーションへのAPIバックエンドとしても機能させることもあります。たとえば、[Next.js](https://nextjs.org)アプリケーションのAPIバックエンドとしてLaravelを使用できます。こうした使い方では、Laravelでアプリケーションに[認証](/docs/{{version}}/sanctum)とデータの保存/取得を提供すると同時に、キュー、メール、通知などのLaravelの強力なサービスを利用できます。
 
 この方法でLaravelの使用を計画している場合は、[ルーティング](/docs/{{version}}/routing)、[Laravel Sanctum](/docs/{{version}}/sanctum)、[Eloquent ORM](/docs/{{version}}/eloquent)に関するドキュメントを確認することをお勧めします。
-

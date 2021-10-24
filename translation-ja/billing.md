@@ -600,7 +600,7 @@ Billableなモデルのアカウントにデフォルトの支払い方法が関
         // ...
     });
 
-`newSubscription`メソッドに渡す最初の引数は、サブスクリプションの名前です。アプリケーションが単一のサブスクリプションのみを提供する場合は、これを`default`または`primary`と付けるのが良いでしょう。２番目の引数は、ユーザーがサブスクライブする価格の指定です。この値は、Stripeの価格識別子に対応している必要があります。
+`newSubscription` メソッドに渡す最初の引数は、サブスクリプションの内部名称です。アプリケーションが単一サブスクリプションのみ提供している場合は、これを`default`や`primary`と名付けることが多いでしょう。このサブスクリプション名は、アプリケーション内部でのみ使用するものであり、ユーザーに表示するものではありません。また、スペースを含んではならず、サブスクリプションを作成した後は決して変更してはいけません。２番目の引数は、ユーザーが購読している価格の指定です。この値は、Stripeにおける価格の識別子に対応していなければなりません。
 
 [Stripe支払い方法識別子](#storing-payment-methods)またはStripe`PaymentMethod`オブジェクトを引数に取る`create`メソッドは、サブスクリプションを開始するのと同時に、BillableなモデルのStripe顧客IDおよびその他の関連する課金情報でデータベースを更新します。
 
@@ -635,7 +635,7 @@ Stripeがサポートしている[顧客](https://stripe.com/docs/api/customers/
          ->withCoupon('code')
          ->create($paymentMethod);
 
-または、[Stripeプロモーションコード](https://stripe.com/docs/billing/subscriptions/discounts/codes)を適用する場合は、`withPromotionCode`メソッドを使用します。
+また、[Stripeプロモーションコード](https://stripe.com/docs/billing/subscriptions/discounts/codes)を適用したい場合には、`withPromotionCode`メソッドを使用してください。指定するプロモーションコードIDは、プロモーションコードに割り当てたStripe API IDであり、顧客向けのプロモーションコードではありません。
 
     $user->newSubscription('default', 'price_monthly')
          ->withPromotionCode('promo_code')

@@ -1134,7 +1134,7 @@ Eloquentはクロージャを使用してグローバルスコープを定義す
 
 ローカルスコープを使用すると、アプリケーション全体で簡単に再利用できる、共通のクエリ制約を定義できます。たとえば、「人気がある（popular）」と思われるすべてのユーザーを頻繁に取得する必要があるとしましょう。スコープを定義するには、Eloquentモデルメソッドの前に`scope`を付けます。
 
-スコープは常にクエリビルダインスタンスを返す必要があります。
+スコープは常に同じクエリビルダのインスタンスか、`void`を返す必要があります。
 
     <?php
 
@@ -1159,11 +1159,11 @@ Eloquentはクロージャを使用してグローバルスコープを定義す
          * アクティブユーザーのみを含むようにクエリのスコープを設定
          *
          * @param  \Illuminate\Database\Eloquent\Builder  $query
-         * @return \Illuminate\Database\Eloquent\Builder
+         * @return void
          */
         public function scopeActive($query)
         {
-            return $query->where('active', 1);
+            $query->where('active', 1);
         }
     }
 

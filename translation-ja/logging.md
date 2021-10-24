@@ -4,6 +4,7 @@
 - [設定](#configuration)
     - [利用可能なチャンネルドライバ](#available-channel-drivers)
     - [チャンネルの事前設定](#channel-prerequisites)
+    - [廃止ワーニングのログ](#logging-deprecation-warnings)
 - [ログスタックの構築](#building-log-stacks)
 - [ログメッセージの書き込み](#writing-log-messages)
     - [コンテキスト情報](#contextual-information)
@@ -85,6 +86,13 @@ Laravelはメッセージをログに記録するときに、デフォルトで`
 `slack`チャンネルには`url`設定オプションが必要です。このURLは、皆さんのSlackチーム用に設定した[受信Webフックの](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks)のURLと一致する必要があります。
 
 デフォルトでは、Slackは`critical`レベル以上のログのみ受信します。ただし`config/logging.php`設定ファイルで、Slackログチャンネルの設定配列内の`level`設定オプションを変更することで調整できます。
+
+<a name="logging-deprecation-warnings"></a>
+### 廃止ワーニングのログ
+
+PHPやLaravelなどのライブラリは、その機能の一部が非推奨となり、将来のバージョンで削除されることをユーザーに通知することがよくあります。これらの非推奨の警告をログに残したい場合は、アプリケーションの`config/logging.php`設定ファイルで、お好きな`deprecations`ログチャンネルを指定できます。
+
+    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
 
 <a name="building-log-stacks"></a>
 ## ログスタックの構築
@@ -272,7 +280,7 @@ Laravelはメッセージをログに記録するときに、デフォルトで`
 <a name="creating-monolog-handler-channels"></a>
 ### Monolog処理チャンネルの作成
 
-Monologにはさまざまな[利用可能なハンドラ](https://github.com/Seldaek/monolog/tree/master/src/Monolog/Handler)があり、Laravelはそれぞれに対する組み込みチャンネルを用意していません。場合によっては、対応するLaravelログドライバーを持たない特定のMonologハンドラの単なるインスタンスであるカスタムチャンネルを作成したい場合があります。これらのチャンネルは、`monolog`ドライバーを使用して簡単に作成できます。
+Monologにはさまざまな[利用可能なハンドラ](https://github.com/Seldaek/monolog/tree/main/src/Monolog/Handler)があり、Laravelはそれぞれに対する組み込みチャンネルを用意していません。場合によっては、対応するLaravelログドライバーを持たない特定のMonologハンドラの単なるインスタンスであるカスタムチャンネルを作成したい場合があります。これらのチャンネルは、`monolog`ドライバーを使用して簡単に作成できます。
 
 `monolog`ドライバーを使用する場合、`handler`設定オプションを使用してインスタンス化するハンドラを指定します。オプションで、ハンドラが必要とするコンストラクターパラメーターは、`with`設定オプションを使用して指定できます。
 

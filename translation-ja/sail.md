@@ -270,6 +270,7 @@ LaravelSailのデフォルトの `docker-compose.yml`ファイルには、[MailH
 ```bash
 MAIL_HOST=mailhog
 MAIL_PORT=1025
+MAIL_ENCRYPTION=null
 ```
 
 Sailの実行中に、`http://localhost:8025`でMailHog Webインターフェイスにアクセスできます。
@@ -294,9 +295,12 @@ sail tinker
 <a name="sail-php-versions"></a>
 ## PHPバージョン
 
-Sailは現在、PHP8.0またはPHP7.4を利用したアプリケーションの実行をサポートしています。アプリケーションの実行に使用するPHPバージョンを変更するには、アプリケーションの`docker-compose.yml`ファイル内の`laravel.test`コンテナーの`build`定義を更新する必要があります。
+Sailは現在、PHP8.1、PHP8.0、PHP7.4を利用したアプリケーションの実行をサポートしています。SailのデフォルトPHPバージョンは8.0です。アプリケーションの実行に使用するPHPバージョンを変更するには、アプリケーションの`docker-compose.yml`ファイル内の`laravel.test`コンテナーの`build`定義を更新してください。
 
 ```yaml
+# PHP 8.1
+context: ./vendor/laravel/sail/runtimes/8.1
+
 # PHP8.0
 context: ./vendor/laravel/sail/runtimes/8.0
 

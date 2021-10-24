@@ -1440,7 +1440,7 @@ Laravelは、キューワーカを開始し、キューに投入された新し�
 
     php artisan queue:work redis
 
-特定の接続の特定のキューのみを処理することで、キューワーカをさらにカスタマイズできます。たとえば、すべてのメールを`redis`キュー接続の`emails`キューで処理する場合、次のコマンドを発行して、そのキューのみを処理するワーカを起動できます。
+デフォルトで`queue:work`コマンドは、指定された接続のデフォルトキューのジョブのみを処理します。しかしながら、指定する接続で特定のキューのみを処理することで、キューワーカをさらにカスタマイズできます。たとえば、すべてのメールを`redis`キュー接続の`emails`キューで処理する場合、次のコマンドを発行して、そのキューのみを処理するワーカを起動できます。
 
     php artisan queue:work redis --queue=emails
 
@@ -1705,13 +1705,11 @@ Supervisorの詳細は、[Supervisorのドキュメント](http://supervisord.or
 
 `queue:failed`コマンドは、ジョブID、接続、キュー、失敗時間、およびジョブに関するその他の情報を一覧表示します。ジョブIDは、失敗したジョブを再試行するために使用できます。たとえば、IDが「5」の失敗したジョブを再試行するには、次のコマンドを発行します。
 
-    php artisan queue:retry 5
+    php artisan queue:retry ce7bb17c-cdd8-41f0-a8ec-7b4fef4e5ece
 
-必要に応じて、複数のIDまたはID範囲(数値IDを使用する場合)をコマンドへ渡せます。
+必要に応じ、複数のIDをコマンドへ渡せます。
 
-    php artisan queue:retry 5 6 7 8 9 10
-
-    php artisan queue:retry --range=5-10
+    php artisan queue:retry ce7bb17c-cdd8-41f0-a8ec-7b4fef4e5ece 91401d2c-0784-4f43-824c-34f94a33c24d
 
 指定するキューの失敗したジョブをすべて再試行することもできます。
 
@@ -1723,7 +1721,7 @@ Supervisorの詳細は、[Supervisorのドキュメント](http://supervisord.or
 
 失敗したジョブを削除したい場合は、`queue:forget`コマンドを使用します。
 
-    php artisan queue:forget 5
+    php artisan queue:forget 91401d2c-0784-4f43-824c-34f94a33c24d
 
 > {tip} [Horizo​​n](/docs/{{version}}/horizo​​n)を使用する場合は、`queue:forget`コマンドの代わりに`horizo​​n:forget`コマンドを使用して失敗したジョブを削除する必要があります。
 

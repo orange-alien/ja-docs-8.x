@@ -99,6 +99,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [Str::containsAll](#method-str-contains-all)
 [Str::endsWith](#method-ends-with)
 [Str::finish](#method-str-finish)
+[Str::headline](#method-str-headline)
 [Str::is](#method-str-is)
 [Str::isAscii](#method-str-is-ascii)
 [Str::isUuid](#method-str-is-uuid)
@@ -1216,6 +1217,21 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $adjusted = Str::finish('this/string/', '/');
 
     // this/string/
+
+<a name="method-str-headline"></a>
+#### `Str::headline()` {#collection-method}
+
+`Str::headline`メソッドは、大・小文字、ハイフン、アンダースコアにより区切られた文字列から、各単語の最初の文字を大文字にしたスペース区切りの文字列へ変換します。
+
+    use Illuminate\Support\Str;
+
+    $headline = Str::headline('steve_jobs');
+
+    // Steve Jobs
+
+    $headline = Str::headline('EmailNotificationSent');
+
+    // Email Notification Sent
 
 <a name="method-str-is"></a>
 #### `Str::is()` {#collection-method}

@@ -19,7 +19,6 @@
     - [PHPバージョン](#php-versions)
     - [データベース接続](#connecting-to-databases)
     - [データベースのバックアップ](#database-backups)
-    - [データベーススナップショット](#database-snapshots)
     - [Cronスケジュール設定](#configuring-cron-schedules)
     - [MailHogの設定](#configuring-mailhog)
     - [Minioの設定](#configuring-minio)
@@ -539,21 +538,6 @@ Homesteadは、Homestead仮想マシンが破壊されたときに、データ�
     backup: true
 
 設定が完了すると、Homesteadは、`vagrant destroy`コマンドの実行時に、データベースを`mysql_backup`もしくは`postgres_backup`ディレクトリにエクスポートします。これらのディレクトリは、Homesteadをインストールしたフォルダ、または[プロジェクトごとのインストール](#per-project-installation)メソッドを使用している場合はプロジェクトのルートにできます。
-
-<a name="database-snapshots"></a>
-### データベースのスナップショット
-
-Homesteadは、MySQLおよびMariaDBデータベースの状態の凍結と、[Logical MySQL Manager](https://github.com/Lullabot/lmm)を使用した凍結状態間の分岐をサポートしています。たとえば、数ギガバイトのデータベースがあるサイトで作業することを想像してみてください。データベースをインポートしてスナップショットを取ることができます。いくつかの作業を行い、ローカルでテストコンテンツを作成した後、すぐに元の状態に戻すことができます。
-
-内部的には、LMMはコピーオンライトをサポートするLVMの軽いスナップショット機能を使用します。実際には、これは、テーブルの1つの行を変更すると、行った変更のみがディスクに書き込まれることを意味し、復元時の時間とディスク容量を大幅に節約します。
-
-LMMはLVMと相互作用するため、`root`として実行する必要があります。使用可能なすべてのコマンドを表示するには、Vagrantボックス内で`sudo lmm`コマンドを実行します。一般的なワークフローは次のようになります。
-
-- データベースをデフォルトの `master` lmmブランチにインポートします。
-- `sudo lmm branch prod-YYYY-MM-DD`を使用して、変更されていないデータベースのスナップショットを保存します。
-- データベースを変更します。
-- `sudo lmm merge prod-YYYY-MM-DD`を実行して、すべての変更を元に戻します。
-- `sudo lmm delete <branch>`を実行して、不要なブランチを削除します。
 
 <a name="configuring-cron-schedules"></a>
 ### cronスケジュールの設定

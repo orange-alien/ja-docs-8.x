@@ -4,6 +4,7 @@
 - [Configuration](#configuration)
     - [Available Channel Drivers](#available-channel-drivers)
     - [Channel Prerequisites](#channel-prerequisites)
+    - [Logging Deprecation Warnings](#logging-deprecation-warnings)
 - [Building Log Stacks](#building-log-stacks)
 - [Writing Log Messages](#writing-log-messages)
     - [Contextual Information](#contextual-information)
@@ -49,7 +50,7 @@ Name | Description
 ------------- | -------------
 `custom` | A driver that calls a specified factory to create a channel
 `daily` | A `RotatingFileHandler` based Monolog driver which rotates daily
-`errorlog` | A `ErrorLogHandler` based Monolog driver
+`errorlog` | An `ErrorLogHandler` based Monolog driver
 `monolog` | A Monolog factory driver that may use any supported Monolog handler
 `null` | A driver that discards all log messages
 `papertrail` | A `SyslogUdpHandler` based Monolog driver
@@ -85,6 +86,13 @@ The `papertrail` channel requires the `host` and `port` configuration options. Y
 The `slack` channel requires a `url` configuration option. This URL should match a URL for an [incoming webhook](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks) that you have configured for your Slack team.
 
 By default, Slack will only receive logs at the `critical` level and above; however, you can adjust this in your `config/logging.php` configuration file by modifying the `level` configuration option within your Slack log channel's configuration array.
+
+<a name="logging-deprecation-warnings"></a>
+### Logging Deprecation Warnings
+
+PHP, Laravel, and other libraries often notify their users that some of their features have been deprecated and will be removed in a future version. If you would like to log these deprecation warnings, you may specify your preferred `deprecations` log channel in your application's `config/logging.php` configuration file:
+
+    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
 
 <a name="building-log-stacks"></a>
 ## Building Log Stacks
@@ -272,7 +280,7 @@ Once you have configured the `tap` option on your channel, you're ready to defin
 <a name="creating-monolog-handler-channels"></a>
 ### Creating Monolog Handler Channels
 
-Monolog has a variety of [available handlers](https://github.com/Seldaek/monolog/tree/master/src/Monolog/Handler) and Laravel does not include a built-in channel for each one. In some cases, you may wish to create a custom channel that is merely an instance of a specific Monolog handler that does not have a corresponding Laravel log driver.  These channels can be easily created using the `monolog` driver.
+Monolog has a variety of [available handlers](https://github.com/Seldaek/monolog/tree/main/src/Monolog/Handler) and Laravel does not include a built-in channel for each one. In some cases, you may wish to create a custom channel that is merely an instance of a specific Monolog handler that does not have a corresponding Laravel log driver.  These channels can be easily created using the `monolog` driver.
 
 When using the `monolog` driver, the `handler` configuration option is used to specify which handler will be instantiated. Optionally, any constructor parameters the handler needs may be specified using the `with` configuration option:
 

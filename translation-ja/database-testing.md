@@ -219,10 +219,10 @@
 
 > {tip} [複数代入保護](/docs/{{version}}/eloquent#mass-assignment)は、ファクトリを使用してのモデル作成時、自動的に無効になります。
 
-<a name="connecting-factories-and-models"></a>
-#### ファクトリとモデルの接続
+<a name="factory-and-model-discovery-conventions"></a>
+#### Model & Factory Discovery Conventions
 
-`HasFactory`トレイトの`factory`メソッドは、規約を使用してモデルの適切なファクトリを決定します。具体的にこのメソッドは、モデル名と一致するクラス名を持ち、接尾辞が「Factory」である、`Database\Factories`名前空間内のファクトリを検索します。この規約を特定のアプリケーションまたはファクトリに適用しない場合は、モデルの`newFactory`メソッドを上書きして、モデルの対応するファクトリのインスタンスを直接返すことができます。
+`HasFactory`トレイトの`factory`メソッドは、規約を使用してこのトレイトを割り付けているモデルの適切なファクトリを決定します。具体的にこのメソッドは、モデル名と一致するクラス名を持ち、接尾辞が「Factory」である、`Database\Factories`名前空間内のファクトリを検索します。この規約を特定のアプリケーションまたはファクトリに適用しない場合は、モデルの`newFactory`メソッドを上書きして、モデルの対応するファクトリのインスタンスを直接返すことができます。
 
     use Database\Factories\Administration\FlightFactory;
 

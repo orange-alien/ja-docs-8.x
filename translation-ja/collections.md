@@ -164,7 +164,7 @@
 [random](#method-random)
 [range](#method-range)
 [reduce](#method-reduce)
-[reduceMany](#method-reduce-many)
+[reduceSpread](#method-reduce-spread)
 [reject](#method-reject)
 [replace](#method-replace)
 [replaceRecursive](#method-replacerecursive)
@@ -1755,15 +1755,15 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 
     // 4264
 
-<a name="method-reduce-many"></a>
-#### `reduceMany()` {#collection-method}
+<a name="method-reduce-spread"></a>
+#### `reduceSpread()` {#collection-method}
 
-`reduceMany`メソッドはコレクションを値の配列に減らし、各反復の結果を後続の反復に渡します。このメソッドは `reduce` メソッドと似ていますが、複数の初期値を受け入れることができます。
+`reduceSpread`メソッドはコレクションを値の配列に減らし、各反復の結果を後続の反復に渡します。このメソッドは`reduce`メソッドと似ていますが、複数の初期値を受け入れることができます。
 
 ```php
 [$creditsRemaining, $batch] = Image::where('status', 'unprocessed')
         ->get()
-        ->reduceMany(function ($creditsRemaining, $batch, $image) {
+        ->reduceSpread(function ($creditsRemaining, $batch, $image) {
             if ($creditsRemaining >= $image->creditsRequired()) {
                 $batch->push($image);
 
