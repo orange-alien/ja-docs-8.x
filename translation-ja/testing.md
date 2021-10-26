@@ -102,7 +102,7 @@ LaravelとPhpUnitはデフォルトで、単一のプロセス内でテストを
 
     php artisan test --parallel --processes=4
 
-> {note} テストをぱられる実行すると、PHPUnitのオプション(`-do-not-cafy-result`など)が利用できない場合があります。
+> {note} テストをパラレル実行すると、PHPUnitのオプション(`-do-not-cafy-result`など)が利用できない場合があります。
 
 <a name="parallel-testing-and-databases"></a>
 #### 並列テストとデータベース
