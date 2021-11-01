@@ -2102,7 +2102,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
         ]
     */
 
-`sort`メソッドは第２引数に、[ソートフラグ](https://www.php.net/manual/en/function.sort.php)を受け取ります。
+`sort`メソッドは第２引数に、[ソートフラグ](https://www.php.net/manual/ja/function.sort.php)を受け取ります。
 
     $collection = collect([
         ['title' => 'Item 1'],

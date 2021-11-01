@@ -160,7 +160,7 @@ CashierはLaravelに同梱されている`App\Models\User`クラスをBillable�
 
     CASHIER_CURRENCY=eur
 
-Cashierの通貨の設定に加え、請求書に表示するの金額の値をフォーマットするときに使用するロケールを指定することもできます。内部的には、Cashierは[PHPの`NumberFormatter`クラス](https://www.php.net/manual/en/class.numberformatter.php)を利用して通貨ロケールを設定します。
+Cashierの通貨の設定に加え、請求書に表示するの金額の値をフォーマットするときに使用するロケールを指定することもできます。内部的には、Cashierは[PHPの`NumberFormatter`クラス](https://www.php.net/manual/ja/class.numberformatter.php)を利用して通貨ロケールを設定します。
 
     CASHIER_CURRENCY_LOCALE=nl_BE
 

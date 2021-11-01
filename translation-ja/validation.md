@@ -1283,7 +1283,7 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 <a name="rule-numeric"></a>
 #### numeric
 
-フィールドは[数値](https://www.php.net/manual/en/function.is-numeric.php)であることをバリデートします。
+フィールドは[数値](https://www.php.net/manual/ja/function.is-numeric.php)であることをバリデートします。
 
 <a name="rule-password"></a>
 #### password

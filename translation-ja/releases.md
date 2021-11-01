@@ -18,7 +18,7 @@ Laravelとファーストパーティパッケージは、[セマンティック
 <a name="named-arguments"></a>
 #### 名前付き引数
 
-現時点では、PHPの[名前付き引数](https://www.php.net/manual/functions.arguments.aphp#functions.Named-Arguments)機能はLaravelの後方互換性ガイドラインでカバーしていません。Laravelのコードベースを改善するため必要に応じ、私達は機能パラメータの名前を変更することを選択するでしょう。したがって、パラメータ名が将来変更される可能性があることを理解して、Laravelのメソッド呼び出しに名前付き引数を使用することは、慎重に行う必要があります。
+現時点では、PHPの[名前付き引数](https://www.php.net/manual/ja/functions.arguments.php#functions.named-arguments)機能はLaravelの後方互換性ガイドラインでカバーしていません。Laravelのコードベースを改善するため必要に応じ、私達は機能パラメータの名前を変更することを選択するでしょう。したがって、パラメータ名が将来変更される可能性があることを理解して、Laravelのメソッド呼び出しに名前付き引数を使用することは、慎重に行う必要があります。
 
 <a name="support-policy"></a>
 ## サポートポリシー

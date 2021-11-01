@@ -1421,7 +1421,7 @@ Bladeでは、`directive`メソッドを使用して独自のカスタムディ�
 <a name="custom-echo-handlers"></a>
 ### カスタムEchoハンドラ
 
-Bladeを使ってオブジェクトを「エコー」しようとすると、そのオブジェクトの`__toString`メソッドが呼び出されます。[`__toString`](https://www.php.net/manual/en/language.oop5.magic.php#object.tostring)メソッドは、PHPが組み込んでいる一つの「マジックメソッド」です。しかし、操作するクラスがサードパーティのライブラリへ属している場合など、特定のクラスで`__toString`メソッドを制御できない場合が起こりえます。
+Bladeを使ってオブジェクトを「エコー」しようとすると、そのオブジェクトの`__toString`メソッドが呼び出されます。[`__toString`](https://www.php.net/manual/ja/language.oop5.magic.php#object.tostring)メソッドは、PHPが組み込んでいる一つの「マジックメソッド」です。しかし、操作するクラスがサードパーティのライブラリへ属している場合など、特定のクラスで`__toString`メソッドを制御できない場合が起こりえます。
 
 このような場合、Bladeで、その特定のタイプのオブジェクト用に、カスタムEchoハンドラを登録できます。Bladeの`stringable`メソッドを呼び出してください。`stringable`メソッドは、クロージャを引数に取ります。このクロージャは、自分がレンダリングを担当するオブジェクトのタイプをタイプヒントで指定する必要があります。一般的には、アプリケーションの`AppServiceProvider`クラスの`boot`メソッド内で、`stringable`メソッドを呼び出します。
 

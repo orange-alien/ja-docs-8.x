@@ -393,7 +393,7 @@ Flight::where('departed', true)
 
 > {note} `cursor`メソッドは一度に１つのEloquentモデルしかメモリに保持しないため、リレーションをEagerロードできません。リレーションシップをEagerロードする必要がある場合は、代わりに [`lazy`メソッド](#streaming-results-lazily) の使用を検討してください。
 
-内部的には、`cursor`メソッドはPHPの[ジェネレータ](https://www.php.net/manual/en/language.generators.overview.php)を使ってこの機能を実装しています。
+内部的には、`cursor`メソッドはPHPの[ジェネレータ](https://www.php.net/manual/ja/language.generators.overview.php)を使ってこの機能を実装しています。
 
 ```php
 use App\Models\Flight;
@@ -417,7 +417,7 @@ foreach ($users as $user) {
 }
 ```
 
-`cursor`メソッドは、通常のクエリよりもはるかに少ないメモリしか使用しませんが（一度に１つのEloquentモデルをメモリ内に保持するだけです）、それでも最終的にはメモリが不足するでしょう。これは、[PHPのPDOドライバが、素のクエリ結果をすべてバッファに内部的にキャッシュしているため](https://www.php.net/manual/en/mysqlinfo.concepts.buffering.php)です。非常に多くのEloquentレコードを扱う場合には、代わりに[`lazy`メソッド](#streaming-results-lazily)の使用を検討してください。
+`cursor`メソッドは、通常のクエリよりもはるかに少ないメモリしか使用しませんが（一度に１つのEloquentモデルをメモリ内に保持するだけです）、それでも最終的にはメモリが不足するでしょう。これは、[PHPのPDOドライバが、素のクエリ結果をすべてバッファに内部的にキャッシュしているため](https://www.php.net/manual/ja/mysqlinfo.concepts.buffering.php)です。非常に多くのEloquentレコードを扱う場合には、代わりに[`lazy`メソッド](#streaming-results-lazily)の使用を検討してください。
 
 <a name="advanced-subqueries"></a>
 ### 上級サブクエリ

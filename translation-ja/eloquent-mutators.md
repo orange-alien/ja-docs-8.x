@@ -228,7 +228,7 @@ JSON属性の単一のフィールドをより簡潔な構文で更新するに�
 
     $user->options['key'] = $value;
 
-これを解決するために、Laravelは、JSON属性を[ArrayObject](https://www.php.net/manual/en/class.arrayobject.php)クラスにキャストする`asArrayObject`キャストを提供します。この機能はLaravelの[カスタムキャスト](#custom-cast)の実装を使用しており、Laravelがインテリジェントにキャッシュし、PHPエラーを引き起こすことなく、個々のオフセットを変更できるように、ミューテートしたオブジェクトを変換することができます。AsArrayObject`のキャストを使用するには、単純に属性に割り当てるだけです。
+これを解決するために、Laravelは、JSON属性を[ArrayObject](https://www.php.net/manual/ja/class.arrayobject.php)クラスにキャストする`asArrayObject`キャストを提供します。この機能はLaravelの[カスタムキャスト](#custom-cast)の実装を使用しており、Laravelがインテリジェントにキャッシュし、PHPエラーを引き起こすことなく、個々のオフセットを変更できるように、ミューテートしたオブジェクトを変換することができます。AsArrayObject`のキャストを使用するには、単純に属性に割り当てるだけです。
 
     use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
@@ -593,7 +593,7 @@ Eloquentモデルを`toArray`および`toJson`メソッドを使用して配列�
 <a name="anonymous-cast-classes"></a>
 #### Castableと匿名キャストクラス
 
-"Castable"をPHPの[匿名クラス](https://www.php.net/manual/en/language.oop5.anonymous.php)と組み合わせることで、値オブジェクトとそのキャストロジックを単一のCastableオブジェクトとして定義できます。これを実現するには、値オブジェクトの`castUsing`メソッドから匿名クラスを返します。匿名クラスは`CastsAttributes`インターフェイスを実装する必要があります。
+"Castable"をPHPの[匿名クラス](https://www.php.net/manual/ja/language.oop5.anonymous.php)と組み合わせることで、値オブジェクトとそのキャストロジックを単一のCastableオブジェクトとして定義できます。これを実現するには、値オブジェクトの`castUsing`メソッドから匿名クラスを返します。匿名クラスは`CastsAttributes`インターフェイスを実装する必要があります。
 
     <?php
 
