@@ -231,6 +231,28 @@ PHPやLaravelなどのライブラリは、その機能の一部が非推奨と�
 
     Log::stack(['single', 'slack'])->info('Something happened!');
 
+<a name="on-demand-channels"></a>
+#### オンデマンドチャンネル
+
+アプリケーションの `logging` 設定ファイルに設定を用意しなくても、実行時に構成を指定することにより、オンデマンドチャンネルを作成することも可能です。そのためには、設定の配列を`Log`ファサードの`build`メソッドに渡してください。
+
+    use Illuminate\Support\Facades\Log;
+
+    Log::build([
+      'driver' => 'single',
+      'path' => storage_path('logs/custom.log'),
+    ])->info('Something happened!');
+
+オンデマンドチャンネルをオンデマンドログスタックに含めたい場合もあるでしょう。これを実現するには、`stack`メソッドに渡す配列へオンデマンドチャンネルのインスタンスを含めます。
+
+    use Illuminate\Support\Facades\Log;
+
+    $channel = Log::build([
+      'driver' => 'single',
+      'path' => storage_path('logs/custom.log'),
+    ]);
+
+    Log::stack(['slack', $channel])->info('Something happened!');
 
 <a name="monolog-channel-customization"></a>
 ## monologチャンネルカスタマイズ

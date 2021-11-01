@@ -157,6 +157,26 @@ Sanctumが認証した受信リクエストを処理する場合、`tokenCan`メ
         //
     }
 
+<a name="token-ability-middleware"></a>
+#### トークンアビリティミドルウェア
+
+また、Sanctumには2つのミドルウェアが含まれており、受信リクエストが指定するアビリティが付与されたトークンで認証されているかどうかを確認するために使用できます。まずは、アプリケーションの `app/Http/Kernel.php` ファイルの `$routeMiddleware` プロパティに以下のミドルウェアを追加します。
+
+    'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
+    'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
+
+受信リクエストのトークンがリストしたすべてのアビリティを持っていることを確認するには、`abilities`ミドルウェアをルートへ割り付けます。
+
+    Route::get('/orders', function () {
+        // トークンは"check-status"と"place-orders"アビリティの両方を持っている
+    })->middleware(['auth:sanctum', 'abilities:check-status,place-orders']);
+
+`ability`ミドルウェアは、受信リクエストのトークンに、リストしたアビリティのうち**少なくとも１つ**を持っていることを確認するため、ルートへ割り付けます。
+
+    Route::get('/orders', function () {
+        // Token has the "check-status" or "place-orders" ability...
+    })->middleware(['auth:sanctum', 'ability:check-status,place-orders']);
+
 <a name="first-party-ui-initiated-requests"></a>
 #### ファーストパーティのUIが開始したリクエスト
 

@@ -174,6 +174,8 @@ Laravel Homesteadリポジトリのクローンを作成したら、`release`ブ
 
     provider: virtualbox
 
+> {note} Apple Siliconを使用している場合は、`Homstead.yaml`ファイルに`box: laravel/homestead-arm`を追加する必要があります。Apple SiliconにはParallelsプロバイダが必要です。
+
 <a name="configuring-shared-folders"></a>
 #### 共有フォルダの設定
 

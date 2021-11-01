@@ -67,19 +67,11 @@
 
     namespace Database\Factories;
 
-    use App\Models\User;
     use Illuminate\Database\Eloquent\Factories\Factory;
     use Illuminate\Support\Str;
 
     class UserFactory extends Factory
     {
-        /**
-         * ファクトリの対応するモデル名
-         *
-         * @var string
-         */
-        protected $model = User::class;
-
         /**
          * モデルのデフォルト状態の定義
          *
@@ -97,7 +89,7 @@
         }
     }
 
-ご覧のとおり、一番基本的な形式では、ファクトリはLaravelの基本ファクトリクラスを拡張し、`model`プロパティと`definition`メソッドを定義するクラスです。`definition`メソッドは、ファクトリを使用してモデルを作成するときに適用する必要がある属性値のデフォルトセットを返します。
+ご覧のとおり、一番基本的な形式では、ファクトリはLaravelの基本ファクトリクラスを拡張し、`definition`メソッドを定義するクラスです。`definition`メソッドは、ファクトリを使用してモデルを作成するときに適用する必要がある属性値のデフォルトセットを返します。
 
 ファクトリは`faker`プロパティを介して、[Faker](https://github.com/FakerPHP/Faker) PHPライブラリにアクセスできます。これにより、テスト用のさまざまな種類のランダムデータを簡単に生成できます。
 
@@ -112,9 +104,39 @@
 
 新しいファクトリクラスは、`database/factories`ディレクトリに配置されます。
 
-`--model`オプションは、ファクトリにより作成するモデルの名前を指定するために使用します。このオプションは、生成するファクトリファイルへ指定するモデルを事前に挿入します。
+<a name="factory-and-model-discovery-conventions"></a>
+#### Model & Factory Discovery Conventionsモデルとファクトリの
 
-    php artisan make:factory PostFactory --model=Post
+ファクトリを定義したら、モデルのファクトリインスタンスをインスタンス化するために、`Illuminate\Database\Eloquent\Factories\HasFactory`トレイトが、モデルへ提供しているstaticな`factory`メソッドが使用できます。
+
+`HasFactory`トレイトの`factory`メソッドは規約に基づいて、その トレイトが割り当てられているモデルに適したファクトリを決定します。具体的には、`Database\Factories`名前空間の中でモデル名と一致するクラス名を持ち、サフィックスが`Factory`であるファクトリを探します。この規約を特定のアプリケーションやファクトリで適用しない場合は、モデルの`newFactory`メソッドを上書きし、モデルと対応するファクトリのインスタンスを直接返してください。
+
+    use Database\Factories\Administration\FlightFactory;
+
+    /**
+     * モデルの新ファクトリ・インスタンスの生成
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return FlightFactory::new();
+    }
+
+次に、対応するファクトリで、`model`プロパティを定義します。
+
+    use App\Administration\Flight;
+    use Illuminate\Database\Eloquent\Factories\Factory;
+
+    class FlightFactory extends Factory
+    {
+        /**
+         * モデルと対応するファクトリの名前
+         *
+         * @var string
+         */
+        protected $model = Flight::class;
+    }
 
 <a name="factory-states"></a>
 ### ファクトリの状態
@@ -150,13 +172,6 @@
 
     class UserFactory extends Factory
     {
-        /**
-         * ファクトリの対応するモデル名
-         *
-         * @var string
-         */
-        protected $model = User::class;
-
         /**
          * モデルファクトリの設定
          *
@@ -218,23 +233,6 @@
     ])->make();
 
 > {tip} [複数代入保護](/docs/{{version}}/eloquent#mass-assignment)は、ファクトリを使用してのモデル作成時、自動的に無効になります。
-
-<a name="factory-and-model-discovery-conventions"></a>
-#### Model & Factory Discovery Conventions
-
-`HasFactory`トレイトの`factory`メソッドは、規約を使用してこのトレイトを割り付けているモデルの適切なファクトリを決定します。具体的にこのメソッドは、モデル名と一致するクラス名を持ち、接尾辞が「Factory」である、`Database\Factories`名前空間内のファクトリを検索します。この規約を特定のアプリケーションまたはファクトリに適用しない場合は、モデルの`newFactory`メソッドを上書きして、モデルの対応するファクトリのインスタンスを直接返すことができます。
-
-    use Database\Factories\Administration\FlightFactory;
-
-    /**
-     * モデルの新しいファクトリインスタンスの作成
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    protected static function newFactory()
-    {
-        return FlightFactory::new();
-    }
 
 <a name="persisting-models"></a>
 ### モデルの永続化

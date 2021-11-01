@@ -185,8 +185,6 @@ After making a test request to your application, the `dump`, `dumpHeaders`, and 
 
     namespace Tests\Feature;
 
-    use Illuminate\Foundation\Testing\RefreshDatabase;
-    use Illuminate\Foundation\Testing\WithoutMiddleware;
     use Tests\TestCase;
 
     class ExampleTest extends TestCase
@@ -205,6 +203,33 @@ After making a test request to your application, the `dump`, `dumpHeaders`, and 
             $response->dumpSession();
 
             $response->dump();
+        }
+    }
+
+Alternatively, you may use the `dd`, `ddHeaders`, and `ddSession` methods to dump information about the response and then stop execution:
+
+    <?php
+
+    namespace Tests\Feature;
+
+    use Tests\TestCase;
+
+    class ExampleTest extends TestCase
+    {
+        /**
+         * A basic test example.
+         *
+         * @return void
+         */
+        public function test_basic_test()
+        {
+            $response = $this->get('/');
+
+            $response->ddHeaders();
+
+            $response->ddSession();
+
+            $response->dd();
         }
     }
 
@@ -343,6 +368,30 @@ Laravel also offers a beautiful way to fluently test your application's JSON res
 In the example above, you may have noticed we invoked the `etc` method at the end of our assertion chain. This method informs Laravel that there may be other attributes present on the JSON object. If the `etc` method is not used, the test will fail if other attributes that you did not make assertions against exist on the JSON object.
 
 The intention behind this behavior is to protect you from unintentionally exposing sensitive information in your JSON responses by forcing you to either explicitly make an assertion against the attribute or explicitly allow additional attributes via the `etc` method.
+
+<a name="asserting-json-attribute-presence-and-absence"></a>
+#### Asserting Attribute Presence / Absence
+
+To assert that an attribute is present or absent, you may use the `has` and `missing` methods:
+
+    $response->assertJson(fn (AssertableJson $json) =>
+        $json->has('data')
+             ->missing('message')
+    );
+
+In addition, the `hasAll` and `missingAll` methods allow asserting the presence or absence of multiple attributes simultaneously:
+
+    $response->assertJson(fn (AssertableJson $json) =>
+        $json->hasAll('status', 'data')
+             ->missingAll('message', 'code')
+    );
+
+You may use the `hasAny` method to determine if at least one of a given list of attributes is present:
+
+    $response->assertJson(fn (AssertableJson $json) =>
+        $json->has('status')
+             ->hasAny('data', 'message', 'code')
+    );
 
 <a name="asserting-against-json-collections"></a>
 #### Asserting Against JSON Collections

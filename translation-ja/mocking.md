@@ -173,6 +173,9 @@ Laravelの[サービスコンテナ](/docs/{{version}}/container)を介してア
 
             // ジョブがディスパッチされなかったことをアサート
             Bus::assertNotDispatched(AnotherJob::class);
+
+            // １つもジョブがディスパッチされないことをアサート
+            Bus::assertNothingDispatched();
         }
     }
 

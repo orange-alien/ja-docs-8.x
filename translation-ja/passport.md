@@ -388,7 +388,7 @@ JSON APIは`web`と`auth`ミドルウェアにより保護されています。�
             'state' => $state,
         ]);
 
-        return redirect('http://passport-app.com/oauth/authorize?'.$query);
+        return redirect('http://passport-app.test/oauth/authorize?'.$query);
     });
 
 > {tip} `/oauth/authorize`ルートは、すでに`Passport::routes`メソッドが定義づけていることを覚えておいてください。このルートを自分で定義する必要はありません。
@@ -439,7 +439,7 @@ JSON APIは`web`と`auth`ミドルウェアにより保護されています。�
             InvalidArgumentException::class
         );
 
-        $response = Http::asForm()->post('http://passport-app.com/oauth/token', [
+        $response = Http::asForm()->post('http://passport-app.test/oauth/token', [
             'grant_type' => 'authorization_code',
             'client_id' => 'client-id',
             'client_secret' => 'client-secret',
@@ -483,7 +483,7 @@ Passportには、承認済みアクセストークンを管理するためのJSO
 
     use Illuminate\Support\Facades\Http;
 
-    $response = Http::asForm()->post('http://passport-app.com/oauth/token', [
+    $response = Http::asForm()->post('http://passport-app.test/oauth/token', [
         'grant_type' => 'refresh_token',
         'refresh_token' => 'the-refresh-token',
         'client_id' => 'client-id',
@@ -596,7 +596,7 @@ Passportには、承認済みアクセストークンを管理するためのJSO
             'code_challenge_method' => 'S256',
         ]);
 
-        return redirect('http://your-app.com/oauth/authorize?'.$query);
+        return redirect('http://passport-app.test/oauth/authorize?'.$query);
     });
 
 <a name="code-grant-pkce-converting-authorization-codes-to-access-tokens"></a>
@@ -619,7 +619,7 @@ stateパラメータが一致したら、要求側はアクセストークンを
             InvalidArgumentException::class
         );
 
-        $response = Http::asForm()->post('http://passport-app.com/oauth/token', [
+        $response = Http::asForm()->post('http://passport-app.test/oauth/token', [
             'grant_type' => 'authorization_code',
             'client_id' => 'client-id',
             'redirect_uri' => 'http://third-party-app.com/callback',
@@ -649,7 +649,7 @@ OAuth2パスワードグラントにより、モバイルアプリケーショ�
 
     use Illuminate\Support\Facades\Http;
 
-    $response = Http::asForm()->post('http://passport-app.com/oauth/token', [
+    $response = Http::asForm()->post('http://passport-app.test/oauth/token', [
         'grant_type' => 'password',
         'client_id' => 'client-id',
         'client_secret' => 'client-secret',
@@ -669,7 +669,7 @@ OAuth2パスワードグラントにより、モバイルアプリケーショ�
 
     use Illuminate\Support\Facades\Http;
 
-    $response = Http::asForm()->post('http://passport-app.com/oauth/token', [
+    $response = Http::asForm()->post('http://passport-app.test/oauth/token', [
         'grant_type' => 'password',
         'client_id' => 'client-id',
         'client_secret' => 'client-secret',
@@ -776,7 +776,7 @@ OAuth2パスワードグラントにより、モバイルアプリケーショ�
             'state' => $state,
         ]);
 
-        return redirect('http://your-app.com/oauth/authorize?'.$query);
+        return redirect('http://passport-app.test/oauth/authorize?'.$query);
     });
 
 > {tip} `/oauth/authorize`ルートは、すでに`Passport::routes`メソッドが定義づけていることを覚えておいてください。このルートを自分で定義する必要はありません。
@@ -817,7 +817,7 @@ OAuth2パスワードグラントにより、モバイルアプリケーショ�
 
     use Illuminate\Support\Facades\Http;
 
-    $response = Http::asForm()->post('http://passport-app.com/oauth/token', [
+    $response = Http::asForm()->post('http://passport-app.test/oauth/token', [
         'grant_type' => 'client_credentials',
         'client_id' => 'client-id',
         'client_secret' => 'client-secret',
@@ -957,7 +957,7 @@ Passportにより保護されているルートを呼び出す場合、あなた
     $response = Http::withHeaders([
         'Accept' => 'application/json',
         'Authorization' => 'Bearer '.$accessToken,
-    ])->get('https://passport-app.com/api/user');
+    ])->get('https://passport-app.test/api/user');
 
     return $response->json();
 
@@ -1021,7 +1021,7 @@ APIのスコープは、アプリケーションの`App\Providers\AuthServicePro
             'scope' => 'place-orders check-status',
         ]);
 
-        return redirect('http://passport-app.com/oauth/authorize?'.$query);
+        return redirect('http://passport-app.test/oauth/authorize?'.$query);
     });
 
 <a name="when-issuing-personal-access-tokens"></a>

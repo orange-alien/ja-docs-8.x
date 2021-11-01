@@ -185,8 +185,6 @@ Laravelのセッションは通常、現在認証しているユーザーの状�
 
     namespace Tests\Feature;
 
-    use Illuminate\Foundation\Testing\RefreshDatabase;
-    use Illuminate\Foundation\Testing\WithoutMiddleware;
     use Tests\TestCase;
 
     class ExampleTest extends TestCase
@@ -205,6 +203,33 @@ Laravelのセッションは通常、現在認証しているユーザーの状�
             $response->dumpSession();
 
             $response->dump();
+        }
+    }
+
+あるいは、`dd`、`ddHeaders`、`ddSession`メソッドを使って、レスポンスに関する情報をダンプしてから、実行を停止することもできます。
+
+    <?php
+
+    namespace Tests\Feature;
+
+    use Tests\TestCase;
+
+    class ExampleTest extends TestCase
+    {
+        /**
+         * 基本的なテスト例
+         *
+         * @return void
+         */
+        public function test_basic_test()
+        {
+            $response = $this->get('/');
+
+            $response->ddHeaders();
+
+            $response->ddSession();
+
+            $response->dd();
         }
     }
 
@@ -343,6 +368,30 @@ JSONレスポンスの指定パスに指定データが含まれていること�
 上記の例では、アサートのチェーンの最後で`etc`メソッドを呼び出したことに気づかれた方もいらっしゃるでしょう。このメソッドはLaravelへJSONオブジェクト中に他の属性が存在する可能性があることを伝えます。`etc`メソッドが使用されていない場合は、JSONオブジェクトに他の属性が存在していることをアサートしていないため、テストは失敗します。
 
 この動作の意図は、属性に対して明示的にアサーションを行うか、`etc` メソッドで追加の属性を明示的に許可することで、JSONレスポンスで意図せず機密情報を公開してしまうことを防ぐことにあります。
+
+<a name="asserting-json-attribute-presence-and-absence"></a>
+#### 属性の有無をアサートする
+
+属性が存在しているかどうかをアサートするには、`has`と`missing`メソッドを使います。
+
+    $response->assertJson(fn (AssertableJson $json) =>
+        $json->has('data')
+             ->missing('message')
+    );
+
+さらに、`hasAll`と`missingAll`メソッドは、複数の属性の有無を同時にアサートできます。
+
+    $response->assertJson(fn (AssertableJson $json) =>
+        $json->hasAll('status', 'data')
+             ->missingAll('message', 'code')
+    );
+
+`hasAny`メソッドを使用して、指定する属性リスト中に少なくとも１つ存在しているか判断できます。
+
+    $response->assertJson(fn (AssertableJson $json) =>
+        $json->has('status')
+             ->hasAny('data', 'message', 'code')
+    );
 
 <a name="asserting-against-json-collections"></a>
 #### JSONコレクションに対するアサート
