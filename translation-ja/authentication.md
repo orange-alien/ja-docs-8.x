@@ -516,7 +516,7 @@ Laravelは、現在のデバイスのセッションを無効にすることな�
     class AuthServiceProvider extends ServiceProvider
     {
         /**
-         * アプリケーション中の全認証／認可サービスの登録
+         * 全認証／認可サービスの登録
          *
          * @return void
          */
@@ -553,7 +553,7 @@ Laravelは、現在のデバイスのセッションを無効にすることな�
     use Illuminate\Support\Facades\Auth;
 
     /**
-     * アプリケーション中の全認証／認可サービスの登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */
@@ -590,7 +590,7 @@ Laravelは、現在のデバイスのセッションを無効にすることな�
     class AuthServiceProvider extends ServiceProvider
     {
         /**
-         * アプリケーション中の全認証／認可サービスの登録
+         * 全認証／認可サービスの登録
          *
          * @return void
          */
