@@ -130,7 +130,7 @@
     use Illuminate\Notifications\Messages\MailMessage;
 
     /**
-     * 全認証／承認サービスの登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */

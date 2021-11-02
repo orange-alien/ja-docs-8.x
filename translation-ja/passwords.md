@@ -167,7 +167,7 @@ Laravelのパスワードリセット機能を使用する前に、アプリケ�
     use Illuminate\Auth\Notifications\ResetPassword;
 
     /**
-     * 全認証／承認サービスの登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */

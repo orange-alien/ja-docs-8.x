@@ -259,7 +259,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
 <a name="creating-form-requests"></a>
 ### フォームリクエスト作成
 
-より複雑なバリデーションシナリオの場合は、「フォームリクエスト」を作成することをお勧めします。フォームリクエストは、独自のバリデーションおよび承認ロジックをカプセル化するカスタムリクエストクラスです。フォームリクエストクラスを作成するには、`make:request` Artisan CLIコマンドを使用します。
+より複雑なバリデーションシナリオの場合は、「フォームリクエスト」を作成することをお勧めします。フォームリクエストは、独自のバリデーションおよび認可ロジックをカプセル化するカスタムリクエストクラスです。フォームリクエストクラスを作成するには、`make:request` Artisan CLIコマンドを使用します。
 
     php artisan make:request StorePostRequest
 

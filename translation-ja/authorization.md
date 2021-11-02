@@ -48,7 +48,7 @@ Laravelは、アクションを認可する2つの主要な方法を提供しま
     use Illuminate\Support\Facades\Gate;
 
     /**
-     * 全認証／承認サービスを登録
+     * 全認証／認可サービスを登録
      *
      * @return void
      */
@@ -67,7 +67,7 @@ Laravelは、アクションを認可する2つの主要な方法を提供しま
     use Illuminate\Support\Facades\Gate;
 
     /**
-     * 全認証／承認サービスを登録
+     * 全認証／認可サービスを登録
      *
      * @return void
      */

@@ -159,7 +159,7 @@ Laravelのデフォルトアプリケーション構造はアプリケーショ�
 <a name="the-policies-directory"></a>
 #### Policiesディレクトリ
 
-このディレクトリはデフォルトでは存在しませんが、`make:policy` Artisanコマンドを実行すると作成されます。`Policies`ディレクトリには、アプリケーションの[承認ポリシークラス](/docs/{{version}}/authentication)を設置します。ポリシーは、ユーザーがリソースに対して特定のアクションを実行できるかどうかを判断するために使用されます。
+このディレクトリはデフォルトでは存在しませんが、`make:policy` Artisanコマンドを実行すると作成されます。`Policies`ディレクトリには、アプリケーションの[認可ポリシークラス](/docs/{{version}}/authentication)を設置します。ポリシーは、ユーザーがリソースに対して特定のアクションを実行できるかどうかを判断するために使用されます。
 
 <a name="the-providers-directory"></a>
 #### Providersディレクトリ
