@@ -157,7 +157,7 @@ Passportをアプリケーションのサーバに初めてデプロイすると
 必要に応じて、Passportのキーをロードするパスを定義できます。これを実現するには、`Passport::loadKeysFrom`メソッドを使用できます。通常、このメソッドは、アプリケーションの`App\Providers\AuthServiceProvider`クラスの`boot`メソッドから呼び出す必要があります。
 
     /**
-     * 全認証／認可の登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */
@@ -221,7 +221,7 @@ Passportの新しいメジャーバージョンにアップグレードすると
 デフォルトでは、Passportは１年後に有効期限が切れる長期アクセストークンを発行します。より長い／短いトークン有効期間を設定したい場合は、`tokensExpireIn`、`refreshTokensExpireIn`、`personalAccessTokensExpireIn`メソッドを使用します。これらのメソッドは、アプリケーションの`App\Providers\AuthServiceProvider`クラスの`boot`メソッドで呼び出す必要があります。
 
     /**
-     * 全認証／認可の登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */
@@ -258,7 +258,7 @@ Passportの新しいメジャーバージョンにアップグレードすると
     use App\Models\Passport\Token;
 
     /**
-     * 全認証／認可の登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */
@@ -748,7 +748,7 @@ OAuth2パスワードグラントにより、モバイルアプリケーショ�
 暗黙的なグラントは、認証コードグラントに似ています。ただし、トークンは認証コードを交換せずにクライアントへ返します。このグラントは、クライアントの利用資格情報を安全に保存できないJavaScriptまたはモバイルアプリケーションで最も一般的に使用します。このグラントを有効にするには、アプリケーションの`App\Providers\AuthServiceProvider`クラスの`boot`メソッドで`enableImplicitGrant`メソッドを呼び出します。
 
     /**
-     * 全認証／認可の登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */
@@ -972,7 +972,7 @@ Passportにより保護されているルートを呼び出す場合、あなた
 APIのスコープは、アプリケーションの`App\Providers\AuthServiceProvider`クラスの`boot`メソッドの`Passport::tokensCan`メソッドを使用して定義できます。`tokensCan`メソッドは、スコープ名とスコープの説明の配列を引数に取ります。スコープの説明は任意で、承認画面でユーザーに表示されます。
 
     /**
-     * 全認証／承認サービスの登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */
@@ -1118,7 +1118,7 @@ API構築時にJavaScriptアプリケーションから、自分のAPIを利用�
 必要に応じて、`Passport::cookie`メソッドを使用して`laravel_token`クッキーの名前をカスタマイズできます。通常、このメソッドは、アプリケーションの`App\Providers\AuthServiceProvider`クラスの`boot`メソッドから呼び出す必要があります。
 
     /**
-     * 全認証／認可の登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */

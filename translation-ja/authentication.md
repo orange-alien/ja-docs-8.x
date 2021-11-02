@@ -39,7 +39,7 @@ Laravelの認証機能は、基本的に「ガード」と「プロバイダ」�
 
 アプリケーションの認証設定ファイルは`config/auth.php`にあります。このファイルは、Laravelの認証サービスの動作を微調整できるように、十分なコメントの付いたオプションがいくつか含まれています。
 
-> {tip} ガードとプロバイダを「役割」や「許可」と混同しないでください。権限を介したユーザーアクションの承認の詳細については、[承認](/docs/{{version}}/authorization)のドキュメントを参照してください。
+> {tip} ガードとプロバイダを「役割」や「許可」と混同しないでください。権限を介したユーザーアクションの認可の詳細については、[認可](/docs/{{version}}/authorization)のドキュメントを参照してください。
 
 <a name="starter-kits"></a>
 ### スターターキット
@@ -516,7 +516,7 @@ Laravelは、現在のデバイスのセッションを無効にすることな�
     class AuthServiceProvider extends ServiceProvider
     {
         /**
-         * アプリケーション中の全認証／承認サービスの登録
+         * 全認証／認可サービスの登録
          *
          * @return void
          */
@@ -553,7 +553,7 @@ Laravelは、現在のデバイスのセッションを無効にすることな�
     use Illuminate\Support\Facades\Auth;
 
     /**
-     * アプリケーション中の全認証／承認サービスの登録
+     * 全認証／認可サービスの登録
      *
      * @return void
      */
@@ -590,7 +590,7 @@ Laravelは、現在のデバイスのセッションを無効にすることな�
     class AuthServiceProvider extends ServiceProvider
     {
         /**
-         * アプリケーション中の全認証／承認サービスの登録
+         * 全認証／認可サービスの登録
          *
          * @return void
          */
