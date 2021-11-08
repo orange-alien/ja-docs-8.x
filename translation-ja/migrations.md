@@ -450,14 +450,14 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 <a name="column-method-decimal"></a>
 #### `decimal()` {#collection-method}
 
-`decimal`メソッドは、指定した精度(合計桁数)とスケール(少数桁数)で`DECIMAL`カラムを作成します。
+`decimal`メソッドは、指定した精度(合計桁数)とスケール(小数桁数)で`DECIMAL`カラムを作成します。
 
     $table->decimal('amount', $precision = 8, $scale = 2);
 
 <a name="column-method-double"></a>
 #### `double()` {#collection-method}
 
-`double`メソッドは、指定した精度(合計桁数)とスケール(少数桁数)で`DOUBLE`カラムを作成します。
+`double`メソッドは、指定した精度(合計桁数)とスケール(小数桁数)で`DOUBLE`カラムを作成します。
 
     $table->double('amount', 8, 2);
 
@@ -471,7 +471,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 <a name="column-method-float"></a>
 #### `float()` {#collection-method}
 
-`float`メソッドは、指定した精度(合計桁数)とスケール(少数桁数)で`FLOAT`カラムを作成します。
+`float`メソッドは、指定した精度(合計桁数)とスケール(小数桁数)で`FLOAT`カラムを作成します。
 
     $table->float('amount', 8, 2);
 
@@ -788,7 +788,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 <a name="column-method-unsignedDecimal"></a>
 #### `unsignedDecimal()` {#collection-method}
 
-`unsignedDecimal`メソッドは、オプションの精度(合計桁数)とスケール(少数桁数)を使用して、`UNSIGNED DECIMAL`カラムを作成します。
+`unsignedDecimal`メソッドは、オプションの精度(合計桁数)とスケール(小数桁数)を使用して、`UNSIGNED DECIMAL`カラムを作成します。
 
     $table->unsignedDecimal('amount', $precision = 8, $scale = 2);
 
