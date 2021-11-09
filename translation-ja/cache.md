@@ -365,7 +365,7 @@ Redisの設定の詳細については、[Laravelドキュメントページ](/d
 
     $lock = Cache::lock('processing', 120);
 
-    if ($result = $lock->get()) {
+    if ($lock->get()) {
         ProcessPodcast::dispatch($podcast, $lock->owner());
     }
 

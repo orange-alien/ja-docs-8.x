@@ -748,8 +748,6 @@ JSONカラムへ代入するときは、各カラムの複数代入可能キー�
         ['departure' => 'Chicago', 'destination' => 'New York', 'price' => 150]
     ], ['departure', 'destination'], ['price']);
 
-> {note} SQLServerを除くすべてのデータベースシステムでは、`upsert`メソッドに提供される2番目の引数のカラムに「プライマリ」または「一意の」インデックスが必要です。
-
 <a name="deleting-models"></a>
 ## モデルの削除
 

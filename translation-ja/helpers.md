@@ -108,6 +108,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [Str::limit](#method-str-limit)
 [Str::lower](#method-str-lower)
 [Str::markdown](#method-str-markdown)
+[Str::mask](#method-str-mask)
 [Str::orderedUuid](#method-str-ordered-uuid)
 [Str::padBoth](#method-str-padboth)
 [Str::padLeft](#method-str-padleft)
@@ -170,6 +171,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [lower](#method-fluent-str-lower)
 [ltrim](#method-fluent-str-ltrim)
 [markdown](#method-fluent-str-markdown)
+[mask](#method-fluent-str-mask)
 [match](#method-fluent-str-match)
 [matchAll](#method-fluent-str-match-all)
 [padBoth](#method-fluent-str-padboth)
@@ -1347,6 +1349,23 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 
     // <h1>Taylor Otwell</h1>
 
+<a name="method-str-mask"></a>
+#### `Str::mask()` {#collection-method}
+
+`Str::mask`メソッドは、文字列の一部を繰り返し文字でマスクし、メールアドレスや電話番号などの文字列の一部を難読化するために使用します。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::mask('taylor@example.com', '*', 3);
+
+    // tay***************
+
+必要であれば、`mask`メソッドの第３引数に負の数を指定し、文字列の最後から指定する文字数分戻った箇所からマスキングを開始するように指示できます。
+
+    $string = Str::mask('taylor@example.com', '*', -15, 3);
+
+    // tay***@example.com
+
 <a name="method-str-ordered-uuid"></a>
 #### `Str::orderedUuid()` {#collection-method}
 
@@ -2084,6 +2103,23 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     ]);
 
     // <h1>Taylor Otwell</h1>
+
+<a name="method-fluent-str-mask"></a>
+#### `mask` {#collection-method}
+
+`mask`メソッドは、文字列の一部を繰り返し文字でマスクし、メールアドレスや電話番号など、文字列の一部を難読化するのに使用します。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('taylor@example.com')->mask('*', 3);
+
+    // tay***************
+
+必要ならば、`mask`メソッドの第３引数へ負の数を指定し、文字列の最後から指定した文字数戻った箇所から、マスキングを開始するように指示できます。
+
+    $string = Str::of('taylor@example.com')->mask('*', -15, 3);
+
+    // tay***@example.com
 
 <a name="method-fluent-str-match"></a>
 #### `match` {#collection-method}

@@ -240,7 +240,7 @@ Homesteadは、自動ホスト解決のために`mDNS`を使用してホスト�
 
 自動ホスト名の使用は、Homesteadの[プロジェクトごとのインストール](#per-project-installation)に最適です。１つのHomesteadインスタンスで複数のサイトをホストしている場合は、Webサイトの「ドメイン」をマシンの`hosts`ファイルに追加できます。`hosts`ファイルは、HomesteadサイトへのリクエストをHomestead仮想マシンにリダイレクトします。macOSおよびLinuxでは、このファイルは`/etc/hosts`にあります。Windowsでは、`C:\Windows\System32\drivers\etc\hosts`にあります。このファイルに追加する行は次のようになります。
 
-    192.168.10.10  homestead.test
+    192.168.56.56  homestead.test
 
 設定するIPアドレスには`Homestead.yaml`ファイルの中の値を確実に指定してください。ドメインを`hosts`ファイルへ追加したら、Webブラウザでサイトにアクセスできます。
 
@@ -422,8 +422,8 @@ Homestead環境をプロビジョニングし、実働した後に、Laravelプ�
 
 Vagrantが"hosts"ファイルを自動的に管理しない場合は、新しいサイトを追加する必要があります。このファイルはmacOSとLinuxでは、`/etc/hosts`にあります。Windowsでは、`C:\Windows\System32\drivers\etc\hosts`に位置します。
 
-    192.168.10.10  homestead.test
-    192.168.10.10  another.test
+    192.168.56.56  homestead.test
+    192.168.56.56  another.test
 
 サイトを追加したら、`vagrant reload --provision`ターミナルコマンドをHomesteadディレクトリで実行します。
 

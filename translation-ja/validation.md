@@ -1423,7 +1423,7 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 `timezone_identifiers_list` PHP関数の値に基づき、フィールドがタイムゾーンとして識別されることをバリデートします。
 
 <a name="rule-unique"></a>
-#### unique:_テーブル_,_カラム_,_除外ID_,_IDカラム_
+#### unique:_テーブル_,_カラム_
 
 フィールドが、指定されたデータベーステーブルに存在しないことをバリデートします。
 

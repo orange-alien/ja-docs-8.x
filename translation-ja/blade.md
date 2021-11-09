@@ -48,7 +48,7 @@ Bladeビューは、グローバルな`view`ヘルパを使用してルートま
         return view('greeting', ['name' => 'Finn']);
     });
 
-> {tip} Bladeを深く掘り下げる前に、Laravel[ビュードキュメント](/docs/{{version}}/views)を必ずお読みください。
+> {tip} Bladeテンプレートを次のレベルに引き上げ、ダイナミックなインターフェイスを簡単に構築したいと思いませんか？[Laravel Livewire](https://laravel-livewire.com)をチェックしてください。
 
 <a name="displaying-data"></a>
 ## データの表示

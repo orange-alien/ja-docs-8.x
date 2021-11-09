@@ -199,12 +199,15 @@ Guzzleのデフォルト動作とは異なり、LaravelのHTTPクライアント
 <a name="throwing-exceptions"></a>
 #### 例外を投げる
 
-あるレスポンスインスタンスのレスポンスステータスコードがクライアントまたはサーバのエラーを示している場合に`Illuminate\Http\Client\RequestException`のインスタンスを投げたい場合場合は、`throw`メソッドを使用します。
+あるレスポンスインスタンスのレスポンスステータスコードがクライアントまたはサーバのエラーを示している場合に`Illuminate\Http\Client\RequestException`のインスタンスを投げたい場合場合は、`throw`か`throwIf`メソッドを使用します。
 
     $response = Http::post(...);
 
     // クライアントまたはサーバのエラーが発生した場合は、例外を投げる
     $response->throw();
+
+    // エラーが発生するか、指定条件が真の場合は、例外を投げる
+    $response->throwIf($condition);
 
     return $response['user']['id'];
 

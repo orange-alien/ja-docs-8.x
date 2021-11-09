@@ -1703,7 +1703,7 @@ Supervisorの詳細は、[Supervisorのドキュメント](http://supervisord.or
 
     php artisan queue:failed
 
-`queue:failed`コマンドは、ジョブID、接続、キュー、失敗時間、およびジョブに関するその他の情報を一覧表示します。ジョブIDは、失敗したジョブを再試行するために使用できます。たとえば、IDが「5」の失敗したジョブを再試行するには、次のコマンドを発行します。
+`queue:failed`コマンドは、ジョブID、接続、キュー、失敗時間、およびジョブに関するその他の情報を一覧表示します。ジョブIDは、失敗したジョブを再試行するために使用できます。たとえば、IDが`ce7bb17c-cdd8-41f0-a8ec-7b4fef4e5ece`の失敗したジョブを再試行するには、次のコマンドを発行します。
 
     php artisan queue:retry ce7bb17c-cdd8-41f0-a8ec-7b4fef4e5ece
 

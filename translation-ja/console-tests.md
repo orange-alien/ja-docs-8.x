@@ -1,12 +1,38 @@
 # コンソールテスト
 
 - [イントロダクション](#introduction)
+- [実行成功／失敗のアサート](#success-failure-expectations)
 - [入力/出力の期待値](#input-output-expectations)
 
 <a name="introduction"></a>
 ## イントロダクション
 
 Laravelは、HTTPテストを簡素化することに加え、アプリケーションの[カスタムコンソールコマンド](/docs/{{version}}/artisan)をテストするためのシンプルなAPIも提供します。
+
+<a name="success-failure-expectations"></a>
+## 実行成功／失敗のアサート
+
+手始めに、Artisanコマンドの終了コードをアサートする方法を見てみましょう。それには、`artisan`メソッドを使用して、テストからArtisanコマンドを呼び出します。それから、`assertExitCode`メソッドを使用して、指定した終了コードでコマンドが完了することをアサートします。
+
+    /**
+     * コンソールコマンドのテスト
+     *
+     * @return void
+     */
+    public function test_console_command()
+    {
+        $this->artisan('inspire')->assertExitCode(0);
+    }
+
+コマンドが指定コードで終了しないことをアサートするには、`assertNotExitCode`メソッドを使用します。
+
+    $this->artisan('inspire')->assertNotExitCode(1);
+
+もちろん、すべてのターミナルコマンドは通常、成功した場合に`0`のステータスコードで終了し、成功しなかった場合には０以外の終了コードで終了します。したがって、使い勝手が良いように`assertSuccessful`と`assertFailed`のアサーションを利用し、コマンドが成功の終了コードで終了した／終了しなかったことをアサートできます。
+
+    $this->artisan('inspire')->assertSuccessful();
+
+    $this->artisan('inspire')->assertFailed();
 
 <a name="input-output-expectations"></a>
 ## 入力/出力の期待値

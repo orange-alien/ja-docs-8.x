@@ -119,6 +119,7 @@
 
 <div class="content-list" markdown="1">
 - `array`
+- `AsStringable::class`
 - `boolean`
 - `collection`
 - `date`
@@ -175,6 +176,30 @@
     ]);
 
 > {note} `null`である属性はキャストしません。また、リレーションと同じ名前のキャスト(または属性)を定義しないでください。
+
+<a name="stringable-casting"></a>
+#### Stringableのキャスト
+
+モデルの属性を[fluentの`Illuminate\Support\Stringable`オブジェクト](/docs/{{version}}/helpers#fluent-strings-method-list)へキャストするには、`Illuminate\Database\Eloquent\Casts\AsStringable`キャストクラスが使用できます。
+
+    <?php
+
+    namespace App\Models;
+
+    use Illuminate\Database\Eloquent\Casts\AsStringable;
+    use Illuminate\Database\Eloquent\Model;
+
+    class User extends Model
+    {
+        /**
+         * キャストする属性
+         *
+         * @var array
+         */
+        protected $casts = [
+            'directory' => AsStringable::class,
+        ];
+    }
 
 <a name="array-and-json-casting"></a>
 ### 配列とJSONのキャスト
