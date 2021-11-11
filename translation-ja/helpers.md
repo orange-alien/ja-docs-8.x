@@ -1121,7 +1121,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 <a name="method-str-before-last"></a>
 #### `Str::beforeLast()` {#collection-method}
 
-`Str::beforeLast`メソッドは、文字列で指定値が現れる最初の場所から、前の部分を返します。
+`Str::beforeLast`メソッドは、文字列で指定値が現れる最後の場所から、前の部分を返します。
 
     use Illuminate\Support\Str;
 
