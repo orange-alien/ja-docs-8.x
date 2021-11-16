@@ -146,6 +146,9 @@
         //
     })->middleware(EnsureTokenIsValid::class);
 
+<a name="excluding-middleware"></a>
+#### 除外ミドルウェア
+
 ミドルウェアをルートのグループに割り当てる場合、あるミドルウェアをグループ内の個々のルートに適用しないようにする必要が起きることもあります。これは、`withoutMiddleware`メソッドを使用して実行できます。
 
     use App\Http\Middleware\EnsureTokenIsValid;
@@ -158,6 +161,16 @@
         Route::get('/profile', function () {
             //
         })->withoutMiddleware([EnsureTokenIsValid::class]);
+    });
+
+また、ルート定義の[グループ](/docs/{{version}}/routing#route-groups)全体から特定のミドルウェアのセットを除外することもできます。
+
+    use App\Http\Middleware\EnsureTokenIsValid;
+
+    Route::withoutMiddleware([EnsureTokenIsValid::class])->group(function () {
+        Route::get('/profile', function () {
+            //
+        });
     });
 
 `withoutMiddleware`メソッドはルートミドルウェアのみを削除でき、[グローバルミドルウェア](#global-middleware)には適用されません。

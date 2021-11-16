@@ -146,6 +146,9 @@ When assigning middleware, you may also pass the fully qualified class name:
         //
     })->middleware(EnsureTokenIsValid::class);
 
+<a name="excluding-middleware"></a>
+#### Excluding Middleware
+
 When assigning middleware to a group of routes, you may occasionally need to prevent the middleware from being applied to an individual route within the group. You may accomplish this using the `withoutMiddleware` method:
 
     use App\Http\Middleware\EnsureTokenIsValid;
@@ -158,6 +161,16 @@ When assigning middleware to a group of routes, you may occasionally need to pre
         Route::get('/profile', function () {
             //
         })->withoutMiddleware([EnsureTokenIsValid::class]);
+    });
+
+You may also exclude a given set of middleware from an entire [group](/docs/{{version}}/routing#route-groups) of route definitions:
+
+    use App\Http\Middleware\EnsureTokenIsValid;
+
+    Route::withoutMiddleware([EnsureTokenIsValid::class])->group(function () {
+        Route::get('/profile', function () {
+            //
+        });
     });
 
 The `withoutMiddleware` method can only remove route middleware and does not apply to [global middleware](#global-middleware).

@@ -33,7 +33,7 @@ Laravel Sailは、LaravelのデフォルトのDocker開発環境を操作する�
 
 Sailの本質は、`docker-compose.yml`ファイルとプロジェクトのルートに保存されている`sail`スクリプトです。`sail`スクリプトは、`docker-compose.yml`ファイルで定義されたDockerコンテナを操作するための便利なメソッドをCLIで提供します。
 
-Laravel Sailは、macOS、Linux、およびWindows（WSL2利用）をサポートします。
+Laravel Sail is supported on macOS, Linux, and Windows (via [WSL2](https://docs.microsoft.com/en-us/windows/wsl/about)).
 
 <a name="installation"></a>
 ## インストールと準備

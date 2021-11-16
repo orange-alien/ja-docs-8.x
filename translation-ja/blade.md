@@ -69,25 +69,6 @@ Bladeビューは、グローバルな`view`ヘルパを使用してルートま
 
     The current UNIX timestamp is {{ time() }}.
 
-<a name="rendering-json"></a>
-#### JSONのレンダー
-
-JavaScript変数を初期化するために、配列をJSONとしてレンダリングする目的でビューに配列を渡す場合があります。一例をご確認ください。
-
-    <script>
-        var app = <?php echo json_encode($array); ?>;
-    </script>
-
-ただし、手動で`json_encode`を呼び出す代わりに、`@json`Bladeディレクティブが使用できます。`@json`ディレクティブは、PHPの`json_encode`関数と同じ引数を取ります。デフォルトの`@json`ディレクティブは`JSON_HEX_TAG`、`JSON_HEX_APOS`、`JSON_HEX_AMP`、`JSON_HEX_QUOT`フラグを使用して`json_encode`関数を呼び出します。
-
-    <script>
-        var app = @json($array);
-
-        var app = @json($array, JSON_PRETTY_PRINT);
-    </script>
-
-> {note} @jsonディレクティブは既存の変数をJSONとしてレンダするためだけに使用してください。Bladeテンプレートは正規表現ベースのため、複雑な式をディレクティブに渡すと予期しない不良動作の原因になります。
-
 <a name="html-entity-encoding"></a>
 ### HTMLエンティティエンコーディング
 
@@ -136,10 +117,33 @@ JavaScript変数を初期化するために、配列をJSONとしてレンダリ
 `@`記号は、Bladeディレクティブをエスケープするためにも使用できます。
 
     {{-- Bladeテンプレート --}}
-    @@json()
+    @@if()
 
     <!-- HTML出力 -->
-    @json()
+    @if()
+
+<a name="rendering-json"></a>
+#### JSONのレンダー
+
+JavaScript変数を初期化するために、配列をJSONとしてレンダリングする目的でビューに配列を渡す場合があります。一例を確認してください。
+
+    <script>
+        var app = <?php echo json_encode($array); ?>;
+    </script>
+
+自分で`json_encode`を呼び出す代わりに、`Illuminate\Support\Js::from`メソッドディレクティブが使えます。`from`メソッドは、PHPの`json_encode`関数と同じ引数を受け入れますが、取得結果のJSONはHTMLクオートの中へ含められるよう適切にエスケープされていることを保証します。`from`メソッドは、与えたオブジェクトや配列を有効なJavaScriptオブジェクトに変換する`JSON.parse` JavaScript文を文字列として返します。
+
+    <script>
+        var app = {{ Illuminate\Support\Js::from($array) }};
+    </script>
+
+最新バージョンのLaravelアプリケーション・スケルトンには、`Js`ファサードが含まれており、Bladeテンプレート内でこの機能に簡単にアクセスできるようになっています。
+
+    <script>
+        var app = {{ Js::from($array) }};
+    </script>
+
+> {note} 既存の変数をJSONとしてレンダーするには、`Js::from`メソッドのみ使用してください。Bladeのテンプレートは正規表現に基づいているため、複雑な表現をディレクティブに渡そうとすると、予期せぬ失敗を引き起こす可能性があります。
 
 <a name="the-at-verbatim-directive"></a>
 #### `@verbatim`ディレクティブ

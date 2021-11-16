@@ -606,6 +606,15 @@ The `create` method, which accepts [a Stripe payment method identifier](#storing
 
 > {note} Passing a payment method identifier directly to the `create` subscription method will also automatically add it to the user's stored payment methods.
 
+<a name="collecting-recurring-payments-via-invoice-emails"></a>
+#### Collecting Recurring Payments Via Invoice Emails
+
+Instead of collecting a customer's recurring payments automatically, you may instruct Stripe to email an invoice to the customer each time their recurring payment is due. Then, the customer may manually pay the invoice once they receive it. The customer does not need to provide a payment method up front when collecting recurring payments via invoices:
+
+    $user->newSubscription('default', 'price_monthly')->createAndSendInvoice();
+
+The amount of time a customer has to pay their invoice before their subscription is cancelled is determined by your subscription and invoice settings within the [Stripe dashboard](https://dashboard.stripe.com/settings/billing/automatic).
+
 <a name="subscription-quantities"></a>
 #### Quantities
 
@@ -1655,7 +1664,7 @@ You can also perform a simple charge for an ad-hoc product that has not been cre
         return $request->user()->checkoutCharge(1200, 'T-Shirt', 5);
     });
 
-> {note} When using the `checkoutCharge` method, Stripe will always create a new product and price in your Stripe dashboard. Therefore, we recommend that you create the products up front in your Stripe dashboard and use of the `checkout` method instead.
+> {note} When using the `checkoutCharge` method, Stripe will always create a new product and price in your Stripe dashboard. Therefore, we recommend that you create the products up front in your Stripe dashboard and use the `checkout` method instead.
 
 <a name="subscription-checkouts"></a>
 ### Subscription Checkouts

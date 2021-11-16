@@ -184,7 +184,14 @@ DELETE    | `/photos/{photo}`      | destroy      | photos.destroy
 
 [ルートモデル結合](/docs/{{version}}/routing#route-model-binding)を使用していて、リソースコントローラのメソッドでモデルインスタンスをタイプヒントしたい場合は、コントローラを生成するときのオプションに`--model`を使用します。
 
-    php artisan make:controller PhotoController --resource --model=Photo
+    php artisan make:controller PhotoController --model=Photo --resource
+
+<a name="generating-form-requests"></a>
+#### フォームリクエストの生成
+
+リソースコントローラの生成時に、`--requests`オプションを指定すると、コントローラの保存と更新メソッド用に[フォームリクエストクラス](/docs/{{version}}/validation#form-request-validation)を生成するようにArtisanへ指定できます。
+
+    php artisan make:controller PhotoController --model=Photo --resource --requests
 
 <a name="restful-partial-resource-routes"></a>
 ### 部分的なリソースルート

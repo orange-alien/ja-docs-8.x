@@ -776,6 +776,7 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
 [別々](#rule-distinct)
 [メールアドレス](#rule-email)
 [文字列終了](#rule-ends-with)
+[列挙型](#rule-enum)
 [除外](#rule-exclude)
 [条件一致時フィールド除外](#rule-exclude-if)
 [条件不一致時フィールド除外](#rule-exclude-unless)
@@ -1051,6 +1052,20 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 #### ends_with:_foo_,_bar_,...
 
 フィールドの値が、指定された値で終わることをバリデートします。
+
+<a name="rule-enum"></a>
+#### enum
+
+`Enum`ルールはクラスベースのルールで、対象のフィールドに有効なenumの値が含まれているかどうかをバリデートします。`Enum`ルールは、コンストラクタの引数に唯一、enumの名前を取ります。
+
+    use App\Enums\ServerStatus;
+    use Illuminate\Validation\Rules\Enum;
+
+    $request->validate([
+        'status' => [new Enum(ServerStatus::class)],
+    ]);
+
+> {note} Enumは、PHPバージョン8.1以上でのみ使用可能です。
 
 <a name="rule-exclude"></a>
 #### exclude

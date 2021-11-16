@@ -36,6 +36,7 @@
     - [Formatting SMS Notifications](#formatting-sms-notifications)
     - [Formatting Shortcode Notifications](#formatting-shortcode-notifications)
     - [Customizing The "From" Number](#customizing-the-from-number)
+    - [Adding A Client Reference](#adding-a-client-reference)
     - [Routing SMS Notifications](#routing-sms-notifications)
 - [Slack Notifications](#slack-notifications)
     - [Prerequisites](#slack-prerequisites)
@@ -247,7 +248,7 @@ Sometimes you may need to send a notification to someone who is not stored as a 
                 ->route('slack', 'https://hooks.slack.com/services/...')
                 ->notify(new InvoicePaid($invoice));
 
-If you would like to provide the receipient's name when sending an on-demand notification to the `mail` route, you may provide an array that contains the email address as the key and the name as the value of the first element in the array:
+If you would like to provide the recipient's name when sending an on-demand notification to the `mail` route, you may provide an array that contains the email address as the key and the name as the value of the first element in the array:
 
     Notification::route('mail', [
         'barrett@example.com' => 'Barrett Blair',
@@ -947,6 +948,24 @@ If you would like to send some notifications from a phone number that is differe
                     ->from('15554443333');
     }
 
+<a name="adding-a-client-reference"></a>
+### Adding a Client Reference
+
+If you would like to keep track of costs per user, team, or client, you may add a "client reference" to the notification. Vonage will allow you to generate reports using this client reference so that you can better understand a particular customer's SMS usage. The client reference can be any string up to 40 characters:
+
+    /**
+     * Get the Vonage / SMS representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return NexmoMessage
+     */
+    public function toNexmo($notifiable)
+    {
+        return (new NexmoMessage)
+                    ->clientReference((string) $notifiable->id)
+                    ->content('Your SMS message content');
+    }
+
 <a name="routing-sms-notifications"></a>
 ### Routing SMS Notifications
 
@@ -985,7 +1004,7 @@ Before you can send notifications via Slack, you must install the Slack notifica
 
     composer require laravel/slack-notification-channel
 
-You will also need to configure an ["Incoming Webhook"](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks) integration for your Slack team. This integration will provide you with a URL you may use when [routing Slack notifications](#routing-slack-notifications).
+You will also need to create a [Slack App](https://api.slack.com/apps?new_app=1) for your team. After creating the App, you should configure an "Incoming Webhook" for the workspace. Slack will then provide you with a webhook URL that you may use when [routing Slack notifications](#routing-slack-notifications).
 
 <a name="formatting-slack-notifications"></a>
 ### Formatting Slack Notifications
@@ -1184,7 +1203,56 @@ Once you have implemented the interface, Laravel will automatically use the pref
 <a name="notification-events"></a>
 ## Notification Events
 
-When a notification is sent, the `Illuminate\Notifications\Events\NotificationSent` [event](/docs/{{version}}/events) is fired by the notification system. This contains the "notifiable" entity and the notification instance itself. You may register listeners for this event in your `EventServiceProvider`:
+<a name="notification-sending-event"></a>
+#### Notification Sending Event
+
+When a notification is sending, the `Illuminate\Notifications\Events\NotificationSending` [event](/docs/{{version}}/events) is dispatched by the notification system. This contains the "notifiable" entity and the notification instance itself. You may register listeners for this event in your application's `EventServiceProvider`:
+
+    /**
+     * The event listener mappings for the application.
+     *
+     * @var array
+     */
+    protected $listen = [
+        'Illuminate\Notifications\Events\NotificationSending' => [
+            'App\Listeners\CheckNotificationStatus',
+        ],
+    ];
+
+The notification will not be sent if an event listener for the `NotificationSending` event returns `false` from its `handle` method:
+
+    use Illuminate\Notifications\Events\NotificationSending;
+
+    /**
+     * Handle the event.
+     *
+     * @param  \Illuminate\Notifications\Events\NotificationSending  $event
+     * @return void
+     */
+    public function handle(NotificationSending $event)
+    {
+        return false;
+    }
+
+Within an event listener, you may access the `notifiable`, `notification`, and `channel` properties on the event to learn more about the notification recipient or the notification itself:
+
+    /**
+     * Handle the event.
+     *
+     * @param  \Illuminate\Notifications\Events\NotificationSending  $event
+     * @return void
+     */
+    public function handle(NotificationSending $event)
+    {
+        // $event->channel
+        // $event->notifiable
+        // $event->notification
+    }
+
+<a name="notification-sent-event"></a>
+#### Notification Sent Event
+
+When a notification is sent, the `Illuminate\Notifications\Events\NotificationSent` [event](/docs/{{version}}/events) is dispatched by the notification system. This contains the "notifiable" entity and the notification instance itself. You may register listeners for this event in your `EventServiceProvider`:
 
     /**
      * The event listener mappings for the application.

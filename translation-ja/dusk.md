@@ -389,12 +389,14 @@ Duskのテストを生成するには、`dusk:make` Artisanコマンドを使い
 
 `script`メソッドを使用して、ブラウザ内で任意のJavaScript文を実行できます。
 
-    $output = $browser->script('document.documentElement.scrollTop = 0');
+    $browser->script('document.documentElement.scrollTop = 0');
 
-    $output = $browser->script([
+    $browser->script([
         'document.body.scrollTop = 0',
         'document.documentElement.scrollTop = 0',
     ]);
+
+    $output = $browser->script('return window.location.pathname');
 
 <a name="taking-a-screenshot"></a>
 ### スクリーンショットの取得

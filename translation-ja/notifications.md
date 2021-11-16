@@ -36,6 +36,7 @@
     - [SMS通知のフォーマット](#formatting-sms-notifications)
     - [ショートコード通知のフォーマット](#formatting-shortcode-notifications)
     - [発信元電話番号のカスタマイズ](#customizing-the-from-number)
+    - [クライアントリファレンスの追加](#adding-a-client-reference)
     - [SMS通知のルート指定](#routing-sms-notifications)
 - [Slack通知](#slack-notifications)
     - [事前要件](#slack-prerequisites)
@@ -947,6 +948,24 @@ Laravelは、Vonageアカウントで事前定義されたメッセージテン�
                     ->from('15554443333');
     }
 
+<a name="adding-a-client-reference"></a>
+### クライアントリファレンスの追加
+
+ユーザー、チーム、または顧客ごとのコストを追跡したい場合は、通知に「クライアントリファレンス」を追加することができます。Vonageでは、このクライアントリファレンスを使用してレポートを作成することができますので、特定の顧客のSMS使用状況をよりわかりやすく理解することができます。リライアントリファレンスは、４０文字以内の任意の文字列です。
+
+    /**
+     * 通知のVonage／SMS形式の取得
+     *
+     * @param  mixed  $notifiable
+     * @return NexmoMessage
+     */
+    public function toNexmo($notifiable)
+    {
+        return (new NexmoMessage)
+                    ->clientReference((string) $notifiable->id)
+                    ->content('Your SMS message content');
+    }
+
 <a name="routing-sms-notifications"></a>
 ### SMS通知のルート指定
 
@@ -985,7 +1004,7 @@ Slackへの通知を送信し始める前に、ComposerによりSlack通知チ�
 
     composer require laravel/slack-notification-channel
 
-さらに、Slackチームの["Incoming Webhook"](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks)インテグレーションを設定する必要もあります。このインテグレーションは、[Slack通知のルート](#routing-slack-notifications)を行う時に使用するURLを提供します。
+チーム用の[Slackアプリ](https://api.slack.com/apps?new_app=1)も作成する必要があります。アプリを作成したら、ワークスペースの「受信Webhook」を設定する必要があります。Slackは更に[Slack通知のルーティング](#routing-slack-notifications)に使用できるWebhookのURLも提供します。
 
 <a name="formatting-slack-notifications"></a>
 ### Slack通知のフォーマット
@@ -1184,7 +1203,56 @@ Laravelを使用すると、HTTPリクエストの現在のロケール以外の
 <a name="notification-events"></a>
 ## 通知イベント
 
-通知が送信されると、通知システムによって`Illuminate\Notifications\Events\NotificationSent`[イベント](/docs/{{version}}/events)が発行されます。これには、"notifiable"エンティティと通知インスタンス自体が含まれます。このイベントのリスナを`EventServiceProvider`に登録できます。
+<a name="notification-sending-event"></a>
+#### 通知送信前イベント
+
+通知を送信するときは、通知システムが `Illuminate\Notifications\Events\NotificationSending`[イベント](/docs/{{version}}/events)を発行します。このイベントは、"notifiable "エンティティと通知インスタンス自体を含んでいます。アプリケーションの`EventServiceProvider`でこのイベントのリスナを登録できます。
+
+    /**
+     * アプリケーションにマップするイベントリスナの登録
+     *
+     * @var array
+     */
+    protected $listen = [
+        'Illuminate\Notifications\Events\NotificationSending' => [
+            'App\Listeners\CheckNotificationStatus',
+        ],
+    ];
+
+`NotificationSending`イベントのイベントリスナが、その`handle`メソッドから`false`を返した場合、通知は送信されません。
+
+    use Illuminate\Notifications\Events\NotificationSending;
+
+    /**
+     * イベントの処理
+     *
+     * @param  \Illuminate\Notifications\Events\NotificationSending  $event
+     * @return void
+     */
+    public function handle(NotificationSending $event)
+    {
+        return false;
+    }
+
+イベントリスナの中では、イベントの`notifiable`、`notification`、`channel`プロパティへアクセスし、通知先や通知自体の詳細を調べられます。
+
+    /**
+     * イベントの処理
+     *
+     * @param  \Illuminate\Notifications\Events\NotificationSending  $event
+     * @return void
+     */
+    public function handle(NotificationSending $event)
+    {
+        // $event->channel
+        // $event->notifiable
+        // $event->notification
+    }
+
+<a name="notification-sent-event"></a>
+#### 通知送信後イベント
+
+通知が送信されると通知システムが、`Illuminate\Notifications\Events\NotificationSent`[イベント](/docs/{{version}}/events)を発行します。このイベントは、"notifiable"エンティティと通知インスタンス自体を含んでいます。このイベントのリスナは`EventServiceProvider`で登録できます。
 
     /**
      * アプリケーションにマップされるイベントリスナ
@@ -1199,7 +1267,7 @@ Laravelを使用すると、HTTPリクエストの現在のロケール以外の
 
 > {tip} `EventServiceProvider`でリスナを登録した後に、`event:generate` Artisanコマンドを使うと、リスナクラスが素早く生成できます。
 
-Within an event listener, you may access the `notifiable`, `notification`, `channel`, and `response` properties on the event to learn more about the notification recipient or the notification itself:
+イベントリスナ内では、イベントの `notifiable`、`notification`、`channel`、`response`プロパティにアクセスして、通知先や通知自体の詳細を知ることができます。
 
     /**
      * イベントの処理

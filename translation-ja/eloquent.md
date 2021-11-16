@@ -54,7 +54,7 @@ Laravelには、データベースとの対話を楽しくするオブジェク�
 
     php artisan make:model Flight --migration
 
-モデルを生成するとき、ファクトリ、シーダ、コントローラ、ポリシーなど、他のさまざまなタイプのクラスを同時に生成できます。さらにこれらのオプションを組み合わせて、一度に複数のクラスを作成できます。
+モデルを生成するとき、ファクトリ、シーダ、コントローラ、ポリシー、フォームリクエストなど、他のさまざまなタイプのクラスを同時に生成できます。さらにこれらのオプションを組み合わせて、一度に複数のクラスを作成できます。
 
 ```bash
 # モデルとFlightFactoryクラスを生成
@@ -69,13 +69,17 @@ php artisan make:model Flight -s
 php artisan make:model Flight --controller
 php artisan make:model Flight -c
 
+# モデルとFlightControllerリソースクラス、フォームリクエストクラスを生成
+php artisan make:model Flight --controller --resource --requests
+php artisan make:model Flight -crR
+
 # モデルとFlightPolicyクラスを生成
 php artisan make:model Flight --policy
 
 # モデルとマイグレーション、ファクトリ、シーダ、およびコントローラを生成
 php artisan make:model Flight -mfsc
 
-# モデルとマイグレーション、ファクトリ、シーダ、ポリシー、およびコントローラを生成する短縮形
+# モデルとマイグレーション、ファクトリ、シーダ、ポリシー、コントローラ、フォームリクエストを生成する短縮形
 php artisan make:model Flight --all
 
 # ピボットモデルを生成
