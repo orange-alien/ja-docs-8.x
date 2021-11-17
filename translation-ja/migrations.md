@@ -770,7 +770,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `tinyInteger`メソッドは`TINYINT`カラムを作成します。
 
     $table->tinyInteger('votes');
-    
+
 <a name="column-method-tinyText"></a>
 #### `tinyText()` {#collection-method}
 
@@ -1118,6 +1118,16 @@ Laravelは、データベースレベルで参照整合性を強制するため�
           ->onUpdate('cascade')
           ->onDelete('cascade');
 
+これらのアクションには、表現力のある別構文も用意しています。
+
+メソッド  |  説明
+-------  |  -----------
+`$table->cascadeOnUpdate();` | 更新をカスケードします。
+`$table->restrictOnUpdate();`| 更新を制限します。
+`$table->cascadeOnDelete();` | 削除をカスケードします。
+`$table->restrictOnDelete();`| 削除を制限します。
+`$table->nullOnDelete();`    | 削除時に外部キーへNULLをセットします。
+
 追加の[カラム修飾子](#column-modifiers)は、`constrained`メソッドの前に呼び出す必要があります。
 
     $table->foreignId('user_id')
@@ -1157,4 +1167,3 @@ Laravelは、データベースレベルで参照整合性を強制するため�
 | `Illuminate\Database\Events\MigrationsEnded` | マイグレーションのバッチが実行終了しました。 |
 | `Illuminate\Database\Events\MigrationStarted` | 単一マイグレーションが実行されようとしています。 |
 | `Illuminate\Database\Events\MigrationEnded` | 単一マイグレーションが実行完了しました。 |
-

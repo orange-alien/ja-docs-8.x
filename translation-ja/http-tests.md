@@ -804,6 +804,8 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 
     $response->assertJsonMissingValidationErrors($keys);
 
+> {tip} より一般的な[assertValid](#assert-valid)メソッドを使用して、JSONで返されたレスポンスにバリデーションエラーがなく、**かつ**セッションストレージにエラーが一時保存されていないことを宣言できます。
+
 <a name="assert-json-path"></a>
 #### assertJsonPath
 
@@ -887,6 +889,8 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 レスポンスに、指定するキーに対する指定するJSONバリデーションエラーがあることを宣言します。このメソッドは、バリデーションエラーがセッションに一時保存されているのではなく、バリデーションエラーがJSON構造として返されるレスポンスに対してアサートする場合に使用する必要があります。
 
     $response->assertJsonValidationErrors(array $data);
+
+> {tip} より一般的な[assertInvalid](#assert-invalid)メソッドを使用して、JSONで返されたレスポンスにバリデーションエラーが存在した、**もしくは**エラーがセッションストレージに一時保存されたことを宣言できます。
 
 <a name="assert-location"></a>
 #### assertLocation

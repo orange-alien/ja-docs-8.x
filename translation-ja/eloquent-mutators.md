@@ -7,6 +7,7 @@
 - [属性のキャスト](#attribute-casting)
     - [配列とJSONのキャスト](#array-and-json-casting)
     - [日付のキャスト](#date-casting)
+    - [Enumキャスト](#enum-casting)
     - [暗号化キャスト](#encrypted-casting)
     - [クエリ時のキャスト](#query-time-casting)
 - [カスタムキャスト](#custom-casts)
@@ -325,6 +326,32 @@ JSON属性の単一のフィールドをより簡潔な構文で更新するに�
 `date`と`datetime`のキャストはデフォルトで、アプリケーションの`timezone`設定オプションで指定されているタイムゾーンに関わらず、日付をUTC ISO-8601の日付文字列（`1986-05-28T21:05:54.000000Z`）にシリアライズします。アプリケーションの`timezone`設定オプションをデフォルトの`UTC`から変更せずに、常にこのシリアライズ形式を使用し、アプリケーションの日付をUTCタイムゾーンで保存することを強く推奨します。アプリケーション全体でUTCタイムゾーンを一貫して使用することで、PHPやJavaScriptで書かれた他の日付操作ライブラリとの相互運用性を最大限に高められます。
 
 `datetime:Y-m-d H:i:s`のようなカスタムフォーマットを`date`や`datetime`キャストで適用する場合は、日付のシリアライズの際に、Carbonインスタンスの内部タイムゾーンが使用されます。一般的には、アプリケーションの`timezone`設定オプションで指定したタイムゾーンを使用します。
+
+<a name="enum-casting"></a>
+### Enumキャスト
+
+> {note} EnumキャストはPHPバージョン８．１以上でのみ利用可能です。
+
+Eloquentでは、属性値をPHPの列挙型にキャストすることもできます。それには、キャストしたい属性とenumをモデルの`$casts`プロパティ配列で指定します。
+
+    use App\Enums\ServerStatus;
+
+    /**
+     * キャストする属性
+     *
+     * @var array
+     */
+    protected $casts = [
+        'status' => ServerStatus::class,
+    ];
+
+モデルにキャストを定義すると、指定した属性を操作する際に、自動的にenumへキャストしたり、enumからキャストされたりするようになります。
+
+    if ($server->status == ServerStatus::provisioned) {
+        $server->status = ServerStatus::ready;
+
+        $server->save();
+    }
 
 <a name="encrypted-casting"></a>
 ### 暗号化キャスト

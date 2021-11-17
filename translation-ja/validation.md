@@ -769,6 +769,8 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
 [日付](#rule-date)
 [同一日付](#rule-date-equals)
 [日付形式](#rule-date-format)
+[拒否](#rule-declined)
+[条件一致時拒否](#rule-declined-if)
 [相違](#rule-different)
 [桁指定数値](#rule-digits)
 [桁範囲指定数値](#rule-digits-between)
@@ -971,6 +973,16 @@ public function boot()
 #### date\_format:_フォーマット_
 
 バリデーションされる値が**フォーマット**定義と一致するか確認します。バリデーション時には`date`か`date_format`の**どちらか**を使用しなくてはならず、両方はできません。このバリデーションはPHPの[DateTime](https://www.php.net/manual/ja/class.datetime.php)クラスがサポートするフォーマットをすべてサポートしています。
+
+<a name="rule-declined"></a>
+#### declined
+
+フィールドが`"no"`、`"off"`、`0`、`false`であることをバリデートします。
+
+<a name="rule-declined-if"></a>
+#### declined_if:他のフィールド,値,...
+
+他のフィールドが指定した値と等しい場合、このフィールドは`"no"`, `"off"`, `0`, or `false`であることをバリデートします。
 
 <a name="rule-different"></a>
 #### different:_フィールド_
