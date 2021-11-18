@@ -20,7 +20,7 @@
 <a name="model-preparation"></a>
 ### モデルの準備
 
-Laravelのパスワードリセット機能を使用する前に、アプリケーションの`App\Models\User`モデルで`Illuminate\Notifications\Notizable`トレイトを使用する必要があります。通常、このトレイトは、新しいLaravelアプリケーションで作成されるデフォルトの`App\Models\User`モデルに最初から含まれています。
+Laravelのパスワードリセット機能を使用する前に、アプリケーションの`App\Models\User`モデルで`Illuminate\Notifications\Notifiable`トレイトを使用する必要があります。通常、このトレイトは、新しいLaravelアプリケーションで作成されるデフォルトの`App\Models\User`モデルに最初から含まれています。
 
 次に、`App\Models\User`モデルが`Illuminate\Contracts\Auth\CanResetPassword`コントラクトを実装していることを確認します。フレームワークに含まれている`App\Models\User`モデルは、最初からこのインターフェイスを実装しており、`Illuminate\Auth\Passwords\CanResetPassword`トレイトを使用して、インターフェイスの実装に必要なメソッドを持っています。
 
