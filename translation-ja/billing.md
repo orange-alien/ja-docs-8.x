@@ -26,7 +26,7 @@
     - [デフォルト支払い方法の変更](#updating-the-default-payment-method)
     - [支払い方法の追加](#adding-payment-methods)
     - [支払い方法の削除](#deleting-payment-methods)
-- [Subscriptions](#subscriptions)
+- [サブスクリプション]](#subscriptions)
     - [サブスクリプションの作成](#creating-subscriptions)
     - [サブスクリプション状態のチェック](#checking-subscription-status)
     - [価格の変更](#changing-prices)
@@ -740,11 +740,11 @@ Stripeダッシュボード自体からも、サブスクリプションを作�
 > {note} ユーザーが同じ名前のサブスクリプションを２つ持っている場合、`subscription`メソッドは最新のサブスクリプションを常に返します。たとえば、ユーザーが`default`という名前のサブスクリプションレコードを２つ持っているとします。この場合、サブスクリプションの１つは古い期限切れのサブスクリプションであり、もう１つは現在のアクティブなサブスクリプションである可能性があります。最新のサブスクリプションを常に返しますが、古いサブスクリプションは履歴レビューのためにデータベースに保持されます。
 
 <a name="cancelled-subscription-status"></a>
-#### キャンセル済みサブスクリプション状態
+#### サブスクリプションの取り消し
 
-ユーザーがかつてアクティブなサブスクリプション購入者であったが、そのサブスクリプションをキャンセルしたかを判定するには、`cancelled`メソッドを使用します。
+ユーザーがかつてアクティブなサブスクリプション購入者であったが、そのサブスクリプションをキャンセルしたかを判定するには、`canceled`メソッドを使用します。
 
-    if ($user->subscription('default')->cancelled()) {
+    if ($user->subscription('default')->canceled()) {
         //
     }
 
@@ -808,15 +808,15 @@ Stripeダッシュボード自体からも、サブスクリプションを作�
     $subscriptions = Subscription::query()->active()->get();
 
     // ユーザーのキャンセルしたサブスクリプションをすべて取得
-    $subscriptions = $user->subscriptions()->cancelled()->get();
+    $subscriptions = $user->subscriptions()->canceled()->get();
 
 使用可能なスコープの完全なリストは、以下のとおりです。
 
     Subscription::query()->active();
-    Subscription::query()->cancelled();
+    Subscription::query()->canceled();
     Subscription::query()->ended();
     Subscription::query()->incomplete();
-    Subscription::query()->notCancelled();
+    Subscription::query()->notCanceled();
     Subscription::query()->notOnGracePeriod();
     Subscription::query()->notOnTrial();
     Subscription::query()->onGracePeriod();

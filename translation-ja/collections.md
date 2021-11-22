@@ -2912,7 +2912,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
 <a name="method-wherenotin"></a>
 #### `whereNotIn()` {#collection-method}
 
-`whereNotIn`メソッドは、指定配列に含まれていないアイテム値を持つ要素をコレクションから削除します。
+WhereNotIn`メソッドは、指定した配列内に含まれる指定項目値を持つ要素を、コレクションから削除します。
 
     $collection = collect([
         ['product' => 'Desk', 'price' => 200],

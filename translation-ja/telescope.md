@@ -183,6 +183,7 @@ Telescopeが記録したデータは、`App\Providers\TelescopeServiceProvider`�
             return $entry->isReportableException() ||
                 $entry->isFailedJob() ||
                 $entry->isScheduledTask() ||
+                $entry->isSlowQuery() ||
                 $entry->hasMonitoredTag();
         });
     }
@@ -213,6 +214,7 @@ Telescopeが記録したデータは、`App\Providers\TelescopeServiceProvider`�
                 return $entry->isReportableException() ||
                     $entry->isFailedJob() ||
                     $entry->isScheduledTask() ||
+                    $entry->isSlowQuery() ||
                     $entry->hasMonitoredTag();
                 });
         });

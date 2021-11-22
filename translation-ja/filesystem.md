@@ -397,13 +397,19 @@ Webアプリケーションでは、ファイルを保存するための最も�
 <a name="other-uploaded-file-information"></a>
 #### アップロード済みファイルのその他の情報
 
-アップロード済みファイルの元の名前を取得したい場合は、`getClientOriginalName`メソッドを使用して取得できます。
+アップロードされたファイルの元の名前と拡張子を取得したい場合は、`getClientOriginalName`と`getClientOriginalExtension`メソッドを使って取得します。
 
-    $name = $request->file('avatar')->getClientOriginalName();
+    $file = $request->file('avatar');
 
-`extension`メソッドを使用して、アップロード済みファイルのファイル拡張子を取得できます。
+    $name = $file->getClientOriginalName();
+    $extension = $file->getClientOriginalExtension();
 
-    $extension = $request->file('avatar')->extension();
+ただし，悪意のあるユーザーによりファイル名や拡張子が改竄される可能性があるため，`getClientOriginalName`と`getClientOriginalExtension`メソッドは安全であると考えられないことに注意してください。そのため，アップロードされたファイルの名前と拡張子を取得するには，通常，`hashName`メソッドと`extension`メソッドを使用するべきです。
+
+    $file = $request->file('avatar');
+
+    $name = $file->hashName(); // ユニークでランダムな名前を生成する
+    $extension = $file->extension(); // ファイルのMIMEタイプに基づき拡張子を決める
 
 <a name="file-visibility"></a>
 ### ファイルの可視性

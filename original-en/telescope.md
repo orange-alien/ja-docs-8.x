@@ -183,6 +183,7 @@ You may filter the data that is recorded by Telescope via the `filter` closure t
             return $entry->isReportableException() ||
                 $entry->isFailedJob() ||
                 $entry->isScheduledTask() ||
+                $entry->isSlowQuery() ||
                 $entry->hasMonitoredTag();
         });
     }
@@ -213,6 +214,7 @@ While the `filter` closure filters data for individual entries, you may use the 
                 return $entry->isReportableException() ||
                     $entry->isFailedJob() ||
                     $entry->isScheduledTask() ||
+                    $entry->isSlowQuery() ||
                     $entry->hasMonitoredTag();
                 });
         });

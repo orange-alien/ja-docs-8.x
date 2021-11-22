@@ -875,6 +875,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `->virtualAs($expression)`  |  virtual generatedカラムを作成（MySQL）
 `->generatedAs($expression)`  |  指定のシーケンスオプションで、識別カラムを生成（PostgreSQL）
 `->always()`  |  IDカラムの入力に対するシーケンス値の優先順位を定義（PostgreSQL）
+`->isGeometry()`  |  空間カラムのタイプを`geometry`に設定 - デフォルトタイプは`geography`（PostgreSQL）
 
 <a name="default-expressions"></a>
 #### デフォルト式
