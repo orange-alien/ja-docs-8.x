@@ -116,7 +116,7 @@ pecl install swoole
 次に、アプリケーションの`docker/supervisord.conf`ファイルの`command`ディレクティブを更新して、SailへPHP開発サーバの代わりにOctaneを使い、アプリケーションを使用してアプリケーションを動作させるように指定します。
 
 ```ini
-command=/usr/bin/php -d variables_order=EGPCS /var/www/html/artisan octane:start --server=swoole --host=0.0.0.0 --port=8000
+command=/usr/bin/php -d variables_order=EGPCS /var/www/html/artisan octane:start --server=swoole --host=0.0.0.0 --port=80
 ```
 
 最後に、Sailイメージを構築します。

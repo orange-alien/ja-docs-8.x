@@ -485,7 +485,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 <a name="column-method-foreignIdFor"></a>
 #### `foreignIdFor()` {#collection-method}
 
-`foreignIdFor`メソッドは、指定モデルクラスへ`{column}_id UNSIGNED BIG INT`を追加します。
+`foreignIdFor`メソッドは、指定モデルクラスへ`{column}_id UNSIGNED BIGINT`を追加します。
 
     $table->foreignIdFor(User::class);
 

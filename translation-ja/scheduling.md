@@ -40,15 +40,6 @@ Laravelのコマンドスケジューラは、サーバ上でスケジュール�
     class Kernel extends ConsoleKernel
     {
         /**
-         * アプリケーションで提供するArtisanコマンド
-         *
-         * @var array
-         */
-        protected $commands = [
-            //
-        ];
-
-        /**
          * アプリケーションのコマンド実行スケジュール定義
          *
          * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
