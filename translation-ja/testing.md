@@ -52,7 +52,7 @@ Laravelには、アプリケーションのベース`TestCase`クラスに適用
 
 > {tip} [stubのリソース公開](/docs/{{version}}/artisan#stub-customization) を使って、Testスタブをカスタマイズできます。
 
-テストを生成したら、[PHPUnit](https://phpunit.de)を使用する場合と同様にテストメソッドを定義します。テストを実行するには、ターミナルから`vendor/bin/phpunit`または`phpartisantest`コマンドを実行します。
+テストを生成したら、[PHPUnit](https://phpunit.de)を使用する場合と同様にテストメソッドを定義します。テストを実行するには、ターミナルから`vendor/bin/phpunit`または`php artisan test`コマンドを実行します。
 
     <?php
 
