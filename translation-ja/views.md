@@ -32,7 +32,7 @@
         return view('greeting', ['name' => 'James']);
     });
 
-> {tip} Bladeテンプレートの作成方法の詳細をお探しですか？最初に完全な[Bladeドキュメント](/docs/{{version}}/ブレード)を確認してください。
+> {tip} Bladeテンプレートの作成方法の詳細をお探しですか？最初に完全な[Bladeドキュメント](/docs/{{version}}/blade)を確認してください。
 
 <a name="creating-and-rendering-views"></a>
 ## ビューの作成とレンダー
@@ -51,7 +51,7 @@
 
     return View::make('greeting', ['name' => 'James']);
 
-ご覧のとおり、`view`ヘルパに渡たす最初の引数は、`resources/views`ディレクトリ内のビューファイルの名前に対応しています。２番目の引数は、ビューで使用するデータの配列です。この場合、[Blade構文](/docs/{{version}}/ブレード)を使用してビューに表示する、`name`変数を渡しています。
+ご覧のとおり、`view`ヘルパに渡たす最初の引数は、`resources/views`ディレクトリ内のビューファイルの名前に対応しています。２番目の引数は、ビューで使用するデータの配列です。この場合、[Blade構文](/docs/{{version}}/blade)を使用してビューに表示する、`name`変数を渡しています。
 
 <a name="nested-view-directories"></a>
 ### ネストしたビューディレクトリ
