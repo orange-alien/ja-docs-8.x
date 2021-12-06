@@ -1344,7 +1344,7 @@ URLの現在のハッシュフラグメントが指定するフラグメント�
 <a name="assert-present"></a>
 #### assertPresent
 
-指定セレクタに一致する要素が、存在することを宣言します。
+指定セレクタに一致する要素が、ソースに存在することを宣言します。
 
     $browser->assertPresent($selector);
 

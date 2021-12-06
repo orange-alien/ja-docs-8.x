@@ -1998,7 +1998,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 
     // [4]
 
-> {note} コールバックが`true`を返さなかった場合、`skipWhile`メソッドは空のコレクションを返します。
+> {note} コールバックが`false`を返さなかった場合、`skipWhile`メソッドは空のコレクションを返します。
 
 <a name="method-slice"></a>
 #### `slice()` {#collection-method}

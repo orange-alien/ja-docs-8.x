@@ -54,6 +54,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [Arr::sort](#method-array-sort)
 [Arr::sortRecursive](#method-array-sort-recursive)
 [Arr::toCssClasses](#method-array-to-css-classes)
+[Arr::undot](#method-array-undot)
 [Arr::where](#method-array-where)
 [Arr::wrap](#method-array-wrap)
 [data_fill](#method-data-fill)
@@ -797,6 +798,22 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     */
 
 このメソッドは、[Bladeコンポーネントのアトリビュートバッグを使ったクラスのマージ](/docs/{{version}}/blade#conditionally-merge-classes)と、`@class` [Bladeディレクティブ](/docs/{{version}}/blade#conditional-classes)を提供するLaravelの機能を強化します。
+
+<a name="method-array-undot"></a>
+#### `Arr::undot()` {#collection-method}
+
+`Arr::undot`メソッドは、「ドット」記法を用いた一次元配列を多次元配列へ展開します。
+
+    use Illuminate\Support\Arr;
+
+    $array = [
+        'user.name' => 'Kevin Malone',
+        'user.occupation' => 'Accountant',
+    ];
+
+    $array = Arr::undot($array);
+
+    // ['user' => ['name' => 'Kevin Malone', 'occupation' => 'Accountant']]
 
 <a name="method-array-where"></a>
 #### `Arr::where()` {#collection-method}

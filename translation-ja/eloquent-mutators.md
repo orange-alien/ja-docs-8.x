@@ -356,7 +356,7 @@ Eloquentでは、属性値をPHPの列挙型にキャストすることもでき
 <a name="encrypted-casting"></a>
 ### 暗号化キャスト
 
-`encrypted`キャストは、Laravelに組み込まれた[暗号化](/docs/{{version}}/encryption)機能を使って、モデルの属性値を暗号化します。さらに、`encrypted:array`、`encrypted:collection`、`encrypted:object`のキャストは、暗号化されていないものと同様の動作をしますが、ご期待通りにデータベースに保存される際に、基本的な値を暗号化します。
+`encrypted`キャストは、Laravelに組み込まれた[暗号化](/docs/{{version}}/encryption)機能を使って、モデルの属性値を暗号化します。さらに、`encrypted:array`、`encrypted:collection`、`encrypted:object`、`AsEncryptedArrayObject`、`AsEncryptedCollection`のキャストは、暗号化されていないものと同様の動作をしますが、ご期待通りにデータベースに保存される際に、基本的な値を暗号化します。
 
 暗号化したテキストの最終的な長さは予測できず、プレーンテキストのものよりも長くなるので、関連するデータベースのカラムが `TEXT` 型以上であることを確認してください。さらに、値はデータベース内で暗号化されているので、暗号化された属性値を問い合わせたり検索したりすることはできません。
 

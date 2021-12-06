@@ -1816,6 +1816,76 @@ Laravelは有用な数多くのバリデーションルールを提供してい�
         'name' => ['required', 'string', new Uppercase],
     ]);
 
+#### 追加データへのアクセス
+
+カスタムバリデーションルールクラスがバリデーション下の他のすべてのデータへアクセスする必要がある場合、そのルールクラスに`Illuminate\Contracts\Validation\DataAwareRule`インターフェイスを実装してください。このインターフェイスは、クラスへ`setData` メソッドの定義を要求します。このメソッドはLaravelにより自動的に（バリデーション処理前に）、バリデーション対象の全データで呼び出されます。
+
+    <?php
+
+    namespace App\Rules;
+
+    use Illuminate\Contracts\Validation\Rule;
+    use Illuminate\Contracts\Validation\DataAwareRule;
+
+    class Uppercase implements Rule, DataAwareRule
+    {
+        /**
+         * バリデーション下の全データ
+         *
+         * @var array
+         */
+        protected $data = [];
+
+        // ...
+
+        /**
+         * バリデーション下のデータをセット
+         *
+         * @param  array  $data
+         * @return $this
+         */
+        public function setData($data)
+        {
+            $this->data = $data;
+
+            return $this;
+        }
+    }
+
+または、バリデーションルールが、バリデーションを行うバリデータインスタンスへのアクセスを必要とする場合は、`ValidatorAwareRule`インターフェイスを実装してください。
+
+    <?php
+
+    namespace App\Rules;
+
+    use Illuminate\Contracts\Validation\Rule;
+    use Illuminate\Contracts\Validation\ValidatorAwareRule;
+
+    class Uppercase implements Rule, ValidatorAwareRule
+    {
+        /**
+         * バリデータインスタンス
+         *
+         * @var \Illuminate\Validation\Validator
+         */
+        protected $validator;
+
+        // ...
+
+        /**
+         * 現用バリデータのセット
+         *
+         * @param  \Illuminate\Validation\Validator  $validator
+         * @return $this
+         */
+        public function setValidator($validator)
+        {
+            $this->validator = $validator;
+
+            return $this;
+        }
+    }
+
 <a name="using-closures"></a>
 ### クロージャの使用
 

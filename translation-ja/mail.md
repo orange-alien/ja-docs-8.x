@@ -688,13 +688,36 @@ LaravelのMarkdownコンポーネント用にまったく新しいテーマを�
 
 キュー投入されたMailableがデータベーストランザクション内でディスパッチされると、データベーストランザクションがコミットされる前にキューによって処理される場合があります。これが発生した場合、データベーストランザクション中にモデルまたはデータベースレコードに加えた更新は、データベースにまだ反映されていない可能性があります。さらに、トランザクション内で作成したモデルまたはデータベースレコードは、データベースに存在しない可能性があります。Mailableがこれらのモデルに依存している場合、キューに入れられたMailableを送信するジョブが処理されるときに予期しないエラーが発生する可能性があります。
 
-キュー接続の`after_commit`設定オプションが`false`に設定されている場合でも、Mailableクラスで`$afterCommit`プロパティを定義することにより、開いているすべてのデータベーストランザクションがコミットされた後に、特定のキューに入れられたMailableをディスパッチする必要があることを明示できます。
+キュー接続の`after_commit`設定オプションが`false`に設定されている場合でも、メールメッセージ送信時に`afterCommit`メソッドを呼び出せば、キュー投入する特定のMailableが、オープンしているすべてのデータベーストランザクションのコミット後に、ディスパッチすると示せます。
 
+    Mail::to($request->user())->send(
+        (new OrderShipped($order))->afterCommit()
+    );
+
+あるいは、Mailableのコンストラクタで、`afterCommit`メソッドを呼び出すこともできます。
+
+    <?php
+
+    namespace App\Mail;
+
+    use Illuminate\Bus\Queueable;
     use Illuminate\Contracts\Queue\ShouldQueue;
+    use Illuminate\Mail\Mailable;
+    use Illuminate\Queue\SerializesModels;
 
     class OrderShipped extends Mailable implements ShouldQueue
     {
-        public $afterCommit = true;
+        use Queueable, SerializesModels;
+
+        /**
+         * 新しいメッセージインスタンスの生成
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+            $this->afterCommit();
+        }
     }
 
 > {tip} これらの問題の回避方法の詳細は、[キュー投入したジョブとデータベーストランザクション](/docs/{{version}}/queues#jobs-and-database-transactions)に関するドキュメントを確認してください。

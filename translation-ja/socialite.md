@@ -6,8 +6,9 @@
 - [設定](#configuration)
 - [認証](#authentication)
     - [ルート](#routing)
-    - [オプションのパラメータ](#optional-parameters)
+    - [認証と保存](#authentication-and-storage)
     - [アクセススコープ](#access-scopes)
+    - [オプションのパラメータ](#optional-parameters)
 - [ユーザー詳細情報の取得](#retrieving-user-details)
 
 <a name="introduction"></a>
@@ -64,18 +65,41 @@ OAuthプロバイダを使用してユーザーを認証するには、２つの
 
 `Socialite`ファサードが提供する`redirect`メソッドは、ユーザーをOAuthプロバイダへリダイレクトしますが、`user`メソッドは、受信したリクエストを読み取り、認証後にプロバイダからユーザーの情報を取得します。
 
-<a name="optional-parameters"></a>
-### オプションのパラメータ
+<a name="authentication-and-storage"></a>
+### 認証と保存
 
-多くのOAuthプロバイダがリダイレクトリクエスト中のオプションパラメータをサポートしています。リクエストにオプションパラメータを含めるには、`with`メソッドを呼び出し、連想配列を渡します。
+OAuthプロバイダからユーザーを取得したら、そのユーザーがアプリケーションのデータベースに存在するかを判断し、[ユーザーを認証](/docs/{{version}}/authentication#authenticate-a-user-instance)します。ユーザーがアプリケーションのデータベースに存在していない場合は通常、そのユーザーを表す新しいレコードをデータベースに作成します。
 
+    use App\Models\User;
+    use Illuminate\Support\Facades\Auth;
     use Laravel\Socialite\Facades\Socialite;
 
-    return Socialite::driver('google')
-        ->with(['hd' => 'example.com'])
-        ->redirect();
+    Route::get('/auth/callback', function () {
+        $githubUser = Socialite::driver('github')->user();
 
-> {note} `with`メソッドを使用時は、`state`や`response_type`などの予約キーワードを渡さないように注意してください。
+        $user = User::where('github_id', $githubUser->id)->first();
+
+        if ($user) {
+            $user->update([
+                'github_token' => $githubUser->token,
+                'github_refresh_token' => $githubUser->refreshToken,
+            ]);
+        } else {
+            $user = User::create([
+                'name' => $githubUser->name,
+                'email' => $githubUser->email,
+                'github_id' => $githubUser->id,
+                'github_token' => $githubUser->token,
+                'github_refresh_token' => $githubUser->refreshToken,
+            ]);
+        }
+
+        Auth::login($user);
+
+        return redirect('/dashboard');
+    });
+
+> {tip} 特定のOAuthプロバイダからどんなユーザー情報が得られるかについては、[ユーザー情報の取得](#retrieving-user-details)ドキュメントを参照してください。
 
 <a name="access-scopes"></a>
 ### アクセススコープ
@@ -94,10 +118,25 @@ OAuthプロバイダを使用してユーザーを認証するには、２つの
         ->setScopes(['read:user', 'public_repo'])
         ->redirect();
 
+<a name="optional-parameters"></a>
+### オプションのパラメータ
+
+多くのOAuthプロバイダがリダイレクトリクエスト中のオプションパラメータをサポートしています。リクエストにオプションパラメータを含めるには、`with`メソッドを呼び出し、連想配列を渡します。
+
+    use Laravel\Socialite\Facades\Socialite;
+
+    return Socialite::driver('google')
+        ->with(['hd' => 'example.com'])
+        ->redirect();
+
+> {note} `with`メソッド使用時は、`state`や`response_type`などの予約キーワードを渡さないように注意してください。
+
 <a name="retrieving-user-details"></a>
 ## ユーザー詳細情報の取得
 
 ユーザーを認証コールバックルートへリダイレクトした後、Socialiteの`user`メソッドを使用してユーザーの詳細を取得できます。`user`メソッドが返すユーザーオブジェクトは、ユーザーに関する情報を独自のデータベースに保存するために使用できるさまざまなプロパティとメソッドを提供します。認証するOAuthプロバイダがOAuth1.0またはOAuth2.0のどちらをサポートしているかに応じて、さまざまなプロパティとメソッドが使用できます。
+
+    use Laravel\Socialite\Facades\Socialite;
 
     Route::get('/auth/callback', function () {
         $user = Socialite::driver('github')->user();

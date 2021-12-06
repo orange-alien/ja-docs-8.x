@@ -944,6 +944,12 @@ Prunableモデルを設定した後は、アプリケーションの`App\Console
         '--model' => [Address::class, Flight::class],
     ])->daily();
 
+検出したすべてのモデルを整理する場合に、特定のモデルを除外したい場合は、`--except`オプションを使用します。
+
+    $schedule->command('model:prune', [
+        '--except' => [Address::class, Flight::class],
+    ])->daily()
+
 `model:prune`コマンドを`--pretend`オプション付きで実行することで、`prunable`クエリをテストできます。このオプションを付けると、`model:prune`コマンドは実際にコマンドを実行する場合、どれだけのレコードが刈り取られるかだけを報告します。
 
     php artisan model:prune --pretend
