@@ -74,7 +74,7 @@ Passportの[サービスプロバイダ](/docs/{{version}}/provider)は独自の
 
 > {tip} 自動増分整数の代わりに、Passportの`Client`モデルの主キー値としてUUIDを使用したい場合は、[`uuids`オプション](#client-uuids)を使いPassportをインストールしてください。
 
-`passport:install`コマンドを実行し終えたら、`Laravel\Passport\HasApiTokens`トレイトを`App\Models\User`モデルへ追加してください。このトレイトは認証済みユーザーのトークンとスコープを調べられるように、モデルへ数個のヘルパメソッドを提供します。
+`passport:install`コマンドを実行し終えたら、`Laravel\Passport\HasApiTokens`トレイトを`App\Models\User`モデルへ追加してください。このトレイトは認証済みユーザーのトークンとスコープを調べられるように、モデルへ数個のヘルパメソッドを提供します。すでに`Laravel\Sanctum\HasApiTokens`トレイトを使用している場合は、それを削除してください。
 
     <?php
 

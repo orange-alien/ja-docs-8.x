@@ -770,7 +770,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `tinyInteger`メソッドは`TINYINT`カラムを作成します。
 
     $table->tinyInteger('votes');
-    
+
 <a name="column-method-tinyText"></a>
 #### `tinyText()` {#collection-method}
 
@@ -1040,6 +1040,8 @@ LaravelのスキーマビルダBlueprintクラスは、Laravelでサポートし
 `$table->primary(['id', 'parent_id']);`  |  複合キーを追加
 `$table->unique('email');`  |  一意のインデックスを追加
 `$table->index('state');`  |  インデックスを追加
+`$table->fulltext('body');`  |  フルテキストのインデックスを追加（MySQL／PostgreSQL）
+`$table->fulltext('body')->language('english');`  |  指定言語で、フルテキストのインデックスを追加（PostgreSQL）
 `$table->spatialIndex('location');`  |  空間インデックスを追加（SQLiteを除く）
 
 <a name="index-lengths-mysql-mariadb"></a>
@@ -1168,4 +1170,3 @@ Laravelは、データベースレベルで参照整合性を強制するため�
 | `Illuminate\Database\Events\MigrationsEnded` | マイグレーションのバッチが実行終了しました。 |
 | `Illuminate\Database\Events\MigrationStarted` | 単一マイグレーションが実行されようとしています。 |
 | `Illuminate\Database\Events\MigrationEnded` | 単一マイグレーションが実行完了しました。 |
-

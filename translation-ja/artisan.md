@@ -300,7 +300,7 @@ Artisanが提供するコマンドに加え、独自のカスタムコマンド�
      */
     protected $signature = 'mail:send
                             {user : The ID of the user}
-                            {--queue= : Whether the job should be queued}';
+                            {--queue : Whether the job should be queued}';
 
 <a name="command-io"></a>
 ## コマンドI／O

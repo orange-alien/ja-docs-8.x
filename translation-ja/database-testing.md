@@ -535,6 +535,7 @@
     namespace Tests\Feature;
 
     use Database\Seeders\OrderStatusSeeder;
+    use Database\Seeders\TransactionStatusSeeder;
     use Illuminate\Foundation\Testing\RefreshDatabase;
     use Illuminate\Foundation\Testing\WithoutMiddleware;
     use Tests\TestCase;
@@ -557,6 +558,13 @@
             $this->seed(OrderStatusSeeder::class);
 
             // ...
+
+            // 配列中に指定してあるシーダを実行
+            $this->seed([
+                OrderStatusSeeder::class,
+                TransactionStatusSeeder::class,
+                // ...
+            ]);
         }
     }
 

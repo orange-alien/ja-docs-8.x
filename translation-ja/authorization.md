@@ -6,6 +6,7 @@
     - [アクションの認可](#authorizing-actions-via-gates)
     - [ゲートのレスポンス](#gate-responses)
     - [ゲートチェックの割り込み](#intercepting-gate-checks)
+    - [インライン認可](#inline-authorization)
 - [ポリシーの作成](#creating-policies)
     - [ポリシーの生成](#generating-policies)
     - [ポリシーの登録](#registering-policies)
@@ -218,6 +219,21 @@ Laravelは、アクションを認可する2つの主要な方法を提供しま
     });
 
 `before`メソッドと同様に、`after`クロージャがnull以外の結果を返した場合、その結果は認可チェックの結果とみなします。
+
+<a name="inline-authorization"></a>
+### インライン認可
+
+時には、現在認証されているユーザーが、あるアクションを実行する認可を持っているかを、そのアクションに対応する専用のゲートを書かずに判断したいこともあるでしょう。Laravelでは、`Gate::allowIf`や`Gate::denyIf`メソッドを使い、「インライン」での認可チェックを行うことができます。
+
+```php
+use Illuminate\Support\Facades\Auth;
+
+Gate::allowIf(fn ($user) => $user->isAdministrator());
+
+Gate::denyIf(fn ($user) => $user->banned());
+```
+
+アクションが認可されていない場合や、現在認証されているユーザーがいない場合、Laravelは自動的に`Illuminate\Auth\Access\AuthorizationException`という例外を投げます。`AuthorizationException`のインスタンスは、Laravelの例外ハンドラが、自動的に403 HTTPレスポンスへ変換します。
 
 <a name="creating-policies"></a>
 ## ポリシーの作成

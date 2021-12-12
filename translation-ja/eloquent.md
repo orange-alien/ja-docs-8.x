@@ -388,6 +388,8 @@ Flight::where('departed', true)
     ->each->update(['departed' => false]);
 ```
 
+`lazyByIdDesc`メソッドを使って、`id`の降順に基づいて結果をフィルタリングできます。
+
 <a name="cursors"></a>
 ### カーソル
 
@@ -948,7 +950,7 @@ Prunableモデルを設定した後は、アプリケーションの`App\Console
 
     $schedule->command('model:prune', [
         '--except' => [Address::class, Flight::class],
-    ])->daily()
+    ])->daily();
 
 `model:prune`コマンドを`--pretend`オプション付きで実行することで、`prunable`クエリをテストできます。このオプションを付けると、`model:prune`コマンドは実際にコマンドを実行する場合、どれだけのレコードが刈り取られるかだけを報告します。
 

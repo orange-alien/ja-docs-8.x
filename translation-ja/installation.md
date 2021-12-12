@@ -270,3 +270,4 @@ Laravelは、JavaScriptシングルページアプリケーションまたはモ
 
 この方法でLaravelの使用を計画している場合は、[ルーティング](/docs/{{version}}/routing)、[Laravel Sanctum](/docs/{{version}}/sanctum)、[Eloquent ORM](/docs/{{version}}/eloquent)に関するドキュメントを確認することをお勧めします。
 
+> {tip} LaravelのバックエンドとNext.jsのフロントエンドのスカフォールドから始める必要がありますか？Laravel Breezeは、[APIスタック](/docs/{{version}}/starter-kits#breeze-and-next)と[Next.jsフロントエンド実装](https://github.com/laravel/breeze-next)を提供しているため、すぐに開始できます。

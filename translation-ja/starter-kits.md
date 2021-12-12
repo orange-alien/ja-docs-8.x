@@ -4,6 +4,7 @@
 - [Laravel Breeze](#laravel-breeze)
     - [インストール](#laravel-breeze-installation)
     - [BreezeとInertia](#breeze-and-inertia)
+    - [BreezeとNext.js／API](#breeze-and-next)
 - [Laravel Jetstream](#laravel-jetstream)
 
 <a name="introduction"></a>
@@ -23,7 +24,7 @@ Breezeは、新しいLaravelアプリケーションを始めるための素晴�
 <a name="laravel-breeze-installation"></a>
 ### インストール
 
-まず、[新しいLaravelアプリケーションを作成](/docs/{{version}}/installation)し、データベースを設定し、[データベースのマイグレーション](/docs/{{version}}/migrations)を実行する必要があります。
+まず、[新しいLaravelアプリケーションを作成](/docs/{{version}}/installation)し、データベースを設定後、[データベースのマイグレーション](/docs/{{version}}/migrations)を実行する必要があります。
 
 ```bash
 curl -s https://laravel.build/example-app | bash
@@ -39,7 +40,7 @@ php artisan migrate
 composer require laravel/breeze --dev
 ```
 
-ComposerでLaravel　Breezeパッケージをインストールしたら、`breeze:install` Artisanコマンドを実行します。このコマンドは、認証ビュー、ルート、コントローラ、およびその他のリソースをアプリケーションにリソース公開します。Laravel Breezeは、その機能と実装を完全に制御し目に見えるようにするために、すべてのコードをアプリケーションへリソース公開します。Breezeをインストールしたら、アプリケーションのCSSファイルを使用できるようにアセットをコンパイルする必要もあります。
+ComposerでLaravel Breezeパッケージをインストールしたら、`breeze:install` Artisanコマンドを実行します。このコマンドは、認証ビュー、ルート、コントローラ、およびその他のリソースをアプリケーションにリソース公開します。Laravel Breezeは、その機能と実装を完全に制御し目に見えるようにするために、すべてのコードをアプリケーションへリソース公開します。Breezeをインストールしたら、アプリケーションのCSSファイルを使用できるようにアセットをコンパイルする必要もあります。
 
 ```nothing
 php artisan breeze:install
@@ -69,6 +70,24 @@ npm install
 npm run dev
 php artisan migrate
 ```
+
+<a name="breeze-and-next"></a>
+### BreezeとNext.js／API
+
+Laravel Breezeは、[Next](https://nextjs.org)や[Nuxt](https://nuxtjs.org)などのモダンなJavaScriptアプリケーションで認証するAPIをスカフォールドすることもできます。使い始めるには、`breeze:install` Artisanコマンドを実行する時、`api`スタックを希望するスタックとして指定します。
+
+```nothing
+php artisan breeze:install api
+
+php artisan migrate
+```
+
+インストール時に、Breezeはアプリケーションの`.env`ファイルへ環境変数`FRONTEND_URL`を追加します。このURLは、あなたのJavaScriptアプリケーションのURLでなければなりません。ローカル開発時、通常は`http://localhost:3000`となります。
+
+<a name="next-reference-implementation"></a>
+#### Next.jsリファレンス実装
+
+ついに、このバックエンドとお好みのフロントエンドを組み合わせる準備ができました。BreezeフロントエンドのNextリファレンス実装は[GitHubで公開](https://github.com/laravel/breeze-next)しています。このフロントエンドはLaravelがメンテナンスし、Breezeが提供する従来のBladeスタックやInertiaスタックと同じユーザーインターフェイスを備えています。
 
 <a name="laravel-jetstream"></a>
 ## Laravel Jetstream

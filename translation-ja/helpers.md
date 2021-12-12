@@ -56,6 +56,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [Arr::toCssClasses](#method-array-to-css-classes)
 [Arr::undot](#method-array-undot)
 [Arr::where](#method-array-where)
+[Arr::whereNotNull](#method-array-where-not-null)
 [Arr::wrap](#method-array-wrap)
 [data_fill](#method-data-fill)
 [data_get](#method-data-get)
@@ -829,6 +830,19 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     });
 
     // [1 => '200', 3 => '400']
+
+<a name="method-array-where-not-null"></a>
+#### `Arr::whereNotNull()` {#collection-method}
+
+`Arr::whereNotNull`メソッドは、指定する配列からすべての`null`値を削除します。
+
+    use Illuminate\Support\Arr;
+
+    $array = [0, null];
+
+    $filtered = Arr::whereNotNull($array);
+
+    // [0 => 0]
 
 <a name="method-array-wrap"></a>
 #### `Arr::wrap()` {#collection-method}

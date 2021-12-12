@@ -1349,7 +1349,7 @@ Cashierは、`cashier:webhook` Artisanコマンドを利便性のために用意
 
 作成されるWebフックは、使用するCashierバージョンが対応しているStripe APIバージョンを使用します。異なるStripeのバージョンを使用したい場合は、`--api-version`オプションを指定してください。
 
-    php artisan cashier:webhook --app-version="2019-12-03"
+    php artisan cashier:webhook --api-version="2019-12-03"
 
 作成後、Webフックはすぐに有効になります。Webフックを作成するが、準備が整うまで無効にしておく場合は、コマンド実行時に、`--disabled`オプションを指定します。
 
