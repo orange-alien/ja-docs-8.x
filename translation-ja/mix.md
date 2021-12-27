@@ -37,7 +37,7 @@ Webpackとアセットのコンパイルを使い始めようとして混乱し�
 ## インストールと準備
 
 <a name="installing-node"></a>
-#### Installing Node
+#### Nodeのインストール
 
 Mixを実行する前に、まずNode.jsとNPMをマシンへ確実にインストールする必要があります。
 
