@@ -48,6 +48,14 @@
     #collection-method-list a {
         display: block;
     }
+
+    .collection-method code {
+        font-size: 14px;
+    }
+
+    .collection-method:not(.first-collection-method) {
+        margin-top: 50px;
+    }
 </style>
 
 <div id="collection-method-list" markdown="1">
@@ -70,7 +78,7 @@
 </div>
 
 <a name="method-contains"></a>
-#### `contains($key, $operator = null, $value = null)`
+#### `contains($key, $operator = null, $value = null)` {.collection-method .first-collection-method}
 
 `contains`メソッドを使い、指定モデルインスタンスがコレクションに含まれているかどうかを判定できます。このメソッドは、主キーまたはモデルインスタンスを引数に取ります。
 
@@ -79,7 +87,7 @@
     $users->contains(User::find(1));
 
 <a name="method-diff"></a>
-#### `diff($items)`
+#### `diff($items)` {.collection-method}
 
 `diff`メソッドは、指定コレクションに存在しないすべてのモデルを返します。
 
@@ -88,14 +96,14 @@
     $users = $users->diff(User::whereIn('id', [1, 2, 3])->get());
 
 <a name="method-except"></a>
-#### `except($keys)`
+#### `except($keys)` {.collection-method}
 
 `except`メソッドは、指定する主キーを持たないすべてのモデルを返します。
 
     $users = $users->except([1, 2, 3]);
 
 <a name="method-find"></a>
-#### `find($key)` {#collection-method .first-collection-method}
+#### `find($key)` {.collection-method}
 
 `find`メソッドは、指定キーと一致する主キーを持つモデルを返します。`$key`がモデルインスタンスの場合、`find`は主キーに一致するモデルを返そうとします。`$key`がキーの配列である場合、`find`は指定配列の中の主キーを持つすべてのモデルを返します。
 
@@ -104,7 +112,7 @@
     $user = $users->find(1);
 
 <a name="method-fresh"></a>
-#### `fresh($with = [])`
+#### `fresh($with = [])` {.collection-method}
 
 `fresh`メソッドは、データベースからコレクション内の各モデルの新しいインスタンスを取得します。さらに、指定したリレーションはすべてEagerロードされます。
 
@@ -113,7 +121,7 @@
     $users = $users->fresh('comments');
 
 <a name="method-intersect"></a>
-#### `intersect($items)`
+#### `intersect($items)` {.collection-method}
 
 `intersect`メソッドは、指定コレクションにも存在するすべてのモデルを返します。
 
@@ -122,7 +130,7 @@
     $users = $users->intersect(User::whereIn('id', [1, 2, 3])->get());
 
 <a name="method-load"></a>
-#### `load($relations)`
+#### `load($relations)` {.collection-method}
 
 `load`メソッドは、コレクション内のすべてのモデルに対して指定するリレーションをEagerロードします。
 
@@ -131,7 +139,7 @@
     $users->load('comments.author');
 
 <a name="method-loadMissing"></a>
-#### `loadMissing($relations)`
+#### `loadMissing($relations)` {.collection-method}
 
 `loadMissing`メソッドは、関係がまだロードされていない場合、コレクション内のすべてのモデルに対して指定するリレーションをEagerロードします。
 
@@ -140,7 +148,7 @@
     $users->loadMissing('comments.author');
 
 <a name="method-modelKeys"></a>
-#### `modelKeys()`
+#### `modelKeys()` {.collection-method}
 
 `modelKeys`メソッドは、コレクション内のすべてのモデルの主キーを返します。
 
@@ -149,28 +157,28 @@
     // [1, 2, 3, 4, 5]
 
 <a name="method-makeVisible"></a>
-#### `makeVisible($attributes)`
+#### `makeVisible($attributes)` {.collection-method}
 
 `makeVisible`メソッドは、通常コレクション内の各モデルで"hidden"になっている[属性をvisibleにします](/docs/{{version}}/eloquent-serialization#hiding-attributes-from-json)。
 
     $users = $users->makeVisible(['address', 'phone_number']);
 
 <a name="method-makeHidden"></a>
-#### `makeHidden($attributes)`
+#### `makeHidden($attributes)` {.collection-method}
 
 `makeHidden`メソッドは、通常コレクション内の各モデルで"visible"になっている[属性をhiddenにします](/docs/{{version}}/eloquent-serialization#hiding-attributes-from-json)。
 
     $users = $users->makeHidden(['address', 'phone_number']);
 
 <a name="method-only"></a>
-#### `only($keys)`
+#### `only($keys)` {.collection-method}
 
 `only`メソッドは、指定主キーを持つすべてのモデルを返します。
 
     $users = $users->only([1, 2, 3]);
 
 <a name="method-toquery"></a>
-#### `toQuery()`
+#### `toQuery()` {.collection-method}
 
 `toQuery`メソッドは、コレクションモデルの主キーに対する`whereIn`制約を含むEloquentクエリビルダインスタンスを返します。
 
@@ -183,7 +191,7 @@
     ]);
 
 <a name="method-unique"></a>
-#### `unique($key = null, $strict = false)`
+#### `unique($key = null, $strict = false)` {.collection-method}
 
 `unique`メソッドは、コレクション内のすべての一意のモデルを返します。コレクション内の、同じタイプで同じ主キーを持つモデルをすべて削除します。
 

@@ -322,6 +322,14 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
     #collection-method-list a {
         display: block;
     }
+
+    .collection-method code {
+        font-size: 14px;
+    }
+
+    .collection-method:not(.first-collection-method) {
+        margin-top: 50px;
+    }
 </style>
 
 <div id="collection-method-list" markdown="1">
@@ -392,210 +400,210 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 </div>
 
 <a name="column-method-bigIncrements"></a>
-#### `bigIncrements()` {#collection-method}
+#### `bigIncrements()` {.collection-method .first-collection-method}
 
 `bigIncrements`メソッドは、自動増分する`UNSIGNED BIGINT`(主キー)カラムを作成します。
 
     $table->bigIncrements('id');
 
 <a name="column-method-bigInteger"></a>
-#### `bigInteger()` {#collection-method}
+#### `bigInteger()` {.collection-method}
 
 `bigInteger`メソッドは`BIGINT`カラムを作成します。
 
     $table->bigInteger('votes');
 
 <a name="column-method-binary"></a>
-#### `binary()` {#collection-method}
+#### `binary()` {.collection-method}
 
 `binary`メソッドは`BLOB`カラムを作成します。
 
     $table->binary('photo');
 
 <a name="column-method-boolean"></a>
-#### `boolean()` {#collection-method}
+#### `boolean()` {.collection-method}
 
 `boolean`メソッドは`BOOLEAN`カラムを作成します。
 
     $table->boolean('confirmed');
 
 <a name="column-method-char"></a>
-#### `char()` {#collection-method}
+#### `char()` {.collection-method}
 
 `char`メソッドは、指定した長さの`CHAR`カラムを作成します。
 
     $table->char('name', 100);
 
 <a name="column-method-dateTimeTz"></a>
-#### `dateTimeTz()` {#collection-method}
+#### `dateTimeTz()` {.collection-method}
 
 `dateTimeTz`メソッドは、オプションの精度(合計桁数)で`DATETIME`(タイムゾーン付き)カラムを作成します。
 
     $table->dateTimeTz('created_at', $precision = 0);
 
 <a name="column-method-dateTime"></a>
-#### `dateTime()` {#collection-method}
+#### `dateTime()` {.collection-method}
 
 `dateTime`メソッドは、オプションの精度(合計桁数)で`DATETIME`カラムを作成します。
 
     $table->dateTime('created_at', $precision = 0);
 
 <a name="column-method-date"></a>
-#### `date()` {#collection-method}
+#### `date()` {.collection-method}
 
 `date`メソッドは`DATE`カラムを作成します。
 
     $table->date('created_at');
 
 <a name="column-method-decimal"></a>
-#### `decimal()` {#collection-method}
+#### `decimal()` {.collection-method}
 
 `decimal`メソッドは、指定した精度(合計桁数)とスケール(小数桁数)で`DECIMAL`カラムを作成します。
 
     $table->decimal('amount', $precision = 8, $scale = 2);
 
 <a name="column-method-double"></a>
-#### `double()` {#collection-method}
+#### `double()` {.collection-method}
 
 `double`メソッドは、指定した精度(合計桁数)とスケール(小数桁数)で`DOUBLE`カラムを作成します。
 
     $table->double('amount', 8, 2);
 
 <a name="column-method-enum"></a>
-#### `enum()` {#collection-method}
+#### `enum()` {.collection-method}
 
 `enum`メソッドは、指定した有効な値で`ENUM`カラムを作成します。
 
     $table->enum('difficulty', ['easy', 'hard']);
 
 <a name="column-method-float"></a>
-#### `float()` {#collection-method}
+#### `float()` {.collection-method}
 
 `float`メソッドは、指定した精度(合計桁数)とスケール(小数桁数)で`FLOAT`カラムを作成します。
 
     $table->float('amount', 8, 2);
 
 <a name="column-method-foreignId"></a>
-#### `foreignId()` {#collection-method}
+#### `foreignId()` {.collection-method}
 
 `foreignId`メソッドは`UNSIGNED BIGINT`カラムを作成します。
 
     $table->foreignId('user_id');
 
 <a name="column-method-foreignIdFor"></a>
-#### `foreignIdFor()` {#collection-method}
+#### `foreignIdFor()` {.collection-method}
 
 `foreignIdFor`メソッドは、指定モデルクラスへ`{column}_id UNSIGNED BIGINT`を追加します。
 
     $table->foreignIdFor(User::class);
 
 <a name="column-method-foreignUuid"></a>
-#### `foreignUuid()` {#collection-method}
+#### `foreignUuid()` {.collection-method}
 
 `foreignUuid`メソッドは`UUID`カラムを作成します。
 
     $table->foreignUuid('user_id');
 
 <a name="column-method-geometryCollection"></a>
-#### `geometryCollection()` {#collection-method}
+#### `geometryCollection()` {.collection-method}
 
 `geometryCollection`メソッドは`GEOMETRYCOLLECTION`カラムを作成します。
 
     $table->geometryCollection('positions');
 
 <a name="column-method-geometry"></a>
-#### `geometry()` {#collection-method}
+#### `geometry()` {.collection-method}
 
 `geometry`メソッドは`GEOMETRY`カラムを作成します。
 
     $table->geometry('positions');
 
 <a name="column-method-id"></a>
-#### `id()` {#collection-method}
+#### `id()` {.collection-method}
 
 `id`メソッドは`bigIncrements`メソッドのエイリアスです。デフォルトでは、メソッドは`id`カラムを作成します。ただし、カラムに別の名前を割り当てたい場合は、カラム名を渡すことができます。
 
     $table->id();
 
 <a name="column-method-increments"></a>
-#### `increments()` {#collection-method}
+#### `increments()` {.collection-method}
 
 `increments`メソッドは、主キーとして自動増分の`UNSIGNED INTEGER`カラムを作成します。
 
     $table->increments('id');
 
 <a name="column-method-integer"></a>
-#### `integer()` {#collection-method}
+#### `integer()` {.collection-method}
 
 `integer`メソッドは` INTEGER`カラムを作成します。
 
     $table->integer('votes');
 
 <a name="column-method-ipAddress"></a>
-#### `ipAddress()` {#collection-method}
+#### `ipAddress()` {.collection-method}
 
 `ipAddress`メソッドは`VARCHAR`カラムを作成します。
 
     $table->ipAddress('visitor');
 
 <a name="column-method-json"></a>
-#### `json()` {#collection-method}
+#### `json()` {.collection-method}
 
 `json`メソッドは`JSON`カラムを作成します。
 
     $table->json('options');
 
 <a name="column-method-jsonb"></a>
-#### `jsonb()` {#collection-method}
+#### `jsonb()` {.collection-method}
 
 `jsonb`メソッドは`JSONB`カラムを作成します。
 
     $table->jsonb('options');
 
 <a name="column-method-lineString"></a>
-#### `lineString()` {#collection-method}
+#### `lineString()` {.collection-method}
 
 `lineString`メソッドは`LINESTRING`カラムを作成します。
 
     $table->lineString('positions');
 
 <a name="column-method-longText"></a>
-#### `longText()` {#collection-method}
+#### `longText()` {.collection-method}
 
 `longText`メソッドは`LONGTEXT`カラムを作成します。
 
     $table->longText('description');
 
 <a name="column-method-macAddress"></a>
-#### `macAddress()` {#collection-method}
+#### `macAddress()` {.collection-method}
 
 `macAddress`メソッドは、MACアドレスを保持することを目的としたカラムを作成します。PostgreSQLなどの一部のデータベースシステムには、このタイプのデータ専用のカラムタイプがあります。他のデータベースシステムでは、文字カラムに相当するカラムを使用します。
 
     $table->macAddress('device');
 
 <a name="column-method-mediumIncrements"></a>
-#### `mediumIncrements()` {#collection-method}
+#### `mediumIncrements()` {.collection-method}
 
 `mediumIncrements`メソッドは、主キーが自動増分の`UNSIGNED MEDIUMINT`カラムを作成します。
 
     $table->mediumIncrements('id');
 
 <a name="column-method-mediumInteger"></a>
-#### `mediumInteger()` {#collection-method}
+#### `mediumInteger()` {.collection-method}
 
 `mediumInteger`メソッドは`MEDIUMINT`カラムを作成します。
 
     $table->mediumInteger('votes');
 
 <a name="column-method-mediumText"></a>
-#### `mediumText()` {#collection-method}
+#### `mediumText()` {.collection-method}
 
 `mediumText`メソッドは`MEDIUMTEXT`カラムを作成します。
 
     $table->mediumText('description');
 
 <a name="column-method-morphs"></a>
-#### `morphs()` {#collection-method}
+#### `morphs()` {.collection-method}
 
 `morphs`メソッドは、`{column}_id` `UNSIGNED BIGINT`カラムと、`{column}_type` `VARCHAR`カラムを追加する便利なメソッドです。
 
@@ -604,224 +612,224 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
     $table->morphs('taggable');
 
 <a name="column-method-multiLineString"></a>
-#### `multiLineString()` {#collection-method}
+#### `multiLineString()` {.collection-method}
 
 `multiLineString`メソッドは`MULTILINESTRING`カラムを作成します。
 
     $table->multiLineString('positions');
 
 <a name="column-method-multiPoint"></a>
-#### `multiPoint()` {#collection-method}
+#### `multiPoint()` {.collection-method}
 
 `multiPoint`メソッドは`MULTIPOINT`カラムを作成します。
 
     $table->multiPoint('positions');
 
 <a name="column-method-multiPolygon"></a>
-#### `multiPolygon()` {#collection-method}
+#### `multiPolygon()` {.collection-method}
 
 `multiPolygon`メソッドは`MULTIPOLYGON`カラムを作成します。
 
     $table->multiPolygon('positions');
 
 <a name="column-method-nullableTimestamps"></a>
-#### `nullableTimestamps()` {#collection-method}
+#### `nullableTimestamps()` {.collection-method}
 
 `nullableTimestamps`メソッドは[timestamps](#column-method-timestamps)メソッドのエイリアスです。
 
     $table->nullableTimestamps(0);
 
 <a name="column-method-nullableMorphs"></a>
-#### `nullableMorphs()` {#collection-method}
+#### `nullableMorphs()` {.collection-method}
 
 このメソッドは、[morphs](#column-method-morphs)メソッドに似ています。ただし、作成するカラムは"NULLABLE"になります。
 
     $table->nullableMorphs('taggable');
 
 <a name="column-method-nullableUuidMorphs"></a>
-#### `nullableUuidMorphs()` {#collection-method}
+#### `nullableUuidMorphs()` {.collection-method}
 
 このメソッドは、[uuidMorphs](#column-method-uuidMorphs)メソッドに似ています。ただし、作成するカラムは"NULLABLE"になります。
 
     $table->nullableUuidMorphs('taggable');
 
 <a name="column-method-point"></a>
-#### `point()` {#collection-method}
+#### `point()` {.collection-method}
 
 `point`メソッドは`POINT`カラムを作成します。
 
     $table->point('position');
 
 <a name="column-method-polygon"></a>
-#### `polygon()` {#collection-method}
+#### `polygon()` {.collection-method}
 
 `polygon`メソッドは`POLYGON`カラムを作成します。
 
     $table->polygon('position');
 
 <a name="column-method-rememberToken"></a>
-#### `rememberToken()` {#collection-method}
+#### `rememberToken()` {.collection-method}
 
 `rememberToken`メソッドは、現在の「ログイン持続（"remember me"）」[認証トークン](/docs/{{version}}/authentication#remembering-users)を格納することを目的としたNULL許容の`VARCHAR(100)`相当のカラムを作成します。
 
     $table->rememberToken();
 
 <a name="column-method-set"></a>
-#### `set()` {#collection-method}
+#### `set()` {.collection-method}
 
 `set`メソッドは、指定した有効な値のリストを使用して、`SET`カラムを作成します。
 
     $table->set('flavors', ['strawberry', 'vanilla']);
 
 <a name="column-method-smallIncrements"></a>
-#### `smallIncrements()` {#collection-method}
+#### `smallIncrements()` {.collection-method}
 
 `smallIncrements`メソッドは、主キーとして自動増分の`UNSIGNED SMALLINT`カラムを作成します。
 
     $table->smallIncrements('id');
 
 <a name="column-method-smallInteger"></a>
-#### `smallInteger()` {#collection-method}
+#### `smallInteger()` {.collection-method}
 
 `smallInteger`メソッドは`SMALLINT`カラムを作成します。
 
     $table->smallInteger('votes');
 
 <a name="column-method-softDeletesTz"></a>
-#### `softDeletesTz()` {#collection-method}
+#### `softDeletesTz()` {.collection-method}
 
 `softDeletesTz`メソッドは、オプションの精度(合計桁数)でNULL許容の`deleted_at` `TIMESTAMP`(タイムゾーン付き)カラムを追加します。このカラムは、Eloquentの「ソフトデリート」機能に必要な`deleted_at`タイムスタンプを格納するためのものです。
 
     $table->softDeletesTz($column = 'deleted_at', $precision = 0);
 
 <a name="column-method-softDeletes"></a>
-#### `softDeletes()` {#collection-method}
+#### `softDeletes()` {.collection-method}
 
 `softDeletes`メソッドは、オプションの精度(合計桁数)でNULL許容の`deleted_at` `TIMESTAMP`カラムを追加します。このカラムは、Eloquentの「ソフトデリート」機能に必要な`deleted_at`タイムスタンプを格納するためのものです。
 
     $table->softDeletes($column = 'deleted_at', $precision = 0);
 
 <a name="column-method-string"></a>
-#### `string()` {#collection-method}
+#### `string()` {.collection-method}
 
 `string`メソッドは、指定された長さの`VARCHAR`カラムを作成します。
 
     $table->string('name', 100);
 
 <a name="column-method-text"></a>
-#### `text()` {#collection-method}
+#### `text()` {.collection-method}
 
 `text`メソッドは`TEXT`カラムを作成します。
 
     $table->text('description');
 
 <a name="column-method-timeTz"></a>
-#### `timeTz()` {#collection-method}
+#### `timeTz()` {.collection-method}
 
 `timeTz`メソッドは、オプションの精度(合計桁数)で`TIME`(タイムゾーン付き)カラムを作成します。
 
     $table->timeTz('sunrise', $precision = 0);
 
 <a name="column-method-time"></a>
-#### `time()` {#collection-method}
+#### `time()` {.collection-method}
 
 `time`メソッドは、オプションの精度（合計桁数）で`TIME`カラムを作成します。
 
     $table->time('sunrise', $precision = 0);
 
 <a name="column-method-timestampTz"></a>
-#### `timestampTz()` {#collection-method}
+#### `timestampTz()` {.collection-method}
 
 `timestampTz`メソッドは、オプションの精度(合計桁数)で`TIMESTAMP`(タイムゾーン付き)カラムを作成します。
 
     $table->timestampTz('added_at', $precision = 0);
 
 <a name="column-method-timestamp"></a>
-#### `timestamp()` {#collection-method}
+#### `timestamp()` {.collection-method}
 
 `timestamp`メソッドは、オプションの精度(合計桁数)で`TIMESTAMP`カラムを作成します。
 
     $table->timestamp('added_at', $precision = 0);
 
 <a name="column-method-timestampsTz"></a>
-#### `timestampsTz()` {#collection-method}
+#### `timestampsTz()` {.collection-method}
 
 `timestampsTz`メソッドは、オプションの精度(合計桁数)で`created_at`および`updated_at`　`TIMESTAMP`(タイムゾーン付き)カラムを作成します。
 
     $table->timestampsTz($precision = 0);
 
 <a name="column-method-timestamps"></a>
-#### `timestamps()` {#collection-method}
+#### `timestamps()` {.collection-method}
 
 `timestamps`メソッドは、オプションの精度(合計桁数)で`created_at`および`updated_at`　`TIMESTAMP`カラムを作成します。
 
     $table->timestamps($precision = 0);
 
 <a name="column-method-tinyIncrements"></a>
-#### `tinyIncrements()` {#collection-method}
+#### `tinyIncrements()` {.collection-method}
 
 `tinyIncrements`メソッドは、主キーとして自動増分の`UNSIGNED TINYINT`カラムを作成します。
 
     $table->tinyIncrements('id');
 
 <a name="column-method-tinyInteger"></a>
-#### `tinyInteger()` {#collection-method}
+#### `tinyInteger()` {.collection-method}
 
 `tinyInteger`メソッドは`TINYINT`カラムを作成します。
 
     $table->tinyInteger('votes');
 
 <a name="column-method-tinyText"></a>
-#### `tinyText()` {#collection-method}
+#### `tinyText()` {.collection-method}
 
 `TinyText`メソッドは`TINYTEXT`カラムを作成します。
 
     $table->tinyText('notes');
 
 <a name="column-method-unsignedBigInteger"></a>
-#### `unsignedBigInteger()` {#collection-method}
+#### `unsignedBigInteger()` {.collection-method}
 
 `unsignedBigInteger`メソッドは`UNSIGNED BIGINT`カラムを作成します。
 
     $table->unsignedBigInteger('votes');
 
 <a name="column-method-unsignedDecimal"></a>
-#### `unsignedDecimal()` {#collection-method}
+#### `unsignedDecimal()` {.collection-method}
 
 `unsignedDecimal`メソッドは、オプションの精度(合計桁数)とスケール(小数桁数)を使用して、`UNSIGNED DECIMAL`カラムを作成します。
 
     $table->unsignedDecimal('amount', $precision = 8, $scale = 2);
 
 <a name="column-method-unsignedInteger"></a>
-#### `unsignedInteger()` {#collection-method}
+#### `unsignedInteger()` {.collection-method}
 
 `unsignedInteger`メソッドは`UNSIGNED INTEGER`カラムを作成します。
 
     $table->unsignedInteger('votes');
 
 <a name="column-method-unsignedMediumInteger"></a>
-#### `unsignedMediumInteger()` {#collection-method}
+#### `unsignedMediumInteger()` {.collection-method}
 
 `unsignedMediumInteger`メソッドは、`UNSIGNED　MEDIUMINT`カラムを作成します。
 
     $table->unsignedMediumInteger('votes');
 
 <a name="column-method-unsignedSmallInteger"></a>
-#### `unsignedSmallInteger()` {#collection-method}
+#### `unsignedSmallInteger()` {.collection-method}
 
 `unsignedSmallInteger`メソッドは`UNSIGNED SMALLINT`カラムを作成します。
 
     $table->unsignedSmallInteger('votes');
 
 <a name="column-method-unsignedTinyInteger"></a>
-#### `unsignedTinyInteger()` {#collection-method}
+#### `unsignedTinyInteger()` {.collection-method}
 
 `unsignedTinyInteger`メソッドは` UNSIGNED　TINYINT`カラムを作成します。
 
     $table->unsignedTinyInteger('votes');
 
 <a name="column-method-uuidMorphs"></a>
-#### `uuidMorphs()` {#collection-method}
+#### `uuidMorphs()` {.collection-method}
 
 `uuidMorphs`メソッドは、`{column}_id` `CHAR(36)`カラムと、`{column}_type` `VARCHAR`カラムを追加する便利なメソッドです。
 
@@ -830,14 +838,14 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
     $table->uuidMorphs('taggable');
 
 <a name="column-method-uuid"></a>
-#### `uuid()` {#collection-method}
+#### `uuid()` {.collection-method}
 
 `uuid`メソッドは`UUID`カラムを作成します。
 
     $table->uuid('id');
 
 <a name="column-method-year"></a>
-#### `year()` {#collection-method}
+#### `year()` {.collection-method}
 
 `year`メソッドは`YEAR`カラムを作成します。
 
@@ -867,6 +875,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `->default($value)`  |  カラムの「デフォルト」値を指定
 `->first()`  |  テーブルの「最初の」カラムを配置（MySQL）
 `->from($integer)`  |  自動増分フィールドの開始値を設定（MySQL／PostgreSQL）
+`->invisible()`  |  `SELECT *`クエリに対しカラムを「不可視」にする（MySQL）
 `->nullable($value = true)`  |  NULL値をカラムに保存可能に設定
 `->storedAs($expression)`  |  stored generatedカラムを作成（MySQL／PostgreSQL）
 `->unsigned()`  |  INTEGERカラムをUNSIGNEDとして設定（MySQL）

@@ -47,6 +47,7 @@ Nginxを実行しているサーバにアプリケーションをデプロイす
 
     server {
         listen 80;
+        listen [::]:80;
         server_name example.com;
         root /srv/example.com/public;
 

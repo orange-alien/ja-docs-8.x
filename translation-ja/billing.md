@@ -68,7 +68,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-Laravel Cashierは、[Stripe](https://stripe.com)のサブスクリプション課金サービスに対する表現力豊かで流暢なインターフェイスを提供します。それはあなたが書くことを恐れている定型的なサブスクリプション請求コードのほとんどすべてを処理します。キャッシャーは、基本的なサブスクリプション管理に加えて、クーポン、サブスクリプションの交換、サブスクリプションの「数量」、キャンセルの猶予期間を処理し、請求書のPDFを生成することもできます。
+[Laravel Cashier Stripe](https://github.com/laravel/cashier-stripe)は、[Stripe](https://stripe.com)のサブスクリプション課金サービスに対する表現力豊かで流暢なインターフェイスを提供します。それはあなたが書くことを恐れている定型的なサブスクリプション請求コードのほとんどすべてを処理します。キャッシャーは、基本的なサブスクリプション管理に加えて、クーポン、サブスクリプションの交換、サブスクリプションの「数量」、キャンセルの猶予期間を処理し、請求書のPDFを生成することもできます。
 
 <a name="upgrading-cashier"></a>
 ## Cashierのアップデート
@@ -330,7 +330,9 @@ Cashierでは、顧客のタックスIDを簡単に管理できます。例え�
     protected static function booted()
     {
         static::updated(queueable(function ($customer) {
-            $customer->syncStripeCustomerDetails();
+            if ($customer->hasStripeId()) {
+                $customer->syncStripeCustomerDetails();
+            }
         }));
     }
 

@@ -28,7 +28,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-Laravel Scout（Scout、斥候）は、[Eloquentモデル](/docs/{{version}}/eloquent)へ、シンプルなドライバベースのフルテキストサーチを提供します。モデルオブサーバを使い、Scoutは検索インデックスを自動的にEloquentレコードと同期します。
+[Laravel Scout](https://github.com/laravel/scout)（Scout、斥候）は、[Eloquentモデル](/docs/{{version}}/eloquent)へ、シンプルなドライバベースのフルテキストサーチを提供します。モデルオブサーバを使い、Scoutは検索インデックスを自動的にEloquentレコードと同期します。
 
 現在、Scoutは[Algolia](https://www.algolia.com/)と[MeiliSearch](https://www.meilisearch.com)ドライバを用意しています。さらに、Scoutは、ローカル開発用に設計した"collection"ドライバも用意しており、これは外部依存やサードパーティのサービスを必要としません。さらに、カスタムドライバの記述も簡単で、独自な検索実装を行い自由にScoutを拡張できます。
 

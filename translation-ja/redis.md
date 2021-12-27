@@ -132,7 +132,7 @@ RedisクライアントはRedisサーバへ接続するとき、デフォルト�
 
         'client' => env('REDIS_CLIENT', 'predis'),
 
-        // 残りのRedis設定…
+        // ...
     ],
 
 デフォルトの`host`、`port`、`database`、`password`サーバ設定オプションに加えて、PredisはRedisサーバごとに追加の[接続パラメータ](https://github.com/nrk/predis/wiki/Connection-Parameters)定義をサポートしますアプリケーションの`config/database.php`設定ファイルのRedisサーバ設定でそれらを追加してください。

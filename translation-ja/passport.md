@@ -46,7 +46,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-LaravelPassportは、Laravelアプリケーションに完全なOAuth2サーバ実装を数分で提供します。Passportは、Andy MillingtonとSimon Hampがメンテナンスしている[League OAuth2 server](https://github.com/thephpleague/oauth2-server)の上に構築されています。
+[Laravel Passport](https://github.com/laravel/passport)は、Laravelアプリケーションに完全なOAuth2サーバ実装を数分で提供します。Passportは、Andy MillingtonとSimon Hampがメンテナンスしている[League OAuth2 server](https://github.com/thephpleague/oauth2-server)の上に構築されています。
 
 > {note} このドキュメントは、皆さんがOAuth2に慣れていることを前提にしています。OAuth2について知らなければ、この先を続けて読む前に、一般的な[用語](https://oauth2.thephpleague.com/terminology/)とOAuth2の機能について予習してください。
 
@@ -923,6 +923,8 @@ Passportは、受信リクエストのアクセストークンを検証する[�
     Route::get('/user', function () {
         //
     })->middleware('auth:api');
+
+> {note} [クライアント認証情報グラント](#client-credentials-grant-tokens)を使用している場合、`auth:api`ミドルウェアではなく、[`client`ミドルウェア](#client-credentials-grant-tokens)でルートを保護する必要があります。
 
 <a name="multiple-authentication-guards"></a>
 #### 複数認証ガード

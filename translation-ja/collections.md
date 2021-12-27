@@ -109,6 +109,7 @@
 [diff](#method-diff)
 [diffAssoc](#method-diffassoc)
 [diffKeys](#method-diffkeys)
+[doesntContain](#method-doesntcontain)
 [dump](#method-dump)
 [duplicates](#method-duplicates)
 [duplicatesStrict](#method-duplicatesstrict)
@@ -228,17 +229,17 @@
 ## メソッド一覧
 
 <style>
-    #collection-method code {
+    .collection-method code {
         font-size: 14px;
     }
 
-    #collection-method:not(.first-collection-method) {
+    .collection-method:not(.first-collection-method) {
         margin-top: 50px;
     }
 </style>
 
 <a name="method-all"></a>
-#### `all()` {#collection-method .first-collection-method}
+#### `all()` {.collection-method .first-collection-method}
 
 `all`メソッドはコレクションの裏の配列表現を返します。
 
@@ -247,12 +248,12 @@
     // [1, 2, 3]
 
 <a name="method-average"></a>
-#### `average()` {#collection-method}
+#### `average()` {.collection-method}
 
 [`avg`](#method-avg)メソッドのエイリアスです。
 
 <a name="method-avg"></a>
-#### `avg()` {#collection-method}
+#### `avg()` {.collection-method}
 
 `avg`メソッドは、指定したキーの[平均値](https://ja.wikipedia.org/wiki/%E5%B9%B3%E5%9D%87)を返します。
 
@@ -270,7 +271,7 @@
     // 2
 
 <a name="method-chunk"></a>
-#### `chunk()` {#collection-method}
+#### `chunk()` {.collection-method}
 
 `chunk`メソッドはコレクションを指定したサイズで複数の小さなコレクションに分割します。
 
@@ -293,7 +294,7 @@
     @endforeach
 
 <a name="method-chunkwhile"></a>
-#### `chunkWhile()` {#collection-method}
+#### `chunkWhile()` {.collection-method}
 
 `chunkWhile`メソッドは、指定したコールバックの評価に基づいて、コレクションを複数のより小さなコレクションへ分割します。クロージャに渡された`$chunk`変数は、前の要素を検査するために使用できます。
 
@@ -308,7 +309,7 @@
     // [['A', 'A'], ['B', 'B'], ['C', 'C', 'C'], ['D']]
 
 <a name="method-collapse"></a>
-#### `collapse()` {#collection-method}
+#### `collapse()` {.collection-method}
 
 `collapse`メソッドは、配列のコレクションをフラットな一次コレクションに展開します。
 
@@ -325,7 +326,7 @@
     // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 <a name="method-collect"></a>
-#### `collect()` {#collection-method}
+#### `collect()` {.collection-method}
 
 `collect`メソッドは、コレクション中の現在のアイテムを利用した、新しい`Collection`インスタンスを返します。
 
@@ -358,7 +359,7 @@
 > {tip} `collect`メソッドは`Enumerable`のインスタンスがあり、それをレイジーコレクションでなくする必要がある場合、とくに便利です。`collect()`は`Enumerable`契約の一部であり、`Collection`インスタンスを取得するため安全に使用できます。
 
 <a name="method-combine"></a>
-#### `combine()` {#collection-method}
+#### `combine()` {.collection-method}
 
 `combine`メソッドは、コレクションの値をキーとして、他の配列かコレクションの値を結合します。
 
@@ -371,7 +372,7 @@
     // ['name' => 'George', 'age' => 29]
 
 <a name="method-concat"></a>
-#### `concat()` {#collection-method}
+#### `concat()` {.collection-method}
 
 `concat`メソッドは、指定した`array`またはコレクションの値を別のコレクションの最後に追加します。
 
@@ -384,7 +385,7 @@
     // ['John Doe', 'Jane Doe', 'Johnny Doe']
 
 <a name="method-contains"></a>
-#### `contains()` {#collection-method}
+#### `contains()` {.collection-method}
 
 `contains`メソッドは、コレクションに指定したアイテムが含まれているか判定します。指定する真偽判定にマッチする要素がコレクション内に存在するかを判定するために、`contains`メソッドにクロージャを渡します。
 
@@ -421,15 +422,17 @@
 
 `contains`メソッドは、アイテムを「緩く」比較します。つまり、ある整数の文字列とその整数値は等値として扱います。「厳密」な比較を行いたい場合は、[`containsStrict`](#method-containsstrict)メソッドを使ってください。
 
+For the inverse of `contains`, see the [doesntContain](#method-doesntcontain) method.
+
 <a name="method-containsstrict"></a>
-#### `containsStrict()` {#collection-method}
+#### `containsStrict()` {.collection-method}
 
 このメソッドは、[`contains`](#method-contains)メソッドと使用方法は同じです。しかし、「厳密」な値の比較を行います。
 
 > {tip} [Eloquentコレクション](/docs/{{version}}/eloquent-collections#method-contains)の使用時は、このメソッドの振る舞いは変わります。
 
 <a name="method-count"></a>
-#### `count()` {#collection-method}
+#### `count()` {.collection-method}
 
 `count`メソッドはコレクションのアイテム数を返します。
 
@@ -440,7 +443,7 @@
     // 4
 
 <a name="method-countBy"></a>
-#### `countBy()` {#collection-method}
+#### `countBy()` {.collection-method}
 
 `countBy`メソッドは、コレクション内の値の出現をカウントします。このメソッドはデフォルトで、コレクション内の要素の特定の「タイプ」をカウントできるよう、すべての要素の出現をカウントします。
 
@@ -465,7 +468,7 @@
     // ['gmail.com' => 2, 'yahoo.com' => 1]
 
 <a name="method-crossjoin"></a>
-#### `crossJoin()` {#collection-method}
+#### `crossJoin()` {.collection-method}
 
 `crossJoin`メソッドはコレクションの値と、指定した配列かコレクション間の値を交差接続し、可能性のある全順列の直積を返します。
 
@@ -504,7 +507,7 @@
     */
 
 <a name="method-dd"></a>
-#### `dd()` {#collection-method}
+#### `dd()` {.collection-method}
 
 `dd`メソッドはコレクションアイテムをダンプし、スクリプトの実行を停止します。
 
@@ -524,7 +527,7 @@
 スクリプトの実行を止めたくない場合は、[`dump`](#method-dump)メソッドを代わりに使用してください。
 
 <a name="method-diff"></a>
-#### `diff()` {#collection-method}
+#### `diff()` {.collection-method}
 
 `diff`メソッドはコレクションと、他のコレクションか一次元「配列」を値にもとづき比較します。このメソッドは指定されたコレクションに存在しない、オリジナルのコレクションの値を返します。
 
@@ -539,7 +542,7 @@
 > {tip} [Eloquentコレクション](/docs/{{version}}/eloquent-collections#method-contains)の使用時は、このメソッドの振る舞いは変わります。
 
 <a name="method-diffassoc"></a>
-#### `diffAssoc()` {#collection-method}
+#### `diffAssoc()` {.collection-method}
 
 `diffAssoc`メソッドはコレクションと、他のコレクションかキー／値形式のPHP配列を比較します。このメソッドは指定したコレクションに含まれない、オリジナルコレクション中のキー／値ペアを返します。
 
@@ -561,7 +564,7 @@
     // ['color' => 'orange', 'remain' => 6]
 
 <a name="method-diffkeys"></a>
-#### `diffKeys()` {#collection-method}
+#### `diffKeys()` {.collection-method}
 
 `diffKeys`メソッドはコレクションと、他のコレクションか一次元「配列」をキーで比較します。このメソッドは指定したコレクションに存在しない、オリジナルコレクション中のキー／値ペアを返します。
 
@@ -584,8 +587,46 @@
 
     // ['one' => 10, 'three' => 30, 'five' => 50]
 
+<a name="method-doesntcontain"></a>
+#### `doesntContain()` {.collection-method}
+
+`doesntContain` メソッドは、コレクションに指定アイテムが含まれないことを判定します。`doesntContain` メソッドにクロージャを渡し、指定する真理値テストに合致する要素がコレクションに存在ことを判定できます。
+
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->doesntContain(function ($value, $key) {
+        return $value < 5;
+    });
+
+    // false
+
+あるいは、`doesntContain`メソッドに文字列を渡し、コレクションに指定したアイテム値が含まれていないことを判定することもできます。
+
+    $collection = collect(['name' => 'Desk', 'price' => 100]);
+
+    $collection->doesntContain('Table');
+
+    // true
+
+    $collection->doesntContain('Desk');
+
+    // false
+
+また、`doesntContain`メソッドへキー／値のペアを渡し、指定ペアがコレクション内に存在しないことを判定することも可能です。
+
+    $collection = collect([
+        ['product' => 'Desk', 'price' => 200],
+        ['product' => 'Chair', 'price' => 100],
+    ]);
+
+    $collection->doesntContain('product', 'Bookcase');
+
+    // true
+
+`doesntContain`メソッドは、項目の値をチェックする際、「緩く」比較します。つまり、整数値を持つ文字列は同じ値の整数値と等しいとみなします。
+
 <a name="method-dump"></a>
-#### `dump()` {#collection-method}
+#### `dump()` {.collection-method}
 
 `dump`メソッドはコレクションアイテムをダンプします。
 
@@ -605,7 +646,7 @@
 コレクションをダンプした後にスクリプトを停止したい場合は、代わりに[`dd`](#method-dd)メソッドを使用してください。
 
 <a name="method-duplicates"></a>
-#### `duplicates()` {#collection-method}
+#### `duplicates()` {.collection-method}
 
 `duplicates`メソッドはコレクション中の重複値を返します。
 
@@ -628,12 +669,12 @@
     // [2 => 'Developer']
 
 <a name="method-duplicatesstrict"></a>
-#### `duplicatesStrict()` {#collection-method}
+#### `duplicatesStrict()` {.collection-method}
 
 このメソッドの使い方は[`duplicates`](#method-duplicates)メソッドと同じですが、すべての値に「厳密な」比較が行われます。
 
 <a name="method-each"></a>
-#### `each()` {#collection-method}
+#### `each()` {.collection-method}
 
 `each`メソッドはコレクション内のアイテムを反復処理し、各アイテムをクロージャに渡します。
 
@@ -650,7 +691,7 @@
     });
 
 <a name="method-eachspread"></a>
-#### `eachSpread()` {#collection-method}
+#### `eachSpread()` {.collection-method}
 
 `eachSpread`メソッドはコレクションのアイテムに対し、指定したコールバックへネストしたアイテム値をそれぞれ渡し、繰り返し処理します。
 
@@ -667,7 +708,7 @@
     });
 
 <a name="method-every"></a>
-#### `every()` {#collection-method}
+#### `every()` {.collection-method}
 
 `every`メソッドは、コレクションの全要素が、指定したテストをパスするか判定するために使用します。
 
@@ -688,7 +729,7 @@
     // true
 
 <a name="method-except"></a>
-#### `except()` {#collection-method}
+#### `except()` {.collection-method}
 
 `except`メソッドは、キーにより指定したアイテム以外の全コレクション要素を返します。
 
@@ -705,7 +746,7 @@
 > {tip} [Eloquentコレクション](/docs/{{version}}/eloquent-collections#method-contains)の使用時は、このメソッドの振る舞いは変わります。
 
 <a name="method-filter"></a>
-#### `filter()` {#collection-method}
+#### `filter()` {.collection-method}
 
 `filter`メソッドは指定したコールバックでコレクションをフィルタリングします。テストでtrueを返したアイテムだけが残ります。
 
@@ -730,7 +771,7 @@
 `filter`の逆の動作は、[reject](#method-reject)メソッドを見てください。
 
 <a name="method-first"></a>
-#### `first()` {#collection-method}
+#### `first()` {.collection-method}
 
 `first`メソッドは指定された真偽テストをパスしたコレクションの最初の要素を返します。
 
@@ -747,7 +788,7 @@
     // 1
 
 <a name="method-first-where"></a>
-#### `firstWhere()` {#collection-method}
+#### `firstWhere()` {.collection-method}
 
 `firstWhere`メソッドはコレクションの中から、最初の指定したキー／値ペアの要素を返します。
 
@@ -775,7 +816,7 @@
     // ['name' => 'Linda', 'age' => 14]
 
 <a name="method-flatmap"></a>
-#### `flatMap()` {#collection-method}
+#### `flatMap()` {.collection-method}
 
 `flatMap`メソッドはコレクションを反復処理し、各値を指定したクロージャに渡します。クロージャはアイテムを自由に変更して返却できるため、変更されたアイテムの新しいコレクションを形成します。それから、一次配列へフラット化します。
 
@@ -794,7 +835,7 @@
     // ['name' => 'SALLY', 'school' => 'ARKANSAS', 'age' => '28'];
 
 <a name="method-flatten"></a>
-#### `flatten()` {#collection-method}
+#### `flatten()` {.collection-method}
 
 `flatten`メソッドは多次元コレクションを一次元化します。
 
@@ -842,7 +883,7 @@
 この例では、深さを指定せずに`flatten`を呼び出すと、ネストした配列もフラットにし、`['iPhone6S'、'Apple'、'GalaxyS7'、'Samsung']`になります。深さを指定すると、ネストした配列をフラット化するレベルの数を指定できます。
 
 <a name="method-flip"></a>
-#### `flip()` {#collection-method}
+#### `flip()` {.collection-method}
 
 `flip`メソッドはコレクションのキーと対応する値を入れ替えます。
 
@@ -855,7 +896,7 @@
     // ['taylor' => 'name', 'laravel' => 'framework']
 
 <a name="method-forget"></a>
-#### `forget()` {#collection-method}
+#### `forget()` {.collection-method}
 
 `forget`メソッドはキーによりコレクションのアイテムを削除します。
 
@@ -870,7 +911,7 @@
 > {note} 他のコレクションメソッドとは異なり、`forget`は更新された新しいコレクションを返しません。呼び出しもとのコレクションを更新します。
 
 <a name="method-forpage"></a>
-#### `forPage()` {#collection-method}
+#### `forPage()` {.collection-method}
 
 `forPage`メソッドは指定されたページ番号を表すアイテムで構成された新しいコレクションを返します。このメソッドは最初の引数にページ番号、２つ目の引数としてページあたりのアイテム数を受け取ります。
 
@@ -883,7 +924,7 @@
     // [4, 5, 6]
 
 <a name="method-get"></a>
-#### `get()` {#collection-method}
+#### `get()` {.collection-method}
 
 `get`メソッドは指定されたキーのアイテムを返します。キーが存在していない場合は`null`を返します。
 
@@ -910,7 +951,7 @@
     // taylor@example.com
 
 <a name="method-groupby"></a>
-#### `groupBy()` {#collection-method}
+#### `groupBy()` {.collection-method}
 
 `groupBy`メソッドは指定したキーによりコレクションのアイテムをグループにまとめます。
 
@@ -995,7 +1036,7 @@
     */
 
 <a name="method-has"></a>
-#### `has()` {#collection-method}
+#### `has()` {.collection-method}
 
 `has`メソッドは指定したキーがコレクションに存在しているかを調べます。
 
@@ -1014,7 +1055,7 @@
     // false
 
 <a name="method-implode"></a>
-#### `implode()` {#collection-method}
+#### `implode()` {.collection-method}
 
 `implode`メソッドはコレクション内のアイテムを結合します。その引数は、コレクション内のアイテムのタイプによって異なります。コレクションに配列またはオブジェクトが含まれている場合は、結合する属性のキーと、値の間に配置する「接着」文字列を渡す必要があります。
 
@@ -1034,7 +1075,7 @@
     // '1-2-3-4-5'
 
 <a name="method-intersect"></a>
-#### `intersect()` {#collection-method}
+#### `intersect()` {.collection-method}
 
 `intersect`メソッドは、指定した「配列」かコレクションに存在していない値をオリジナルコレクションから取り除きます。結果のコレクションには、オリジナルコレクションのキーがリストされます。
 
@@ -1049,7 +1090,7 @@
 > {tip} [Eloquentコレクション](/docs/{{version}}/eloquent-collections#method-contains)の使用時は、このメソッドの振る舞いは変わります。
 
 <a name="method-intersectbykeys"></a>
-#### `intersectByKeys()` {#collection-method}
+#### `intersectByKeys()` {.collection-method}
 
 `intersectByKeys`メソッドは、指定した配列またはコレクションに存在しないキーとそれに対応する値を元のコレクションから削除します。
 
@@ -1066,7 +1107,7 @@
     // ['type' => 'screen', 'year' => 2009]
 
 <a name="method-isempty"></a>
-#### `isEmpty()` {#collection-method}
+#### `isEmpty()` {.collection-method}
 
 `isEmpty`メソッドはコレクションが空の場合に`true`を返します。そうでなければ`false`を返します。
 
@@ -1075,7 +1116,7 @@
     // true
 
 <a name="method-isnotempty"></a>
-#### `isNotEmpty()` {#collection-method}
+#### `isNotEmpty()` {.collection-method}
 
 `isNotEmpty`メソッドは、コレクションが空でない場合に`true`を返します。空であれば`false`を返します。
 
@@ -1084,7 +1125,7 @@
     // false
 
 <a name="method-join"></a>
-#### `join()` {#collection-method}
+#### `join()` {.collection-method}
 
 `join`メソッドは、コレクションの値を文字列で結合します。このメソッドの２番目の引数を使用して、最後の要素を文字列に追加する方法を指定することもできます。
 
@@ -1095,7 +1136,7 @@
     collect([])->join(', ', ' and '); // ''
 
 <a name="method-keyby"></a>
-#### `keyBy()` {#collection-method}
+#### `keyBy()` {.collection-method}
 
 `keyBy`メソッドは指定したキーをコレクションのキーにします。複数のアイテムが同じキーを持っている場合、新しいコレクションには最後のアイテムが含まれます。
 
@@ -1131,7 +1172,7 @@
     */
 
 <a name="method-keys"></a>
-#### `keys()` {#collection-method}
+#### `keys()` {.collection-method}
 
 `keys`メソッドはコレクションの全キーを返します。
 
@@ -1147,7 +1188,7 @@
     // ['prod-100', 'prod-200']
 
 <a name="method-last"></a>
-#### `last()` {#collection-method}
+#### `last()` {.collection-method}
 
 `last`メソッドは指定したテストをパスしたコレクションの最後のアイテムを返します。
 
@@ -1164,17 +1205,17 @@
     // 4
 
 <a name="method-macro"></a>
-#### `macro()` {#collection-method}
+#### `macro()` {.collection-method}
 
 staticの`macro`メソッドで、実行時に`Collection`クラスへメソッドを追加できます。詳細は、[コレクションの拡張](#extending-collections)ドキュメントを参照してください。
 
 <a name="method-make"></a>
-#### `make()` {#collection-method}
+#### `make()` {.collection-method}
 
 staticの`make`メソッドは、新しいコレクションインスタンスを生成します。[コレクションの生成](#creating-collections)セクションを参照してください。
 
 <a name="method-map"></a>
-#### `map()` {#collection-method}
+#### `map()` {.collection-method}
 
 `map`メソッドコレクション全体を繰り返しで処理し、指定したコールバックから値を返します。コールバックで自由にアイテムを更新し値を返せます。更新したアイテムの新しいコレクションが作成されます。
 
@@ -1191,7 +1232,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 > {note} 他のコレクションと同様に`map`は新しいコレクションインスタンスを返します。呼び出し元のコレクションは変更しません。もしオリジナルコレクションを変更したい場合は[`transform`](#method-transform)メソッドを使います。
 
 <a name="method-mapinto"></a>
-#### `mapInto()` {#collection-method}
+#### `mapInto()` {.collection-method}
 
 `mapInto()`メソッドはコレクションを繰り返し処理します。指定したクラスの新しいインスタンスを生成し、コンストラクタへ値を渡します。
 
@@ -1218,7 +1259,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [Currency('USD'), Currency('EUR'), Currency('GBP')]
 
 <a name="method-mapspread"></a>
-#### `mapSpread()` {#collection-method}
+#### `mapSpread()` {.collection-method}
 
 `mapSpread`メソッドはコレクションのアイテムを反復処理し、ネストした各アイテム値を指定されたクロージャに渡します。クロージャはアイテムを自由に変更して返すことができるため、変更したアイテムの新しいコレクションを生成します。
 
@@ -1235,7 +1276,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [1, 5, 9, 13, 17]
 
 <a name="method-maptogroups"></a>
-#### `mapToGroups()` {#collection-method}
+#### `mapToGroups()` {.collection-method}
 
 `mapToGroups`メソッドは、指定クロージャによってコレクションのアイテムをグループ化します。クロージャはキー／値のペアを一つ含む連想配列を返してください。これにより、値をグループ化した新しいコレクションを生成します。
 
@@ -1272,7 +1313,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['John Doe', 'Jane Doe']
 
 <a name="method-mapwithkeys"></a>
-#### `mapWithKeys()` {#collection-method}
+#### `mapWithKeys()` {.collection-method}
 
 `mapWithKeys`メソッドはコレクション全体を反復処理し、指定したコールバックへ各値を渡します。コールバックからキー／値ペアを一つ含む連想配列を返してください。
 
@@ -1303,7 +1344,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     */
 
 <a name="method-max"></a>
-#### `max()` {#collection-method}
+#### `max()` {.collection-method}
 
 `max`メソッドは、指定したキーの最大値を返します。
 
@@ -1319,7 +1360,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // 5
 
 <a name="method-median"></a>
-#### `median()` {#collection-method}
+#### `median()` {.collection-method}
 
 `median`メソッドは、指定したキーの[中央値](https://ja.wikipedia.org/wiki/%E4%B8%AD%E5%A4%AE%E5%80%A4)を返します。
 
@@ -1337,7 +1378,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // 1.5
 
 <a name="method-merge"></a>
-#### `merge()` {#collection-method}
+#### `merge()` {.collection-method}
 
 `merge`メソッドは、指定した配列かコレクションをオリジナルコレクションへマージします。指定した配列の文字列キーが、オリジナルコレクションの文字列キーと一致する場合、オリジナルコレクションの値は指定アイテムの値でオーバーライトされます。
 
@@ -1360,7 +1401,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['Desk', 'Chair', 'Bookcase', 'Door']
 
 <a name="method-mergerecursive"></a>
-#### `mergeRecursive()` {#collection-method}
+#### `mergeRecursive()` {.collection-method}
 
 `mergeRecursive`メソッドはオリジナルのコレクションに対し、指定した配列かコレクションを再帰的にマージします。指定したアイテムの文字列キーがオリジナルコレクションのものと一致したら、それらのキーに対する値を配列へマージします。これを再帰的に行います。
 
@@ -1377,7 +1418,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['product_id' => [1, 2], 'price' => [100, 200], 'discount' => false]
 
 <a name="method-min"></a>
-#### `min()` {#collection-method}
+#### `min()` {.collection-method}
 
 `min`メソッドは、指定したキーの最小値を返します。
 
@@ -1390,7 +1431,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // 1
 
 <a name="method-mode"></a>
-#### `mode()` {#collection-method}
+#### `mode()` {.collection-method}
 
 `mode`メソッドは、指定したキーの[最頻値](https://ja.wikipedia.org/wiki/%E6%9C%80%E9%A0%BB%E5%80%A4)を返します。
 
@@ -1412,7 +1453,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [1, 2]
 
 <a name="method-nth"></a>
-#### `nth()` {#collection-method}
+#### `nth()` {.collection-method}
 
 `nth`メソッドは指定数値間隔で要素を含む、新しいコレクションを生成します。
 
@@ -1429,7 +1470,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['b', 'f']
 
 <a name="method-only"></a>
-#### `only()` {#collection-method}
+#### `only()` {.collection-method}
 
 `only`メソッドは、コレクション中の指定したアイテムのみを返します。
 
@@ -1451,7 +1492,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 > {tip} [Eloquentコレクション](/docs/{{version}}/eloquent-collections#method-contains)の使用時は、このメソッドの振る舞いは変わります。
 
 <a name="method-pad"></a>
-#### `pad()` {#collection-method}
+#### `pad()` {.collection-method}
 
 `pad`メソッドは、配列が指定したサイズに達するまで、指定値で配列を埋めます。このメソッドは[array_pad](https://secure.php.net/manual/ja/function.array-pad.php) PHP関数のような動作をします。
 
@@ -1472,7 +1513,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [0, 0, 'A', 'B', 'C']
 
 <a name="method-partition"></a>
-#### `partition()` {#collection-method}
+#### `partition()` {.collection-method}
 
 `partition`メソッドは、PHPの配列のデストラクションと組み合わせて、与えられた真理値テストに合格した要素とそうでない要素を分離できます。
 
@@ -1491,7 +1532,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [3, 4, 5, 6]
 
 <a name="method-pipe"></a>
-#### `pipe()` {#collection-method}
+#### `pipe()` {.collection-method}
 
 `pipe`メソッドは、コレクションを指定したクロージャに渡し、実行されたクロージャの結果を返します。
 
@@ -1504,7 +1545,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // 6
 
 <a name="method-pipeinto"></a>
-#### `pipeInto()` {#collection-method}
+#### `pipeInto()` {.collection-method}
 
 `pipeInto`メソッドは、指定クラスの新しいインスタンスを生成し、コレクションをコンストラクターに渡します。
 
@@ -1536,7 +1577,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [1, 2, 3]
 
 <a name="method-pluck"></a>
-#### `pluck()` {#collection-method}
+#### `pluck()` {.collection-method}
 
 `pluck`メソッドは指定したキーの全コレクション値を取得します。
 
@@ -1592,7 +1633,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['Tesla' => 'black', 'Pagani' => 'orange']
 
 <a name="method-pop"></a>
-#### `pop()` {#collection-method}
+#### `pop()` {.collection-method}
 
 `pop`メソッドはコレクションの最後のアイテムを削除し、返します。
 
@@ -1619,7 +1660,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [1, 2]
 
 <a name="method-prepend"></a>
-#### `prepend()` {#collection-method}
+#### `prepend()` {.collection-method}
 
 `prepend`メソッドはアイテムをコレクションの最初に追加します。
 
@@ -1642,7 +1683,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['zero' => 0, 'one' => 1, 'two' => 2]
 
 <a name="method-pull"></a>
-#### `pull()` {#collection-method}
+#### `pull()` {.collection-method}
 
 `pull`メソッドはキーによりアイテムを削除し、そのアイテムを返します。
 
@@ -1657,7 +1698,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['product_id' => 'prod-100']
 
 <a name="method-push"></a>
-#### `push()` {#collection-method}
+#### `push()` {.collection-method}
 
  `push`メソッドはコレクションの最後にアイテムを追加します。
 
@@ -1670,7 +1711,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [1, 2, 3, 4, 5]
 
 <a name="method-put"></a>
-#### `put()` {#collection-method}
+#### `put()` {.collection-method}
 
 `put`メソッドは指定したキーと値をコレクションにセットします。
 
@@ -1683,7 +1724,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['product_id' => 1, 'name' => 'Desk', 'price' => 100]
 
 <a name="method-random"></a>
-#### `random()` {#collection-method}
+#### `random()` {.collection-method}
 
 `random`メソッドはコレクションからランダムにアイテムを返します。
 
@@ -1704,7 +1745,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 コレクションインスタンスのアイテム数が要求より少ない場合、`random`メソッドは`InvalidArgumentException`を投げます。
 
 <a name="method-range"></a>
-#### `range()` {#collection-method}
+#### `range()` {.collection-method}
 
 `range`メソッドは、指定範囲の整数を含むコレクションを返します。
 
@@ -1715,7 +1756,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [3, 4, 5, 6]
 
 <a name="method-reduce"></a>
-#### `reduce()` {#collection-method}
+#### `reduce()` {.collection-method}
 
 `reduce`メソッドは繰り返しの結果を次の繰り返しに渡しながら、コレクションを単一値へ減らします。
 
@@ -1756,7 +1797,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // 4264
 
 <a name="method-reduce-spread"></a>
-#### `reduceSpread()` {#collection-method}
+#### `reduceSpread()` {.collection-method}
 
 `reduceSpread`メソッドはコレクションを値の配列に減らし、各反復の結果を後続の反復に渡します。このメソッドは`reduce`メソッドと似ていますが、複数の初期値を受け入れることができます。
 
@@ -1775,7 +1816,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 ```
 
 <a name="method-reject"></a>
-#### `reject()` {#collection-method}
+#### `reject()` {.collection-method}
 
 `reject`メソッドは、指定したクロージャを使用してコレクションをフィルタリングします。結果のコレクションからアイテムを削除する必要がある場合、クロージャで`true`を返してください。
 
@@ -1792,7 +1833,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 `reject`メソッドの逆の働きについては、[`filter`](#method-filter)メソッドを読んでください。
 
 <a name="method-replace"></a>
-#### `replace()` {#collection-method}
+#### `replace()` {.collection-method}
 
 `replace`メソッドは、`merge`メソッドと似た振る舞いを行います。文字列キーを持っているアイテムをオーバーライドするのは同じですが、`replace`メソッドは数値キーに一致するコレクション中のアイテムもオーバーライドします。
 
@@ -1805,7 +1846,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['Taylor', 'Victoria', 'James', 'Finn']
 
 <a name="method-replacerecursive"></a>
-#### `replaceRecursive()` {#collection-method}
+#### `replaceRecursive()` {.collection-method}
 
 このメソッドは`replace`と似た動作をしますが、配列を再帰的に下り、次元の低い値も同様に置換します。
 
@@ -1829,7 +1870,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // ['Charlie', 'Abigail', ['James', 'King', 'Finn']]
 
 <a name="method-reverse"></a>
-#### `reverse()` {#collection-method}
+#### `reverse()` {.collection-method}
 
 `reverse`メソッドはオリジナルのキーを保ったまま、コレクションのアイテムの順番を逆にします。
 
@@ -1850,7 +1891,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     */
 
 <a name="method-search"></a>
-#### `search()` {#collection-method}
+#### `search()` {.collection-method}
 
 `search`メソッドは、コレクションを検索し、指定値が見つかった場合はそのキーを返します。アイテムが見つからない場合、`false`を返します。
 
@@ -1875,7 +1916,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // 2
 
 <a name="method-shift"></a>
-#### `shift()` {#collection-method}
+#### `shift()` {.collection-method}
 
 `shift`メソッドはコレクションから最初のアイテムを削除し、その値を返します。
 
@@ -1902,7 +1943,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [4, 5]
 
 <a name="method-shuffle"></a>
-#### `shuffle()` {#collection-method}
+#### `shuffle()` {.collection-method}
 
 `shuffle`メソッドはコレクションのアイテムをランダムにシャッフルします。
 
@@ -1915,7 +1956,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [3, 2, 5, 1, 4] - (ランダムに生成される)
 
 <a name="method-sliding"></a>
-#### `sliding()` {#collection-method}
+#### `sliding()` {.collection-method}
 
 `sliding`メソッドは、コレクション中のアイテムの「スライディングウィンドウ」ビューを表す新しいチャンクコレクションを返します。
 
@@ -1944,7 +1985,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [[1, 2, 3], [3, 4, 5]]
 
 <a name="method-skip"></a>
-#### `skip()` {#collection-method}
+#### `skip()` {.collection-method}
 
 `skip`メソッドは、コレクションの先頭から指定した数の要素を削除した新しいコレクションを返します。
 
@@ -1957,7 +1998,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     // [5, 6, 7, 8, 9, 10]
 
 <a name="method-skipuntil"></a>
-#### `skipUntil()` {#collection-method}
+#### `skipUntil()` {.collection-method}
 
 `skipUntil`メソッドは、指定したコールバックが`true`を返すまでコレクションからアイテムをスキップし、コレクション内の残りのアイテムを新しいコレクションインスタンスとして返します。
 
@@ -1984,7 +2025,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 > {note} 指定した値が見つからないか、コールバックが`true`を返さなかった場合、`skipUntil`メソッドは空のコレクションを返します。
 
 <a name="method-skipwhile"></a>
-#### `skipWhile()` {#collection-method}
+#### `skipWhile()` {.collection-method}
 
 `skipWhile`メソッドは、指定したコールバックが`true`を返す間、コレクションからアイテムをスキップし、コレクション内の残りのアイテムを新しいコレクションとして返します。
 
@@ -2001,7 +2042,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 > {note} コールバックが`false`を返さなかった場合、`skipWhile`メソッドは空のコレクションを返します。
 
 <a name="method-slice"></a>
-#### `slice()` {#collection-method}
+#### `slice()` {.collection-method}
 
 `slice`メソッドは指定したインデックスからコレクションを切り分けます。
 
@@ -2024,7 +2065,7 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 sliceメソッドはデフォルトでキー値を保持したまま返します。オリジナルのキーを保持したくない場合は、[`values`](#method-values)メソッドを使えば、インデックスし直されます。
 
 <a name="method-sole"></a>
-#### `sole()` {#collection-method}
+#### `sole()` {.collection-method}
 
 `sole`メソッドは、指定した真偽テストをパスしたアイテムが正確に１つだけの場合、コレクション内の最初の要素を返します。
 
@@ -2058,12 +2099,12 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 コレクションに`sole`メソッドが返すべきアイテムがない場合は、`\Illuminate\Collections\ItemNotFoundException`例外を投げます。返すべきアイテムが複数ある場合は、`\Illuminate\Collections\MultipleItemsFoundException`を投げます。
 
 <a name="method-some"></a>
-#### `some()` {#collection-method}
+#### `some()` {.collection-method}
 
 [`contains`](#method-contains)メソッドのエイリアスです。
 
 <a name="method-sort"></a>
-#### `sort()` {#collection-method}
+#### `sort()` {.collection-method}
 
 `sort`メソッドはコレクションをソートします。ソート済みコレクションはオリジナル配列のキーを保持しますので、以下の例では、[`values`](#method-values)メソッドにより、連続した数字のインデックスにするためリセットしています。
 
@@ -2080,7 +2121,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 > {tip} ネストした配列やオブジェクトのコレクションのソートは、[`sortBy`](#method-sortby)と[`sortByDesc`](#method-sortbydesc)メソッドを参照してください。
 
 <a name="method-sortby"></a>
-#### `sortBy()` {#collection-method}
+#### `sortBy()` {.collection-method}
 
 `sortBy`メソッドは指定したキーでコレクションをソートします。ソート済みコレクションはオリジナル配列のキーを保持しますので、以下の例では、[`values`](#method-values)メソッドにより、連続した数字のインデックスにするためリセットしています。
 
@@ -2102,7 +2143,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
         ]
     */
 
-`sort`メソッドは第２引数に、[ソートフラグ](https://www.php.net/manual/ja/function.sort.php)を受け取ります。
+`sortBy`メソッドは第２引数に、[ソートフラグ](https://www.php.net/manual/ja/function.sort.php)を受け取ります。
 
     $collection = collect([
         ['title' => 'Item 1'],
@@ -2195,12 +2236,12 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     */
 
 <a name="method-sortbydesc"></a>
-#### `sortByDesc()` {#collection-method}
+#### `sortByDesc()` {.collection-method}
 
 このメソッドの使い方は[`sortBy`](#method-sortby)と同じで、コレクションを逆順にソートします。
 
 <a name="method-sortdesc"></a>
-#### `sortDesc()` {#collection-method}
+#### `sortDesc()` {.collection-method}
 
 このメソッドは[`sort`](#method-sort)メソッドの逆順でコレクションをソートします。
 
@@ -2215,7 +2256,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 `sort`とは異なり、`sortDesc`にクロージャを渡すことはできません。代わりに、[`sort`](#method-sort)メソッドを使用して、比較を逆にする必要があります。
 
 <a name="method-sortkeys"></a>
-#### `sortKeys()` {#collection-method}
+#### `sortKeys()` {.collection-method}
 
 `sortKeys`メソッドは、内部の連想配列のキーにより、コレクションをソートします。
 
@@ -2238,12 +2279,12 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     */
 
 <a name="method-sortkeysdesc"></a>
-#### `sortKeysDesc()` {#collection-method}
+#### `sortKeysDesc()` {.collection-method}
 
 このメソッドは、[`sortKeys`](#method-sortkeys)メソッドと使い方は同じですが、逆順にコレクションをソートします。
 
 <a name="method-splice"></a>
-#### `splice()` {#collection-method}
+#### `splice()` {.collection-method}
 
 `splice`メソッドは指定したインデックスからアイテムをスライスし、削除し、返します。
 
@@ -2288,7 +2329,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // [1, 2, 10, 11, 4, 5]
 
 <a name="method-split"></a>
-#### `split()` {#collection-method}
+#### `split()` {.collection-method}
 
 `split`メソッドは、コレクションを指定数のグループへ分割します。
 
@@ -2301,7 +2342,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // [[1, 2], [3, 4], [5]]
 
 <a name="method-splitin"></a>
-#### `splitIn()` {#collection-method}
+#### `splitIn()` {.collection-method}
 
 `splitIn`メソッドは、コレクションを指定された数のグループに分割します。最終グループ以外を完全に埋め、残りを最終グループに割り当てます。
 
@@ -2314,7 +2355,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
 
 <a name="method-sum"></a>
-#### `sum()` {#collection-method}
+#### `sum()` {.collection-method}
 
 `sum`メソッドはコレクションの全アイテムの合計を返します。
 
@@ -2348,7 +2389,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // 6
 
 <a name="method-take"></a>
-#### `take()` {#collection-method}
+#### `take()` {.collection-method}
 
 `take`メソッドは指定したアイテム数の新しいコレクションを返します。
 
@@ -2371,7 +2412,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // [4, 5]
 
 <a name="method-takeuntil"></a>
-#### `takeUntil()` {#collection-method}
+#### `takeUntil()` {.collection-method}
 
 `takeUntil`メソッドは、指定のコールバックが`true`を返すまでコレクションのアイテムを返します。
 
@@ -2398,7 +2439,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 > {note} 指定値が見つからない、もしくはコールバックが`true`を返さない場合、`takeUntil`メソッドはコレクションの全アイテムを返します。
 
 <a name="method-takewhile"></a>
-#### `takeWhile()` {#collection-method}
+#### `takeWhile()` {.collection-method}
 
 `takeWhile`メソッドは、指定のコールバックが`false`を返すまでコレクションのアイテムを返します。
 
@@ -2415,7 +2456,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 > {note} コールバックが`false`を返さない場合、`takeWhile`メソッドはコレクション中の全アイテムを返します。
 
 <a name="method-tap"></a>
-#### `tap()` {#collection-method}
+#### `tap()` {.collection-method}
 
 `tap`メソッドは、指定されたコールバックへコレクションを渡します。コレクション自身に影響を与えることなく、その時点のコレクション内容を利用するために使用します。その後、`tap`メソッドはそのコレクションを返します。
 
@@ -2429,7 +2470,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // 1
 
 <a name="method-times"></a>
-#### `times()` {#collection-method}
+#### `times()` {.collection-method}
 
 静的`times`メソッドは指定回数クロージャを呼び出すことで、新しいコレクションを生成します。
 
@@ -2442,7 +2483,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // [9, 18, 27, 36, 45, 54, 63, 72, 81, 90]
 
 <a name="method-toarray"></a>
-#### `toArray()` {#collection-method}
+#### `toArray()` {.collection-method}
 
 `toArray`メソッドはコレクションをPHPの「配列」へ変換します。コレクションの値が[Eloquent](/docs/{{version}}/eloquent)モデルの場合は、そのモデルが配列に変換されます。
 
@@ -2459,7 +2500,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 > {note} `toArray`は、ネストした`Arrayable`インスタンスのオブジェクトすべてを配列へ変換します。コレクションの裏の素の配列をそのまま取得したい場合は、代わりに[`all`](#method-all)メソッドを使用してください。
 
 <a name="method-tojson"></a>
-#### `toJson()` {#collection-method}
+#### `toJson()` {.collection-method}
 
 `toJson`メソッドはコレクションをシリアライズ済みのJSON文字へ変換します。
 
@@ -2470,7 +2511,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // '{"name":"Desk","price":200}'
 
 <a name="method-transform"></a>
-#### `transform()` {#collection-method}
+#### `transform()` {.collection-method}
 
 `transform`メソッドはコレクションを繰り返し処理し、コレクションの各アイテムに指定したコールバックを適用します。コレクション中のアイテムはコールバックから返される値に置き換わります。
 
@@ -2487,7 +2528,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 > {note} 他のコレクションメソッドとは異なり、`transform`はコレクション自身を更新します。代わりに新しいコレクションを生成したい場合は、 [`map`](#method-map)メソッドを使用してください。
 
 <a name="method-union"></a>
-#### `union()` {#collection-method}
+#### `union()` {.collection-method}
 
 `union`メソッドは指定した配列をコレクションへ追加します。すでにコレクションにあるキーが、オリジナル配列に含まれている場合は、オリジナルコレクションの値が優先されます。
 
@@ -2500,7 +2541,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     // [1 => ['a'], 2 => ['b'], 3 => ['c']]
 
 <a name="method-unique"></a>
-#### `unique()` {#collection-method}
+#### `unique()` {.collection-method}
 
 `unique`メソッドはコレクションの重複を取り除いた全アイテムを返します。ソート済みのコレクションはオリジナルの配列キーを保っています。下の例では[`values`](#method-values)メソッドで連続した数字のインデックスにするためリセットしています。
 
@@ -2555,12 +2596,12 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 > {tip} [Eloquentコレクション](/docs/{{version}}/eloquent-collections#method-contains)の使用時は、このメソッドの振る舞いは変わります。
 
 <a name="method-uniquestrict"></a>
-#### `uniqueStrict()` {#collection-method}
+#### `uniqueStrict()` {.collection-method}
 
 このメソッドは、[`unique`](#method-unique)と同じ使用方法です。しかし、全値は「厳密」に比較されます。
 
 <a name="method-unless"></a>
-#### `unless()` {#collection-method}
+#### `unless()` {.collection-method}
 
 `unless`メソッドは最初の引数が`true`と評価されない場合、コールバックを実行します。
 
@@ -2595,17 +2636,17 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 `unless`の逆の動作は、[`when`](#method-when)メソッドです。
 
 <a name="method-unlessempty"></a>
-#### `unlessEmpty()` {#collection-method}
+#### `unlessEmpty()` {.collection-method}
 
 [`whenNotEmpty`](#method-whennotempty)メソッドのエイリアスです。
 
 <a name="method-unlessnotempty"></a>
-#### `unlessNotEmpty()` {#collection-method}
+#### `unlessNotEmpty()` {.collection-method}
 
 [`whenEmpty`](#method-whenempty)メソッドのエイリアスです。
 
 <a name="method-unwrap"></a>
-#### `unwrap()` {#collection-method}
+#### `unwrap()` {.collection-method}
 
 staticの`unwrap`メソッドは適用可能な場合、指定値からコレクションの元になっているアイテムを返します。
 
@@ -2622,7 +2663,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
     // 'John Doe'
 
 <a name="method-values"></a>
-#### `values()` {#collection-method}
+#### `values()` {.collection-method}
 
 `values`メソッドはキーをリセット後、連続した整数にした新しいコレクションを返します。
 
@@ -2643,7 +2684,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
     */
 
 <a name="method-when"></a>
-#### `when()` {#collection-method}
+#### `when()` {.collection-method}
 
 `when`メソッドは、メソッドの第１引数が`true`に評価される場合、コールバックを実行します。
 
@@ -2678,7 +2719,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
 `when`の逆の動作は、[`unless`](#method-unless)メソッドです。
 
 <a name="method-whenempty"></a>
-#### `whenEmpty()` {#collection-method}
+#### `whenEmpty()` {.collection-method}
 
 `whenEmpty`メソッドは、コレクションが空の場合に、指定したコールバックを実行します。
 
@@ -2720,7 +2761,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
 `whenEmpty`の逆の動作は、[`whenNotEmpty`](#method-whennotempty)メソッドです。
 
 <a name="method-whennotempty"></a>
-#### `whenNotEmpty()` {#collection-method}
+#### `whenNotEmpty()` {.collection-method}
 
 `whenNotEmpty`メソッドは、コレクションが空でない場合に、指定したコールバックを実行します。
 
@@ -2762,7 +2803,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
 `whenNotEmpty`の逆の動作は、[`whenEmpty`](#method-whenempty)メソッドです。
 
 <a name="method-where"></a>
-#### `where()` {#collection-method}
+#### `where()` {.collection-method}
 
 `where`メソッドは指定したキー／値ペアでコレクションをフィルタリングします。
 
@@ -2806,12 +2847,12 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
     */
 
 <a name="method-wherestrict"></a>
-#### `whereStrict()` {#collection-method}
+#### `whereStrict()` {.collection-method}
 
 このメソッドの使用法は、[`where`](#method-where)メソッドと同じです。しかし、値の比較はすべて「厳格」な比較で行われます。
 
 <a name="method-wherebetween"></a>
-#### `whereBetween()` {#collection-method}
+#### `whereBetween()` {.collection-method}
 
 `whereBetween`メソッドは、指定したアイテム値が、指定範囲内にあるかどうかを判断することにより、コレクションをフィルタリングします。
 
@@ -2836,7 +2877,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
     */
 
 <a name="method-wherein"></a>
-#### `whereIn()` {#collection-method}
+#### `whereIn()` {.collection-method}
 
 `whereIn`メソッドは、指定配列中のアイテム値を持たない要素をコレクションから削除します。
 
@@ -2861,12 +2902,12 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
 `whereIn`メソッドはアイテム値のチェックを「緩く」比較します。つまり同じ値の文字列と整数値は同値と判定します。「厳密」な比較でフィルタリングしたい場合は、[`whereInStrict`](#method-whereinstrict)メソッドを使ってください。
 
 <a name="method-whereinstrict"></a>
-#### `whereInStrict()` {#collection-method}
+#### `whereInStrict()` {.collection-method}
 
 このメソッドの使い方は、[`whereIn`](#method-wherein)メソッドと同じです。違いは全値を「厳密」に比較することです。
 
 <a name="method-whereinstanceof"></a>
-#### `whereInstanceOf()` {#collection-method}
+#### `whereInstanceOf()` {.collection-method}
 
 `whereInstanceOf`メソッドは、コレクションを指定したクラスタイプによりフィルタリングします。
 
@@ -2886,7 +2927,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
     // [App\Models\User, App\Models\User]
 
 <a name="method-wherenotbetween"></a>
-#### `whereNotBetween()` {#collection-method}
+#### `whereNotBetween()` {.collection-method}
 
 `whereNotBetween`メソッドは、指定アイテム値が指定範囲外にあるかどうかを判断することにより、コレクションをフィルタリングします。
 
@@ -2910,7 +2951,7 @@ staticの`unwrap`メソッドは適用可能な場合、指定値からコレク
     */
 
 <a name="method-wherenotin"></a>
-#### `whereNotIn()` {#collection-method}
+#### `whereNotIn()` {.collection-method}
 
 WhereNotIn`メソッドは、指定した配列内に含まれる指定項目値を持つ要素を、コレクションから削除します。
 
@@ -2935,12 +2976,12 @@ WhereNotIn`メソッドは、指定した配列内に含まれる指定項目値
 `whereNotIn`メソッドは、値を「緩く」比較します。つまり、同じ値の文字列と整数は、同値と判定されます。「厳密」にフィルタリングしたい場合は、[`whereNotInStrict`](#method-wherenotinstrict)メソッドを使用します。
 
 <a name="method-wherenotinstrict"></a>
-#### `whereNotInStrict()` {#collection-method}
+#### `whereNotInStrict()` {.collection-method}
 
 このメソッドは、[`whereNotIn`](#method-wherenotin)と使い方は同じですが、全値の比較が「厳密」に行われる点が異なります。
 
 <a name="method-wherenotnull"></a>
-#### `whereNotNull()` {#collection-method}
+#### `whereNotNull()` {.collection-method}
 
 `wherenotnull`メソッドは、与えられたキーが`null`ではないアイテムをコレクションから返します。
 
@@ -2962,7 +3003,7 @@ WhereNotIn`メソッドは、指定した配列内に含まれる指定項目値
     */
 
 <a name="method-wherenull"></a>
-#### `whereNull()` {#collection-method}
+#### `whereNull()` {.collection-method}
 
 `whernull`メソッドは、与えられたキーが`null`のアイテムをコレクションから返します。
 
@@ -2984,7 +3025,7 @@ WhereNotIn`メソッドは、指定した配列内に含まれる指定項目値
 
 
 <a name="method-wrap"></a>
-#### `wrap()` {#collection-method}
+#### `wrap()` {.collection-method}
 
 staticの`wrap`メソッドは適用可能であれば、指定値をコレクションでラップします。
 
@@ -3009,7 +3050,7 @@ staticの`wrap`メソッドは適用可能であれば、指定値をコレク�
     // ['John Doe']
 
 <a name="method-zip"></a>
-#### `zip()` {#collection-method}
+#### `zip()` {.collection-method}
 
 `zip`メソッドは指定した配列の値と、対応するインデックスのオリジナルコレクションの値をマージします。
 
@@ -3228,7 +3269,7 @@ staticの`wrap`メソッドは適用可能であれば、指定値をコレク�
 `Enumerable`契約で定義しているメソッドに加え、`LazyCollection`クラス契約は以下のメソッドを含んでいます。
 
 <a name="method-takeUntilTimeout"></a>
-#### `takeUntilTimeout()` {#collection-method}
+#### `takeUntilTimeout()` {.collection-method}
 
 `takeUntilTimeout`メソッドは、指定された時間まで値を列挙する新しいレイジーコレクションを返します。その後、コレクションは列挙を停止します。
 
@@ -3259,7 +3300,7 @@ staticの`wrap`メソッドは適用可能であれば、指定値をコレク�
         ->each(fn ($invoice) => $invoice->submit());
 
 <a name="method-tapEach"></a>
-#### `tapEach()` {#collection-method}
+#### `tapEach()` {.collection-method}
 
 `each`メソッドはコレクション中の各アイテムに対し、指定したコールバックを即時に呼び出しますが、`tapEach`メソッドはリストから一つずつアイテムを抜き出し、指定したコールバックを呼び出します。
 
@@ -3276,7 +3317,7 @@ staticの`wrap`メソッドは適用可能であれば、指定値をコレク�
     // 3
 
 <a name="method-remember"></a>
-#### `remember()` {#collection-method}
+#### `remember()` {.collection-method}
 
 `remember`メソッドは、すでに列挙されている値を記憶し、後続のコレクション列挙でそれらを再度取得しない新しいレイジーコレクションを返します。
 

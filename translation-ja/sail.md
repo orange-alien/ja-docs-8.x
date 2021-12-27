@@ -29,11 +29,11 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-Laravel Sailは、LaravelのデフォルトのDocker開発環境を操作するための軽量コマンドラインインターフェイスです。 Sailは、Dockerの経験がなくても、PHP、MySQL、Redisを使用してLaravelアプリケーションを構築するための優れた出発点を提供します。
+[Laravel Sail](https://github.com/laravel/sail)は、LaravelのデフォルトのDocker開発環境を操作するための軽量コマンドラインインターフェイスです。 Sailは、Dockerの経験がなくても、PHP、MySQL、Redisを使用してLaravelアプリケーションを構築するための優れた出発点を提供します。
 
 Sailの本質は、`docker-compose.yml`ファイルとプロジェクトのルートに保存されている`sail`スクリプトです。`sail`スクリプトは、`docker-compose.yml`ファイルで定義されたDockerコンテナを操作するための便利なメソッドをCLIで提供します。
 
-Laravel Sail is supported on macOS, Linux, and Windows (via [WSL2](https://docs.microsoft.com/en-us/windows/wsl/about)).
+Laravel Sailは、macOS、Linux、Windows（[WSL2](https://docs.microsoft.com/en-us/windows/wsl/about)を使用）に対応しています。
 
 <a name="installation"></a>
 ## インストールと準備
@@ -155,9 +155,11 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
     -w /var/www/html \
-    laravelsail/php80-composer:latest \
+    laravelsail/php81-composer:latest \
     composer install --ignore-platform-reqs
 ```
+
+`laravelsail/phpXX-composer`イメージを使用する場合、アプリケーションで使用する予定のPHPと同じバージョン（`74`、`80`、`81`）を使用する必要があります。
 
 <a name="executing-artisan-commands"></a>
 ### Artisanコマンドの実行
@@ -412,7 +414,7 @@ Sailは単なるDockerであるため、Sailに関するほぼすべてを自由
 sail artisan sail:publish
 ```
 
-このコマンドを実行すると、Laravel Sailが使用するDockerファイルおよびその他の構成ファイルは、アプリケーションのルートディレクトリの`docker`ディレクトリに配置されます。Sailのインストールをカスタマイズした後は、アプリケーションの`docker-compose.yml`ファイル内の`laravel.test`サービスのイメージ名を変更するとよいでしょう。この後、`build`コマンドを使って、アプリケーションのコンテナを再構築します。laravel.test`サービスのイメージにユニークな名前を付けることは、Sailを使い１台のマシンで複数のLaravelアプリケーションを開発する場合には特に重要です。
+このコマンドを実行すると、Laravel Sailが使用するDockerfileとその他の設定ファイルが、アプリケーションのルートディレクトリ内の`docker`ディレクトリに配置されます。Sailのインストールをカスタマイズした後、アプリケーションの `docker-compose.yml` ファイル内のアプリケーションコンテナのイメージ名を変更したいと思うことでしょう。それを行ったら、`build`コマンドを使用してアプリケーションのコンテナを再構築してください。アプリケーション・イメージに一意な名前を割り当てることは、Sailを使用して1台のマシンで複数のLaravelアプリケーションを開発する場合に特に重要です。
 
 ```bash
 sail build --no-cache

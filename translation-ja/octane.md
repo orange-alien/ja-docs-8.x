@@ -26,7 +26,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-Laravel Octane（オクタン）は、[Swoole](https://swoole.co.uk)や[RoadRunner](https://roadrunner.dev)などの高性能なアプリケーションサーバを使用し、アプリケーションを提供することで、アプリケーションのパフォーマンスを向上させます。Octaneはアプリケーションを一度起動したら、メモリ内に保持し、そして超音速でリクエストを送り返します。
+[Laravel Octane](https://github.com/laravel/octane)（オクタン）は、[Open Swoole](https://swoole.co.uk)や[Swoole](https://swoole.co.uk)、[RoadRunner](https://roadrunner.dev)などの高性能なアプリケーションサーバを使用し、アプリケーションを提供することで、アプリケーションのパフォーマンスを向上させます。Octaneはアプリケーションを一度起動したら、メモリ内に保持し、そして超音速でリクエストを送り返します。
 
 <a name="installation"></a>
 ## インストール
@@ -123,6 +123,20 @@ command=/usr/bin/php -d variables_order=EGPCS /var/www/html/artisan octane:start
 
 ```bash
 ./vendor/bin/sail build --no-cache
+```
+
+<a name="swoole-configuration"></a>
+#### Swoole Configuration
+
+Swoole supports a few additional configuration options that you may add to your `octane` configuration file if necessary. Because they rarely need to be modified, these options are not included in the default configuration file:
+
+```php
+'swoole' => [
+    'options' => [
+        'log_file' => storage_path('logs/swoole_http.log'),
+        'package_max_length' => 10 * 1024 * 1024,
+    ],
+];
 ```
 
 <a name="serving-your-application"></a>
@@ -542,4 +556,3 @@ return Octane::table('example')->get('uuid');
 ```
 
 > {note} Swooleのテーブルがサポートする、カラムの型は`string`、`int`、`float`です。
-

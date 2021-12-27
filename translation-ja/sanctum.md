@@ -24,7 +24,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-Laravel Sanctum（サンクタム、聖所）は、SPA(シングルページアプリケーション)、モバイルアプリケーション、およびシンプルなトークンベースのAPIに軽い認証システムを提供します。Sanctumを使用すればアプリケーションの各ユーザーは、自分のアカウントに対して複数のAPIトークンを生成できます。これらのトークンには、そのトークンが実行できるアクションを指定するアビリティ／スコープが付与されることもあります。
+[Laravel Sanctum](https://github.com/laravel/sanctum)（サンクタム、聖所）は、SPA(シングルページアプリケーション)、モバイルアプリケーション、およびシンプルなトークンベースのAPIに軽い認証システムを提供します。Sanctumを使用すればアプリケーションの各ユーザーは、自分のアカウントに対して複数のAPIトークンを生成できます。これらのトークンには、そのトークンが実行できるアクションを指定するアビリティ／スコープが付与されることもあります。
 
 <a name="how-it-works"></a>
 ### 仕組み
@@ -309,7 +309,7 @@ SPAが[プライベート/プレゼンスブロードキャストチャネル](/
 
     Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
-次に、Pusherの許可リクエストを成功させるために、[Laravel　Echo](/docs/{{version}}/Broadcasting#installing-laravel-echo)を初期化するときにカスタムPusher `authorizer`を提供する必要があります。これにより、アプリケーションは、[クロスドメインリクエスト用に適切に設定した](#cors-and-cookies)`axios`インスタンスを使用するようにPusherを構成できます。
+次に、Pusherの許可リクエストを成功させるために、[Laravel Echo](/docs/{{version}}/Broadcasting#client-side-installation)を初期化するときにカスタムPusher `authorizer`を提供する必要があります。これにより、アプリケーションは、[クロスドメインリクエスト用に適切に設定した](#cors-and-cookies)`axios`インスタンスを使用するようにPusherを構成できます。
 
     window.Echo = new Echo({
         broadcaster: "pusher",

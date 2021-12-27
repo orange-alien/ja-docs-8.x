@@ -133,7 +133,7 @@ Laravelのイベントブロードキャストの使用を開始するには、L
 <a name="client-pusher-channels"></a>
 ### Pusherチャンネル
 
-Laravel EchoはJavaScriptライブラリであり、チャンネルをサブスクライブして、サーバ側のブロードキャストドライバがブロードキャストしたイベントを簡単にリッスンできます。NPMパッケージマネージャーを介してEchoをインストールします。以下の例では、Pusherチャンネルブロードキャスタを使用するため、`pusher-js`パッケージもインストールしています。
+[Laravel Echo](https://github.com/laravel/echo)はJavaScriptライブラリであり、チャンネルをサブスクライブして、サーバ側のブロードキャストドライバがブロードキャストしたイベントを簡単にリッスンできます。NPMパッケージマネージャーを介してEchoをインストールします。以下の例では、Pusherチャンネルブロードキャスタを使用するため、`pusher-js`パッケージもインストールしています。
 
 ```bash
 npm install --save-dev laravel-echo pusher-js
@@ -180,7 +180,7 @@ window.Echo = new Echo({
 <a name="client-ably"></a>
 ### Ably
 
-Laravel EchoはJavaScriptライブラリであり、チャンネルをサブスクライブして、サーバ側のブロードキャストドライバがブロードキャストしたイベントを簡単にリッスンできます。NPMパッケージマネージャーを介してEchoをインストールします。この例では、`pusher-js`パッケージもインストールしています。
+[Laravel Echo](https://github.com/laravel/echo)はJavaScriptライブラリであり、チャンネルをサブスクライブして、サーバ側のブロードキャストドライバがブロードキャストしたイベントを簡単にリッスンできます。NPMパッケージマネージャーを介してEchoをインストールします。この例では、`pusher-js`パッケージもインストールしています。
 
 イベントのブロードキャストにAblyを使用しているのに、なぜ`pusher-js`JavaScriptライブラリをインストールするのか不思議に思うかもしれません。ありがたいことに、AblyにはPusher互換モードが含まれており、クライアント側アプリケーションでイベントをリッスンするときにPusherプロトコルを使用できます。
 
@@ -292,7 +292,7 @@ Laravelのイベントブロードキャストを使用すると、WebSocketに�
 <a name="listening-for-event-broadcasts"></a>
 #### イベントブロードキャストのリッスン
 
-他に残っているのは、JavaScriptアプリケーションでイベントをリッスンすることだけです。Laravel Echoを使用してこれを行えます。まず、`private`メソッドを使用し、プライベートチャンネルをサブスクライブします。次に、`listen`メソッドを使用して`OrderShipmentStatusUpdated`イベントをリッスンします。デフォルトでは、イベントのすべてのパブリックプロパティがブロードキャストイベントに含まれます。
+他に残っているのは、JavaScriptアプリケーションでイベントをリッスンすることだけです。[Laravel Echo](#client-side-installation)を使用してこれを行えます。まず、`private`メソッドを使用し、プライベートチャンネルをサブスクライブします。次に、`listen`メソッドを使用して`OrderShipmentStatusUpdated`イベントをリッスンします。デフォルトでは、イベントのすべてのパブリックプロパティがブロードキャストイベントに含まれます。
 
 ```js
 Echo.private(`orders.${orderId}`)

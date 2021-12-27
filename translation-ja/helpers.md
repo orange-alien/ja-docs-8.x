@@ -123,6 +123,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [Str::replaceArray](#method-str-replace-array)
 [Str::replaceFirst](#method-str-replace-first)
 [Str::replaceLast](#method-str-replace-last)
+[Str::reverse](#method-str-reverse)
 [Str::singular](#method-str-singular)
 [Str::slug](#method-str-slug)
 [Str::snake](#method-snake-case)
@@ -283,11 +284,11 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 ## メソッド一覧
 
 <style>
-    #collection-method code {
+    .collection-method code {
         font-size: 14px;
     }
 
-    #collection-method:not(.first-collection-method) {
+    .collection-method:not(.first-collection-method) {
         margin-top: 50px;
     }
 </style>
@@ -296,7 +297,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 ## 配列とオブジェクト
 
 <a name="method-array-accessible"></a>
-#### `Arr::accessible()` {#collection-method .first-collection-method}
+#### `Arr::accessible()` {.collection-method .first-collection-method}
 
 `Arr::accessible`メソッドは、指定した値が配列アクセス可能かどうかを判別します。
 
@@ -320,7 +321,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-array-add"></a>
-#### `Arr::add()` {#collection-method}
+#### `Arr::add()` {.collection-method}
 
 `Arr::add`メソッドは指定キー／値のペアをそのキーが存在していない場合と`null`がセットされている場合に、配列に追加します。
 
@@ -336,7 +337,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 
 
 <a name="method-array-collapse"></a>
-#### `Arr::collapse()` {#collection-method}
+#### `Arr::collapse()` {.collection-method}
 
 `Arr::collapse`メソッドは配列の配列を一次元の配列へ展開します。
 
@@ -347,7 +348,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 <a name="method-array-crossjoin"></a>
-#### `Arr::crossJoin()` {#collection-method}
+#### `Arr::crossJoin()` {.collection-method}
 
 `Arr::crossJoin`メソッドは指定配列をクロス結合し、可能性があるすべての順列の直積集合を返します。
 
@@ -380,7 +381,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     */
 
 <a name="method-array-divide"></a>
-#### `Arr::divide()` {#collection-method}
+#### `Arr::divide()` {.collection-method}
 
 `Arr::divide`メソッドは２つの配列を返します。１つは指定した配列のキーを含み、もう１つは値を含みます。
 
@@ -393,7 +394,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // $values: ['Desk']
 
 <a name="method-array-dot"></a>
-#### `Arr::dot()` {#collection-method}
+#### `Arr::dot()` {.collection-method}
 
 `Arr::dot`メソッドは多次元配列を「ドット」記法で深さを表した一次元配列に変換します。
 
@@ -406,7 +407,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['products.desk.price' => 100]
 
 <a name="method-array-except"></a>
-#### `Arr::except()` {#collection-method}
+#### `Arr::except()` {.collection-method}
 
 `Arr::except`メソッドは指定キー／値ペアを配列から削除します。
 
@@ -419,7 +420,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['name' => 'Desk']
 
 <a name="method-array-exists"></a>
-#### `Arr::exists()` {#collection-method}
+#### `Arr::exists()` {.collection-method}
 
 `Arr::exists`メソッドは指定キーが指定配列に存在するかをチェックします。
 
@@ -436,7 +437,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-array-first"></a>
-#### `Arr::first()` {#collection-method}
+#### `Arr::first()` {.collection-method}
 
 `Arr::first`メソッドは指定したテストにパスした最初の要素を返します。
 
@@ -457,7 +458,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $first = Arr::first($array, $callback, $default);
 
 <a name="method-array-flatten"></a>
-#### `Arr::flatten()` {#collection-method}
+#### `Arr::flatten()` {.collection-method}
 
 `Arr::flatten`メソッドは、多次元配列を一次元配列へ変換します。
 
@@ -470,7 +471,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['Joe', 'PHP', 'Ruby']
 
 <a name="method-array-forget"></a>
-#### `Arr::forget()` {#collection-method}
+#### `Arr::forget()` {.collection-method}
 
 `Arr::forget`メソッドは「ドット記法」で指定キー／値のペアを深くネストされた配列から取り除きます。
 
@@ -483,7 +484,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['products' => []]
 
 <a name="method-array-get"></a>
-#### `Arr::get()` {#collection-method}
+#### `Arr::get()` {.collection-method}
 
 `Arr::get`メソッドは「ドット」記法で指定した値を深くネストされた配列から取得します。
 
@@ -504,7 +505,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 0
 
 <a name="method-array-has"></a>
-#### `Arr::has()` {#collection-method}
+#### `Arr::has()` {.collection-method}
 
 `Arr::has`メソッドは、「ドット」記法で指定したアイテムが配列に存在するかをチェックします。
 
@@ -521,7 +522,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-array-hasany"></a>
-#### `Arr::hasAny()` {#collection-method}
+#### `Arr::hasAny()` {.collection-method}
 
 `Arr::hasAny`メソッドは「ドット」記法を使い、配列中に一連のアイテムが存在するかを調べます。
 
@@ -542,7 +543,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-array-isassoc"></a>
-#### `Arr::isAssoc()` {#collection-method}
+#### `Arr::isAssoc()` {.collection-method}
 
 `Arr::isAssoc`は指定配列が、連想配列の場合に`true`を返します。０から始まる連続した数値キーを持たない場合に「連想」配列であると判断します。
 
@@ -557,7 +558,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-array-last"></a>
-#### `Arr::last()` {#collection-method}
+#### `Arr::last()` {.collection-method}
 
 `Arr::last`メソッドは、テストでパスした最後の配列要素を返します。
 
@@ -578,7 +579,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $last = Arr::last($array, $callback, $default);
 
 <a name="method-array-only"></a>
-#### `Arr::only()` {#collection-method}
+#### `Arr::only()` {.collection-method}
 
 `Arr::only`メソッドは配列中に存在する、指定したキー／値ペアのアイテムのみを返します。
 
@@ -591,7 +592,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['name' => 'Desk', 'price' => 100]
 
 <a name="method-array-pluck"></a>
-#### `Arr::pluck()` {#collection-method}
+#### `Arr::pluck()` {.collection-method}
 
 `Arr::pluck`メソッドは配列中の指定キーに対する値をすべて取得します。
 
@@ -615,7 +616,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // [1 => 'Taylor', 2 => 'Abigail']
 
 <a name="method-array-prepend"></a>
-#### `Arr::prepend()` {#collection-method}
+#### `Arr::prepend()` {.collection-method}
 
 `Arr::prepend`メソッドは配列の先頭にアイテムを追加します。
 
@@ -638,7 +639,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['name' => 'Desk', 'price' => 100]
 
 <a name="method-array-pull"></a>
-#### `Arr::pull()` {#collection-method}
+#### `Arr::pull()` {.collection-method}
 
 `Arr::pull`メソッドは配列から指定キー／値ペアを取得し、同時に削除します。
 
@@ -659,7 +660,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $value = Arr::pull($array, $key, $default);
 
 <a name="method-array-query"></a>
-#### `Arr::query()` {#collection-method}
+#### `Arr::query()` {.collection-method}
 
 `Arr::query`メソッドは配列をクエリ文字列へ変換します。
 
@@ -678,7 +679,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // name=Taylor&order[column]=created_at&order[direction]=desc
 
 <a name="method-array-random"></a>
-#### `Arr::random()` {#collection-method}
+#### `Arr::random()` {.collection-method}
 
 `Arr::random`メソッドは配列からランダムに値を返します。
 
@@ -699,7 +700,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // [2, 5] - (retrieved randomly)
 
 <a name="method-array-set"></a>
-#### `Arr::set()` {#collection-method}
+#### `Arr::set()` {.collection-method}
 
 `Arr::set`メソッドは「ドット」記法を使用し、深くネストした配列に値をセットします。
 
@@ -712,7 +713,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['products' => ['desk' => ['price' => 200]]]
 
 <a name="method-array-shuffle"></a>
-#### `Arr::shuffle()` {#collection-method}
+#### `Arr::shuffle()` {.collection-method}
 
 `Arr::shuffle`メソッドは、配列中のアイテムをランダムにシャッフルします。
 
@@ -723,7 +724,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // [3, 2, 5, 1, 4] - (無作為に入れ替えた結果)
 
 <a name="method-array-sort"></a>
-#### `Arr::sort()` {#collection-method}
+#### `Arr::sort()` {.collection-method}
 
 `Arr::sort`メソッドは、配列の値に基づきソートします。
 
@@ -758,7 +759,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     */
 
 <a name="method-array-sort-recursive"></a>
-#### `Arr::sortRecursive()` {#collection-method}
+#### `Arr::sortRecursive()` {.collection-method}
 
 `Arr::sortRecursive`メソッドは、数値インデックス付きサブ配列の場合は`sort`関数を使用し、連想サブ配列の場合は`ksort`関数を使用して、配列を再帰的に並べ替えます。
 
@@ -781,7 +782,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     */
 
 <a name="method-array-to-css-classes"></a>
-#### `Arr::toCssClasses()` {#collection-method}
+#### `Arr::toCssClasses()` {.collection-method}
 
 `Arr::toCssClasses`は、CSSクラス文字列を条件付きでコンパイルします。この方法はクラスの配列を引数に取り、配列キーに追加したいクラス、値は論理式です。配列要素に数字キーがある場合は、レンダーするクラスリストへ常に含めます。
 
@@ -801,7 +802,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 このメソッドは、[Bladeコンポーネントのアトリビュートバッグを使ったクラスのマージ](/docs/{{version}}/blade#conditionally-merge-classes)と、`@class` [Bladeディレクティブ](/docs/{{version}}/blade#conditional-classes)を提供するLaravelの機能を強化します。
 
 <a name="method-array-undot"></a>
-#### `Arr::undot()` {#collection-method}
+#### `Arr::undot()` {.collection-method}
 
 `Arr::undot`メソッドは、「ドット」記法を用いた一次元配列を多次元配列へ展開します。
 
@@ -817,7 +818,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['user' => ['name' => 'Kevin Malone', 'occupation' => 'Accountant']]
 
 <a name="method-array-where"></a>
-#### `Arr::where()` {#collection-method}
+#### `Arr::where()` {.collection-method}
 
 `Arr::where`メソッドは、指定したクロージャを使用して配列をフィルタリングします。
 
@@ -832,7 +833,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // [1 => '200', 3 => '400']
 
 <a name="method-array-where-not-null"></a>
-#### `Arr::whereNotNull()` {#collection-method}
+#### `Arr::whereNotNull()` {.collection-method}
 
 `Arr::whereNotNull`メソッドは、指定する配列からすべての`null`値を削除します。
 
@@ -845,7 +846,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // [0 => 0]
 
 <a name="method-array-wrap"></a>
-#### `Arr::wrap()` {#collection-method}
+#### `Arr::wrap()` {.collection-method}
 
 `Arr::wrap`メソッドは、指定した値を配列にラップします。指定した値がすでに配列にある場合は、変更せずに返します。
 
@@ -866,7 +867,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // []
 
 <a name="method-data-fill"></a>
-#### `data_fill()` {#collection-method}
+#### `data_fill()` {.collection-method}
 
 `data_fill`関数は「ドット」記法を使用し、ターゲットの配列やオブジェクトへ足りない値をセットします。
 
@@ -901,7 +902,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     */
 
 <a name="method-data-get"></a>
-#### `data_get()` {#collection-method}
+#### `data_get()` {.collection-method}
 
 `data_get`関数は「ドット」記法を使用し、ネストした配列やオブジェクトから値を取得します。
 
@@ -929,7 +930,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['Desk 1', 'Desk 2'];
 
 <a name="method-data-set"></a>
-#### `data_set()` {#collection-method}
+#### `data_set()` {.collection-method}
 
 `data_set`関数は「ドット」記法を使用し、ネストした配列やオブジェクトに値をセットします。
 
@@ -968,7 +969,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ['products' => ['desk' => ['price' => 100]]]
 
 <a name="method-head"></a>
-#### `head()` {#collection-method}
+#### `head()` {.collection-method}
 
 `head`関数は、配列の最初の要素を返します。
 
@@ -979,7 +980,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 100
 
 <a name="method-last"></a>
-#### `last()` {#collection-method}
+#### `last()` {.collection-method}
 
 `last`関数は指定した配列の最後の要素を返します。
 
@@ -993,7 +994,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 ## パス
 
 <a name="method-app-path"></a>
-#### `app_path()` {#collection-method}
+#### `app_path()` {.collection-method}
 
 `app_path`関数は、アプリケーションの`app`ディレクトリの完全修飾パスを返します。`app_path`関数を使用して、アプリケーションディレクトリに関連するファイルへの完全修飾パスを生成することもできます。
 
@@ -1002,7 +1003,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $path = app_path('Http/Controllers/Controller.php');
 
 <a name="method-base-path"></a>
-#### `base_path()` {#collection-method}
+#### `base_path()` {.collection-method}
 
 `base_path`関数は、アプリケーションのルートディレクトリへの完全修飾パスを返します。`base_path`関数を使用して、プロジェクトのルートディレクトリに関連する特定のファイルへの完全修飾パスを生成することもできます。
 
@@ -1011,7 +1012,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $path = base_path('vendor/bin');
 
 <a name="method-config-path"></a>
-#### `config_path()` {#collection-method}
+#### `config_path()` {.collection-method}
 
 `config_path`関数は、アプリケーションの`config`ディレクトリへの完全修飾パスを返します。`config_path`関数を使用して、アプリケーションの構成ディレクトリ内の特定のファイルへの完全修飾パスを生成することもできます。
 
@@ -1020,7 +1021,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $path = config_path('app.php');
 
 <a name="method-database-path"></a>
-#### `database_path()` {#collection-method}
+#### `database_path()` {.collection-method}
 
 `database_path`関数は、アプリケーションの`database`ディレクトリへの完全修飾パスを返します。`database_path`関数を使用して、データベースディレクトリ内の特定のファイルへの完全修飾パスを生成することもできます。
 
@@ -1029,14 +1030,14 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $path = database_path('factories/UserFactory.php');
 
 <a name="method-mix"></a>
-#### `mix()` {#collection-method}
+#### `mix()` {.collection-method}
 
 `mix`関数は、[バージョンつけしたMixファイル](/docs/{{version}}/mix)のパスを取得します。
 
     $path = mix('css/app.css');
 
 <a name="method-public-path"></a>
-#### `public_path()` {#collection-method}
+#### `public_path()` {.collection-method}
 
 `public_path`関数は、アプリケーションの`public`ディレクトリへの完全修飾パスを返します。`public_path`関数を使用して、パブリックディレクトリ内の特定のファイルへの完全修飾パスを生成することもできます。
 
@@ -1045,7 +1046,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $path = public_path('css/app.css');
 
 <a name="method-resource-path"></a>
-#### `resource_path()` {#collection-method}
+#### `resource_path()` {.collection-method}
 
 `resource_path`関数は、アプリケーションの`resources`ディレクトリへの完全修飾パスを返します。`resource_path`関数を使用して、リソースディレクトリ内の特定のファイルへの完全修飾パスを生成することもできます。
 
@@ -1054,7 +1055,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $path = resource_path('sass/app.scss');
 
 <a name="method-storage-path"></a>
-#### `storage_path()` {#collection-method}
+#### `storage_path()` {.collection-method}
 
 `storage_path`関数は、アプリケーションの`storage`ディレクトリへの完全修飾パスを返します。`storage_path`関数を使用して、ストレージディレクトリ内の特定のファイルへの完全修飾パスを生成することもできます。
 
@@ -1066,7 +1067,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 ## 文字列
 
 <a name="method-__"></a>
-#### `__()` {#collection-method}
+#### `__()` {.collection-method}
 
 `__`関数は、指定した翻訳文字列か翻訳キーを[ローカリゼーションファイル](/docs/{{version}}/localization)を使用し、翻訳します。
 
@@ -1077,7 +1078,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 指定した翻訳文字列や翻訳キーが存在しない場合、`__`関数は指定値をそのまま返します。たとえば、上記の場合に翻訳キーが存在しなければ、`__`関数は`messages.welcome`を返します。
 
 <a name="method-class-basename"></a>
-#### `class_basename()` {#collection-method}
+#### `class_basename()` {.collection-method}
 
 `class_basename`関数は、指定クラスの名前から名前空間を取り除いて返します。
 
@@ -1086,7 +1087,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // Baz
 
 <a name="method-e"></a>
-#### `e()` {#collection-method}
+#### `e()` {.collection-method}
 
 `e`関数は、PHPの`htmlspecialchars`関数を`double_encode`オプションにデフォルトで`true`を指定し、実行します。
 
@@ -1095,7 +1096,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // &lt;html&gt;foo&lt;/html&gt;
 
 <a name="method-preg-replace-array"></a>
-#### `preg_replace_array()` {#collection-method}
+#### `preg_replace_array()` {.collection-method}
 
 `preg_replace_array`関数は、指定パターンを順番に配列中の値に置き換えます。
 
@@ -1106,7 +1107,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // The event will take place between 8:30 and 9:00
 
 <a name="method-str-after"></a>
-#### `Str::after()` {#collection-method}
+#### `Str::after()` {.collection-method}
 
 `Str::after`関数は、指定値に続く文字列をすべて返します。文字列中に指定値が存在しない場合は、文字列全体を返します。
 
@@ -1117,7 +1118,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ' my name'
 
 <a name="method-str-after-last"></a>
-#### `Str::afterLast()` {#collection-method}
+#### `Str::afterLast()` {.collection-method}
 
 `Str::afterLast`メソッドは、文字列で指定値が現れる最後の場所から、後ろの部分を返します。文字列中に指定値が存在しない場合は、文字列全体を返します。
 
@@ -1128,7 +1129,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 'Controller'
 
 <a name="method-str-ascii"></a>
-#### `Str::ascii()` {#collection-method}
+#### `Str::ascii()` {.collection-method}
 
 `Str::ascii`メソッドは文字列をASCII値へ変換しようと試みます。
 
@@ -1139,7 +1140,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 'u'
 
 <a name="method-str-before"></a>
-#### `Str::before()` {#collection-method}
+#### `Str::before()` {.collection-method}
 
 `Str::before`関数は、文字列中の指定値より前の文字列を全部返します。
 
@@ -1150,7 +1151,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 'This is '
 
 <a name="method-str-before-last"></a>
-#### `Str::beforeLast()` {#collection-method}
+#### `Str::beforeLast()` {.collection-method}
 
 `Str::beforeLast`メソッドは、文字列で指定値が現れる最後の場所から、前の部分を返します。
 
@@ -1161,7 +1162,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 'This '
 
 <a name="method-str-between"></a>
-#### `Str::between()` {#collection-method}
+#### `Str::between()` {.collection-method}
 
 `Str::between`メソッドは、２つの値間の部分文字列を返します。
 
@@ -1172,7 +1173,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // ' is my '
 
 <a name="method-camel-case"></a>
-#### `Str::camel()` {#collection-method}
+#### `Str::camel()` {.collection-method}
 
 `Str::camel`メソッドは、文字列をキャメルケース（`camelCase`）へ変換します。
 
@@ -1183,7 +1184,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // fooBar
 
 <a name="method-str-contains"></a>
-#### `Str::contains()` {#collection-method}
+#### `Str::contains()` {.collection-method}
 
 `Str::contains`メソッドは、指定文字列に指定値が含まれているかどうかを判別します。このメソッドは大文字と小文字を区別します。
 
@@ -1202,7 +1203,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // true
 
 <a name="method-str-contains-all"></a>
-#### `Str::containsAll()` {#collection-method}
+#### `Str::containsAll()` {.collection-method}
 
 `Str::containsAll`メソッドは、指定文字列に指定配列のすべての値が含まれているかどうかを判別します。
 
@@ -1213,7 +1214,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // true
 
 <a name="method-ends-with"></a>
-#### `Str::endsWith()` {#collection-method}
+#### `Str::endsWith()` {.collection-method}
 
 `Str::endsWith`メソッドは、最初の文字列が２つ目の引数の文字列で終わっているか判定します。
 
@@ -1237,7 +1238,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-str-finish"></a>
-#### `Str::finish()` {#collection-method}
+#### `Str::finish()` {.collection-method}
 
 `Str::finish`メソッドは、指定値で終わっていない場合、その値の単一のインスタンスを文字列に追加します。
 
@@ -1252,7 +1253,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // this/string/
 
 <a name="method-str-headline"></a>
-#### `Str::headline()` {#collection-method}
+#### `Str::headline()` {.collection-method}
 
 `Str::headline`メソッドは、大・小文字、ハイフン、アンダースコアにより区切られた文字列から、各単語の最初の文字を大文字にしたスペース区切りの文字列へ変換します。
 
@@ -1267,7 +1268,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // Email Notification Sent
 
 <a name="method-str-is"></a>
-#### `Str::is()` {#collection-method}
+#### `Str::is()` {.collection-method}
 
 `Str::is`メソッドは、指定文字列が指定パターンに一致するかどうかを判別します。アスタリスクをワイルドカード値として使用できます。
 
@@ -1282,7 +1283,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-str-is-ascii"></a>
-#### `Str::isAscii()` {#collection-method}
+#### `Str::isAscii()` {.collection-method}
 
 `Str::isAscii`メソッドは、指定文字列が7ビットASCIIであるかを判定します。
 
@@ -1297,7 +1298,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-str-is-uuid"></a>
-#### `Str::isUuid()` {#collection-method}
+#### `Str::isUuid()` {.collection-method}
 
 `Str::isUuid`メソッドは、指定した文字列が有効なUUIDであることを判定します。
 
@@ -1312,7 +1313,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // false
 
 <a name="method-kebab-case"></a>
-#### `Str::kebab()` {#collection-method}
+#### `Str::kebab()` {.collection-method}
 
 `Str::kebab`メソッドは、指定した文字列をケバブケース（`kebab-case`）に変換します。
 
@@ -1323,7 +1324,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // foo-bar
 
 <a name="method-str-length"></a>
-#### `Str::length()` {#collection-method}
+#### `Str::length()` {.collection-method}
 
 `Str::length`メソッドは指定文字列の長さを返します。
 
@@ -1334,7 +1335,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 7
 
 <a name="method-str-limit"></a>
-#### `Str::limit()` {#collection-method}
+#### `Str::limit()` {.collection-method}
 
 `Str::limit`メソッドは、指定文字列を指定する長さへ切り捨てます。
 
@@ -1353,7 +1354,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // The quick brown fox (...)
 
 <a name="method-str-lower"></a>
-#### `Str::lower()` {#collection-method}
+#### `Str::lower()` {.collection-method}
 
 `Str::lower`メソッドは指定文字列を小文字に変換します。
 
@@ -1364,7 +1365,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // laravel
 
 <a name="method-str-markdown"></a>
-#### `Str::markdown()` {#collection-method}
+#### `Str::markdown()` {.collection-method}
 
 `Str::markdown`メソッドは、GitHub風なマークダウンをHTMLに変換します。
 
@@ -1381,7 +1382,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // <h1>Taylor Otwell</h1>
 
 <a name="method-str-mask"></a>
-#### `Str::mask()` {#collection-method}
+#### `Str::mask()` {.collection-method}
 
 `Str::mask`メソッドは、文字列の一部を繰り返し文字でマスクし、メールアドレスや電話番号などの文字列の一部を難読化するために使用します。
 
@@ -1398,7 +1399,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // tay***@example.com
 
 <a name="method-str-ordered-uuid"></a>
-#### `Str::orderedUuid()` {#collection-method}
+#### `Str::orderedUuid()` {.collection-method}
 
 `Str::orderedUuid`メソッドは、インデックス付きデータベース列に効率的に格納できる「タイムスタンプファースト」UUIDを生成します。このメソッドを使用して生成した各UUIDは、以前にこのメソッドを使用して生成されたUUIDの後にソートされます。
 
@@ -1407,7 +1408,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     return (string) Str::orderedUuid();
 
 <a name="method-str-padboth"></a>
-#### `Str::padBoth()` {#collection-method}
+#### `Str::padBoth()` {.collection-method}
 
 `Str::padBoth`メソッドは、PHPの`str_pad`関数をラップし、最後の文字列が目的の長さに達するまで、文字列の両側を別の文字列でパディングします。
 
@@ -1422,7 +1423,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // '  James   '
 
 <a name="method-str-padleft"></a>
-#### `Str::padLeft()` {#collection-method}
+#### `Str::padLeft()` {.collection-method}
 
 `String::padLeft`メソッドは、PHPの`str_pad`関数をラップし、最後の文字列が目的の長さに達するまで、文字列の左側を別の文字列でパディングします。
 
@@ -1437,7 +1438,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // '     James'
 
 <a name="method-str-padright"></a>
-#### `Str::padRight()` {#collection-method}
+#### `Str::padRight()` {.collection-method}
 
 `String::padRight`メソッドは、PHPの`str_pad`関数をラップし、最後の文字列が目的の長さに達するまで、文字列の右側を別の文字列でパディングします。
 
@@ -1452,7 +1453,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 'James     '
 
 <a name="method-str-plural"></a>
-#### `Str::plural()` {#collection-method}
+#### `Str::plural()` {.collection-method}
 
 `Str::plural`メソッドは単数形の単語文字列を複数形に変換します。この関数は現在、英語のみをサポートしています。
 
@@ -1479,7 +1480,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // child
 
 <a name="method-str-plural-studly"></a>
-#### `Str::pluralStudly()` {#collection-method}
+#### `Str::pluralStudly()` {.collection-method}
 
 `Str::pluralStudly`メソッドは、アッパーキャメルケースでフォーマットされた文字列の単語を複数形に変換します。この機能は現在英語のみサポートしています。
 
@@ -1506,7 +1507,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // VerifiedHuman
 
 <a name="method-str-random"></a>
-#### `Str::random()` {#collection-method}
+#### `Str::random()` {.collection-method}
 
 `Str::random`メソッドは指定した長さのランダムな文字列を生成します。このメソッドは、PHPの`random_bytes`関数を使用します。
 
@@ -1515,7 +1516,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $random = Str::random(40);
 
 <a name="method-str-remove"></a>
-#### `Str::remove()` {#collection-method}
+#### `Str::remove()` {.collection-method}
 
 `Str::remove`メソッドは、文字列から指定する値または値の配列を削除します。
 
@@ -1530,7 +1531,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 文字列を削除するときにケースを無視するには、`remove`メソッドの３番目の引数に`false`を渡してください。
 
 <a name="method-str-replace"></a>
-#### `Str::replace()` {#collection-method}
+#### `Str::replace()` {.collection-method}
 
 `Str::replace`メソッドは、文字列内の指定した文字列を置き換えます。
 
@@ -1543,7 +1544,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // Laravel 9.x
 
 <a name="method-str-replace-array"></a>
-#### `Str::replaceArray()` {#collection-method}
+#### `Str::replaceArray()` {.collection-method}
 
 `Str::replaceArray`メソッドは配列を使い、文字列を指定値へ順番に置き換えます。
 
@@ -1556,7 +1557,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // The event will take place between 8:30 and 9:00
 
 <a name="method-str-replace-first"></a>
-#### `Str::replaceFirst()` {#collection-method}
+#### `Str::replaceFirst()` {.collection-method}
 
 `Str::replaceFirst`メソッドは、文字列中で最初に出現した値を指定値で置き換えます。
 
@@ -1567,7 +1568,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // a quick brown fox jumps over the lazy dog
 
 <a name="method-str-replace-last"></a>
-#### `Str::replaceLast()` {#collection-method}
+#### `Str::replaceLast()` {.collection-method}
 
 `Str::replaceLast`メソッドは、文字列中で最後に出現した値を指定値で置き換えます。
 
@@ -1577,8 +1578,20 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 
     // the quick brown fox jumps over a lazy dog
 
+
+<a name="method-str-reverse"></a>
+#### `Str::reverse()` {.collection-method}
+
+`Str::reverse`メソッドは、指定文字列を逆順にします。
+
+    use Illuminate\Support\Str;
+
+    $reversed = Str::reverse('Hello World');
+
+    // dlroW olleH
+
 <a name="method-str-singular"></a>
-#### `Str::singular()` {#collection-method}
+#### `Str::singular()` {.collection-method}
 
 `Str::singular`メソッドは複数形を単数形へ変換します。このメソッドは、現在英語のみサポートしています。
 
@@ -1593,7 +1606,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // child
 
 <a name="method-str-slug"></a>
-#### `Str::slug()` {#collection-method}
+#### `Str::slug()` {.collection-method}
 
 `Str::slug`メソッドは指定された文字列から、URLフレンドリーな「スラグ」を生成します。
 
@@ -1604,7 +1617,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // laravel-5-framework
 
 <a name="method-snake-case"></a>
-#### `Str::snake()` {#collection-method}
+#### `Str::snake()` {.collection-method}
 
 `Str::snake`メソッドは文字列をスネークケース（`snake_case`）に変換します。
 
@@ -1619,7 +1632,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // foo-bar
 
 <a name="method-str-start"></a>
-#### `Str::start()` {#collection-method}
+#### `Str::start()` {.collection-method}
 
 `Str::start`メソッドは、文字列が指定値で開始されていない場合、その値の単一インスタンスを文字列の前に追加します。
 
@@ -1634,7 +1647,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // /this/string
 
 <a name="method-starts-with"></a>
-#### `Str::startsWith()` {#collection-method}
+#### `Str::startsWith()` {.collection-method}
 
 `Str::startsWith`メソッドは指定文字列が、２番めの引数の文字列で始まっているか判定します。
 
@@ -1651,7 +1664,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // true
 
 <a name="method-studly-case"></a>
-#### `Str::studly()` {#collection-method}
+#### `Str::studly()` {.collection-method}
 
 `Str::studly`メソッドは文字列をアッパーキャメルケース（`StudlyCase`）に変換します。
 
@@ -1662,7 +1675,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // FooBar
 
 <a name="method-str-substr"></a>
-#### `Str::substr()` {#collection-method}
+#### `Str::substr()` {.collection-method}
 
 `Str::substr`メソッドは開始位置と文字列長の引数で指定した部分文字列を返します。
 
@@ -1673,7 +1686,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // Laravel
 
 <a name="method-str-substrcount"></a>
-#### `Str::substrCount()` {#collection-method}
+#### `Str::substrCount()` {.collection-method}
 
 `Str::substrCount`メソッドは、指定する文字列内に指定値がいくつ存在しているか返します。
 
@@ -1684,7 +1697,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // 2
 
 <a name="method-title-case"></a>
-#### `Str::title()` {#collection-method}
+#### `Str::title()` {.collection-method}
 
 `Str::title`メソッドは、指定された文字列をタイトルケース（`Title Case`）へ変換します。
 
@@ -1695,7 +1708,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // A Nice Title Uses The Correct Case
 
 <a name="method-str-ucfirst"></a>
-#### `Str::ucfirst()` {#collection-method}
+#### `Str::ucfirst()` {.collection-method}
 
 `Str::ucfirst`メソッドは、指定文字列の最初の文字を大文字にして返します。
 
@@ -1706,7 +1719,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // Foo bar
 
 <a name="method-str-upper"></a>
-#### `Str::upper()` {#collection-method}
+#### `Str::upper()` {.collection-method}
 
 `Str::upper`メソッドは、指定文字列を大文字に変換します。
 
@@ -1717,7 +1730,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     // LARAVEL
 
 <a name="method-str-uuid"></a>
-#### `Str::uuid()` {#collection-method}
+#### `Str::uuid()` {.collection-method}
 
 `Str::uuid`メソッドは、UUID（バージョン４）を生成します。
 
@@ -1726,7 +1739,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     return (string) Str::uuid();
 
 <a name="method-str-word-count"></a>
-#### `Str::wordCount()` {#collection-method}
+#### `Str::wordCount()` {.collection-method}
 
 `Str::wordCount`関数は、文字列に含まれる単語の数を返します。
 
@@ -1737,7 +1750,7 @@ Str::wordCount('Hello, world!'); // 2
 ```
 
 <a name="method-str-words"></a>
-#### `Str::words()` {#collection-method}
+#### `Str::words()` {.collection-method}
 
 `Str::words`メソッドは、文字列内の単語数を制限します。3番目の引数で、切り捨てた文字列の末尾に追加する文字列を指定できます。
 
@@ -1748,7 +1761,7 @@ Str::wordCount('Hello, world!'); // 2
     // Perfectly balanced, as >>>
 
 <a name="method-trans"></a>
-#### `trans()` {#collection-method}
+#### `trans()` {.collection-method}
 
 `trans`関数は、指定した翻訳キーを[ローカリゼーションファイル](/docs/{{version}}/localization)を使用し翻訳します。
 
@@ -1757,7 +1770,7 @@ Str::wordCount('Hello, world!'); // 2
 指定した翻訳キーが存在しない場合、`trans`関数は指定値をそのまま返します。上記の場合に翻訳キーが存在しなければ、`messages.welcome`が返ります。
 
 <a name="method-trans-choice"></a>
-#### `trans_choice()` {#collection-method}
+#### `trans_choice()` {.collection-method}
 
 `trans_choice`関数は、数値をもとにし、指定翻訳キーを翻訳します。
 
@@ -1771,7 +1784,7 @@ Str::wordCount('Hello, world!'); // 2
 Fluent文字列は読み書きしやすい（fluent）、オブジェクト指向で、複数の文字列操作をチェーンできるインターフェイスを提供します。古典的な文字列操作に比較すると、複数の文字列操作を読みやすい文法で使用できます。
 
 <a name="method-fluent-str-after"></a>
-#### `after` {#collection-method}
+#### `after` {.collection-method}
 
 `after`関数は、指定値に続く文字列をすべて返します。文字列中に指定値が存在しない場合は、文字列全体を返します。
 
@@ -1782,7 +1795,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // ' my name'
 
 <a name="method-fluent-str-after-last"></a>
-#### `afterLast` {#collection-method}
+#### `afterLast` {.collection-method}
 
 `afterLast`メソッドは、文字列で指定値が最後に現れる場所から、後ろの部分を返します。文字列中に指定値が存在しない場合は、文字列全体を返します。
 
@@ -1793,7 +1806,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'Controller'
 
 <a name="method-fluent-str-append"></a>
-#### `append` {#collection-method}
+#### `append` {.collection-method}
 
 `append`メソッドは、指定値を文字列へ追加します。
 
@@ -1804,7 +1817,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'Taylor Otwell'
 
 <a name="method-fluent-str-ascii"></a>
-#### `ascii` {#collection-method}
+#### `ascii` {.collection-method}
 
 `ascii`メソッドは、文字列をアスキー値への変換を試みます。
 
@@ -1815,7 +1828,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'u'
 
 <a name="method-fluent-str-basename"></a>
-#### `basename` {#collection-method}
+#### `basename` {.collection-method}
 
 `basename`メソッドは、文字列の最後の名前部分を返します。
 
@@ -1834,7 +1847,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'baz'
 
 <a name="method-fluent-str-before"></a>
-#### `before` {#collection-method}
+#### `before` {.collection-method}
 
 `before`関数は、文字列中の指定値より前の文字列を全部返します
 
@@ -1845,7 +1858,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'This is '
 
 <a name="method-fluent-str-before-last"></a>
-#### `beforeLast` {#collection-method}
+#### `beforeLast` {.collection-method}
 
 `beforeLast`メソッドは、文字列中で最初に指定値が現れる場所から、前の部分を返します。
 
@@ -1856,7 +1869,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'This '
 
 <a name="method-fluent-str-camel"></a>
-#### `camel` {#collection-method}
+#### `camel` {.collection-method}
 
 `camel`メソッドは、文字列をキャメルケース（`camelCase`）へ変換します
 
@@ -1867,7 +1880,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // fooBar
 
 <a name="method-fluent-str-contains"></a>
-#### `contains` {#collection-method}
+#### `contains` {.collection-method}
 
 `contains`メソッドは、指定された文字列に指定された値が含まれているかどうかを判別します。このメソッドは大文字と小文字を区別します。
 
@@ -1886,7 +1899,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // true
 
 <a name="method-fluent-str-contains-all"></a>
-#### `containsAll` {#collection-method}
+#### `containsAll` {.collection-method}
 
 `containsAll`メソッドは、指定文字列に指定配列のすべての値が含まれているかどうかを判別します。
 
@@ -1897,7 +1910,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // true
 
 <a name="method-fluent-str-dirname"></a>
-#### `dirname` {#collection-method}
+#### `dirname` {.collection-method}
 
 `dirname`メソッドは文字列の親ディレクトリ名部分を返します。
 
@@ -1916,7 +1929,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // '/foo'
 
 <a name="method-fluent-str-ends-with"></a>
-#### `endsWith` {#collection-method}
+#### `endsWith` {.collection-method}
 
 `endsWith`メソッドは、文字列が指定値で終わっているか判定します。
 
@@ -1939,7 +1952,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // false
 
 <a name="method-fluent-str-exactly"></a>
-#### `exactly` {#collection-method}
+#### `exactly` {.collection-method}
 
 `exactly`メソッドは、文字列と指定値が完全に一致することを判定します。
 
@@ -1950,7 +1963,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // true
 
 <a name="method-fluent-str-explode"></a>
-#### `explode` {#collection-method}
+#### `explode` {.collection-method}
 
 `explode`メソッドは文字列を指定デリミッタで分割し、分割した文字列を含むコレクションを返します。
 
@@ -1961,7 +1974,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // collect(['foo', 'bar', 'baz'])
 
 <a name="method-fluent-str-finish"></a>
-#### `finish` {#collection-method}
+#### `finish` {.collection-method}
 
 `finish`メソッドは、文字列が指定値で終わっていない場合、その値の単一のインスタンスを追加します。
 
@@ -1976,7 +1989,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // this/string/
 
 <a name="method-fluent-str-is"></a>
-#### `is` {#collection-method}
+#### `is` {.collection-method}
 
 `is`メソッドは、指定文字列が指定パターンに一致するかどうかを判別します。アスタリスクはワイルドカード値として使用できます
 
@@ -1991,7 +2004,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // false
 
 <a name="method-fluent-str-is-ascii"></a>
-#### `isAscii` {#collection-method}
+#### `isAscii` {.collection-method}
 
 `isAscii`メソッドは、文字列がASCII文字列であるか判定します。
 
@@ -2006,7 +2019,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // false
 
 <a name="method-fluent-str-is-empty"></a>
-#### `isEmpty` {#collection-method}
+#### `isEmpty` {.collection-method}
 
 `isEmpty`メソッドは、文字列が空であるか判定します。
 
@@ -2021,7 +2034,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // false
 
 <a name="method-fluent-str-is-not-empty"></a>
-#### `isNotEmpty` {#collection-method}
+#### `isNotEmpty` {.collection-method}
 
 `isNotEmpty`メソッドは、文字列が空でないかを判定します。
 
@@ -2037,7 +2050,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // true
 
 <a name="method-fluent-str-is-uuid"></a>
-#### `isUuid` {#collection-method}
+#### `isUuid` {.collection-method}
 
 `isUuid`メソッドは、文字列がUUIDかを判定します。
 
@@ -2052,7 +2065,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // false
 
 <a name="method-fluent-str-kebab"></a>
-#### `kebab` {#collection-method}
+#### `kebab` {.collection-method}
 
 `kebab`メソッドは、文字列をケバブケース（`kebab-case`）へ変換します。
 
@@ -2063,7 +2076,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // foo-bar
 
 <a name="method-fluent-str-length"></a>
-#### `length` {#collection-method}
+#### `length` {.collection-method}
 
 `length`メソッドは、文字列の長さを返します。
 
@@ -2074,7 +2087,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 7
 
 <a name="method-fluent-str-limit"></a>
-#### `limit` {#collection-method}
+#### `limit` {.collection-method}
 
 `limit`メソッドは、指定文字列を指定した長さに切り捨てます。
 
@@ -2093,7 +2106,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // The quick brown fox (...)
 
 <a name="method-fluent-str-lower"></a>
-#### `lower` {#collection-method}
+#### `lower` {.collection-method}
 
 `lower`メソッドは、文字列を小文字に変換します。
 
@@ -2104,7 +2117,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'laravel'
 
 <a name="method-fluent-str-ltrim"></a>
-#### `ltrim` {#collection-method}
+#### `ltrim` {.collection-method}
 
 `ltrim`メソッドは、文字列の左側をトリムします。
 
@@ -2119,7 +2132,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'Laravel/'
 
 <a name="method-fluent-str-markdown"></a>
-#### `markdown` {#collection-method}
+#### `markdown` {.collection-method}
 
 `markdown`メソッドはGitHub風マークダウンをHTMLに変換します。
 
@@ -2136,7 +2149,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // <h1>Taylor Otwell</h1>
 
 <a name="method-fluent-str-mask"></a>
-#### `mask` {#collection-method}
+#### `mask` {.collection-method}
 
 `mask`メソッドは、文字列の一部を繰り返し文字でマスクし、メールアドレスや電話番号など、文字列の一部を難読化するのに使用します。
 
@@ -2153,7 +2166,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // tay***@example.com
 
 <a name="method-fluent-str-match"></a>
-#### `match` {#collection-method}
+#### `match` {.collection-method}
 
 `match`メソッドは、指定した正規表現パターンに一致する部分文字列を返します。
 
@@ -2168,7 +2181,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'bar'
 
 <a name="method-fluent-str-match-all"></a>
-#### `matchAll` {#collection-method}
+#### `matchAll` {.collection-method}
 
 `matchAll`メソッドは、指定した正規表現パターンに一致した部分文字列を含むコレクションを返します。
 
@@ -2189,7 +2202,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
 一致しなかった場合は、空のコレクションを返します。
 
 <a name="method-fluent-str-padboth"></a>
-#### `padBoth` {#collection-method}
+#### `padBoth` {.collection-method}
 
 `padBoth`メソッドはPHPの`str_pad`関数をラップし、最後の文字列が目的の長さに達するまで、文字列の両側を別の文字列でパディングします。
 
@@ -2204,7 +2217,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // '  James   '
 
 <a name="method-fluent-str-padleft"></a>
-#### `padLeft` {#collection-method}
+#### `padLeft` {.collection-method}
 
 `padLeft`メソッドはPHPの`str_pad`関数をラップし、最後の文字列が目的の長さに達するまで、文字列の左側を別の文字列でパディングします。
 
@@ -2219,7 +2232,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // '     James'
 
 <a name="method-fluent-str-padright"></a>
-#### `padRight` {#collection-method}
+#### `padRight` {.collection-method}
 
 `padRight`メソッドはPHPの`str_pad`関数をラップし、最後の文字列が目的の長さに達するまで、文字列の右側を別の文字列でパディングします。
 
@@ -2234,7 +2247,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'James     '
 
 <a name="method-fluent-str-pipe"></a>
-#### `pipe` {#collection-method}
+#### `pipe` {.collection-method}
 
 `pipe`メソッドは、現在の値を指定Callableへ渡すことで、文字列を変換します。
 
@@ -2251,7 +2264,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // 'bar'
 
 <a name="method-fluent-str-plural"></a>
-#### `plural` {#collection-method}
+#### `plural` {.collection-method}
 
 `plural`メソッドは、単数形の単語文字列を複数形に変換します。この関数は現在、英語のみをサポートしています。
 
@@ -2278,7 +2291,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // child
 
 <a name="method-fluent-str-prepend"></a>
-#### `prepend` {#collection-method}
+#### `prepend` {.collection-method}
 
 `prepend`メソッドは、指定値を文字列の先頭へ追加します。
 
@@ -2289,7 +2302,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // Laravel Framework
 
 <a name="method-fluent-str-remove"></a>
-#### `remove` {#collection-method}
+#### `remove` {.collection-method}
 
 `remove`メソッドは、指定する値か文字列の配列を文字列から削除します。
 
@@ -2302,7 +2315,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
 削除時にケースを無視するため２番目のパラメータへ`false`を渡すこともできます。
 
 <a name="method-fluent-str-replace"></a>
-#### `replace` {#collection-method}
+#### `replace` {.collection-method}
 
 `replace`メソッドは、文字列中の指定値を置き換えます。
 
@@ -2313,7 +2326,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // Laravel 7.x
 
 <a name="method-fluent-str-replace-array"></a>
-#### `replaceArray` {#collection-method}
+#### `replaceArray` {.collection-method}
 
 `replaceArray`メソッドは、配列を使用して文字列中の指定値を置き換えます。
 
@@ -2326,7 +2339,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // The event will take place between 8:30 and 9:00
 
 <a name="method-fluent-str-replace-first"></a>
-#### `replaceFirst` {#collection-method}
+#### `replaceFirst` {.collection-method}
 
 `replaceFirst`メソッドは、文字列中で最初に現れた指定値を置き換えます。
 
@@ -2337,7 +2350,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // a quick brown fox jumps over the lazy dog
 
 <a name="method-fluent-str-replace-last"></a>
-#### `replaceLast` {#collection-method}
+#### `replaceLast` {.collection-method}
 
 `replaceLast`メソッドは文字列中で最後に現れた指定値を置き換えます。
 
@@ -2348,7 +2361,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // the quick brown fox jumps over a lazy dog
 
 <a name="method-fluent-str-replace-matches"></a>
-#### `replaceMatches` {#collection-method}
+#### `replaceMatches` {.collection-method}
 
 `replaceMatches`メソッドは、パターンに一致する文字列のすべての部分を、指定した置換文字列で置き換えます。
 
@@ -2369,7 +2382,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // '[1][2][3]'
 
 <a name="method-fluent-str-rtrim"></a>
-#### `rtrim` {#collection-method}
+#### `rtrim` {.collection-method}
 
 `rtrim`メソッドは、指定した文字列の右側をトリムします。
 
@@ -2384,7 +2397,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // '/Laravel'
 
 <a name="method-fluent-str-singular"></a>
-#### `singular` {#collection-method}
+#### `singular` {.collection-method}
 
 `singular`メソッドは、単語を単数形に変換します。この関数は現在英語のみ対応しています。
 
@@ -2399,7 +2412,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // child
 
 <a name="method-fluent-str-slug"></a>
-#### `slug` {#collection-method}
+#### `slug` {.collection-method}
 
 `slug`メソッドは、文字列をURLフレンドリーな「スラグ」へ変換します。
 
@@ -2410,7 +2423,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     // laravel-framework
 
 <a name="method-fluent-str-snake"></a>
-#### `snake` {#collection-method}
+#### `snake` {.collection-method}
 
 The `snake` method converts the given string to `snake`メソッドは、文字列をスネークケース（`snake_case`）へ変換します。
 
@@ -2421,7 +2434,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // foo_bar
 
 <a name="method-fluent-str-split"></a>
-#### `split` {#collection-method}
+#### `split` {.collection-method}
 
 `split`メソッドは正規表現を使い文字列をコレクションへ分割します。
 
@@ -2432,7 +2445,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // collect(["one", "two", "three"])
 
 <a name="method-fluent-str-start"></a>
-#### `start` {#collection-method}
+#### `start` {.collection-method}
 
 `start`メソッドは、文字列が指定値で開始されていない場合、その値の単一のインスタンスを追加します。
 
@@ -2447,7 +2460,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // /this/string
 
 <a name="method-fluent-str-starts-with"></a>
-#### `startsWith` {#collection-method}
+#### `startsWith` {.collection-method}
 
 `startsWith`メソッドは、文字列が指定値から始まっているかを判定します。
 
@@ -2458,7 +2471,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // true
 
 <a name="method-fluent-str-studly"></a>
-#### `studly` {#collection-method}
+#### `studly` {.collection-method}
 
 `studly`メソッドは、文字列をアッパーキャメルケース（`StudlyCase`）へ変換します。
 
@@ -2469,7 +2482,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // FooBar
 
 <a name="method-fluent-str-substr"></a>
-#### `substr` {#collection-method}
+#### `substr` {.collection-method}
 
 `substr`メソッドは、引数で指定された開始位置と長さの部分文字列を返します。
 
@@ -2484,7 +2497,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // Frame
 
 <a name="method-fluent-str-tap"></a>
-#### `tap` {#collection-method}
+#### `tap` {.collection-method}
 
 `tap`メソッドは文字列を指定クロージャへ渡し、その文字列自体に影響を与えずに文字列を調べ操作することができます。クロージャが返す値に関係なく、`tap`メソッドはオリジナルの文字列を返します。
 
@@ -2500,7 +2513,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // LARAVEL FRAMEWORK
 
 <a name="method-fluent-str-test"></a>
-#### `test` {#collection-method}
+#### `test` {.collection-method}
 
 `test`メソッドは、文字列が指定する正規表現パターンと一致するか判定します。
 
@@ -2511,7 +2524,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // true
 
 <a name="method-fluent-str-title"></a>
-#### `title` {#collection-method}
+#### `title` {.collection-method}
 
 `title`メソッドは、文字列をタイトルケース（`Title Case`）へ変換します。
 
@@ -2522,7 +2535,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // A Nice Title Uses The Correct Case
 
 <a name="method-fluent-str-trim"></a>
-#### `trim` {#collection-method}
+#### `trim` {.collection-method}
 
 `trim`メソッドは、文字列をトリムします。
 
@@ -2537,7 +2550,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // 'Laravel'
 
 <a name="method-fluent-str-ucfirst"></a>
-#### `ucfirst` {#collection-method}
+#### `ucfirst` {.collection-method}
 
 `ucfirst`メソッドは、文字列の最初の１文字目を大文字にします。
 
@@ -2548,7 +2561,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // Foo bar
 
 <a name="method-fluent-str-upper"></a>
-#### `upper` {#collection-method}
+#### `upper` {.collection-method}
 
 `upper`メソッドは、文字列を大文字に変換します。
 
@@ -2559,7 +2572,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // LARAVEL
 
 <a name="method-fluent-str-when"></a>
-#### `when` {#collection-method}
+#### `when` {.collection-method}
 
 `when`メソッドは指定条件が`true`の場合、指定したクロージャを呼び出します。クロージャは、fluent文字列インスタンスを受け取ります。
 
@@ -2575,7 +2588,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
 必要であれば、３番目のパラメータとして別のクロージャを`when`メソッドに渡せます。このクロージャは、条件パラメータが`false`と評価された場合に実行します。
 
 <a name="method-fluent-str-when-empty"></a>
-#### `whenEmpty` {#collection-method}
+#### `whenEmpty` {.collection-method}
 
 文字列が空の場合、`whenEmpty`メソッドは指定されたクロージャを呼び出します。クロージャが値を返す場合、その値を`whenEmpty`メソッドも返します。クロージャが値を返さない場合、fluent文字列インスタンスを返します。
 
@@ -2588,7 +2601,7 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     // 'Laravel'
 
 <a name="method-fluent-str-word-count"></a>
-#### `wordCount` {#collection-method}
+#### `wordCount` {.collection-method}
 
 `wordcount`メソッドは、文字列に含まれる単語の数を返します。
 
@@ -2599,7 +2612,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 ```
 
 <a name="method-fluent-str-words"></a>
-#### `words` {#collection-method}
+#### `words` {.collection-method}
 
 `words`メソッドは、文字列内の単語数を制限します。必要に応じ、切り捨てた文字列に追加する文字列を指定できます。
 
@@ -2613,7 +2626,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 ## URL
 
 <a name="method-action"></a>
-#### `action()` {#collection-method}
+#### `action()` {.collection-method}
 
 `action`関数は、指定されたコントローラアクションのURLを生成します。
 
@@ -2626,7 +2639,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     $url = action([UserController::class, 'profile'], ['id' => 1]);
 
 <a name="method-asset"></a>
-#### `asset()` {#collection-method}
+#### `asset()` {.collection-method}
 
 `asset`関数は、現在のリクエストのスキーマ（HTTPかHTTPS）を使い、アセットへのURLを生成します。
 
@@ -2639,7 +2652,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     $url = asset('img/photo.jpg'); // http://example.com/assets/img/photo.jpg
 
 <a name="method-route"></a>
-#### `route()` {#collection-method}
+#### `route()` {.collection-method}
 
 `route`関数は、指定した[名前付きルート](/docs/{{version}}/routing#named-routes)のURLを生成します。
 
@@ -2654,23 +2667,23 @@ Str::of('Hello, world!')->wordCount(); // 2
     $url = route('route.name', ['id' => 1], false);
 
 <a name="method-secure-asset"></a>
-#### `secure_asset()` {#collection-method}
+#### `secure_asset()` {.collection-method}
 
 `secure_asset`関数はHTTPSを使い、アセットへのURLを生成します。
 
     $url = secure_asset('img/photo.jpg');
 
 <a name="method-secure-url"></a>
-#### `secure_url()` {#collection-method}
+#### `secure_url()` {.collection-method}
 
-`secure_url`関数は、指定されたパスへの完全修飾HTTPS　URLを生成します。関数の２番目の引数で追加のURLセグメントを渡すことができます。
+`secure_url`関数は、指定されたパスへの完全修飾HTTPS URLを生成します。関数の２番目の引数で追加のURLセグメントを渡すことができます。
 
     $url = secure_url('user/profile');
 
     $url = secure_url('user/profile', [1]);
 
 <a name="method-url"></a>
-#### `url()` {#collection-method}
+#### `url()` {.collection-method}
 
 `url`関数は指定したパスへの完全なURLを生成します。
 
@@ -2690,7 +2703,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 ## その他
 
 <a name="method-abort"></a>
-#### `abort()` {#collection-method}
+#### `abort()` {.collection-method}
 
 `abort`関数は、[例外ハンドラ](/docs/{{version}}/errors#the-exception-handler)によりレンダーされるであろう、[HTTP例外](/docs/{{version}}/errors#http-exceptions)を投げます。
 
@@ -2701,7 +2714,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     abort(403, 'Unauthorized.', $headers);
 
 <a name="method-abort-if"></a>
-#### `abort_if()` {#collection-method}
+#### `abort_if()` {.collection-method}
 
 `abort_if`関数は、指定された論理値が`true`と評価された場合に、HTTP例外を投げます。
 
@@ -2710,7 +2723,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 `abort`メソッドと同様に、例外の応答テキストを３番目の引数として指定し、カスタム応答ヘッダの配列を４番目の引数として関数に指定することもできます。
 
 <a name="method-abort-unless"></a>
-#### `abort_unless()` {#collection-method}
+#### `abort_unless()` {.collection-method}
 
 `abort_unless`関数は、指定した論理値が`false`と評価された場合に、HTTP例外を投げます。
 
@@ -2719,7 +2732,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 `abort`メソッドと同様に、例外の応答テキストを３番目の引数として指定し、カスタム応答ヘッダの配列を４番目の引数として関数に指定することもできます。
 
 <a name="method-app"></a>
-#### `app()` {#collection-method}
+#### `app()` {.collection-method}
 
 `app`関数は、[サービスコンテナ](/docs/{{version}}/container)のインスタンスを返します。
 
@@ -2730,7 +2743,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     $api = app('HelpSpot\API');
 
 <a name="method-auth"></a>
-#### `auth()` {#collection-method}
+#### `auth()` {.collection-method}
 
 `auth`関数は、[Authenticator](/docs/{{version}}/authentication)インスタンスを返します。`Auth`ファサードの代わりに使用できます。
 
@@ -2741,7 +2754,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     $user = auth('admin')->user();
 
 <a name="method-back"></a>
-#### `back()` {#collection-method}
+#### `back()` {.collection-method}
 
 `back`関数はユーザーの直前のロケーションへの[リダイレクトHTTPレスポンス](/docs/{{version}}/responses#redirects)を生成します。
 
@@ -2750,14 +2763,14 @@ Str::of('Hello, world!')->wordCount(); // 2
     return back();
 
 <a name="method-bcrypt"></a>
-#### `bcrypt()` {#collection-method}
+#### `bcrypt()` {.collection-method}
 
 `bcrypt`関数はBcryptを使用して指定された値を[ハッシュ](/docs/{{version}}/hashing)します。この関数は、`Hash`ファサードの代わりに使用できます。
 
     $password = bcrypt('my-secret-password');
 
 <a name="method-blank"></a>
-#### `blank()` {#collection-method}
+#### `blank()` {.collection-method}
 
 `blank`関数は、指定された値が「空白」であるかどうかを判別します。
 
@@ -2777,7 +2790,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 `blank`の逆の動作は、[`filled`](#method-filled)メソッドです。
 
 <a name="method-broadcast"></a>
-#### `broadcast()` {#collection-method}
+#### `broadcast()` {.collection-method}
 
 `broadcast`関数は、指定した[イベント](/docs/{{version}}/events)をリスナへ[ブロードキャスト](/docs/{{version}}/broadcasting)します。
 
@@ -2786,7 +2799,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     broadcast(new UserRegistered($user))->toOthers();
 
 <a name="method-cache"></a>
-#### `cache()` {#collection-method}
+#### `cache()` {.collection-method}
 
 `cache`関数は[キャッシュ](/docs/{{version}}/cache)から値を取得するために使用します。キャッシュに指定したキーが存在しない場合、オプション値が返されます。
 
@@ -2801,21 +2814,21 @@ Str::of('Hello, world!')->wordCount(); // 2
     cache(['key' => 'value'], now()->addSeconds(10));
 
 <a name="method-class-uses-recursive"></a>
-#### `class_uses_recursive()` {#collection-method}
+#### `class_uses_recursive()` {.collection-method}
 
 `class_uses_recursive`関数は、すべての親で使われているものも含め、クラス中で使用されているトレイトをすべて返します。
 
     $traits = class_uses_recursive(App\Models\User::class);
 
 <a name="method-collect"></a>
-#### `collect()` {#collection-method}
+#### `collect()` {.collection-method}
 
 `collect`関数は、指定値から[コレクション](/docs/{{version}}/collections)インスタンスを生成します。
 
     $collection = collect(['taylor', 'abigail']);
 
 <a name="method-config"></a>
-#### `config()` {#collection-method}
+#### `config()` {.collection-method}
 
 `config`関数は[設定](/docs/{{version}}/configuration)変数の値を取得します。設定値はファイル名とアクセスしたいオプションを「ドット」記法で指定します。デフォルト値が指定でき、設定オプションが存在しない時に返されます。
 
@@ -2828,28 +2841,28 @@ Str::of('Hello, world!')->wordCount(); // 2
     config(['app.debug' => true]);
 
 <a name="method-cookie"></a>
-#### `cookie()` {#collection-method}
+#### `cookie()` {.collection-method}
 
 `cookie`関数は新しい[クッキー](/docs/{{version}}/requests#cookies)インスタンスを生成します。
 
     $cookie = cookie('name', 'value', $minutes);
 
 <a name="method-csrf-field"></a>
-#### `csrf_field()` {#collection-method}
+#### `csrf_field()` {.collection-method}
 
 `csrf_field`関数は、CSRFトークン値を持つHTML「隠し」入力フィールドを生成します。[ブレード記法](/docs/{{version}}/blade)を使用した例です。
 
     {{ csrf_field() }}
 
 <a name="method-csrf-token"></a>
-#### `csrf_token()` {#collection-method}
+#### `csrf_token()` {.collection-method}
 
 `csrf_token`関数は、現在のCSRFトークン値を取得します。
 
     $token = csrf_token();
 
 <a name="method-dd"></a>
-#### `dd()` {#collection-method}
+#### `dd()` {.collection-method}
 
 `dd`関数は指定された変数の内容を表示し、スクリプトの実行を停止します。
 
@@ -2860,14 +2873,14 @@ Str::of('Hello, world!')->wordCount(); // 2
 スクリプトの実行を停止したくない場合は、代わりに[`dump`](#method-dump)関数を使ってください。
 
 <a name="method-dispatch"></a>
-#### `dispatch()` {#collection-method}
+#### `dispatch()` {.collection-method}
 
 `dispatch`関数は、指定した[ジョブ](/docs/{{version}}/queues#creating-jobs)をLaravelの[ジョブキュー](/docs/{{version}}/queues)へ投入します。
 
     dispatch(new App\Jobs\SendEmails);
 
 <a name="method-dump"></a>
-#### `dump()` {#collection-method}
+#### `dump()` {.collection-method}
 
 `dump`関数は指定した変数をダンプします。
 
@@ -2878,7 +2891,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 変数の値をダンプした後に実行を停止したい場合は、代わりに[`dd`](#method-dd)関数を使用してください。
 
 <a name="method-env"></a>
-#### `env()` {#collection-method}
+#### `env()` {.collection-method}
 
 `env`関数は[環境変数](/docs/{{version}}/configuration#environment-configuration)の値を取得します。取得できない場合はデフォルト値を返します。
 
@@ -2889,14 +2902,14 @@ Str::of('Hello, world!')->wordCount(); // 2
 > {note} 開発期間中に`config:cache`コマンドを実行する場合は、設定ファイルの中で必ず`env`関数だけを使用してください。設定ファイルがキャッシュされると、`.env`ファイルはロードされなくなり、`env`関数の呼び出しはすべて`null`を返します。
 
 <a name="method-event"></a>
-#### `event()` {#collection-method}
+#### `event()` {.collection-method}
 
 `event`関数は、指定した[イベント](/docs/{{version}}/events)をリスナにディスパッチします。
 
     event(new UserRegistered($user));
 
 <a name="method-filled"></a>
-#### `filled()` {#collection-method}
+#### `filled()` {.collection-method}
 
 `filled`関数は、指定された値が「空白」でないかどうかを判別します。
 
@@ -2916,7 +2929,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 `filled`の逆の動作は、[`blank`](#method-blank)メソッドです。
 
 <a name="method-info"></a>
-#### `info()` {#collection-method}
+#### `info()` {.collection-method}
 
 `info`関数は、アプリケーションの[log](/docs/{{version}}/logging)に情報を書き込みます。
 
@@ -2927,7 +2940,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     info('User login attempt failed.', ['id' => $user->id]);
 
 <a name="method-logger"></a>
-#### `logger()` {#collection-method}
+#### `logger()` {.collection-method}
 
 `logger`関数は、`debug`レベルのメッセージを[ログ](/docs/{{version}}/logging)へ書き出します。
 
@@ -2942,7 +2955,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     logger()->error('You are not allowed here.');
 
 <a name="method-method-field"></a>
-#### `method_field()` {#collection-method}
+#### `method_field()` {.collection-method}
 
 `method_field`関数はフォームのHTTP動詞の見せかけの値を保持する「隠し」HTTP入力フィールドを生成します。[Blade記法](/docs/{{version}}/blade)を使う例です。
 
@@ -2951,14 +2964,14 @@ Str::of('Hello, world!')->wordCount(); // 2
     </form>
 
 <a name="method-now"></a>
-#### `now()` {#collection-method}
+#### `now()` {.collection-method}
 
 `now`関数は、現時点を表す新しい`Illuminate\Support\Carbon`インスタンスを生成します。
 
     $now = now();
 
 <a name="method-old"></a>
-#### `old()` {#collection-method}
+#### `old()` {.collection-method}
 
 `old`関数はセッションに一時保持データーとして保存されている[直前の入力値](/docs/{{version}}/requests#old-input)を[取得](/docs/{{version}}/requests#retrieving-input)します。
 
@@ -2967,7 +2980,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     $value = old('value', 'default');
 
 <a name="method-optional"></a>
-#### `optional()` {#collection-method}
+#### `optional()` {.collection-method}
 
 `optional`関数はどんな引数も指定でき、そのオブジェクトのプロパティへアクセスするか、メソッドを呼び出せます。指定したオブジェクトが`null`だった場合、エラーを発生させる代わりに、プロパティとメソッドは`null`を返します。
 
@@ -2982,14 +2995,14 @@ Str::of('Hello, world!')->wordCount(); // 2
     });
 
 <a name="method-policy"></a>
-#### `policy()` {#collection-method}
+#### `policy()` {.collection-method}
 
 `policy`関数は、指定クラスの[ポリシー](/docs/{{version}}/authorization#creating-policies)インスタンスを取得します。
 
     $policy = policy(App\Models\User::class);
 
 <a name="method-redirect"></a>
-#### `redirect()` {#collection-method}
+#### `redirect()` {.collection-method}
 
 `redirect`関数は、[リダイレクトHTTPレスポンス](/docs/{{version}}/responses#redirects)を返します。引数無しで呼び出した場合は、リダイレクタインスタンスを返します。
 
@@ -3000,7 +3013,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     return redirect()->route('route.name');
 
 <a name="method-report"></a>
-#### `report()` {#collection-method}
+#### `report()` {.collection-method}
 
 `report`関数は[例外ハンドラ](/docs/{{version}}/errors#the-exception-handler)を使用して例外をレポートします。
 
@@ -3011,7 +3024,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     report('Something went wrong.');
 
 <a name="method-request"></a>
-#### `request()` {#collection-method}
+#### `request()` {.collection-method}
 
 `request`関数は、現在の[request](/docs/{{version}}/requests)インスタンスを返すか、現在のリクエストから入力フィールドの値を取得します。
 
@@ -3020,7 +3033,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     $value = request('key', $default);
 
 <a name="method-rescue"></a>
-#### `rescue()` {#collection-method}
+#### `rescue()` {.collection-method}
 
 `rescue`関数は指定されたクロージャを実行し、その実行中に発生した例外をすべてキャッチします。キャッチした例外はすべて[例外ハンドラ](/docs/{{version}}/errors#the-exception-handler)へ送られますが、リクエストの処理は続行されます。
 
@@ -3041,14 +3054,14 @@ Str::of('Hello, world!')->wordCount(); // 2
     });
 
 <a name="method-resolve"></a>
-#### `resolve()` {#collection-method}
+#### `resolve()` {.collection-method}
 
 `resolve`関数は、[サービスコンテナ](/docs/{{version}}/container)を使用して、指定したクラスまたはインターフェイス名をインスタンスへ依存解決します。
 
     $api = resolve('HelpSpot\API');
 
 <a name="method-response"></a>
-#### `response()` {#collection-method}
+#### `response()` {.collection-method}
 
 `response`関数は[response](/docs/{{version}}/responses)インスタンスを返すか、レスポンスファクトリのインスタンスを取得します。
 
@@ -3057,7 +3070,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     return response()->json(['foo' => 'bar'], 200, $headers);
 
 <a name="method-retry"></a>
-#### `retry()` {#collection-method}
+#### `retry()` {.collection-method}
 
 `retry`関数は指定された最大試行回数を過ぎるまで、指定されたコールバックを実行します。コールバックが例外を投げなければ、返却値を返します。コールバックが例外を投げた場合は、自動的にリトライします。最大試行回数を超えると、例外を投げます。
 
@@ -3083,7 +3096,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     });
 
 <a name="method-session"></a>
-#### `session()` {#collection-method}
+#### `session()` {.collection-method}
 
 `session`関数は[セッション](/docs/{{version}}/session)へ値を設定、もしくは取得するために使用します。
 
@@ -3100,7 +3113,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     session()->put('key', $value);
 
 <a name="method-tap"></a>
-#### `tap()` {#collection-method}
+#### `tap()` {.collection-method}
 
 `tap`関数は、任意の`$value`とクロージャの２つの引数を受け入れます。`$value`はクロージャに渡され、`tap`関数によって返されます。クロージャの戻り値は関係ありません。
 
@@ -3124,7 +3137,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     });
 
 <a name="method-throw-if"></a>
-#### `throw_if()` {#collection-method}
+#### `throw_if()` {.collection-method}
 
 `throw_if`関数は、指定した論理式が`true`と評価された場合に、指定した例外を投げます。
 
@@ -3137,7 +3150,7 @@ Str::of('Hello, world!')->wordCount(); // 2
     );
 
 <a name="method-throw-unless"></a>
-#### `throw_unless()` {#collection-method}
+#### `throw_unless()` {.collection-method}
 
 `throw_unless`関数は、指定した論理式が`false`と評価された場合に、指定した例外を投げます。
 
@@ -3150,21 +3163,21 @@ Str::of('Hello, world!')->wordCount(); // 2
     );
 
 <a name="method-today"></a>
-#### `today()` {#collection-method}
+#### `today()` {.collection-method}
 
 `today`関数は、現在の日付を表す新しい`Illuminate\Support\Carbon`インスタンスを生成します。
 
     $today = today();
 
 <a name="method-trait-uses-recursive"></a>
-#### `trait_uses_recursive()` {#collection-method}
+#### `trait_uses_recursive()` {.collection-method}
 
 `trait_uses_recursive`関数は、そのトレイトで使用されている全トレイトを返します。
 
     $traits = trait_uses_recursive(\Illuminate\Notifications\Notifiable::class);
 
 <a name="method-transform"></a>
-#### `transform()` {#collection-method}
+#### `transform()` {.collection-method}
 
 `transform`関数は、値が[空白](#method-blank)でない場合、指定値に対してクロージャを実行し、クロージャの戻り値を返します。
 
@@ -3183,14 +3196,14 @@ Str::of('Hello, world!')->wordCount(); // 2
     // 値は空白
 
 <a name="method-validator"></a>
-#### `validator()` {#collection-method}
+#### `validator()` {.collection-method}
 
 `validator`関数は、引数を使用して新しい[バリデータ](/docs/{{version}}/validation)インスタンスを作成します。`Validator`ファサードの代わりに使用できます。
 
     $validator = validator($data, $rules, $messages);
 
 <a name="method-value"></a>
-#### `value()` {#collection-method}
+#### `value()` {.collection-method}
 
 `value`関数は、指定値を返します。ただし、関数へクロージャを渡すと、クロージャが実行され、その戻り値を返します。
 
@@ -3205,14 +3218,14 @@ Str::of('Hello, world!')->wordCount(); // 2
     // false
 
 <a name="method-view"></a>
-#### `view()` {#collection-method}
+#### `view()` {.collection-method}
 
 `view`関数は[view](/docs/{{version}}/views)インスタンスを返します。
 
     return view('auth.login');
 
 <a name="method-with"></a>
-#### `with()` {#collection-method}
+#### `with()` {.collection-method}
 
 `with`関数は、指定値を返します。関数の２番目の引数としてクロージャを渡たすと、クロージャが実行され、その戻り値を返します。
 

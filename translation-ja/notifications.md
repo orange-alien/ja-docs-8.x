@@ -831,7 +831,7 @@ LaravelのMarkdownコンポーネントの完全に新しいテーマを作成�
 <a name="listening-for-notifications"></a>
 ### 通知のリッスン
 
-通知は、`{notifiable}.{id}`命名規則を使用してフォーマットされたプライベートチャンネルでブロードキャストされます。したがって、IDが「1」の「App\Models\User」インスタンスに通知を送信する場合、通知は「App.Models.User.1」プライベートチャンネルでブロードキャストされます。[Laravel Echo](/docs/{{version}}/Broadcasting)を使用する場合、`notification`メソッドを使用してチャンネルで通知を簡単にリッスンできます。
+Notifications will broadcast on a private channel formatted using a `{notifiable}.{id}` convention. So, if you are sending a notification to an `App\Models\User` instance with an ID of `1`, the notification will be broadcast on the `App.Models.User.1` private channel. When using [Laravel Echo](/docs/{{version}}/broadcasting#client-side-installation), you may easily listen for notifications on a channel using the `notification` method:
 
     Echo.private('App.Models.User.' + userId)
         .notification((notification) => {
@@ -1306,7 +1306,7 @@ Laravelには通知チャンネルがいくつか付属していますが、他�
 
     <?php
 
-    namespace App\Channels;
+    namespace App\Notifications;
 
     use Illuminate\Notifications\Notification;
 
@@ -1333,8 +1333,8 @@ Laravelには通知チャンネルがいくつか付属していますが、他�
 
     namespace App\Notifications;
 
-    use App\Channels\Messages\VoiceMessage;
-    use App\Channels\VoiceChannel;
+    use App\Notifications\Messages\VoiceMessage;
+    use App\Notifications\VoiceChannel;
     use Illuminate\Bus\Queueable;
     use Illuminate\Contracts\Queue\ShouldQueue;
     use Illuminate\Notifications\Notification;
