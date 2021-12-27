@@ -2081,9 +2081,9 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
         ['product' => 'Desk', 'price' => 200],
         ['product' => 'Chair', 'price' => 100],
     ]);
-
+    
     $collection->sole('product', 'Chair');
-
+    
     // ['product' => 'Chair', 'price' => 100]
 
 もしくは、要素が１つしかない場合は、引数を指定せずに`sole`メソッドを呼び出すこともできます。
@@ -2093,10 +2093,10 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     ]);
 
     $collection->sole();
-
+    
     // ['product' => 'Desk', 'price' => 200]
 
-コレクションに`sole`メソッドが返すべきアイテムがない場合は、`\Illuminate\Collections\ItemNotFoundException`例外を投げます。返すべきアイテムが複数ある場合は、`\Illuminate\Collections\MultipleItemsFoundException`を投げます。
+If there are no elements in the collection that should be returned by the `sole` method, an `\Illuminate\Collections\ItemNotFoundException` exception will be thrown. If there is more than one element that should be returned, an `\Illuminate\Collections\MultipleItemsFoundException` will be thrown. 
 
 <a name="method-some"></a>
 #### `some()` {.collection-method}
@@ -3331,3 +3331,4 @@ staticの`wrap`メソッドは適用可能であれば、指定値をコレク�
     // 最初の５人のユーザーはコレクションのキャッシュから取得
     // 残りはデータベースからハイドレイト
     $users->take(20)->all();
+

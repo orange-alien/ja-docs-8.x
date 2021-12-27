@@ -174,12 +174,24 @@ Laravelの[サービスコンテナ](/docs/{{version}}/container)を介してア
             // ジョブがディスパッチされなかったことをアサート
             Bus::assertNotDispatched(AnotherJob::class);
 
+            // 同期的にジョブがディスパッチされたことをアサート
+            Bus::assertDispatchedSync(AnotherJob::class);
+
+            // 同期的にジョブがディスパッチされなかったことをアサート
+            Bus::assertNotDispatchedSync(AnotherJob::class);
+
+            // レスポンス送信後にジョブがディスパッチされたことをアサート
+            Bus::assertDispatchedAfterResponse(AnotherJob::class);
+
+            // レスポンス送信後にジョブがディスパッチされなかったことをアサート
+            Bus::assertNotDispatchedAfterResponse(AnotherJob::class);
+
             // １つもジョブがディスパッチされないことをアサート
             Bus::assertNothingDispatched();
         }
     }
 
-特定の「論理テスト」に合格するジョブがディスパッチされたことをアサートするために、`assertDispatched`または`assertNotDispatched`メソッドへクロージャを渡せます。指定する論理テストに合格するジョブが最低１つディスパッチされた場合、アサーションは成功します。たとえば、ジョブが特定の注文でディスパッチされたことをアサートしたい場合があります。
+特定の「論理テスト」に合格するジョブがディスパッチされたことをアサートするために、上記利用可能なメソッドへクロージャを渡せます。指定する論理テストに合格するジョブが最低１つディスパッチされた場合、アサーションは成功します。たとえば、ジョブが特定の注文でディスパッチされたことをアサートしたい場合があります。
 
     Bus::assertDispatched(function (ShipOrder $job) use ($order) {
         return $job->order->id === $order->id;

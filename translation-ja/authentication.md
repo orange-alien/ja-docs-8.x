@@ -483,7 +483,7 @@ Laravelは、現在のデバイスのセッションを無効にすることな�
         $request->session()->passwordConfirmed();
 
         return redirect()->intended();
-    })->middleware(['auth', 'throttle:6,1'])->name('password.confirm');
+    })->middleware(['auth', 'throttle:6,1']);
 
 先へ進む前に、このルートをさらに詳しく調べてみましょう。まず、リクエストの`password`フィールドが、認証済みユーザーのパスワードと実際に一致するか判定されます。パスワードが有効な場合、ユーザーがパスワードを確認したことをLaravelのセッションに通知する必要があります。`passwordConfirmed`メソッドは、ユーザーのセッションにタイムスタンプを設定します。このタイムスタンプを使用して、ユーザーが最後にパスワードを確認した日時をLaravelは判別できます。最後に、ユーザーを目的の行き先にリダイレクトします。
 

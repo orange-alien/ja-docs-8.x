@@ -286,6 +286,19 @@ JSONリクエストをアプリケーションに送信する場合、リクエ�
 
     $archived = $request->boolean('archived');
 
+<a name="retrieving-date-input-values"></a>
+#### データ入力値の取得
+
+便利なように、日付や時刻を含む入力値は、`date`メソッドを用いてCarbonインスタンスとして取得できます。もし、リクエストに指定した名前の入力値が含まれていない場合は、`null`を返します。
+
+    $birthday = $request->date('birthday');
+
+`date`メソッドの第２、第３引数は、それぞれ日付のフォーマットとタイムゾーンを指定するために使用します。
+
+    $elapsed = $request->date('elapsed', '!H:i', 'Europe/Madrid');
+
+入力値が存在するがフォーマットが無効な場合は、 `InvalidArgumentException`を投げます。したがって、`date`メソッドを呼び出す前に入力値をバリデーションすることを推奨します。
+
 <a name="retrieving-input-via-dynamic-properties"></a>
 #### 動的プロパティを介した入力の取得
 

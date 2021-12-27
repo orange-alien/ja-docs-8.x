@@ -94,7 +94,7 @@ Webpackは、特定のローカル開発環境でファイルの変更を検出�
 
     npx tailwindcss init
 
-`init`コマンドは `tailwind.config.js` ファイルを生成します。このファイルの`content`セクションでは、Tailwindのクラス名を含むすべてのHTMLテンプレート、JavaScriptコンポーネント、その他のソースファイルへのパスを設定し、それらをパージできるようにします。
+`init`コマンドは`tailwind.config.js`ファイルを生成します。このファイルの`content`セクションでは、HTML テンプレート、JavaScript コンポーネント、その他 Tailwind のクラス名を含むソースファイルへのパスを設定することができ、これらのファイル内で使用されていないCSSクラスを本番環境のCSSビルドからパージします。
 
 ```js
 content: [
