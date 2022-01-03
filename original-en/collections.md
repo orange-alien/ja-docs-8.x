@@ -198,6 +198,7 @@ For the majority of the remaining collection documentation, we'll discuss each m
 [toArray](#method-toarray)
 [toJson](#method-tojson)
 [transform](#method-transform)
+[undot](#method-undot)
 [union](#method-union)
 [unique](#method-unique)
 [uniqueStrict](#method-uniquestrict)
@@ -2081,9 +2082,9 @@ You may also pass a key / value pair to the `sole` method, which will return the
         ['product' => 'Desk', 'price' => 200],
         ['product' => 'Chair', 'price' => 100],
     ]);
-    
+
     $collection->sole('product', 'Chair');
-    
+
     // ['product' => 'Chair', 'price' => 100]
 
 Alternatively, you may also call the `sole` method with no argument to get the first element in the collection if there is only one element:
@@ -2093,10 +2094,10 @@ Alternatively, you may also call the `sole` method with no argument to get the f
     ]);
 
     $collection->sole();
-    
+
     // ['product' => 'Desk', 'price' => 200]
 
-If there are no elements in the collection that should be returned by the `sole` method, an `\Illuminate\Collections\ItemNotFoundException` exception will be thrown. If there is more than one element that should be returned, an `\Illuminate\Collections\MultipleItemsFoundException` will be thrown. 
+If there are no elements in the collection that should be returned by the `sole` method, an `\Illuminate\Collections\ItemNotFoundException` exception will be thrown. If there is more than one element that should be returned, an `\Illuminate\Collections\MultipleItemsFoundException` will be thrown.
 
 <a name="method-some"></a>
 #### `some()` {.collection-method}
@@ -2526,6 +2527,41 @@ The `transform` method iterates over the collection and calls the given callback
     // [2, 4, 6, 8, 10]
 
 > {note} Unlike most other collection methods, `transform` modifies the collection itself. If you wish to create a new collection instead, use the [`map`](#method-map) method.
+
+<a name="method-undot"></a>
+#### `undot()` {.collection-method}
+
+The `undot` method expands a single-dimensional collection that uses "dot" notation into a multi-dimensional collection:
+
+    $person = collect([
+        'name.first_name' => 'Marie',
+        'name.last_name' => 'Valentine',
+        'address.line_1' => '2992 Eagle Drive',
+        'address.line_2' => '',
+        'address.suburb' => 'Detroit',
+        'address.state' => 'MI',
+        'address.postcode' => '48219'
+    ])
+
+    $person = $person->undot();
+
+    $person->toArray();
+
+    /*
+        [
+            "name" => [
+                "first_name" => "Marie",
+                "last_name" => "Valentine",
+            ],
+            "address" => [
+                "line_1" => "2992 Eagle Drive",
+                "line_2" => "",
+                "suburb" => "Detroit",
+                "state" => "MI",
+                "postcode" => "48219",
+            ],
+        ]
+    */
 
 <a name="method-union"></a>
 #### `union()` {.collection-method}
@@ -3331,4 +3367,3 @@ The `remember` method returns a new lazy collection that will remember any value
     // First 5 users come from the collection's cache...
     // The rest are hydrated from the database...
     $users->take(20)->all();
-

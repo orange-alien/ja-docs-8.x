@@ -198,6 +198,7 @@
 [toArray](#method-toarray)
 [toJson](#method-tojson)
 [transform](#method-transform)
+[undot](#method-undot)
 [union](#method-union)
 [unique](#method-unique)
 [uniqueStrict](#method-uniquestrict)
@@ -2081,9 +2082,9 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
         ['product' => 'Desk', 'price' => 200],
         ['product' => 'Chair', 'price' => 100],
     ]);
-    
+
     $collection->sole('product', 'Chair');
-    
+
     // ['product' => 'Chair', 'price' => 100]
 
 もしくは、要素が１つしかない場合は、引数を指定せずに`sole`メソッドを呼び出すこともできます。
@@ -2093,10 +2094,10 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
     ]);
 
     $collection->sole();
-    
+
     // ['product' => 'Desk', 'price' => 200]
 
-If there are no elements in the collection that should be returned by the `sole` method, an `\Illuminate\Collections\ItemNotFoundException` exception will be thrown. If there is more than one element that should be returned, an `\Illuminate\Collections\MultipleItemsFoundException` will be thrown. 
+If there are no elements in the collection that should be returned by the `sole` method, an `\Illuminate\Collections\ItemNotFoundException` exception will be thrown. If there is more than one element that should be returned, an `\Illuminate\Collections\MultipleItemsFoundException` will be thrown.
 
 <a name="method-some"></a>
 #### `some()` {.collection-method}
@@ -2526,6 +2527,41 @@ If there are no elements in the collection that should be returned by the `sole`
     // [2, 4, 6, 8, 10]
 
 > {note} 他のコレクションメソッドとは異なり、`transform`はコレクション自身を更新します。代わりに新しいコレクションを生成したい場合は、 [`map`](#method-map)メソッドを使用してください。
+
+<a name="method-undot"></a>
+#### `undot()` {.collection-method}
+
+`undot` メソッドは、「ドット」記法を用いた一次元のコレクションを多次元のコレクションへ展開します。
+
+    $person = collect([
+        'name.first_name' => 'Marie',
+        'name.last_name' => 'Valentine',
+        'address.line_1' => '2992 Eagle Drive',
+        'address.line_2' => '',
+        'address.suburb' => 'Detroit',
+        'address.state' => 'MI',
+        'address.postcode' => '48219'
+    ])
+
+    $person = $person->undot();
+
+    $person->toArray();
+
+    /*
+        [
+            "name" => [
+                "first_name" => "Marie",
+                "last_name" => "Valentine",
+            ],
+            "address" => [
+                "line_1" => "2992 Eagle Drive",
+                "line_2" => "",
+                "suburb" => "Detroit",
+                "state" => "MI",
+                "postcode" => "48219",
+            ],
+        ]
+    */
 
 <a name="method-union"></a>
 #### `union()` {.collection-method}
@@ -3331,4 +3367,3 @@ staticの`wrap`メソッドは適用可能であれば、指定値をコレク�
     // 最初の５人のユーザーはコレクションのキャッシュから取得
     // 残りはデータベースからハイドレイト
     $users->take(20)->all();
-

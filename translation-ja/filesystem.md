@@ -83,7 +83,7 @@ S3やSFTPドライバーを使用するときは、事前にComposerパッケー
 <a name="s3-driver-configuration"></a>
 #### S3ドライバー設定
 
-S3ドライバーの設定情報は、`config/filesystems.php`設定ファイルにあります。このファイルには、S3ドライバーの設定配列の例が含まれています。この配列は、皆さんのS3設定と認証情報を使用するため自由に変更できます。利便性のため、これらの環境変数はAWS　CLIが使用する命名規則と一致させています。
+S3ドライバーの設定情報は、`config/filesystems.php`設定ファイルにあります。このファイルには、S3ドライバーの設定配列の例が含まれています。この配列は、皆さんのS3設定と認証情報を使用するため自由に変更できます。利便性のため、これらの環境変数はAWS CLIが使用する命名規則と一致させています。
 
 <a name="ftp-driver-configuration"></a>
 #### FTPドライバーの設定
@@ -242,6 +242,35 @@ $disk->put('image.jpg', $content);
             'ResponseContentDisposition' => 'attachment; filename=file2.jpg',
         ]
     );
+
+特定するストレージディスクに対する一時的なURLの生成方法をカスタマイズする必要がある場合、 `buildTemporaryUrlsUsing` メソッドを使用してください。例えば、一時的なURLを通常サポートしていないディスクに保存されているファイルをダウンロードできるコントローラがある場合、これは便利です。通常、このメソッドはサービスプロバイダの`boot`メソッドから呼び出します。
+
+    <?php
+
+    namespace App\Providers;
+
+    use Illuminate\Support\Facades\Storage;
+    use Illuminate\Support\Facades\URL;
+    use Illuminate\Support\ServiceProvider;
+
+    class AppServiceProvider extends ServiceProvider
+    {
+        /**
+         * 全アプリケーションサービスの初期起動処理
+         *
+         * @return void
+         */
+        public function boot()
+        {
+            Storage::disk('local')->buildTemporaryUrlsUsing(function ($path, $expiration, $options) {
+                return URL::temporarySignedRoute(
+                    'files.download',
+                    $expiration,
+                    array_merge($options, ['path' => $path])
+                );
+            });
+        }
+    }
 
 <a name="url-host-customization"></a>
 #### URLホストのカスタマイズ

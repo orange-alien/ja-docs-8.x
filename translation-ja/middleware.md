@@ -226,7 +226,7 @@
      *
      * これにより、非グローバルミドルウェアは常に指定する順序で実行されます。
      *
-     * @var array
+     * @var string[]
      */
     protected $middlewarePriority = [
         \Illuminate\Cookie\Middleware\EncryptCookies::class,

@@ -52,7 +52,7 @@
 <a name="supported-drivers"></a>
 #### サポートしているドライバ
 
-Laravelはデフォルトで、[Pusherチャンネル](https://pusher.com/channels)と[Ably](https://ably.io)、２つのサーバ側ブロードキャストドライバーを用意しています。ただし、[laravel-websockets](https://beyondco.de/docs/laravel-websockets/getting-started/introduction)などのコミュニティ主導のパッケージは、商業プロバイダを必要としないブロードキャストドライバを提供しています。
+Laravelはデフォルトで、[Pusherチャンネル](https://pusher.com/channels)と[Ably](https://ably.io)、２つのサーバ側ブロードキャストドライバーを用意しています。ただし、[laravel-websockets](https://beyondco.de/docs/laravel-websockets/getting-started/introduction)や[soketi](https://docs.soketi.app/)などのコミュニティ主導のパッケージは、商用ブロードキャストプロバイダを必要としないブロードキャストドライバを提供しています。
 
 > {tip} イベントブロードキャストに飛び込む前に、[イベントとリスナ](/docs/{{version}}/events)に関するLaravelのドキュメントをしっかりと読んでください。
 
@@ -100,10 +100,10 @@ Laravelのイベントブロードキャストの使用を開始するには、L
 
 これで、クライアント側でブロードキャストイベントを受信する[Laravel Echo](#client-side-installation)をインストールして設定する準備が整いました。
 
-<a name="pusher-compatible-laravel-websockets"></a>
-#### Pusher互換のLaravel　Websocket
+<a name="pusher-compatible-open-source-alternatives"></a>
+#### オープンソースによる代替
 
-[laravel-websockets](https://github.com/beyondcode/laravel-websockets)パッケージは、PHP製でLaravel用のPusher互換WebSocketパッケージです。このパッケージを使用すると、商用WebSocketプロバイダなしにLaravelブロードキャストの全機能を活用できます。このパッケージのインストールと使用の詳細については、[公式ドキュメント](https://beyondco.de/docs/laravel-websockets)を参照してください。
+[laravel-websockets](https://github.com/beyondcode/laravel-websockets)と[soketi](https://docs.soketi.app/)パッケージは、Laravel用のPusher互換WebSocketサーバを提供します。これらのパッケージを使用することにより、商用WebSocketプロバイダーを使わずとも、Laravelブロードキャストの機能をフルに活用できます。これらのパッケージのインストールと使用に関する詳細は、[オープンソース代替](#open-source-alternatives)のドキュメントを参照してください。
 
 <a name="ably"></a>
 ### Ably
@@ -125,7 +125,15 @@ Laravelのイベントブロードキャストの使用を開始するには、L
 <a name="open-source-alternatives"></a>
 ### オープンソースの代替
 
+<a name="open-source-alternatives-php"></a>
+#### PHP
+
 [laravel-websockets](https://github.com/beyondcode/laravel-websockets)パッケージは、PHP製のLaravel用Pusher互換WebSocketパッケージです。このパッケージを使用すると、商用WebSocketプロバイダを使用せずとも、Laravelブロードキャストの全機能を活用できます。このパッケージのインストールと使用の詳細は、[公式ドキュメント](https://beyondco.de/docs/laravel-websockets)を参照してください。
+
+<a name="open-source-alternatives-node"></a>
+#### Node
+
+[Soketi](https://github.com/soketi/soketi)は、NodeベースでPusher互換のLaravel用WebSocketサーバです。Soketiの内部では、μWebSockets.jsを利用し、極めて高いスケーラビリティとスピードを実現しています。このパッケージにより、商用WebSocketプロバイダを使用せずにLaravelブロードキャスティングの能力をフルに活用することができます。このパッケージのインストールと使用に関する詳細は、[公式ドキュメント](https://docs.soketi.app/)を参照してください。
 
 <a name="client-side-installation"></a>
 ## クライアント側インストール
@@ -222,7 +230,7 @@ Laravelのイベントブロードキャストを使用すると、WebSocketに�
 
 イベントは「チャンネル」を介してブロードキャストされます。チャンネルは、パブリックまたはプライベートとして指定できます。アプリケーションへの訪問者は全員、認証や認可なしにパブリックチャンネルにサブスクライブできます。ただし、プライベートチャンネルをサブスクライブするには、ユーザーがそのチャンネルでリッスンする認証と認可を持っている必要があります。
 
-> {tip} Pusherの代わりにPHP駆動のオープンソースを使用したい場合は、[laravel-websockets](https://github.com/beyondcode/laravel-websockets)パッケージを調べてください。
+> {tip} Pusherの代わりにオープンソースでPHP駆動のものを使いたい場合は、[オープンソースオルタナティブ](#open-source-alternatives)をチェックしてみてください。
 
 <a name="using-example-application"></a>
 ### サンプルアプリケーションの使用

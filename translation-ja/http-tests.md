@@ -300,7 +300,7 @@ Laravelは、JSON APIとそのレスポンスをテストするためのヘル�
          */
         public function test_asserting_an_exact_json_match()
         {
-            $response = $this->json('POST', '/user', ['name' => 'Sally']);
+            $response = $this->postJson('/user', ['name' => 'Sally']);
 
             $response
                 ->assertStatus(201)
@@ -330,7 +330,7 @@ JSONレスポンスの指定パスに指定データが含まれていること�
          */
         public function test_asserting_a_json_paths_value()
         {
-            $response = $this->json('POST', '/user', ['name' => 'Sally']);
+            $response = $this->postJson('/user', ['name' => 'Sally']);
 
             $response
                 ->assertStatus(201)
@@ -352,7 +352,7 @@ JSONレスポンスの指定パスに指定データが含まれていること�
      */
     public function test_fluent_json()
     {
-        $response = $this->json('GET', '/users/1');
+        $response = $this->getJson('/users/1');
 
         $response
             ->assertJson(fn (AssertableJson $json) =>
@@ -630,12 +630,14 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 [assertJsonPath](#assert-json-path)
 [assertJsonStructure](#assert-json-structure)
 [assertJsonValidationErrors](#assert-json-validation-errors)
+[assertJsonValidationErrorFor](#assert-json-validation-error-for)
 [assertLocation](#assert-location)
 [assertNoContent](#assert-no-content)
 [assertNotFound](#assert-not-found)
 [assertOk](#assert-ok)
 [assertPlainCookie](#assert-plain-cookie)
 [assertRedirect](#assert-redirect)
+[assertRedirectContains](#assert-redirect-contains)
 [assertRedirectToSignedRoute](#assert-redirect-to-signed-route)
 [assertSee](#assert-see)
 [assertSeeInOrder](#assert-see-in-order)
@@ -649,6 +651,7 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 [assertSessionHasNoErrors](#assert-session-has-no-errors)
 [assertSessionDoesntHaveErrors](#assert-session-doesnt-have-errors)
 [assertSessionMissing](#assert-session-missing)
+[assertSimilarJson](#assert-similar-json)
 [assertStatus](#assert-status)
 [assertSuccessful](#assert-successful)
 [assertUnauthorized](#assert-unauthorized)
@@ -871,7 +874,7 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 }
 ```
 
-この状況では、`*`文字を使って配列内のすべてのオブジェクトの構造に対してアサートすることができます。
+この状況では、`*`文字を使って配列内のすべてのオブジェクトの構造に対して宣言できます。
 
     $response->assertJsonStructure([
         'user' => [
@@ -886,11 +889,18 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 <a name="assert-json-validation-errors"></a>
 #### assertJsonValidationErrors
 
-レスポンスに、指定するキーに対する指定するJSONバリデーションエラーがあることを宣言します。このメソッドは、バリデーションエラーがセッションに一時保存されているのではなく、バリデーションエラーがJSON構造として返されるレスポンスに対してアサートする場合に使用する必要があります。
+レスポンスへ、指定するキーに対する指定するJSONバリデーションエラーがあることを宣言します。このメソッドは、バリデーションエラーがセッションに一時保存されているのではなく、バリデーションエラーをJSON構造として返すレスポンスに対して宣言する場合に使用する必要があります。
 
-    $response->assertJsonValidationErrors(array $data);
+    $response->assertJsonValidationErrors(array $data, $responseKey = 'errors');
 
 > {tip} より一般的な[assertInvalid](#assert-invalid)メソッドを使用して、JSONで返されたレスポンスにバリデーションエラーが存在した、**もしくは**エラーがセッションストレージに一時保存されたことを宣言できます。
+
+<a name="assert-json-validation-error-for"></a>
+#### assertJsonValidationErrorFor
+
+レスポンスが指定キーに対するJSONバリデーションエラーを持っていることを宣言します。
+
+    $response->assertJsonValidationErrorFor(string $key, $responseKey = 'errors');
 
 <a name="assert-location"></a>
 #### assertLocation
@@ -933,6 +943,13 @@ Laravelの`Illuminate\Testing\TestResponse`クラスは、アプリケーショ�
 レスポンスが指定するURIへのリダイレクトであることを宣言します。
 
     $response->assertRedirect($uri);
+
+<a name="assert-redirect-contains"></a>
+#### assertRedirectContains
+
+レスポンスが指定文字列を含むURIへリダイレクトされることを宣言する。
+
+    $response->assertRedirectContains($string);
 
 <a name="assert-redirect-to-signed-route"></a>
 #### assertRedirectToSignedRoute

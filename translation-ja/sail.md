@@ -181,6 +181,12 @@ sail node --version
 sail npm run prod
 ```
 
+ご希望であれば、NPMの代わりにYarnを使用できます。
+
+```nothing
+sail yarn
+```
+
 <a name="interacting-with-sail-databases"></a>
 ## データベース操作
 
