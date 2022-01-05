@@ -389,11 +389,19 @@ Eloquentモデルへ変換する前に素の検索結果を取得したい場合
 <a name="where-clauses"></a>
 ### Where節
 
-Scoutを使用すると、検索クエリに単純な「where」句を追加できます。現在、これらの句は基本的な数値の同等性チェックのみをサポートしており、主に所有者IDによる検索クエリのスコープに役立ちます。検索インデックスはリレーショナルデータベースではないため、現在、より高度な「where」句はサポートしていません。
+Scoutを使用すると、検索クエリに単純な「where」節を追加できます。現在、これらの節は基本的な数値の同等性チェックのみをサポートしており、主に所有者IDによる検索クエリのスコープに役立ちます。
 
     use App\Models\Order;
 
     $orders = Order::search('Star Trek')->where('user_id', 1)->get();
+
+`whereIn`メソッドを使用すると、指定された値の集合に対して結果を制約できます。
+
+    $orders = Order::search('Star Trek')->whereIn(
+        'status', ['paid', 'open']
+    )->get();
+
+検索インデックスはリレーショナルデータベースではないため、より高度な"where"節は現在サポートしていません。
 
 <a name="pagination"></a>
 ### ペジネーション

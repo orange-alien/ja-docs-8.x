@@ -2097,7 +2097,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 
     // ['product' => 'Desk', 'price' => 200]
 
-If there are no elements in the collection that should be returned by the `sole` method, an `\Illuminate\Collections\ItemNotFoundException` exception will be thrown. If there is more than one element that should be returned, an `\Illuminate\Collections\MultipleItemsFoundException` will be thrown.
+コレクション内に、`sole`メソッドが返すべき要素がない場合、`\Illuminate\Collections\ItemNotFoundException`例外を投げます。返すべき要素が複数ある場合は、`\Illuminate\Collections\MultipleItemsFoundException`を投げます。
 
 <a name="method-some"></a>
 #### `some()` {.collection-method}

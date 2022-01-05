@@ -1753,6 +1753,16 @@ public function boot()
 
     'password' => ['required', Password::defaults()],
 
+時には、デフォルトのパスワードバリデーションルールへ追加ルールを加えたい場合があります。このような場合には、`rules`メソッドを使用します。
+
+    use App\Rules\ZxcvbnRule;
+
+    Password::defaults(function () {
+        $rule = Password::min(8)->rules([new ZxcvbnRule]);
+
+        // ...
+    });
+
 <a name="custom-validation-rules"></a>
 ## カスタムバリデーションルール
 

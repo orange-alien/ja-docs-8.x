@@ -101,7 +101,7 @@ Laravelのイベントブロードキャストの使用を開始するには、L
 これで、クライアント側でブロードキャストイベントを受信する[Laravel Echo](#client-side-installation)をインストールして設定する準備が整いました。
 
 <a name="pusher-compatible-open-source-alternatives"></a>
-#### オープンソースによる代替
+#### オープンソースによるPusherの代替
 
 [laravel-websockets](https://github.com/beyondcode/laravel-websockets)と[soketi](https://docs.soketi.app/)パッケージは、Laravel用のPusher互換WebSocketサーバを提供します。これらのパッケージを使用することにより、商用WebSocketプロバイダーを使わずとも、Laravelブロードキャストの機能をフルに活用できます。これらのパッケージのインストールと使用に関する詳細は、[オープンソース代替](#open-source-alternatives)のドキュメントを参照してください。
 
@@ -230,7 +230,7 @@ Laravelのイベントブロードキャストを使用すると、WebSocketに�
 
 イベントは「チャンネル」を介してブロードキャストされます。チャンネルは、パブリックまたはプライベートとして指定できます。アプリケーションへの訪問者は全員、認証や認可なしにパブリックチャンネルにサブスクライブできます。ただし、プライベートチャンネルをサブスクライブするには、ユーザーがそのチャンネルでリッスンする認証と認可を持っている必要があります。
 
-> {tip} Pusherの代わりにオープンソースでPHP駆動のものを使いたい場合は、[オープンソースオルタナティブ](#open-source-alternatives)をチェックしてみてください。
+> {tip} Pusherの代わりにオープンソースを使いたい場合は、[オープンソースの代替](#open-source-alternatives)を読んでください。
 
 <a name="using-example-application"></a>
 ### サンプルアプリケーションの使用

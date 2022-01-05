@@ -813,10 +813,18 @@ JavaScriptダイアログにプロンプ​​トが含​​まれている場�
 <a name="waiting-for-page-reloads"></a>
 #### ページリロードの待機
 
-ページのリロード後にアサートする必要がある場合は、`waitForReload`メソッドを使ってください。
+アクションを実行した後に、ページの再読み込みを待つ必要がある場合は、`waitForReload`メソッドを使用します。
 
-    $browser->click('.some-action')
-            ->waitForReload()
+    use Laravel\Dusk\Browser;
+
+    $browser->waitForReload(function (Browser $browser) {
+        $browser->press('Submit');
+    })
+    ->assertSee('Success!');
+
+ページのリロードを待つ必要性は、通常、ボタンをクリックした後に発生するため、便利な`clickAndWaitForReload`メソッドを使用するとよいでしょう。
+
+    $browser->clickAndWaitForReload('.selector')
             ->assertSee('something');
 
 <a name="waiting-on-javascript-expressions"></a>

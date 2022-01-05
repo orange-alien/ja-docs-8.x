@@ -133,6 +133,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [Str::substr](#method-str-substr)
 [Str::substrCount](#method-str-substrcount)
 [Str::title](#method-title-case)
+[Str::toHtmlString](#method-to-html-string)
 [Str::ucfirst](#method-str-ucfirst)
 [Str::upper](#method-str-upper)
 [Str::uuid](#method-str-uuid)
@@ -1706,6 +1707,15 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
     $converted = Str::title('a nice title uses the correct case');
 
     // A Nice Title Uses The Correct Case
+
+<a name="method-str-to-html-string"></a>
+#### `Str::toHtmlString()` {.collection-method}
+
+`Str::toHtmlString`メソッドは、文字列インスタンスを`Illuminate\Support\HtmlString`インスタンスに変換し、Blade テンプレートで表示できるようにします。
+
+    use Illuminate\Support\Str;
+
+    $htmlString = Str::of('Nuno Maduro')->toHtmlString();
 
 <a name="method-str-ucfirst"></a>
 #### `Str::ucfirst()` {.collection-method}
