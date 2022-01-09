@@ -94,6 +94,19 @@ PHPやLaravelなどのライブラリは、その機能の一部が非推奨と�
 
     'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
 
+    'channels' => [
+        ...
+    ]
+
+あるいは、`deprecations`という名前のログチャンネルを定義することもできます。この名前のログチャンネルが存在する場合、常にdeprecationsのログを記録するために使用されます。
+
+    'channels' => [
+        'deprecations' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/php-deprecation-warnings.log'),
+        ],
+    ],
+
 <a name="building-log-stacks"></a>
 ## ログスタックの構築
 

@@ -264,6 +264,10 @@ Artisanが提供するコマンドに加え、独自のカスタムコマンド�
 
     mail:send {user} {--Q|queue}
 
+ターミナルでそのコマンドを起動する場合、オプションのショートカットの前にハイフンを1つ付ける必要があります。
+
+    php artisan mail:send 1 -Q
+
 <a name="input-arrays"></a>
 ### 入力配列
 

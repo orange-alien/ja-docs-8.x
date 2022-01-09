@@ -849,7 +849,7 @@ havingBetween`メソッドを使うと、指定した範囲内の結果をフィ
 <a name="update-statements"></a>
 ## UPDATE文
 
-データベースにレコードを挿入することに加え、クエリビルダは`update`メソッドを使用して既存のレコードを更新することもできます。`update`メソッドは、`insert`メソッドと同様に、更新するカラムを示すカラムと値のペアの配列を受け入れます。`where`句を使用して`update`クエリを制約できます。
+データベースにレコードを挿入することに加え、クエリビルダは`update`メソッドを使用して既存のレコードを更新することもできます。`update`メソッドは、`insert`メソッドと同様に、更新するカラムを示すカラムと値のペアの配列を受け入れます。`update`メソッドは、影響を受けた行数を返します。`where`句を使用して`update`クエリを制約できます。
 
     $affected = DB::table('users')
                   ->where('id', 1)
@@ -897,11 +897,11 @@ JSONカラムを更新するときは、`->`構文を使用してJSONオブジ�
 <a name="delete-statements"></a>
 ## DELETE文
 
-クエリビルダの`delete`メソッドを使用して、テーブルからレコードを削除できます。`delete`メソッドを呼び出す前に"where"句を追加することで、`delete`ステートメントを制約できます。
+クエリビルダの`delete`メソッドを使用して、テーブルからレコードを削除できます。`delete`メソッドは影響を受けた行数を返します。`delete`メソッドを呼び出す前に"where"句を追加することで、`delete`ステートメントを制約できます。
 
-    DB::table('users')->delete();
+    $deleted = DB::table('users')->delete();
 
-    DB::table('users')->where('votes', '>', 100)->delete();
+    $deleted = DB::table('users')->where('votes', '>', 100)->delete();
 
 テーブル全体を切り捨てて、テーブルからすべてのレコードを削除し、自動増分IDをゼロにリセットする場合は、`truncate`メソッドを使用します。
 

@@ -20,6 +20,7 @@
 - [メールのプレビュー](#previewing-emails)
 - [コンテナCLI](#sail-container-cli)
 - [PHPバージョン](#sail-php-versions)
+- [Nodeバージョン](#sail-node-versions)
 - [サイトの共有](#sharing-your-site)
 - [Xdebugによるデバッグ](#debugging-with-xdebug)
   - [Xdebug CLI使用法](#xdebug-cli-usage)
@@ -334,6 +335,24 @@ context: ./vendor/laravel/sail/runtimes/7.4
 
 ```yaml
 image: sail-8.1/app
+```
+
+After updating your application's `docker-compose.yml` file, you should rebuild your container images:
+
+    sail build --no-cache
+
+    sail up
+
+<a name="sail-node-versions"></a>
+## Nodeバージョン
+
+SailはデフォルトでNode16をインストールします。イメージをビルドする際にインストールするNodeバージョンを変更するには、アプリケーションの`docker-compose.yml`ファイル中の、`laravel.test`サービスの`build.args`定義を変更してください。
+
+```yaml
+build:
+    args:
+        WWWGROUP: '${WWWGROUP}'
+        NODE_VERSION: '14'
 ```
 
 アプリケーションの`docker-compose.yml`ファイルを更新した後、コンテナイメージを再構築する必要があります。

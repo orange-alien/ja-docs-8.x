@@ -778,7 +778,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 `tinyInteger`メソッドは`TINYINT`カラムを作成します。
 
     $table->tinyInteger('votes');
-    
+
 <a name="column-method-tinyText"></a>
 #### `tinyText()` {.collection-method}
 
