@@ -1801,7 +1801,7 @@ Eloquentは、リレーションへ新しいモデルを追加する便利な手
 <a name="updating-belongs-to-relationships"></a>
 ### Belongs Toリレーション
 
-子モデルを新しい親モデルに割り当てたい場合は、`associate`メソッドを使用します。下記例で、`User`モデルは`Account`モデルに対する`belongsTo`リレーションを定義してへます。この`associate`メソッドは、子モデルへ外部キーを設定します。
+子モデルを新しい親モデルに割り当てたい場合は、`associate`メソッドを使用します。下記例で、`User`モデルは`Account`モデルに対する`belongsTo`リレーションを定義しています。この`associate`メソッドは、子モデルへ外部キーを設定します。
 
     use App\Models\Account;
 
