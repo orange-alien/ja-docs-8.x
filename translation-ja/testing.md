@@ -27,7 +27,7 @@ Laravelはユニットテストも考慮して構築されています。実際�
 <a name="the-env-testing-environment-file"></a>
 #### `.env.testing`環境ファイル
 
-さらに、プロジェクトのルートに`.env.testing`ファイルを作成することもできます。このファイルは、PHPUnitテストを実行するとき、または`--env=tests`オプションを指定してArtisanコマンドを実行するときに、`.env`ファイルの代わりに使用されます。
+さらに、プロジェクトのルートに`.env.testing`ファイルを作成することもできます。このファイルは、PHPUnitテストを実行するとき、または`--env=testing`オプションを指定してArtisanコマンドを実行するときに、`.env`ファイルの代わりに使用されます。
 
 <a name="the-creates-application-trait"></a>
 #### `CreatesApplication`トレイト
