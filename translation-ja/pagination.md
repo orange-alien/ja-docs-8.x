@@ -18,7 +18,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-他のフレームワークでは、ペジネーション（ページ付け）は非常に苦労することがあります。Laravelのペジネーションへのアプローチがが簡単であると思っていただけるよう願っています。Laravelのペジネーションは[クエリビルダ](/docs/{{version}}/queryes)および[Eloquent ORM](/docs/{{version}}/eloquent)と統合されており、設定をしなくても便利で使いやすいペジネーションを提供します。
+他のフレームワークでは、ペジネーション（ページ付け）は非常に苦労することがあります。Laravelのペジネーションへのアプローチが簡単であると思っていただけるよう願っています。Laravelのペジネーションは[クエリビルダ](/docs/{{version}}/queryes)および[Eloquent ORM](/docs/{{version}}/eloquent)と統合されており、設定をしなくても便利で使いやすいペジネーションを提供します。
 
 デフォルトでは、ペジネータによって生成されたHTMLは[Tailwind CSSフレームワーク](https://tailwindcss.com/)と互換性があります。ただし、Bootstrapペジネーションのサポートも利用できます。
 
