@@ -92,13 +92,13 @@ LaravelのFlysystem統合はFTPでもうまく機能します。ただし、サ�
 
     'ftp' => [
         'driver' => 'ftp',
-        'host' => 'ftp.example.com',
-        'username' => 'your-username',
-        'password' => 'your-password',
+        'host' => env('FTP_HOST'),
+        'username' => env('FTP_USERNAME'),
+        'password' => env('FTP_PASSWORD'),
 
         // オプションのFTP設定
-        // 'port' => 21,
-        // 'root' => '',
+        // 'port' => env('FTP_PORT', 21),
+        // 'root' => env('FTP_ROOT'),
         // 'passive' => true,
         // 'ssl' => true,
         // 'timeout' => 30,
@@ -111,17 +111,19 @@ LaravelのFlysystem統合はSFTPでも最適に機能します。ただし、サ
 
     'sftp' => [
         'driver' => 'sftp',
-        'host' => 'example.com',
-        'username' => 'your-username',
-        'password' => 'your-password',
+        'host' => env('SFTP_HOST'),
 
-        // SSHキーベースの認証の設定
-        'privateKey' => '/path/to/privateKey',
-        'password' => 'encryption-password',
+        // 基本認証の設定
+        'username' => env('SFTP_USERNAME'),
+        'password' => env('SFTP_PASSWORD'),
+
+        // 暗号化パスワードを使用するSSHキーベースの認証の設定
+        'privateKey' => env('SFTP_PRIVATE_KEY'),
+        'password' => env('SFTP_PASSWORD'),
 
         // オプションのSFTP設定
-        // 'port' => 22,
-        // 'root' => '',
+        // 'port' => env('SFTP_PORT', 22),
+        // 'root' => env('SFTP_ROOT'),
         // 'timeout' => 30,
     ],
 

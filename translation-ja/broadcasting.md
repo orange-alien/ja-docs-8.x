@@ -422,13 +422,25 @@ Echo.private(`orders.${orderId}`)
     public $connection = 'redis';
 
     /**
-     * ブロードキャストジョブを配置するキューの名前
+     * ブロードキャストジョブを投入するキュー名
      *
      * @var string
      */
     public $queue = 'default';
 
-デフォルトのキュードライバーの代わりに`sync`キューを使用してイベントをブロードキャストする場合は、`ShouldBroadcast`の代わりに`ShouldBroadcastNow`インターフェイスを実装できます。
+あるいは、イベントに`broadcastQueue`メソッドを定義し、キュー名をカスタマイズできます。
+
+    /**
+     * ブロードキャストジョブを投入するキュー名
+     *
+     * @return string
+     */
+    public function broadcastQueue()
+    {
+        return 'default';
+    }
+
+デフォルトのキュードライバではなく、`sync`キューを使用してイベントをブロードキャストしたい場合は、`ShouldBroadcast`の代わりに`ShouldBroadcastNow`インターフェイスを実装します。
 
     <?php
 

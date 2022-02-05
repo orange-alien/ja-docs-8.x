@@ -156,6 +156,7 @@
 [partition](#method-partition)
 [pipe](#method-pipe)
 [pipeInto](#method-pipeinto)
+[pipeThrough](#method-pipethrough)
 [pluck](#method-pluck)
 [pop](#method-pop)
 [prepend](#method-prepend)
@@ -1576,6 +1577,24 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
     $resource->collection->all();
 
     // [1, 2, 3]
+
+<a name="method-pipethrough"></a>
+#### `pipeThrough()` {.collection-method}
+
+`pipeThrough`メソッドは、指定するクロージャの配列へコレクションを渡し、クロージャの実行結果を返します。
+
+    $collection = collect([1, 2, 3]);
+
+    $result = $collection->pipeThrough([
+        function ($collection) {
+            return $collection->merge([4, 5]);
+        },
+        function ($collection) {
+            return $collection->sum();
+        },
+    ]);
+
+    // 15
 
 <a name="method-pluck"></a>
 #### `pluck()` {.collection-method}
@@ -3367,4 +3386,3 @@ staticの`wrap`メソッドは適用可能であれば、指定値をコレク�
     // 最初の５人のユーザーはコレクションのキャッシュから取得
     // 残りはデータベースからハイドレイト
     $users->take(20)->all();
-

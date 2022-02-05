@@ -10,6 +10,7 @@
     - [エラー処理](#error-handling)
     - [Guzzleオプション](#guzzle-options)
 - [同時リクエスト](#concurrent-requests)
+- [マクロ](#macros)
 - [テスト](#testing)
     - [レスポンスのfake](#faking-responses)
     - [レスポンスの検査](#inspecting-requests)
@@ -264,6 +265,35 @@ Guzzleのデフォルト動作とは異なり、LaravelのHTTPクライアント
     ]);
 
     return $responses['first']->ok();
+
+<a name="macros"></a>
+## マクロ
+
+LaravelのHTTPクライアントでは、「マクロ」を定義可能です。マクロは、アプリケーション全体でサービスとやり取りする際に、共通のリクエストパスやヘッダを設定するために、流暢で表現力のあるメカニズムとして機能します。利用するには、アプリケーションの `App\Providers\AppServiceProvider`クラスの`boot`メソッド内で、マクロを定義します。
+
+```php
+use Illuminate\Support\Facades\Http;
+
+/**
+ * 全アプリケーションサービスの初期起動処理
+ *
+ * @return void
+ */
+public function boot()
+{
+    Http::macro('github', function () {
+        return Http::withHeaders([
+            'X-Example' => 'example',
+        ])->baseUrl('https://github.com');
+    });
+}
+```
+
+マクロを設定したら、アプリケーションのどこからでもマクロを呼び出し、保留中のリクエストを指定した設定で作成できます。
+
+```php
+$response = Http::github()->get('/');
+```
 
 <a name="testing"></a>
 ## テスト

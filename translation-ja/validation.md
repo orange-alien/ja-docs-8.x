@@ -793,6 +793,7 @@ Laravelの組み込みバリデーションルールエラーメッセージの�
 [配列内](#rule-in-array)
 [整数](#rule-integer)
 [IPアドレス](#rule-ip)
+[MACアドレス](#rule-mac)
 [JSON](#rule-json)
 [より小さい](#rule-lt)
 [以下](#rule-lte)
@@ -1223,6 +1224,11 @@ PHPの`filter_var`関数を使用する`filter`バリデータは、Laravelに�
 #### ipv6
 
 フィールドがIPv6アドレスの形式として正しいことをバリデートします。
+
+<a name="rule-mac"></a>
+#### mac_address
+
+フィールドがMACアドレスとして正しいことをバリデートします。
 
 <a name="rule-json"></a>
 #### json

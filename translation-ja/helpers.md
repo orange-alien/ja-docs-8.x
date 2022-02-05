@@ -132,8 +132,9 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [Str::studly](#method-studly-case)
 [Str::substr](#method-str-substr)
 [Str::substrCount](#method-str-substrcount)
+[Str::substrReplace](#method-str-substrreplace)
 [Str::title](#method-title-case)
-[Str::toHtmlString](#method-to-html-string)
+[Str::toHtmlString](#method-str-to-html-string)
 [Str::ucfirst](#method-str-ucfirst)
 [Str::upper](#method-str-upper)
 [Str::uuid](#method-str-uuid)
@@ -156,6 +157,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [basename](#method-fluent-str-basename)
 [before](#method-fluent-str-before)
 [beforeLast](#method-fluent-str-before-last)
+[between](#method-fluent-str-between)
 [camel](#method-fluent-str-camel)
 [contains](#method-fluent-str-contains)
 [containsAll](#method-fluent-str-contains-all)
@@ -199,6 +201,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [startsWith](#method-fluent-str-starts-with)
 [studly](#method-fluent-str-studly)
 [substr](#method-fluent-str-substr)
+[substrReplace](#method-fluent-str-substrreplace)
 [tap](#method-fluent-str-tap)
 [test](#method-fluent-str-test)
 [title](#method-fluent-str-title)
@@ -206,7 +209,17 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [ucfirst](#method-fluent-str-ucfirst)
 [upper](#method-fluent-str-upper)
 [when](#method-fluent-str-when)
+[whenContains](#method-fluent-str-when-contains)
+[whenContainsAll](#method-fluent-str-when-contains-all)
 [whenEmpty](#method-fluent-str-when-empty)
+[whenNotEmpty](#method-fluent-str-when-not-empty)
+[whenStartsWith](#method-fluent-str-when-starts-with)
+[whenEndsWith](#method-fluent-str-when-ends-with)
+[whenExactly](#method-fluent-str-when-exactly)
+[whenIs](#method-fluent-str-when-is)
+[whenIsAscii](#method-fluent-str-when-is-ascii)
+[whenIsUuid](#method-fluent-str-when-is-uuid)
+[whenTest](#method-fluent-str-when-test)
 [wordCount](#method-fluent-str-word-count)
 [words](#method-fluent-str-words)
 
@@ -1697,6 +1710,19 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 
     // 2
 
+<a name="method-str-substrreplace"></a>
+#### `Str::substrReplace()` {.collection-method}
+
+`Str::substrReplace`メソッドは、文字列の一部分のテキストを置き換えます。第３引数で指定した位置から始まり、第４引数で指定した文字数分を置き換えます。このメソッドの第４引数へ`0`を渡すと、文字列内の既存の文字を一切置き換えず、指定位置に文字列を挿入します。
+
+    use Illuminate\Support\Str;
+
+    $result = Str::substrReplace('1300', ':', 2);
+    // 13:
+
+    $result = Str::substrReplace('1300', ':', 2, 0);
+    // 13:00
+
 <a name="method-title-case"></a>
 #### `Str::title()` {.collection-method}
 
@@ -1877,6 +1903,17 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     $slice = Str::of('This is my name')->beforeLast('is');
 
     // 'This '
+
+<a name="method-fluent-str-between"></a>
+#### `between` {.collection-method}
+
+`between`メソッドは、２つの値の間にある文字列を返します。
+
+    use Illuminate\Support\Str;
+
+    $converted = Str::of('This is my name')->between('This', 'name');
+
+    // ' is my '
 
 <a name="method-fluent-str-camel"></a>
 #### `camel` {.collection-method}
@@ -2506,6 +2543,21 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
 
     // Frame
 
+<a name="method-fluent-str-substrreplace"></a>
+#### `substrReplace` {.collection-method}
+
+`substrReplace`メソッドは、文字列の一部分を置き換えます。第３引数で指定した位置から始め、第４引数で指定した文字数分置き換えます。このメソッドの第４引数に`0`を渡すと、既存の文字列内の文字を一切置き換えることなく、指定された位置に文字列を挿入します。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('1300')->substrReplace(':', 2);
+
+    // 13:
+
+    $string = Str::of('The Framework')->substrReplace(' Laravel', 3, 0);
+
+    // The Laravel Framework
+
 <a name="method-fluent-str-tap"></a>
 #### `tap` {.collection-method}
 
@@ -2597,6 +2649,49 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
 
 必要であれば、３番目のパラメータとして別のクロージャを`when`メソッドに渡せます。このクロージャは、条件パラメータが`false`と評価された場合に実行します。
 
+<a name="method-fluent-str-when-contains"></a>
+#### `whenContains` {.collection-method}
+
+`whenContains`メソッドは、文字列が指定値を含んでいる場合に、渡したクロージャを呼び出します。クロージャは、Fluent文字列のインスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('tony stark')
+                ->whenContains('tony', function ($string) {
+                    return $string->title();
+                });
+
+    // 'Tony Stark'
+
+必要であれば、`when`メソッドの第３パラメータへ、もう一つクロージャを渡せます。このクロージャは、文字列が指定値を含んでいない場合に実行されます。
+
+また、値の配列を渡し、指定文字列が配列の中のいずれかの値を含むかを判定することもできます。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('tony stark')
+                ->whenContains(['tony', 'hulk'], function ($string) {
+                    return $string->title();
+                });
+
+    // Tony Stark
+
+<a name="method-fluent-str-when-contains-all"></a>
+#### `whenContainsAll` {.collection-method}
+
+`whenContainsAll`メソッドは、文字列が指定する部分文字列をすべて含んでいる場合に、指定クロージャを呼び出します。クロージャは、Fluent文字列のインスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('tony stark')
+                    ->whenContainsAll(['tony', 'stark'], function ($string) {
+                        return $string->title();
+                    });
+
+    // 'Tony Stark'
+
+必要であれば、`when`メソッドの第３パラメータとしてもう一つのクロージャを渡せます。このクロージャは、条件パラメータが`false`と評価された場合に実行されます。
+
 <a name="method-fluent-str-when-empty"></a>
 #### `whenEmpty` {.collection-method}
 
@@ -2609,6 +2704,110 @@ The `snake` method converts the given string to `snake`メソッドは、文字�
     });
 
     // 'Laravel'
+
+<a name="method-fluent-str-when-not-empty"></a>
+#### `whenNotEmpty` {.collection-method}
+
+`whenNotEmpty`メソッドは文字列が空でない場合、指定するクロージャを呼び出します。クロージャが値を返す場合は、`whenNotEmpty`メソッドもその値を返します 。クロージャが値を返さない場合は、Fluent文字列インスタンスを返します。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('Framework')->whenNotEmpty(function ($string) {
+        return $string->prepend('Laravel ');
+    });
+
+    // 'Laravel Framework'
+
+<a name="method-fluent-str-when-starts-with"></a>
+#### `whenStartsWith` {.collection-method}
+
+`whenStartsWith`メソッドは、文字列が指定する部分文字列から始まる場合に、指定クロージャを呼び出します。クロージャは、Fluent文字列インスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('disney world')->whenStartsWith('disney', function ($string) {
+        return $string->title();
+    });
+
+    // 'Disney World'
+
+<a name="method-fluent-str-when-ends-with"></a>
+#### `whenEndsWith` {.collection-method}
+
+`whenEndsWith`メソッドは、文字列が指定した部分文字列で終了する場合に、指定クロージャを呼び出します。クロージャは、Fluent文字列インスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('disney world')->whenEndsWith('world', function ($string) {
+        return $string->title();
+    });
+
+    // 'Disney World'
+
+<a name="method-fluent-str-when-exactly"></a>
+#### `whenExactly` {.collection-method}
+
+`whenExactly`メソッドは、文字列が指定文字列と正確に一致する場合に、指定クロージャを呼び出します。クロージャは、Fluent文字列インスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('laravel')->whenExactly('laravel', function ($string) {
+        return $string->title();
+    });
+
+    // 'Laravel'
+
+<a name="method-fluent-str-when-is"></a>
+#### `whenIs` {.collection-method}
+
+`whenIs`メソッドは、文字列が与えられたパターンにマッチする場合、指定クロージャを呼び出します。アスタリスクはワイルドカードとして使用できます。クロージャはFluent文字列インスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('foo/bar')->whenIs('foo/*', function ($string) {
+        return $string->append('/baz');
+    });
+
+    // 'foo/bar/baz'
+
+<a name="method-fluent-str-when-is-ascii"></a>
+#### `whenIsAscii` {.collection-method}
+
+`whenIsAscii`メソッドは、文字列が7bitのASCIIの場合、クロージャを呼び出します。クロージャはFluent文字列インスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('foo/bar')->whenIsAscii('laravel', function ($string) {
+        return $string->title();
+    });
+
+    // 'Laravel'
+
+<a name="method-fluent-str-when-is-uuid"></a>
+#### `whenIsUuid` {.collection-method}
+
+`whenIsUuid`メソッドは、文字列が有効なUUIDである場合、指定クロージャを呼び出します。クロージャは、Fluent文字列インスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('foo/bar')->whenIsUuid('a0a2a2d2-0b87-4a18-83f2-2529882be2de', function ($string) {
+        return $string->substr(0, 8);
+    });
+
+    // 'a0a2a2d2'
+
+<a name="method-fluent-str-when-test"></a>
+#### `whenTest` {.collection-method}
+
+`whenTest`メソッドは、文字列が正規表現にマッチする場合、指定クロージャを呼び出します。クロージャはFluent文字列インスタンスを受け取ります。
+
+    use Illuminate\Support\Str;
+
+    $string = Str::of('laravel framework')->whenTest('/laravel/', function ($string) {
+        return $string->title();
+    });
+
+    // 'Laravel Framework'
 
 <a name="method-fluent-str-word-count"></a>
 #### `wordCount` {.collection-method}
