@@ -58,7 +58,7 @@
 <a name="defining-relationships"></a>
 ## リレーションの定義
 
-Eloquentリレーションは、Eloquentモデルクラスのメソッドとして定義します。リレーションは強力な[クエリビルダ](/docs/{{version}}/querys)としても機能するため、リレーションをメソッドとして定義すると、強力なメソッドチェーンとクエリ機能が使用できます。たとえば以下のように、`posts`リレーションに追加のクエリ制約をチェーンできます。
+Eloquentリレーションは、Eloquentモデルクラスのメソッドとして定義します。リレーションは強力な[クエリビルダ](/docs/{{version}}/queries)としても機能するため、リレーションをメソッドとして定義すると、強力なメソッドチェーンとクエリ機能が使用できます。たとえば以下のように、`posts`リレーションに追加のクエリ制約をチェーンできます。
 
     $user->posts()->where('active', 1)->get();
 
@@ -1099,7 +1099,7 @@ You may call the `enforceMorphMap` method in the `boot` method of your `App\Prov
 <a name="querying-relations"></a>
 ## リレーションのクエリ
 
-すべてのEloquentリレーションはメソッドを使い定義するので、関連モデルをロードするクエリを実際に実行しなくても、リレーションのインスタンスを取得するための、こうしたメソッドを呼び出しできます。さらに、すべてのタイプのEloquentリレーションは、[クエリビルダ](/docs/{{version}}/querys)としても機能するため、データベースに対してSQLクエリを最終的に実行する前に、リレーションクエリに制約を連続してチェーンできます。
+すべてのEloquentリレーションはメソッドを使い定義するので、関連モデルをロードするクエリを実際に実行しなくても、リレーションのインスタンスを取得するための、こうしたメソッドを呼び出しできます。さらに、すべてのタイプのEloquentリレーションは、[クエリビルダ](/docs/{{version}}/queries)としても機能するため、データベースに対してSQLクエリを最終的に実行する前に、リレーションクエリに制約を連続してチェーンできます。
 
 たとえば、`User`モデルに多くの`Post`モデルが関連付けられているブログアプリケーションを想像してみてください。
 
@@ -1128,7 +1128,7 @@ You may call the `enforceMorphMap` method in the `boot` method of your `App\Prov
 
     $user->posts()->where('active', 1)->get();
 
-リレーションではLaravel[クエリビルダ](/docs/{{version}}/queryes)メソッドのどれでも使用できるので、クエリビルダのドキュメントを調べ、使用可能な全メソッドを習んでください。
+リレーションではLaravel[クエリビルダ](/docs/{{version}}/queries)メソッドのどれでも使用できるので、クエリビルダのドキュメントを調べ、使用可能な全メソッドを習んでください。
 
 <a name="chaining-orwhere-clauses-after-relationships"></a>
 #### リレーションの後へ`orWhere`句をチェーン
