@@ -1828,7 +1828,7 @@ StripeとCashierが提供する支払い確認画面は、特定の銀行また�
 
     CASHIER_PAYMENT_NOTIFICATION=Laravel\Cashier\Notifications\ConfirmPayment
 
-オフセッションでの支払い確認通知が確実に配信されるようにするため、アプリケーションで[Stripe Webフックが設定されている](#handling-stripe-webhooks)ことと、Stripeダッシュボードで`invoice.payment_action_required`webhookが有効になっていることを確認してください。さらに、`Billable`モデルでLaravelの`Illuminate\Notifications\Notizable`トレイトを使用していることも確認する必要があります。
+オフセッションでの支払い確認通知が確実に配信されるようにするため、アプリケーションで[Stripe Webフックが設定されている](#handling-stripe-webhooks)ことと、Stripeダッシュボードで`invoice.payment_action_required`webhookが有効になっていることを確認してください。さらに、`Billable`モデルでLaravelの`Illuminate\Notifications\Notifiable`トレイトを使用していることも確認する必要があります。
 
 > {note} 顧客が追加の確認を必要とする支払いを手動で行う場合でも、通知は送信されます。残念ながら、支払いが手動なのか「オフセッション」で行われたかをStripeが知る方法はありません。ただし、顧客が支払いを確認した後に支払いページへアクセスすると、「支払いが成功しました（Payment Successful）」というメッセージが表示されます。謝って顧客へ同じ支払いを２回確認させ、２回目の請求を行粉なってしまうことはありません。
 

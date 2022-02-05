@@ -69,7 +69,7 @@ Laravelでは、各通知は通常、`app/Notifications`ディレクトリに保
 <a name="using-the-notifiable-trait"></a>
 ### Notifiableトレイトの使用
 
-通知は、`Notifiable`トレイトの`notify`メソッドを使用する方法と、`Notification`[ファサード](/docs/{{version}}/facades)を使用する方法の２つの方法で送信できます。`Notizable`トレイトは、アプリケーションの`App\Models\User`モデルにデフォルトで含まれています。
+通知は、`Notifiable`トレイトの`notify`メソッドを使用する方法と、`Notification`[ファサード](/docs/{{version}}/facades)を使用する方法の２つの方法で送信できます。`Notifiable`トレイトは、アプリケーションの`App\Models\User`モデルにデフォルトで含まれています。
 
     <?php
 
@@ -1302,7 +1302,7 @@ Laravelを使用すると、HTTPリクエストの現在のロケール以外の
 
 Laravelには通知チャンネルがいくつか付属していますが、他のチャンネルを介して通知を配信する独自​​のドライバを作成することもできます。Laravelではこれをシンプルに実現できます。作成開始するには、`send`メソッドを含むクラスを定義します。このメソッドは、`$notifying`と`$notification`の2つの引数を受け取る必要があります。
 
-`send`メソッド内で、通知メソッドを呼び出して、チャンネルが理解できるメッセージオブジェクトを取得し、必要に応じて通知を`$notizable`インスタンスに送信します。
+`send`メソッド内で、通知メソッドを呼び出して、チャンネルが理解できるメッセージオブジェクトを取得し、必要に応じて通知を`$notifiable`インスタンスに送信します。
 
     <?php
 
