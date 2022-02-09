@@ -38,8 +38,9 @@
     - [Cleaning Up After Failed Jobs](#cleaning-up-after-failed-jobs)
     - [Retrying Failed Jobs](#retrying-failed-jobs)
     - [Ignoring Missing Models](#ignoring-missing-models)
-    - [Storing Failed Jobs In DynamoDB](#storing-failed-jobs-in-dynamodb)
     - [Pruning Failed Jobs](#pruning-failed-jobs)
+    - [Storing Failed Jobs In DynamoDB](#storing-failed-jobs-in-dynamodb)
+    - [Disabling Failed Job Storage](#disabling-failed-job-storage)
     - [Failed Job Events](#failed-job-events)
 - [Clearing Jobs From Queues](#clearing-jobs-from-queues)
 - [Monitoring Your Queues](#monitoring-your-queues)
@@ -129,9 +130,11 @@ Adjusting this value based on your queue load can be more efficient than continu
 The following dependencies are needed for the listed queue drivers. These dependencies may be installed via the Composer package manager:
 
 <div class="content-list" markdown="1">
+
 - Amazon SQS: `aws/aws-sdk-php ~3.0`
 - Beanstalkd: `pda/pheanstalk ~4.0`
 - Redis: `predis/predis ~1.0` or phpredis PHP extension
+
 </div>
 
 <a name="creating-jobs"></a>
@@ -220,7 +223,7 @@ If you would like to take total control over how the container injects dependenc
 > {note} Binary data, such as raw image contents, should be passed through the `base64_encode` function before being passed to a queued job. Otherwise, the job may not properly serialize to JSON when being placed on the queue.
 
 <a name="handling-relationships"></a>
-#### Handling Relationships
+#### Queued Relationships
 
 Because loaded relationships also get serialized, the serialized job string can sometimes become quite large. To prevent relations from being serialized, you can call the `withoutRelations` method on the model when setting a property value. This method will return an instance of the model without its loaded relationships:
 
@@ -234,6 +237,8 @@ Because loaded relationships also get serialized, the serialized job string can 
     {
         $this->podcast = $podcast->withoutRelations();
     }
+
+Furthermore, when a job is deserialized and model relationships are re-retrieved from the database, they will be retrieved in their entirety. Any previous relationship constraints that were applied before the model was serialized during the job queueing process will not be applied when the job is deserialized. Therefore, if you wish to work with a subset of a given relationship, you should re-constrain that relationship within your queued job.
 
 <a name="unique-jobs"></a>
 ### Unique Jobs
@@ -1745,6 +1750,17 @@ For convenience, you may choose to automatically delete jobs with missing models
      */
     public $deleteWhenMissingModels = true;
 
+<a name="pruning-failed-jobs"></a>
+### Pruning Failed Jobs
+
+You may delete all of the records in your application's `failed_jobs` table by invoking the `queue:prune-failed` Artisan command:
+
+    php artisan queue:prune-failed
+
+If you provide the `--hours` option to the command, only the failed job records that were inserted within the last N number of hours will be retained. For example, the following command will delete all of the failed job records that were inserted more than 48 hours ago:
+
+    php artisan queue:prune-failed --hours=48
+
 <a name="storing-failed-jobs-in-dynamodb"></a>
 ### Storing Failed Jobs In DynamoDB
 
@@ -1770,16 +1786,12 @@ Next, set the `queue.failed.driver` configuration option's value to `dynamodb`. 
 ],
 ```
 
-<a name="pruning-failed-jobs"></a>
-### Pruning Failed Jobs
+<a name="disabling-failed-job-storage"></a>
+### Disabling Failed Job Storage
 
-You may delete all of the records in your application's `failed_jobs` table by invoking the `queue:prune-failed` Artisan command:
+You may instruct Laravel to discard failed jobs without storing them by setting the `queue.failed.driver` configuration option's value to `null`. Typically, this may be accomplished via the `QUEUE_FAILED_DRIVER` environment variable:
 
-    php artisan queue:prune-failed
-
-If you provide the `--hours` option to the command, only the failed job records that were inserted within the last N number of hours will be retained. For example, the following command will delete all of the failed job records that were inserted more than 48 hours ago:
-
-    php artisan queue:prune-failed --hours=48
+    QUEUE_FAILED_DRIVER=null
 
 <a name="failed-job-events"></a>
 ### Failed Job Events

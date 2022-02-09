@@ -572,6 +572,10 @@ Billableなモデルのアカウントにデフォルトの支払い方法が関
 
     $paymentMethod->delete();
 
+`deletePaymentMethod`メソッドは、Billableモデルから特定の支払い方法を削除します。
+
+    $user->deletePaymentMethod('pm_visa');
+
 `deletePaymentMethods`メソッドは、Billableなモデルのすべての支払い方法情報を削除します。
 
     $user->deletePaymentMethods();
@@ -1586,6 +1590,35 @@ Stripeの料金を払い戻す必要がある場合は、`refund`メソッドを
 
     return $request->user()->downloadInvoice($invoiceId, [], 'my-invoice');
 
+<a name="custom-invoice-render"></a>
+#### カスタム・インボイス・レンダラ
+
+また、Cashierはカスタムインボイスレンダラを使用可能です。デフォルトでCashierは、[dompdf](https://github.com/dompdf/dompdf) PHPライブラリを利用し請求書を生成する、`DompdfInvoiceRenderer`の実装を使用します。しかし、`Laravel\Cashier\Contracts\InvoiceRenderer`インターフェイスを実装することにより、任意のレンダラを使用できます。例えば、サードパーティのPDFレンダリングサービスへのAPIコールを使用し、請求書PDFをレンダリングするとしましょう。
+
+    use Illuminate\Support\Facades\Http;
+    use Laravel\Cashier\Contracts\InvoiceRenderer;
+    use Laravel\Cashier\Invoice;
+
+    class ApiInvoiceRenderer implements InvoiceRenderer
+    {
+        /**
+         * 与えられた請求書をレンダリングし、素のPDFバイトを返す
+         *
+         * @param  \Laravel\Cashier\Invoice. $invoice
+         * @param  array  $data
+         * @param  array  $options
+         * @return string
+         */
+        public function render(Invoice $invoice, array $data = [], array $options = []): string
+        {
+            $html = $invoice->view($data)->render();
+
+            return Http::get('https://example.com/html-to-pdf', ['html' => $html])->get()->body();
+        }
+    }
+
+請求書レンダラ契約を実装したら、アプリケーションの `config/cashier.php`設定ファイルにある`cashier.invoices.renderer`設定値を更新する必要があります。この設定値には、カスタムレンダラ実装のクラス名を設定します。
+
 <a name="checkout"></a>
 ## チェックアウト
 
@@ -1758,6 +1791,7 @@ Checkoutは、顧客の課税IDの収集もサポートしています。チェ�
 支払い確認ページで、顧客はクレジットカード情報を再度入力し、「3Dセキュア」確認などのStripeに必要な追加のアクションを実行するように求められます。支払いを確認すると、ユーザーは上記の`redirect`パラメータで指定したURLへリダイレクトされます。リダイレクト時に、`message`(文字列)および`success`(整数)クエリ文字列変数をURLへ追加します。支払い確認ページでは現在、以下の決済方法に対応しています。
 
 <div class="content-list" markdown="1">
+
 - Credit Cards
 - Alipay
 - Bancontact
@@ -1766,6 +1800,7 @@ Checkoutは、顧客の課税IDの収集もサポートしています。チェ�
 - Giropay
 - iDEAL
 - SEPA Direct Debit
+
 </div>
 
 もう一つの方法として、Stripeに支払い確認の処理を任せることもできます。この場合、支払い確認ページにリダイレクトする代わりに、Stripeダッシュボードで[Stripeの自動請求メールを設定](https://dashboard.stripe.com/account/billing/automatic)してください。ただし、`IncompletePayment`例外がキャッチされた場合でも、支払い確認の手順を記載したメールがユーザーへ届くよう、通知する必要があります。

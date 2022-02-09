@@ -15,10 +15,12 @@
 最近のほとんどすべてのWebアプリケーションは、データベースとやり取りします。Laravelでは、素のSQL、[fluent（流暢な）クエリビルダ](/docs/{{version}}/queries)、および[Eloquent ORM](/docs/{{version}}/eloquent)を使用して、サポートしているさまざまなでデータベースとのやり取りを非常に簡単にしています。現在、Laravelは４つのデータベースをファーストパーティサポートしています。
 
 <div class="content-list" markdown="1">
+
 - MySQL5.7以上 ([バージョンポリシー](https://en.wikipedia.org/wiki/MySQL#Release_history))
 - PostgreSQL9.6以上 ([バージョンポリシー](https://www.postgresql.org/support/versioning/))
 - SQLite3.8.8以上
 - SQL Server2017以上 ([バージョンポリシー](https://docs.microsoft.com/en-us/lifecycle/products/?products=sql-server))
+
 </div>
 
 <a name="configuration"></a>

@@ -333,6 +333,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 </style>
 
 <div id="collection-method-list" markdown="1">
+
 [bigIncrements](#column-method-bigIncrements)
 [bigInteger](#column-method-bigInteger)
 [binary](#column-method-binary)
@@ -397,6 +398,7 @@ Laravelは、マイグレーションの名前からテーブル名と新しい�
 [uuidMorphs](#column-method-uuidMorphs)
 [uuid](#column-method-uuid)
 [year](#column-method-year)
+
 </div>
 
 <a name="column-method-bigIncrements"></a>

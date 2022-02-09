@@ -193,6 +193,7 @@ Laravel includes a variety of global "helper" PHP functions. Many of these funct
 [replaceLast](#method-fluent-str-replace-last)
 [replaceMatches](#method-fluent-str-replace-matches)
 [rtrim](#method-fluent-str-rtrim)
+[scan](#method-fluent-str-scan)
 [singular](#method-fluent-str-singular)
 [slug](#method-fluent-str-slug)
 [snake](#method-fluent-str-snake)
@@ -2359,7 +2360,7 @@ The `remove` method removes the given value or array of values from the string:
 
     // Arkansas is beautiful!
 
-You may also pass `false` as a second parameter to ignore case when removing.
+You may also pass `false` as a second parameter to ignore case when removing strings.
 
 <a name="method-fluent-str-replace"></a>
 #### `replace` {.collection-method}
@@ -2442,6 +2443,17 @@ The `rtrim` method trims the right side of the given string:
     $string = Str::of('/Laravel/')->rtrim('/');
 
     // '/Laravel'
+
+<a name="method-fluent-str-scan"></a>
+#### `scan` {.collection-method}
+
+The `scan` method parses input from a string into a collection according to a format supported by the [`sscanf` PHP function](https://www.php.net/manual/en/function.sscanf.php):
+
+    use Illuminate\Support\Str;
+
+    $collection = Str::of('filename.jpg')->scan('%[^.].%s');
+
+    // collect(['filename', 'jpg'])
 
 <a name="method-fluent-str-singular"></a>
 #### `singular` {.collection-method}
@@ -3439,7 +3451,7 @@ The `view` function retrieves a [view](/docs/{{version}}/views) instance:
 The `with` function returns the value it is given. If a closure is passed as the second argument to the function, the closure will be executed and its returned value will be returned:
 
     $callback = function ($value) {
-        return (is_numeric($value)) ? $value * 2 : 0;
+        return is_numeric($value) ? $value * 2 : 0;
     };
 
     $result = with(5, $callback);

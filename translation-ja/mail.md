@@ -823,9 +823,28 @@ Laravelは、Mailableに期待するコンテンツが含まれていること�
 <a name="mailtrap"></a>
 #### HELO／Mailtrap／MailHog
 
-[HELO](https://usehelo.com)や[Mailtrap](https://mailtrap.io)などのサービスと`smtp`ドライバを使用して、メールメッセージを「ダミー」メールボックスに送信可能です。本当の電子メールクライアントでそれらを表示できます。このアプローチには、Mailtrapのメッセージビューアで最終的な電子メールを実際に調べられるという利点があります。
+もしくは、[HELO](https://usehelo.com)や[Mailtrap](https://mailtrap.io)などのサービスと`smtp`ドライバを使用して、メールメッセージを「ダミー」メールボックスに送信可能です。本当の電子メールクライアントでそれらを表示できます。このアプローチには、Mailtrapのメッセージビューアで最終的な電子メールを実際に調べられるという利点があります。
 
 [Laravel Sail](/docs/{{version}}/sale)を使用している場合は、[MailHog](https://github.com/mailhog/MailHog)を使用してメッセージをプレビューできます。Sailの実行中は、`http://localhost:8025`でMailHogインターフェイスにアクセスできます。
+
+<a name="using-a-global-to-address"></a>
+#### グローバルな`to`アドレスの使用
+
+最後に、`Mail`ファサードが提供する`alwaysTo`メソッドを呼び出し、グローバルな「宛先」アドレスを指定する方法です。通常、このメソッドは、アプリケーションのサービスプロバイダの`boot`メソッドから呼び出すべきでしょう。
+
+    use Illuminate\Support\Facades\Mail;
+
+    /**
+     * アプリケーションの全サービスの初期起動処理
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        if ($this->app->environment('local')) {
+            Mail::alwaysTo('taylor@example.com');
+        }
+    }
 
 <a name="events"></a>
 ## イベント

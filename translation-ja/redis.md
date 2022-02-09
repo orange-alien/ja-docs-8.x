@@ -162,7 +162,7 @@ Laravelの`config/app.php`設定ファイルには、フレームワークが登
         // 残りのRedis設定…
     ],
 
-デフォルトの`host`、`port`、`database`、`password`サーバ設定オプションに加えて、phpredisは次の追加の接続パラメータをサポートしています。`name`、`persistent`、`prefix`、`read_timeout`、`try_interval`、`timeout`、`context`です。`config/database.php`設定ファイルのRedisサーバ設定へ、こうしたオプションを追加指定できます。
+デフォルトの`scheme`、`host`、`port`、`database`、`password`サーバ設定オプションに加えて、phpredisは次の追加の接続パラメータをサポートしています。`name`、`persistent`、`persistent_id`、`prefix`、`read_timeout`、`try_interval`、`timeout`、`context`です。`config/database.php`設定ファイルのRedisサーバ設定へ、こうしたオプションを追加指定できます。
 
     'default' => [
         'host' => env('REDIS_HOST', 'localhost'),
@@ -175,6 +175,29 @@ Laravelの`config/app.php`設定ファイルには、フレームワークが登
             // 'stream' => ['verify_peer' => false],
         ],
     ],
+
+<a name="phpredis-serialization"></a>
+#### phpredisのシリアライズと圧縮
+
+phpredis拡張モジュールは、シリアライズや圧縮のアルゴリズムも設定できます。これらのアルゴリズムは、Redis設定の`options`配列で指定します。
+
+    use Redis;
+
+    'redis' => [
+
+        'client' => env('REDIS_CLIENT', 'phpredis'),
+
+        'options' => [
+            'serializer' => Redis::SERIALIZER_MSGPACK,
+            'compression' => Redis::COMPRESSION_LZ4,
+        ],
+
+        // 残りのRedis設定…
+    ],
+
+現在サポートしているシリアライズアルゴリズムは、`Redis::SERIALIZER_NONE`（デフォルト）、`Redis::SERIALIZER_PHP`、`Redis::SERIALIZER_JSON`、`Redis::SERIALIZER_IGBINARY`、`Redis::SERIALIZER_MSGPACK`です。
+
+サポートする圧縮アルゴリズムは、`Redis::COMPRESSION_NONE`（デフォルト）、`Redis::COMPRESSION_LZF`、`Redis::COMPRESSION_ZSTD`、`Redis::COMPRESSION_LZ4`です。
 
 <a name="interacting-with-redis"></a>
 ## Redisの操作

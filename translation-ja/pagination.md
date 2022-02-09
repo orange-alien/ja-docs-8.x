@@ -22,6 +22,20 @@
 
 デフォルトでは、ペジネータによって生成されたHTMLは[Tailwind CSSフレームワーク](https://tailwindcss.com/)と互換性があります。ただし、Bootstrapペジネーションのサポートも利用できます。
 
+<a name="tailwind-jit"></a>
+#### Tailwind JIT
+
+LaravelのデフォルトのTailwind pagination viewとTailwind JITエンジンを使用している場合、アプリケーションの`tailwind.config.js`ファイルの`content`キーで、Laravelのペジネーションビューを参照し、そのTailwindクラスがパージされないようにする必要があります。
+
+```js
+content: [
+    './resources/**/*.blade.php',
+    './resources/**/*.js',
+    './resources/**/*.vue',
+    './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+],
+```
+
 <a name="basic-usage"></a>
 ## 基本的な使い方
 

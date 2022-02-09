@@ -473,8 +473,10 @@ sites:
 以下のポートが、Homestead環境へポートフォワードされています。
 
 <div class="content-list" markdown="1">
+
 - **HTTP:** 8000 &rarr; フォワード先 80
 - **HTTPS:** 44300 &rarr; フォワード先 443
+
 </div>
 
 <a name="forwarding-additional-ports"></a>
@@ -492,6 +494,7 @@ sites:
 以下は、ホストマシンからVagrantボックスへマップする、Homesteadサービス追加ポートのリストです。
 
 <div class="content-list" markdown="1">
+
 - **SSH:** 2222 &rarr; フォワード先 22
 - **ngrok UI:** 4040 &rarr; フォワード先 4040
 - **MySQL:** 33060 &rarr; フォワード先 3306
@@ -499,6 +502,7 @@ sites:
 - **MongoDB:** 27017 &rarr; フォワード先 27017
 - **Mailhog:** 8025 &rarr; フォワード先 8025
 - **Minio:** 9600 &rarr; フォワード先 9600
+
 </div>
 
 <a name="php-versions"></a>

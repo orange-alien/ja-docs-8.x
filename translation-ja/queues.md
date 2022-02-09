@@ -38,8 +38,9 @@
     - [ジョブ失敗の後片付け](#cleaning-up-after-failed-jobs)
     - [失敗したジョブの再試行](#retrying-failed-jobs)
     - [見つからないモデルの無視](#ignoring-missing-models)
-    - [失敗したジョブのDynamoDBへの保存](#storing-failed-jobs-in-dynamodb)
     - [失敗したジョブの切り詰め](#pruning-failed-jobs)
+    - [失敗したジョブのDynamoDBへの保存](#storing-failed-jobs-in-dynamodb)
+    - [失敗したジョブの保存の無効化](#disabling-failed-job-storage)
     - [失敗したジョブイベント](#failed-job-events)
 - [キューからのジョブクリア](#clearing-jobs-from-queues)
 - [キューのモニタリング](#monitoring-your-queues)
@@ -129,9 +130,11 @@ Redisキューを使用する場合は、`block_for`設定オプションを使�
 以下にリストしたキュードライバには、次の依存パッケージが必要です。これらの依存パッケージは、Composerパッケージマネージャーを介してインストールできます。
 
 <div class="content-list" markdown="1">
+
 - Amazon SQS: `aws/aws-sdk-php ~3.0`
 - Beanstalkd: `pda/pheanstalk ~4.0`
 - Redis: `predis/predis ~1.0` もしくはphpredis PHP拡張
+
 </div>
 
 <a name="creating-jobs"></a>
@@ -220,7 +223,7 @@ Redisキューを使用する場合は、`block_for`設定オプションを使�
 > {note} 素の画像の内容などのバイナリデータは、キュー投入するジョブへ渡す前に、`base64_encode`関数を介して渡す必要があります。そうしないと、ジョブがキューに配置されたときにJSONへ適切にシリアル化されない可能性があります。
 
 <a name="handling-relationships"></a>
-#### リレーションの処理
+#### リレーションのキュー投入
 
 ロード済みリレーションもシリアル化されるため、シリアル化結果のジョブ文字列が非常に大きくなる場合があります。リレーションがシリアル化されないようにするために、プロパティ値を設定するときにモデルで`withoutRelations`メソッドを呼び出すことができます。このメソッドは、ロード済みリレーションを持たないモデルのインスタンスを返します。
 
@@ -234,6 +237,8 @@ Redisキューを使用する場合は、`block_for`設定オプションを使�
     {
         $this->podcast = $podcast->withoutRelations();
     }
+
+さらに、ジョブがデシリアライズで、モデルのリレーションをデータベースから再取得するとき、それらはエンティティとして取得されます。ジョブのキュー投入過程でモデルをシリアライズする前に適用された以前のリレーション制約は、ジョブがデシリアライズされるときには適用されません。したがって、特定のリレーションのサブセットを使用したい場合は、キュー投入したジョブ内でそのリレーションを再制約する必要があります。
 
 <a name="unique-jobs"></a>
 ### 一意なジョブ
@@ -1745,6 +1750,17 @@ Eloquentモデルをジョブに挿入すると、モデルは自動的にシリ
      */
     public $deleteWhenMissingModels = true;
 
+<a name="pruning-failed-jobs"></a>
+### 失敗したジョブの切り詰め
+
+アプリケーションの`failed_jobs`テーブルのレコードをすべて削除するには、`queue:prune-failed` Artisanコマンドを実行します。
+
+    php artisan queue:prune-failed
+
+このコマンドに`--hours`オプションを指定すると、過去Ｎ時間以内に挿入された失敗したジョブレコードのみが保持されます。たとえば、次のコマンドは、48時間以上前に挿入された失敗したジョブレコードをすべて削除します。
+
+    php artisan queue:prune-failed --hours=48
+
 <a name="storing-failed-jobs-in-dynamodb"></a>
 ### 失敗したジョブのDynamoDBへの保存
 
@@ -1770,16 +1786,12 @@ composer require aws/aws-sdk-php
 ],
 ```
 
-<a name="pruning-failed-jobs"></a>
-### 失敗したジョブの切り詰め
+<a name="disabling-failed-job-storage"></a>
+### 失敗したジョブの保存の無効化
 
-アプリケーションの`failed_jobs`テーブルのレコードをすべて削除するには、`queue:prune-failed` Artisanコマンドを実行します。
+`queue.failed.driver`設定オプションの値を`null`にすることで、失敗したジョブを保存せず、破棄するようにLaravelへ指示できます。通常、これは`QUEUE_FAILED_DRIVER`環境変数の設定で実現します。
 
-    php artisan queue:prune-failed
-
-このコマンドに`--hours`オプションを指定すると、過去N時間以内に挿入された失敗したジョブレコードのみが保持されます。たとえば、次のコマンドは、48時間以上前に挿入された失敗したジョブレコードをすべて削除します。
-
-    php artisan queue:prune-failed --hours=48
+    QUEUE_FAILED_DRIVER=null
 
 <a name="failed-job-events"></a>
 ### 失敗したジョブイベント

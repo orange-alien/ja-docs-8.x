@@ -10,6 +10,7 @@
 - [名前付きルート](#named-routes)
 - [ルートグループ](#route-groups)
     - [ミドルウェア](#route-group-middleware)
+    - [コントローラ](#route-group-controllers)
     - [サブドメインルーティング](#route-group-subdomain-routing)
     - [ルートプレフィックス](#route-group-prefixes)
     - [ルート名のプレフィックス](#route-group-name-prefixes)
@@ -321,6 +322,18 @@ Laravelルーティングコンポーネントでは、`/`を除くすべての�
         Route::get('/user/profile', function () {
             // １番目と２番目のミドルウェアを使用
         });
+    });
+
+<a name="route-group-controllers"></a>
+### コントローラ
+
+ルートのグループがすべて同じ[コントローラ](/docs/{{version}}/controllers)を利用する場合、`controller`メソッドを使用して、グループ内のすべてのルートに共通のコントローラを定義できます。これにより、ルートを定義時に、そのルートが呼び出すコントローラメソッドを指定するだけでよくなります。
+
+    use App\Http\Controllers\OrderController;
+
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/orders/{id}', 'show');
+        Route::post('/orders', 'store');
     });
 
 <a name="route-group-subdomain-routing"></a>

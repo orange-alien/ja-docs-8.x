@@ -216,9 +216,11 @@ Mixは、現代的なECMAScriptのコンパイル、モジュールのバンド�
 この１行のコードで、次の利点を活用できます。
 
 <div class="content-list" markdown="1">
+
 - 最新のEcmaScript文法.
 - モジュール
 - 本番環境での圧縮
+
 </div>
 
 <a name="vue"></a>
@@ -270,9 +272,11 @@ MixはReactサポートに必要なBabelプラグインを自動的にインス�
 `extract`メソッドは、`vendor.js`ファイルに抽出したいすべてのライブラリまたはモジュールの配列を受け入れます。上記のスニペットを例として使用すると、Mixは次のファイルを生成します。
 
 <div class="content-list" markdown="1">
+
 - `public/js/manifest.js`: **Webpackマニフェストランタイム**
 - `public/js/vendor.js`: **皆さんのvendorライブラリー**
 - `public/js/app.js`: **皆さんのアプリケーションコード**
+
 </div>
 
 JavaScriptエラーを回避するため、以下のファイルを正しい順序でロードしてください。

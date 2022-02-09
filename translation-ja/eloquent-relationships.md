@@ -45,6 +45,7 @@
 多くの場合、データベーステーブルは相互に関連（リレーション）しています。たとえば、ブログ投稿に多くのコメントが含まれている場合や、注文がそれを行ったユーザーと関連している場合があります。Eloquentはこれらの関係の管理と操作を容易にし、さまざまな一般的な関係をサポートします。
 
 <div class="content-list" markdown="1">
+
 - [１対１](#one-to-one)
 - [１対多](#one-to-many)
 - [多対多](#many-to-many)
@@ -53,6 +54,7 @@
 - [１対１（ポリモーフィック）](#one-to-one-polymorphic-relations)
 - [１対多（ポリモーフィック）](#one-to-many-polymorphic-relations)
 - [多対多（ポリモーフィック）](#many-to-many-polymorphic-relations)
+
 </div>
 
 <a name="defining-relationships"></a>

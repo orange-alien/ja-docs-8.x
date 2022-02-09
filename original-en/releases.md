@@ -8,7 +8,7 @@
 <a name="versioning-scheme"></a>
 ## Versioning Scheme
 
-Laravel and its other first-party packages follow [Semantic Versioning](https://semver.org). Major framework releases are released every year (~January), while minor and patch releases may be released as often as every week. Minor and patch releases should **never** contain breaking changes.
+Laravel and its other first-party packages follow [Semantic Versioning](https://semver.org). Major framework releases are released every year (~February), while minor and patch releases may be released as often as every week. Minor and patch releases should **never** contain breaking changes.
 
 When referencing the Laravel framework or its components from your application or package, you should always use a version constraint such as `^8.0`, since major releases of Laravel do include breaking changes. However, we strive to always ensure you may update to a new major release in one day or less.
 
@@ -30,16 +30,16 @@ For LTS releases, such as Laravel 9, bug fixes are provided for 2 years and secu
 | 6 (LTS) | 7.2 - 8.0 | September 3rd, 2019 | January 25th, 2022 | September 6th, 2022 |
 | 7 | 7.2 - 8.0 | March 3rd, 2020 | October 6th, 2020 | March 3rd, 2021 |
 | 8 | 7.3 - 8.1 | September 8th, 2020 | July 26th, 2022 | January 24th, 2023 |
-| 9 (LTS) | 8.0 - 8.1 | January 25th, 2022 | January 30th, 2024 | January 28th, 2025 |
-| 10 | 8.0 - 8.1 | January 24th, 2023 | July 30th, 2024 | January 28th, 2025 |
+| 9 (LTS) | 8.0 - 8.1 | February 8th, 2022 | February 8th, 2024 | February 8th, 2025 |
+| 10 | 8.0 - 8.1 | February 7th, 2023 | August 7th, 2024 | February 7th, 2025 |
 
-<div class="sm:flex dark:text-gray-400 mb-1">
-    <div class="flex items-center mr-4">
-        <div class="w-3 h-3 mr-2 bg-red-500"></div>
+<div class="version-colors">
+    <div class="end-of-life">
+        <div class="color-box"></div>
         <div>End of life</div>
     </div>
-    <div class="flex items-center">
-        <div class="w-3 h-3 mr-2 bg-orange-600"></div>
+    <div class="security-fixes">
+        <div class="color-box"></div>
         <div>Security fixes only</div>
     </div>
 </div>

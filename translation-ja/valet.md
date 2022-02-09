@@ -36,6 +36,7 @@ Valetは以下をサポートしていますが、これらに限定されませ
 </style>
 
 <div id="valet-support" markdown="1">
+
 - [Laravel](https://laravel.com)
 - [Lumen](https://lumen.laravel.com)
 - [Bedrock](https://roots.io/bedrock/)
@@ -58,6 +59,7 @@ Valetは以下をサポートしていますが、これらに限定されませ
 - [Symfony](https://symfony.com)
 - [WordPress](https://wordpress.org)
 - [Zend](https://framework.zend.com)
+
 </div>
 
 独自の[カスタムドライバ](#custom-valet-drivers)でValetを拡張できます。
@@ -194,7 +196,7 @@ Valetには、ローカルサイトを世界へ公開し共有するコマンド
 
     valet share
 
-サイトの共有を停止するには、`Control + C`を押します。
+サイトの共有を停止するには、`Control + C`を押してください。Ngrok を使ってサイトを共有するには、[Ngrokアカウントの作成](https://dashboard.ngrok.com/signup)と[認証トークンの設定](https://dashboard.ngrok.com/get-started/your-authtoken)が必要です。
 
 > {tip} `valet share --region=eu`など、追加のNgrokパラメータをshareコマンドに渡すことができます。詳細は、[ngrokのドキュメント](https://ngrok.com/docs)を参照してください。
 

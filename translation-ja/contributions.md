@@ -23,6 +23,7 @@
 LaravelのソースコードはGitHubで管理され、各Laravelプロジェクトのリポジトリが存在しています。
 
 <div class="content-list" markdown="1">
+
 - [Laravel Application](https://github.com/laravel/laravel)
 - [Laravel Art](https://github.com/laravel/art)
 - [Laravel Documentation](https://github.com/laravel/docs)
@@ -43,6 +44,7 @@ LaravelのソースコードはGitHubで管理され、各Laravelプロジェク
 - [Laravel Socialite](https://github.com/laravel/socialite)
 - [Laravel Telescope](https://github.com/laravel/telescope)
 - [Laravel Website](https://github.com/laravel/laravel.com-next)
+
 </div>
 
 <a name="support-questions"></a>
@@ -51,13 +53,15 @@ LaravelのソースコードはGitHubで管理され、各Laravelプロジェク
 LaravelのGitHubイシュートラッカーは、Laravelのヘルプやサポートの提供を目的としていません。代わりに以下のチャンネルを利用してください。
 
 <div class="content-list" markdown="1">
+
 - [GitHub Discussions](https://github.com/laravel/framework/discussions)
 - [Laracasts Forums](https://laracasts.com/discuss)
 - [Laravel.io Forums](https://laravel.io/forum)
 - [StackOverflow](https://stackoverflow.com/questions/tagged/laravel)
-- [Discord](https://discordapp.com/invite/mPZNm7A)
+- [Discord](https://discord.gg/laravel)
 - [Larachat](https://larachat.co)
 - [IRC](https://web.libera.chat/?nick=artisan&channels=#laravel)
+
 </div>
 
 <a name="core-development-discussion"></a>
@@ -65,7 +69,7 @@ LaravelのGitHubイシュートラッカーは、Laravelのヘルプやサポー
 
 新機能や、現存のLaravelの振る舞いについて改善を提言したい場合は、Laravelフレームワークリポジトリの[GitHub discussion board](https://github.com/laravel/framework/discussions)へおねがいします。新機能を提言する場合は自発的に、それを完動させるのに必要な、コードを最低限でも実装してください。
 
-バグ、新機能、既存機能の実装についてのざっくばらんな議論は、[Laravel Discord server](https://discordapp.com/invite/mPZNm7A)の`#internals`チャンネルで行っています。LaravelのメンテナーであるTaylor Otwellは、通常ウイークエンドの午前８時から５時まで（America/Chicago標準時、UTC-6:00）接続しています。他の時間帯では、ときどき接続しています。
+バグ、新機能、既存機能の実装についてのざっくばらんな議論は、[Laravel Discord server](https://discord.gg/laravel)の`#internals`チャンネルで行っています。LaravelのメンテナーであるTaylor Otwellは、通常ウイークエンドの午前８時から５時まで（America/Chicago標準時、UTC-6:00）接続しています。他の時間帯では、ときどき接続しています。
 
 <a name="which-branch"></a>
 ## どのブランチ？
@@ -76,7 +80,7 @@ LaravelのGitHubイシュートラッカーは、Laravelのヘルプやサポー
 
 次のリリースに含めるべき**メジャー**な新機能は、常に`master`ブランチへ送ってください。
 
-もし、あなたの新機能がメジャーなのか、マイナーなのかはっきりしなければ、[Laravel Discord server](https://discordapp.com/invite/mPZNm7A)の`#internals`チャンネルでTaylor Otwellに尋ねてください。
+もし、あなたの新機能がメジャーなのか、マイナーなのかはっきりしなければ、[Laravel Discord server](https://discord.gg/laravel)の`#internals`チャンネルでTaylor Otwellに尋ねてください。
 
 <a name="compiled-assets"></a>
 ## アセットのコンパイル
@@ -124,8 +128,10 @@ Laravelは[PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/
 Laravelの行動規範はRubyの行動規範を基にしています。行動規範の違反はTaylor Otwell(taylor@laravel.com)へ報告してください。
 
 <div class="content-list" markdown="1">
+
 - 参加者は反対意見に寛容であること。
 - 参加者は個人攻撃や個人的な発言の誹謗に陥らぬように言動に気をつけてください。
 - 相手の言動を解釈する時、参加者は常に良い意図だと仮定してください。
 - 嫌がらせと考えるのがふさわしい振る舞いは、寛容に扱いません。
+
 </div>

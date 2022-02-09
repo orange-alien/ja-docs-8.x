@@ -193,6 +193,7 @@ Laravelはさまざまな、グローバル「ヘルパ」PHP関数を用意し�
 [replaceLast](#method-fluent-str-replace-last)
 [replaceMatches](#method-fluent-str-replace-matches)
 [rtrim](#method-fluent-str-rtrim)
+[scan](#method-fluent-str-scan)
 [singular](#method-fluent-str-singular)
 [slug](#method-fluent-str-slug)
 [snake](#method-fluent-str-snake)
@@ -2359,7 +2360,7 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
 
     // Arkansas is beautiful!
 
-削除時にケースを無視するため２番目のパラメータへ`false`を渡すこともできます。
+文字列削除時にケースを無視するため２番目のパラメータへ`false`を渡すこともできます。
 
 <a name="method-fluent-str-replace"></a>
 #### `replace` {.collection-method}
@@ -2442,6 +2443,17 @@ Fluent文字列は読み書きしやすい（fluent）、オブジェクト指�
     $string = Str::of('/Laravel/')->rtrim('/');
 
     // '/Laravel'
+
+<a name="method-fluent-str-scan"></a>
+#### `scan` {.collection-method}
+
+`scan` メソッドは、[`sscanf` PHP関数](https://www.php.net/manual/ja/function.sscanf.php)がサポートするフォーマットに従い、文字列からコレクションへの入力をパースします。
+
+    use Illuminate\Support\Str;
+
+    $collection = Str::of('filename.jpg')->scan('%[^.].%s');
+
+    // collect(['filename', 'jpg'])
 
 <a name="method-fluent-str-singular"></a>
 #### `singular` {.collection-method}
@@ -3439,7 +3451,7 @@ Str::of('Hello, world!')->wordCount(); // 2
 `with`関数は、指定値を返します。関数の２番目の引数としてクロージャを渡たすと、クロージャが実行され、その戻り値を返します。
 
     $callback = function ($value) {
-        return (is_numeric($value)) ? $value * 2 : 0;
+        return is_numeric($value) ? $value * 2 : 0;
     };
 
     $result = with(5, $callback);

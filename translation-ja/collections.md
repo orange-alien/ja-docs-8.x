@@ -187,6 +187,7 @@
 [sortDesc](#method-sortdesc)
 [sortKeys](#method-sortkeys)
 [sortKeysDesc](#method-sortkeysdesc)
+[sortKeysUsing](#method-sortkeysusing)
 [splice](#method-splice)
 [split](#method-split)
 [splitIn](#method-splitin)
@@ -2302,6 +2303,31 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 #### `sortKeysDesc()` {.collection-method}
 
 このメソッドは、[`sortKeys`](#method-sortkeys)メソッドと使い方は同じですが、逆順にコレクションをソートします。
+
+<a name="method-sortkeysusing"></a>
+#### `sortKeysUsing()` {.collection-method}
+
+`sortKeysUsing`メソッドはコールバックを用いて、連想配列のキーでコレクションをソートします。
+
+    $collection = collect([
+        'ID' => 22345,
+        'first' => 'John',
+        'last' => 'Doe',
+    ]);
+
+    $sorted = $collection->sortKeysUsing('strnatcasecmp');
+
+    $sorted->all();
+
+    /*
+        [
+            'first' => 'John',
+            'ID' => 22345,
+            'last' => 'Doe',
+        ]
+    */
+
+コールバックは0か、0より小さいか、0より大きい整数を返す比較関数でなければなりません。詳細については、[`uksort`](https://www.php.net/manual/ja/function.uksort.php#refsect1-function.uksort-parameters)のPHPドキュメントを参照してください。この関数は`sortKeysUsing`メソッドが内部で利用しているPHP関数です。
 
 <a name="method-splice"></a>
 #### `splice()` {.collection-method}

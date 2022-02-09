@@ -119,7 +119,7 @@ Sailの`up`コマンドをはじめて実行すると、Sailのアプリケー�
 <a name="getting-started-on-linux"></a>
 ### Linuxで始める
 
-Linuxで開発しており、[Docker](https://www.docker.com)がインストール済みの場合は、簡単なターミナルコマンドを使用して新しいLaravelプロジェクトを作成できます。たとえば、"example-app"という名前のディレクトリに新しいLaravelアプリケーションを作成するには、ターミナルで次のコマンドを実行します。
+Linuxで開発しており、[Docker Compose](https://docs.docker.com/compose/install/)がインストール済みの場合は、簡単なターミナルコマンドを使用して新しいLaravelプロジェクトを作成できます。たとえば、"example-app"という名前のディレクトリに新しいLaravelアプリケーションを作成するには、ターミナルで次のコマンドを実行します。
 
 ```nothing
 curl -s https://laravel.build/example-app | bash
@@ -181,9 +181,11 @@ php artisan serve
 Composerのシステム全体のvendor/binディレクトリを`$PATH`に配置して、システムで`laravel`実行可能ファイルが見つかるようにしてください。このディレクトリは、オペレーティングシステムに基づいてさまざまな場所に存在します。ただし、一般的には以下の場所にあります。
 
 <div class="content-list" markdown="1">
+
 - macOS: `$HOME/.composer/vendor/bin`
 - Windows: `%USERPROFILE%\AppData\Roaming\Composer\vendor\bin`
 - GNU／Linuxディストリビューション: `$HOME/.config/composer/vendor/bin`もしくは`$HOME/.composer/vendor/bin`
+
 </div>
 
 便利なように、Laravelインストーラはあなたの新しいプロジェクトのためにGitリポジトリを作成することもできます。Gitリポジトリを作成することを指示するには、新しいプロジェクトを作成するときに`--git`フラグを渡します。
@@ -243,11 +245,13 @@ Laravelは常に、Webサーバで設定する「Webディレクトリ」のル�
 Laravelプロジェクトを設定し終えて、次に何を学ぶべきか迷っているかもしれません。まず、以下のドキュメントを読み、Laravelの仕組みを理解することを強く推奨いたします。
 
 <div class="content-list" markdown="1">
+
 - [リクエストのライフサイクル](/docs/{{version}}/lifecycle)
 - [設定](/docs/{{version}}/configuration)
 - [ディレクトリ構成](/docs/{{version}}/structure)
 - [サービスコンテナ](/docs/{{version}}/container)
 - [ファサード](/docs/{{version}}/facades)
+
 </div>
 
 Laravelをどのように使用するかにより、旅の次の行き先も決まります。Laravelを使用するにはさまざまな方法があります。以下では、フレームワークの２つの主要なユースケースについて説明します。
@@ -271,4 +275,3 @@ Laravelは、JavaScriptシングルページアプリケーションまたはモ
 この方法でLaravelの使用を計画している場合は、[ルーティング](/docs/{{version}}/routing)、[Laravel Sanctum](/docs/{{version}}/sanctum)、[Eloquent ORM](/docs/{{version}}/eloquent)に関するドキュメントを確認することをお勧めします。
 
 > {tip} LaravelのバックエンドとNext.jsのフロントエンドのスカフォールドから始める必要がありますか？Laravel Breezeは、[APIスタック](/docs/{{version}}/starter-kits#breeze-and-next)と[Next.jsフロントエンド実装](https://github.com/laravel/breeze-next)を提供しているため、すぐに開始できます。
-

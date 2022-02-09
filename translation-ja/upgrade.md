@@ -6,23 +6,27 @@
 ## 重要度の高い変更
 
 <div class="content-list" markdown="1">
+
 - [モデルファクトリ](#model-factories)
 - [キュー`retryAfter`メソッド](#queue-retry-after-method)
 - [キュー`timeoutAt`プロパティ](#queue-timeout-at-property)
 - [キュー`allOnQueue`／`allOnConnection`](#queue-allOnQueue-allOnConnection)
 - [ペジネーションデフォルト](#pagination-defaults)
 - [シーダとファクトリの名前空間](#seeder-factory-namespaces)
+
 </div>
 
 <a name="medium-impact-changes"></a>
 ## 重要度が中程度の変更
 
 <div class="content-list" markdown="1">
+
 - [PHP 7.3.0 Required](#php-7.3.0-required)
 - [失敗したジョブテーブルのバッチサポート](#failed-jobs-table-batch-support)
 - [メンテナンスモードアップデート](#maintenance-mode-updates)
 - [`php artisan down --message`オプション](#artisan-down-message)
 - [`assertExactJson`メソッド](#assert-exact-json-method)
+
 </div>
 
 <a name="upgrade-8.0"></a>
@@ -46,21 +50,25 @@
 `composer.json`ファイル中に指定されている以下のパッケージ依存を更新してください。
 
 <div class="content-list" markdown="1">
+
 - `guzzlehttp/guzzle`を`^7.0.1`へ
 - `facade/ignition`を`^2.3.6`へ
 - `laravel/framework`を`^8.0`へ
 - `laravel/ui`を`^3.0`へ
 - `nunomaduro/collision`を`^5.0`へ
 - `phpunit/phpunit`を`^9.0`へ
+
 </div>
 
 以下のファーストパーティパッケージは、Laravel8をサポートするために、新しくメジャーバージョンになりました。該当するパッケージを使用している場合、アップグレードを行う前に、各アップグレードガイドを読んでください。
 
 <div class="content-list" markdown="1">
+
 - [Horizon v5.0](https://github.com/laravel/horizon/blob/master/UPGRADE.md)
 - [Passport v10.0](https://github.com/laravel/passport/blob/master/UPGRADE.md)
 - [Socialite v5.0](https://github.com/laravel/socialite/blob/master/UPGRADE.md)
 - [Telescope v4.0](https://github.com/laravel/telescope/blob/master/UPGRADE.md)
+
 </div>
 
 さらに、Laravelインストーラを`composer create-project`とLaravel Jetstreamをサポートするためにアップデートしました。4.0より古いインストーラは２０２０年の１０月以降動作停止します。グローバルインストーラを`^4.0`へすぐにアップデートしてください。

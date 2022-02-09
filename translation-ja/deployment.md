@@ -23,6 +23,7 @@ Laravelアプリケーションをプロダクションとしてデプロイす�
 Laravelフレームワークにはいくつかのシステム要件があります。Webサーバへ確実に以下のPHP最低バージョンと拡張機能を用意してください。
 
 <div class="content-list" markdown="1">
+
 - PHP7.3以上
 - BCMath PHP 拡張
 - Ctype PHP 拡張
@@ -33,6 +34,7 @@ Laravelフレームワークにはいくつかのシステム要件がありま�
 - PDO PHP 拡張
 - Tokenizer PHP 拡張
 - XML PHP 拡張
+
 </div>
 
 <a name="server-configuration"></a>

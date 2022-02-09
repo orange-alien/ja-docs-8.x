@@ -1037,41 +1037,6 @@ Slackへの通知を送信し始める前に、ComposerによりSlack通知チ�
                     ->content('One of your invoices has been paid!');
     }
 
-<a name="customizing-the-sender-recipient"></a>
-#### 送信者と受信者のカスタマイズ
-
-`from`と`to`メソッドを使い、送信者と受信者のカスタマイズができます。`from`メソッドはユーザー名と絵文字識別子を受け付け、`to`メソッドはチャンネルかユーザー名を受け取ります。
-
-    /**
-     * 通知のSlackプレゼンテーションを取得
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\SlackMessage
-     */
-    public function toSlack($notifiable)
-    {
-        return (new SlackMessage)
-                    ->from('Ghost', ':ghost:')
-                    ->to('#bots')
-                    ->content('This will be sent to #bots');
-    }
-
-文字の代わりに「ロゴ」からの画像を使用することもできます。
-
-    /**
-     * 通知のSlackプレゼンテーションを取得
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\SlackMessage
-     */
-    public function toSlack($notifiable)
-    {
-        return (new SlackMessage)
-                    ->from('Laravel')
-                    ->image('https://laravel.com/img/favicon/favicon.ico')
-                    ->content('This will display the Laravel logo next to the message');
-    }
-
 <a name="slack-attachments"></a>
 ### Slack添付
 

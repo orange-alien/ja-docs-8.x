@@ -28,7 +28,7 @@ Laravelは、[Guzzle HTTPクライアント](http://docs.guzzlephp.org/en/stable
 <a name="making-requests"></a>
 ## リクエストの作成
 
-リクエストを行うには、`Http`ファサードが提供する`get`、`post`、`put`、`patch`、`delete`メソッドを使用します。まず、外部のURLに対して基本的な`GET`リクエストを行う方法を見てみましょう。
+リクエストを行うには、`Http`ファサードが提供する`head`、`get`、`post`、`put`、`patch`、`delete`メソッドを使用します。まず、外部のURLに対して基本的な`GET`リクエストを行う方法を見てみましょう。
 
     use Illuminate\Support\Facades\Http;
 
@@ -37,12 +37,13 @@ Laravelは、[Guzzle HTTPクライアント](http://docs.guzzlephp.org/en/stable
 `get`メソッドは`Illuminate\Http\Client\Response`のインスタンスを返します。これは、レスポンスを調べるために使用できるさまざまなメソッドを提供します。
 
     $response->body() : string;
-    $response->json() : array|mixed;
+    $response->json($key = null) : array|mixed;
     $response->object() : object;
-    $response->collect() : Illuminate\Support\Collection;
+    $response->collect($key = null) : Illuminate\Support\Collection;
     $response->status() : int;
     $response->ok() : bool;
     $response->successful() : bool;
+    $response->redirect(): bool;
     $response->failed() : bool;
     $response->serverError() : bool;
     $response->clientError() : bool;
@@ -196,6 +197,9 @@ Guzzleのデフォルト動作とは異なり、LaravelのHTTPクライアント
 
     // レスポンスに500レベルのステータスコードがあるかを判定
     $response->serverError();
+
+    // クライアントまたはサーバエラーが発生した場合、指定コールバックを即座に実行
+    $response->onError(callable $callback);
 
 <a name="throwing-exceptions"></a>
 #### 例外を投げる
@@ -415,6 +419,12 @@ $response = Http::github()->get('/');
     Http::assertNotSent(function (Request $request) {
         return $request->url() === 'http://example.com/posts';
     });
+
+テスト中にいくつのリクエストを「送信」"したかを宣言するため、`assertSentCount`メソッドを使用できます。
+
+    Http::fake();
+
+    Http::assertSentCount(5);
 
 または、`assertNothingSent`メソッドを使用して、テスト中にリクエストが送信されないことを宣言することもできます。
 

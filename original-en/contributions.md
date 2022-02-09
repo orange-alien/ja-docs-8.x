@@ -23,6 +23,7 @@ Remember, bug reports are created in the hope that others with the same problem 
 The Laravel source code is managed on GitHub, and there are repositories for each of the Laravel projects:
 
 <div class="content-list" markdown="1">
+
 - [Laravel Application](https://github.com/laravel/laravel)
 - [Laravel Art](https://github.com/laravel/art)
 - [Laravel Documentation](https://github.com/laravel/docs)
@@ -43,6 +44,7 @@ The Laravel source code is managed on GitHub, and there are repositories for eac
 - [Laravel Socialite](https://github.com/laravel/socialite)
 - [Laravel Telescope](https://github.com/laravel/telescope)
 - [Laravel Website](https://github.com/laravel/laravel.com-next)
+
 </div>
 
 <a name="support-questions"></a>
@@ -51,13 +53,15 @@ The Laravel source code is managed on GitHub, and there are repositories for eac
 Laravel's GitHub issue trackers are not intended to provide Laravel help or support. Instead, use one of the following channels:
 
 <div class="content-list" markdown="1">
+
 - [GitHub Discussions](https://github.com/laravel/framework/discussions)
 - [Laracasts Forums](https://laracasts.com/discuss)
 - [Laravel.io Forums](https://laravel.io/forum)
 - [StackOverflow](https://stackoverflow.com/questions/tagged/laravel)
-- [Discord](https://discordapp.com/invite/mPZNm7A)
+- [Discord](https://discord.gg/laravel)
 - [Larachat](https://larachat.co)
 - [IRC](https://web.libera.chat/?nick=artisan&channels=#laravel)
+
 </div>
 
 <a name="core-development-discussion"></a>
@@ -65,7 +69,7 @@ Laravel's GitHub issue trackers are not intended to provide Laravel help or supp
 
 You may propose new features or improvements of existing Laravel behavior in the Laravel framework repository's [GitHub discussion board](https://github.com/laravel/framework/discussions). If you propose a new feature, please be willing to implement at least some of the code that would be needed to complete the feature.
 
-Informal discussion regarding bugs, new features, and implementation of existing features takes place in the `#internals` channel of the [Laravel Discord server](https://discordapp.com/invite/mPZNm7A). Taylor Otwell, the maintainer of Laravel, is typically present in the channel on weekdays from 8am-5pm (UTC-06:00 or America/Chicago), and sporadically present in the channel at other times.
+Informal discussion regarding bugs, new features, and implementation of existing features takes place in the `#internals` channel of the [Laravel Discord server](https://discord.gg/laravel). Taylor Otwell, the maintainer of Laravel, is typically present in the channel on weekdays from 8am-5pm (UTC-06:00 or America/Chicago), and sporadically present in the channel at other times.
 
 <a name="which-branch"></a>
 ## Which Branch?
@@ -76,7 +80,7 @@ Informal discussion regarding bugs, new features, and implementation of existing
 
 **Major** new features should always be sent to the `master` branch, which contains the upcoming release.
 
-If you are unsure if your feature qualifies as a major or minor, please ask Taylor Otwell in the `#internals` channel of the [Laravel Discord server](https://discordapp.com/invite/mPZNm7A).
+If you are unsure if your feature qualifies as a major or minor, please ask Taylor Otwell in the `#internals` channel of the [Laravel Discord server](https://discord.gg/laravel).
 
 <a name="compiled-assets"></a>
 ## Compiled Assets
@@ -124,8 +128,10 @@ Don't worry if your code styling isn't perfect! [StyleCI](https://styleci.io/) w
 The Laravel code of conduct is derived from the Ruby code of conduct. Any violations of the code of conduct may be reported to Taylor Otwell (taylor@laravel.com):
 
 <div class="content-list" markdown="1">
+
 - Participants will be tolerant of opposing views.
 - Participants must ensure that their language and actions are free of personal attacks and disparaging personal remarks.
 - When interpreting the words and actions of others, participants should always assume good intentions.
 - Behavior that can be reasonably considered harassment will not be tolerated.
+
 </div>
