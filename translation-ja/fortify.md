@@ -331,7 +331,7 @@ Fortifyはこのビューを返す、`/two-factor-challenge`ルートの定義�
 
 ログインの試行が成功すると、Fortifyはアプリケーションの`fortify`設定ファイル内の`home`設定オプションにより設定されたURIへ、ユーザーをリダイレクトします。ログイン要求がXHR要求であった場合、204 HTTPレスポンスが返されます。
 
-リクエストが成功しなかった場合、ユーザーはログイン画面にリダイレクトされ、バリデーションエラーは共有の`$errors` [Bladeテンプレート変数](/docs/{{version}}/validation#quick-displaying-the-validation-errors)により利用できます。XHRリクエストの場合、バリデーションエラーは422 HTTPレスポンスで返されます。
+リクエストが成功しなかった場合、ユーザーは２要素認証画面へリダイレクトされ、バリデーションエラーは共有の`$errors` [Bladeテンプレート変数](/docs/{{version}}/validation#quick-displaying-the-validation-errors)により利用できます。XHRリクエストの場合、バリデーションエラーは422 HTTPレスポンスで返されます。
 
 <a name="disabling-two-factor-authentication"></a>
 ### ２要素認証の無効化

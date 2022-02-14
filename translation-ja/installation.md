@@ -157,7 +157,7 @@ curl -s "https://laravel.build/example-app?with=mysql,redis" | bash
 
 コンピューターにすでにPHPとComposerがインストールされていれば、Composerを直接使用して新しいLaravelプロジェクトを作成できます。アプリケーションを作成したら、Artisan CLIの`serve`コマンドを使用して、Laravelのローカル開発サーバを起動できます。
 
-    composer create-project laravel/laravel example-app
+    composer create-project laravel/laravel:^8.0 example-app
 
     cd example-app
 
@@ -275,3 +275,4 @@ Laravelは、JavaScriptシングルページアプリケーションまたはモ
 この方法でLaravelの使用を計画している場合は、[ルーティング](/docs/{{version}}/routing)、[Laravel Sanctum](/docs/{{version}}/sanctum)、[Eloquent ORM](/docs/{{version}}/eloquent)に関するドキュメントを確認することをお勧めします。
 
 > {tip} LaravelのバックエンドとNext.jsのフロントエンドのスカフォールドから始める必要がありますか？Laravel Breezeは、[APIスタック](/docs/{{version}}/starter-kits#breeze-and-next)と[Next.jsフロントエンド実装](https://github.com/laravel/breeze-next)を提供しているため、すぐに開始できます。
+

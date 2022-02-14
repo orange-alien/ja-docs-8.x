@@ -8,7 +8,7 @@
     - [準備](#setup)
     - [変数](#variables)
     - [ストーリー](#stories)
-    - [完了フック](#completion-hooks)
+    - [フック](#completion-hooks)
 - [タスク実行](#running-tasks)
     - [タスク実行の確認](#confirming-task-execution)
 - [通知](#notifications)
@@ -175,11 +175,24 @@ Bladeの「エコー（echo）」構文を使用して、タスク内のオプ�
     php vendor/bin/envoy run deploy
 
 <a name="completion-hooks"></a>
-### 完了フック
+### フック
 
-タスクとストーリーが終了すると、いくつかのフックが実行されます。Envoyがサポートしているフックタイプは`@after`、`@error`、`@success`、`@finished`です。これらのフック内のすべてのコードはPHPとして解釈され、ローカルで実行されます。タスクが操作するリモートサーバ上では実行されません。
+タスクとストーリーが実行されると、いくつかのフックが実行されます。Envoyがサポートしているフックタイプは`@before`、`@after`、`@error`、`@success`、`@finished`です。これらのフック内のすべてのコードはPHPとして解釈され、ローカルで実行されます。タスクが操作するリモートサーバ上では実行されません。
 
 好きなようにこれらのフックを好きなだけ定義できます。それらはEnvoyスクリプトに現れる順序で実行されます。
+
+<a name="hook-before"></a>
+#### `@before`
+
+各タスクの実行前に、Envoyスクリプトで登録されているすべての`@before`フックが実行されます。`@before`フックは、実行しているタスクの名前を受け取ります。
+
+```php
+@before
+    if ($task === 'deploy') {
+        // ...
+    }
+@endbefore
+```
 
 <a name="completion-after"></a>
 #### `@after`
