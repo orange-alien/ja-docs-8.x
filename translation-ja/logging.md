@@ -83,7 +83,7 @@ Laravelはメッセージをログに記録するときに、デフォルトで`
 <a name="configuring-the-slack-channel"></a>
 #### Slackチャンネルの設定
 
-`slack`チャンネルには`url`設定オプションが必要です。このURLは、皆さんのSlackチーム用に設定した[受信Webフックの](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks)のURLと一致する必要があります。
+`slack`チャンネルには`url`設定オプションが必要です。このURLは、皆さんのSlackチーム用に設定した[受信Webフック](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks)のURLと一致する必要があります。
 
 デフォルトでは、Slackは`critical`レベル以上のログのみ受信します。ただし`config/logging.php`設定ファイルで、Slackログチャンネルの設定配列内の`level`設定オプションを変更することで調整できます。
 
