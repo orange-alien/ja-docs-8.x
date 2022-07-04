@@ -474,7 +474,7 @@ Laravelの[サービスコンテナ](/docs/{{version}}/container)を介してア
 <a name="on-demand-notifications"></a>
 #### オンデマンド通知
 
-テストしているコードが[オンデマンド通知](/docs/{{version}}/notifys#on-demand-notifications)を送信する場合は、通知が`Illuminate\Notifications\AnonymousNotifiable`インスタンスへ送信されたことをアサートする必要があります。
+テストしているコードが[オンデマンド通知](/docs/{{version}}/notifications#on-demand-notifications)を送信する場合は、通知が`Illuminate\Notifications\AnonymousNotifiable`インスタンスへ送信されたことをアサートする必要があります。
 
     use Illuminate\Notifications\AnonymousNotifiable;
 
